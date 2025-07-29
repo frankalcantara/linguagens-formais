@@ -1,0 +1,6 @@
+# Disciplina de Linguagens Formais
+
+Este é o material de suporte para a disciplina de Linguagens Formais, que abrange conceitos fundamentais de teoria da computação, autômatos, gramáticas e linguagens formais. O curso é dividido em várias partes, cada uma focando em aspectos específicos do tema.
+
+Além deste texto o aluno deve consultar os livros e artigos recomendados no plano de ensino da disciplina.
+

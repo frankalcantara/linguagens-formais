@@ -1,0 +1,97 @@
+project:
+  type: book
+  output-dir: _output
+  resources:
+    - "images/"
+    - "styles/"
+    - "latex-setup.tex"
+
+book:
+  title: "Linguagens Formais e Autômatos"
+  subtitle: "Fundamentos Teóricos e Aplicações Práticas"
+  author: "Frank Coelho de Alcantara"
+  date: "07/29/2025"
+  chapters:
+    - index.qmd
+    - part: Autômatos e Gramáticas
+      chapters: 
+        - parsers.qmd
+        - first-follow.qmd
+        - tabela-derivacao.qmd
+    - part: Projeto da Disciplina
+      chapters:
+        - fase1.qmd
+    - referencias.qmd
+  page-footer: "Copyright © 2025 Frank de Alcantara"
+  site-url: https://frankalcantara.com
+  repo-url: https://github.com/frankalcantara/linguagens-formais
+  repo-actions: [edit, issue]
+  
+bibliography: references.bib
+csl: associacao-brasileira-de-normas-tecnicas-numerico.csl
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "Sumário"
+    toc-location: left
+    toc-float: true
+    html-math-method: mathjax
+    css: styles/custom.css
+    mathjax:
+      config:
+        tex:
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          processEscapes: true
+          processEnvironments: true
+          packages: ['base', 'ams']
+        chtml:
+          scale: 0.8
+        loader:
+          load: ['[tex]/ams']
+  pdf:
+    pdf-engine: xelatex
+    documentclass: scrreprt
+    papersize: a4paper
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=3cm
+      - right=2.5cm
+    fontsize: 11pt
+    indent: true
+    toc-depth: 3
+    number-sections: true
+    colorlinks: true
+    fig-pos: H
+    bibliography: references.bib
+    toc-title: "Sumário"
+    language: _language.yml
+    highlight-style: tango
+    include-in-header:
+      text: |
+        \usepackage{unicode-math}
+        \usepackage{fontspec}
+        \usepackage{xcolor}
+        \usepackage{graphicx}
+        \usepackage{float}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{booktabs}
+        \usepackage[brazilian, provide=*]{babel}
+        
+        % Configuração básica de fontes
+        \setmainfont{Latin Modern Roman}
+        
+        % Definições de cores
+        \definecolor{titlebg}{rgb}{0.1176, 0.4941, 0.6667}  
+        
+        % Configurações KOMA-Script
+        \addtokomafont{chapter}{\color{titlebg}}
+        \addtokomafont{section}{\color{titlebg}}
+        \addtokomafont{subsection}{\color{titlebg}}
+        
+        \addto\captionsbrazilian{\renewcommand{\contentsname}{Sumário}}
