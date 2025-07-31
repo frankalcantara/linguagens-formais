@@ -1,36 +1,34 @@
 # Analisadores Léxicos
 
-Os Analisadores Léxicos são a parte inicial da maioria dos processos de tradução que ocorre entre linguagens de programação e linguagens de máquina. Estes algoritmos são responsáveis por ler o código fonte na forma de um fluxo contínuo de caracteres e agrupar estes caracteres em blocos sintáticos significativos para uma dada linguagem, chamados **_tokens_**. Este fluxo contínuo de símbolos de entrada, geralmente caracteres, será chamado de _string_, ou cadeia, de forma livre durante todo este texto. Contudo, é necessário que a atenta leitora já crie uma imagem mental de que estes termos, _string_ e cadeia, se referem a sequências de caracteres, ou símbolos sem limitação de tamanho. Ou seja, dependendo do parágrafo, ou capítulo que estiver lendo a palavra _string_ pode se referir a um conjunto vazio, alguns símbolos, um arquivo de código fonte, ou até mesmo um projeto completo.
+Os Analisadores Léxicos formam o primeiro bloco de processamento da maioria dos processos de tradução que ocorre entre linguagens de programação e linguagens de máquina. Incluindo compiladores, interpretadores e sistemas mistos. Os Analisadores Léxicos são responsáveis por ler o código fonte por meio de um fluxo contínuo de caracteres e agrupar estes caracteres em blocos sintáticos significativos para uma dada linguagem, chamados **_tokens_**. Este fluxo contínuo de símbolos de entrada, geralmente caracteres, será chamado de _string_, ou cadeia, de forma livre durante todo este texto. Contudo, é necessário que a atenta leitora já crie uma imagem mental de que estes termos, _string_ e cadeia, se referem a sequências de caracteres, ou símbolos, sem limitação de tamanho. Ou seja, dependendo do parágrafo, ou capítulo, que estiver lendo a palavra _string_ pode se referir a um conjunto vazio, alguns símbolos, um arquivo de código fonte, ou até mesmo um projeto completo.
 
-Não é possível entender analisadores léxicos sem antes compreender o conceito de **Máquina de Estado Finito**. Este é um modelo matemático fundamental que serve como base para a análise léxica e muitos outros aspectos da ciência da computação. A **Máquina de Estado Finito** é uma abstração que captura o comportamento de sistemas que podem ser descritos por um conjunto finito de estados.
-
-## Máquinas de Estado Finito: História e Conceito
-
-O estudo dos autômatos finitos representa um dos pilares teóricos da Ciência da Computação, tendo suas raízes firmemente plantadas nos desenvolvimentos intelectuais do século XX. Os autômatos finitos fornecem uma plataforma rigorosa para questionar a própria natureza da computação: o que pode ser computado, quais são os recursos necessários para a computação e como as computações podem ser realizadas de forma eficiente.
-
-Os estudos da Ciência da Computação são frequentemente organizados em uma hierarquia de capacidade computacional. Uma hierarquia que começa com a **Máquina de Estados Finitos**, ocupa a posição de modelo mais fundamental e, em certos aspectos, o mais simples. Uma **Máquina de Estado Finito** é um modelo para sistemas que possuem uma quantidade finita e limitada de memória. A **Máquina de Estado Finito** é composta por um conjunto finito de **estados**, um estado inicial, um conjunto de **transições** que definem como a máquina muda de estado com base em entradas discretas, e um conjunto de **estados de aceitação** que determinam se uma cadeia de símbolos de entrada é aceita ou rejeitada. Os estados servem como um resumo conciso de todo o histórico de entradas passadas relevante para determinar o comportamento futuro do sistema. Em vez de necessitar de uma memória infinita, uma **Máquina de Estado Finito** encapsula a história em um número finito de condições predefinidas.
+Não é possível entender analisadores léxicos sem antes compreender o conceito de **Máquina de Estado Finito**. Este é um modelo matemático fundamental que serve como base para a análise léxica. Neste caso, começamos dizendo que uma **Máquina de Estado Finito** é uma abstração matemática que captura o comportamento de sistemas que podem ser descritos por um conjunto finito de estados. Contudo, antes de nos aprofundarmos na teoria é importante entender a história e o contexto que levaram ao desenvolvimento deste conceito.
 
 Neste capítulo, vamos estudar as **Máquinas de Estados Finitos**, começando por sua origem como um modelo matemático inspirado na neurobiologia, passando pela formalização matemática inicial, até sua aplicação prática na análise léxica, principalmente nos compiladores modernos. Nesta jornada, a amável leitora viajará nas ondas da teoria, explorando como as **Máquinas de Estados Finitos** se tornaram uma ferramenta essencial na engenharia de software.
 
-A análise léxica é a primeira fase de qualquer processo de tradução de linguagem de programação para linguagem de máquina (compiladores e interpretadores). A análise léxica, também conhecida como _scanning_, é o processo pelo qual o fluxo de caracteres do código-fonte é agrupado em unidades sintáticas significativas chamadas __tokens__. Na chegada a este ponto, será demonstrado que a **Máquina de Estado Finito** não é apenas um modelo adequado para esta tarefa; é a ferramenta teórica e prática perfeita, ilustrando um dos mais bem-sucedidos casamentos entre a teoria da computação e a engenharia de software.
+## Máquinas de Estado Finito: História e Conceito
 
-A origem da máquina de estado finito está no produto de um esforço colaborativo que envolveu biólogos, psicólogos, matemáticos, engenheiros e alguns dos primeiros cientistas da computação, todos unidos por um interesse comum: modelar o processo do pensamento humano, seja no cérebro ou em uma máquina. Curiosamente ligando as máquinas de estados finitos às ferramentas de Inteligência Artificial e Aprendizagem de Máquina, a história das **Máquinas de Estados Finitos** começa com a tentativa de entender o funcionamento do cérebro humano e como este processa informações.
+Os estudos da Ciência da Computação são frequentemente organizados em uma hierarquia de capacidade computacional. Uma hierarquia em que a **Máquina de Estados Finitos**, ocupa a posição de modelo mais fundamental e, em certos aspectos, o mais simples. Uma **Máquina de Estado Finito** é um modelo para sistemas que possuem uma quantidade finita e limitada de memória. 
 
-### O Ponto de Partida (1943): O Modelo de McCulloch e Pitts
+O modelo que chamamos de **Máquina de Estado Finito** é composto por um conjunto finito de **estados**, um estado inicial, um conjunto de **transições** que definem como a máquina muda de estado com base em entradas discretas, e um conjunto de **estados de aceitação** que determinam se uma cadeia de símbolos de entrada é aceita ou rejeitada. 
+
+A origem da máquina de estado finito está no produto de um esforço colaborativo que envolveu biólogos, psicólogos, matemáticos, engenheiros e alguns dos primeiros cientistas da computação, todos unidos por um interesse comum: modelar o processo do pensamento humano, seja no cérebro ou em uma máquina. Curiosamente ligando as máquinas de estados finitos às ferramentas de Inteligência Artificial e Aprendizagem de Máquina, a história das Máquinas de Estados Finitos começa com a tentativa de entender o funcionamento do cérebro humano e como este processa informações.
+
+### O Ponto de Partida: O Modelo de McCulloch e Pitts
 
 O trabalho pioneiro que deu origem à teoria dos autômatos foi o artigo de 1943 dos neurofisiologistas [Warren McCulloch](https://en.wikipedia.org/wiki/Warren_Sturgis_McCulloch) e [Walter Pitts](https://en.wikipedia.org/wiki/Walter_Pitts), intitulado _[A Logical Calculus Immanent in Nervous Activity](https://www.cs.cmu.edu/~epxing/Class/10715/reading/McCulloch.and.Pitts.pdf)_[@mcculloch1943logical][^maq1].   
 
 
 [^maq1]: em tradução livre, "Um Cálculo Lógico Immanente na Atividade Nervosa".
 
-McCulloch e Pitts propuseram um modelo matemático para o neurônio biológico, caracterizando-o como uma unidade de processamento binária. No modelo de McCulloch e Pitts, um neurônio "dispararia", produzindo um sinal de saída, se, e somente se, um número fixo de sinapses de entrada fosse excitado dentro de um período de tempo discreto, excedendo assim um limiar predefinido [@mcculloch1943logical]. Este modelo discreto, no qual cada neurônio pode estar em um conjunto finito de estados (por exemplo, "disparando" ou "quieto") e cuja transição de estado é governada por entradas discretas. O modelo de McCulloch e Pitts representa a primeira formalização conhecida de um autômato finito. Uma rede destes neurônios formava um sistema capaz de computações lógicas complexas, demonstrando como comportamentos complexos poderiam emergir de componentes simples e finitos.
+McCulloch e Pitts propuseram um modelo matemático para o neurônio biológico, caracterizando-o como uma unidade de processamento binária. No modelo de McCulloch e Pitts, um neurônio _dispararia_, produzindo um sinal de saída, se, e somente se, um número fixo de sinapses de entrada fosse excitado dentro de um período de tempo discreto, excedendo assim um limiar predefinido @mcculloch1943logical]. Este é um modelo discreto e binário, no qual cada neurônio pode estar em um conjunto finito de estados, por exemplo, _disparando_ ou _quieto_, e cuja transição de estado é governada por entradas também discretas. O modelo de McCulloch e Pitts representa a primeira formalização conhecida de um Autômato Finito. O artigo demonstrou que uma rede destes neurônios formava um sistema capaz de computações lógicas complexas, como as operações da lógica proposicional, indicando que comportamentos complexos poderiam emergir de componentes simples e finitos.
 
 ::: {.callout-note}
 
-Uma autômato finito é uma máquina de estados finitos do tipo _reconhecedor_ sua função é reconhecer padrões em cadeias de símbolos, ou seja, determinar se uma cadeia de entrada pertence a uma linguagem específica. Este modelo é fundamental para a teoria da computação e serve como base para muitos conceitos mais avançados, como autômatos de pilha e máquinas de Turing.
+Um Autômato Finito é uma Máquina de Estados Finitos do tipo _reconhecedor_ cuja função é reconhecer padrões em cadeias de símbolos, ou seja, determinar se um _string_ de entrada pertence a uma determinada linguagem. Este modelo é fundamental para a teoria da computação e serve como base para muitos conceitos mais avançados, como autômatos de pilha e máquinas de Turing. Todo Autômato Finito é uma Máquina de Estados Finitos. Mas, nem toda Máquina de Estados Finitos é um Autômato Finito. A diferença está no propósito: enquanto os Autômatos Finitos são projetados para reconhecer linguagens, as Máquinas de Estados Finitos podem ser usadas para modelar qualquer sistema que possa ser descrito por estados discretos e as transições entre eles.
 :::
 
-A partir da inspiração biológica do modelo de McCulloch e Pitts, o conceito foi rapidamente abstraído para um modelo matemático puro, que ficou conhecido como máquina de estado finito. No domínio da linguagem computacional, uma **Máquina de Estado Finito**, em sua forma mais interessante para nosso propósito, funcionando como um artefato capaz de identificar uma linguagem, é formalmente definida como uma 5-tupla,
+A partir da inspiração biológica do modelo de McCulloch e Pitts, o conceito foi rapidamente abstraído para um modelo matemático puro, que ficou conhecido como **Máquina de Estados Finitos**. No domínio da linguagem computacional, uma Máquina de Estado Finito, em sua forma mais interessante para nosso propósito, funcionando como um artefato capaz de identificar uma linguagem, será formalmente definida como uma 5-tupla:
 
 $$M=(Q, \Sigma, \delta, q_0, F)$$
 
@@ -42,7 +40,11 @@ na qual:
 * $q_0$ é o estado inicial;
 * $F$ é o conjunto de estados de aceitação.
 
-O conceito de **estado** é o coração da **Máquina de Estado Finito**. Um estado é uma abstração que resume todo o histórico de entradas que a máquina processou até um determinado momento, contendo apenas a informação necessária para decidir sobre futuras transições e saídas. A máquina transita de um estado para outro com base na entrada atual, um comportamento que é frequentemente visualizado através de um **diagrama de transição de estados**, um grafo onde os nós representam os estados e as arestas direcionadas e rotuladas representam as transições. Uma cadeia de entrada é "aceita" pela **Máquina de Estado Finito** se, começando no estado inicial $q_0$, a sequência de transições correspondente à cadeia de entrada termina em um dos estados de aceitação em $F$, no caso da @fig-maq1 o estado de aceitação é $q_2$.
+O conceito de **estado** é o coração da Máquina de Estado Finito. 
+
+Um estado é uma abstração que resume todo o histórico de entradas que a máquina processou até um determinado momento, contendo apenas a informação necessária para decidir sobre as futuras transições e saídas. Uma Máquina de Estados Finitos transita de um estado para outro com base na entrada atual. Este comportamento é frequentemente visualizado através de um **diagrama de transição de estados**. Este diagrama de estados é um grafo em que os nós representam os estados e as arestas direcionadas e rotuladas representam as transições. Como pode ser visto na @fig-maq1. 
+
+Uma cadeia de entrada será _aceita_ pela Máquina de Estado Finito se, começando no estado inicial $q_0$, a sequência de transições correspondente à cadeia de entrada termina em um dos estados de aceitação que estejam no conjunto $F$, no caso da @fig-maq1 o estado de aceitação é $q_2$.
 
 :::{#fig-maq1}
 ![](\images\maq1.webp)
@@ -50,31 +52,34 @@ O conceito de **estado** é o coração da **Máquina de Estado Finito**. Um est
 Diagrama de transição de uma máquina de estados finitos.
 :::
 
-A origem da **Máquina de Estado Finito** ilustra um ciclo virtuoso de inovação na Ciência da Computação. O processo começou com a observação de um sistema complexo do mundo real, o cérebro. McCulloch e Pitts não estavam tentando inventar um modelo de computação, tentavam entender a lógica da atividade nervosa. O passo de gênio subsequente, liderado por figuras como [Stephen Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene), foi reconhecer que o *princípio computacional* subjacente, um sistema com memória finita que muda de estado com base em entradas discretas, podia ser divorciado de sua inspiração biológica. 
+A origem da **Máquina de Estado Finito** ilustra um dos ciclos virtuosos de inovação da Ciência da Computação. O processo começou com a observação de um sistema complexo do mundo real, o cérebro, e continua até os dias de hoje. McCulloch e Pitts não estavam tentando inventar um modelo de computação, tentavam entender a lógica da atividade nervosa. O passo de gênio subsequente, liderado por figuras como [Stephen Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene), foi reconhecer que o *princípio computacional* subjacente, um sistema com memória finita que muda de estado com base em entradas discretas, podia ser divorciado de sua inspiração biológica. 
 
-Esta abstração foi o passo que permitiu a generalização do conceito e sua aplicação a domínios completamente diferentes. Domínios que abrangem desde o design de circuitos digitais até a análise de textos em um compilador. A atenta leitora deve perceber como esta trajetória histórica serve com um exemplo, quase canônico, de como a modelagem de um fenômeno específico pode levar a criação de uma ferramenta matemática de aplicação universal. Se olhar bem, verá que este efeito é recorrente na história da tecnologia.
+Este divórcio foi o passo que permitiu a generalização do conceito e sua aplicação a domínios completamente diferentes. Domínios que abrangem desde o design de circuitos digitais até a análise de textos em um compilador.
 
 ### A Era da Formalização — Kleene, Moore e Mealy
 
-Após sua conceitualização inicial, a década de 1950 marcou um período de intensa formalização e expansão da teoria dos autômatos finitos. Três figuras destacam-se nesta época: Stephen Kleene, que estabeleceu a ligação fundamental entre autômatos e uma nova notação de padrões, e [Edward F. Moore](https://en.wikipedia.org/wiki/Edward_F._Moore) e [George H. Mealy](https://en.wikipedia.org/wiki/George_H._Mealy), que estenderam o modelo para além do simples reconhecimento, dotando-o da capacidade de produzir saídas.
+A década de 1950 marcou um período de intensa formalização e expansão da teoria dos Autômatos Finitos. Três figuras destacam-se nesta época: Stephen Kleene, que estabeleceu a ligação fundamental entre autômatos e uma nova notação de padrões, e [Edward F. Moore](https://en.wikipedia.org/wiki/Edward_F._Moore) e [George H. Mealy](https://en.wikipedia.org/wiki/George_H._Mealy), que estenderam o modelo para além do simples reconhecimento, dotando-o da capacidade de produzir saídas.
 
-Seguindo as ideias pioneiras de McCulloch e Pitts, o matemático americano Stephen Cole Kleene publicou em 1956 seu influente artigo _Representation of Events in Nerve Nets and Finite Automata_[@kleene1956representation][^kleene1]. Seu trabalho estava inserido em um contexto mais amplo de investigação sobre os limites da computação — que funções podiam ser computadas e que problemas eram decidíveis.
+Seguindo as ideias pioneiras de McCulloch e Pitts, o matemático americano [Stephen Cole Kleene](https://en.wikipedia.org/wiki/Stephen_Cole_Kleene) publicou em 1956 seu artigo _Representation of Events in Nerve Nets and Finite Automata_[@kleene1956representation][^kleene1]. Seu trabalho estava inserido em um contexto mais amplo de investigação sobre os limites da computação, que funções podem ser computadas e que problemas são decidíveis.
 
 [^kleene1]: em tradução livre, "Representação de Eventos em Redes Nervosas e Autômatos Finitos".
 
-A contribuição mais notável de Kleene neste artigo foi a invenção das **expressões regulares** (REGEX). Kleene introduziu esta notação algébrica como uma forma concisa e poderosa para descrever conjuntos de sequências de entrada, ou "eventos", que hoje conhecemos como **linguagens regulares**. Na sua obra, Kleene definiu formalmente as três operações fundamentais que formam a base de todas as expressões regulares:
+A contribuição mais notável de Kleene neste artigo foi a criação das **expressões regulares** (**REGEX**). Kleene introduziu esta notação algébrica como uma forma concisa e poderosa para descrever conjuntos de sequências de entrada, ou eventos, que hoje conhecemos como **linguagens regulares**. Na sua obra, Kleene definiu formalmente as três operações fundamentais que formam a base de todas as expressões regulares:
 
-1. **União (Alternância)**: Representada por $+$ ou $|$ (ou $\cup$ em notação de conjuntos), denota uma escolha entre dois padrões.  
-2. **Concatenação**: Representada pela justaposição de dois padrões, denota a sequência de um padrão seguido por outro. A concatenação é representada simplesmente pela junção dos símbolos, como em $ab$, que denota a sequência do símbolo $a$ seguido pelo símbolo $b$. Ou pelo uso da notação do produto escalar $\cdot$, como em $a \cdot b$.  
-3. **Fechamento de Kleene (Kleene Star)**: Representado pelo asterisco $*$, denota "zero ou mais ocorrências" do padrão precedente.
+1. **União (Alternância)**: representada por $+$, $|$ ou $\cup$, dependendo da área da matemática onde a união é usada, denota uma escolha entre dois padrões.
+     
+2. **Concatenação**: representada pela justaposição de dois padrões, denota a sequência de um padrão seguido por outro. A concatenação é representada simplesmente pela junção dos símbolos, como em $ab$, que denota a sequência do símbolo $a$ seguido pelo símbolo $b$. Ou pelo uso da notação do produto escalar $\cdot$, como em $a \cdot b$.  
 
-Estas operações, aplicadas a símbolos de um alfabeto, formam a **Álgebra de Kleene (KA)**, um sistema formal que se tornou onipresente na ciência da computação, desde a verificação de programas até a análise de algoritmos.
+3. **Fechamento de Kleene (Kleene Star)**: representado pelo asterisco $*$, denota _zero ou mais ocorrências_ do padrão precedente. Considerando o padrão $p$, o fechamento de Kleene é denotado por $p^*$ e representa a linguagem que contém todas as cadeias que podem ser formadas concatenando zero ou mais cópias de $p$. Por exemplo, o fechamento de Kleene do símbolo $a$ é a linguagem $\{\epsilon, a, aa, aaa, \ldots\}$, no qual $\epsilon$ representa a cadeia vazia. 
 
-#### O Teorema de Kleene: A Grande Unificação
+Estas operações, aplicadas a símbolos de um alfabeto, formam a **Álgebra de Kleene**, um sistema formal que se tornou onipresente na ciência da computação, com aplicação que vão desde a verificação de programas até a análise de algoritmos.
 
-A genialidade do trabalho de Kleene não reside apenas na invenção das expressões regulares, mas na prova de sua profunda ligação com os autômatos finitos. O **Teorema de Kleene** estabelece uma equivalência fundamental: a classe de linguagens que podem ser *descritas* por expressões regulares é precisamente a mesma classe de linguagens que podem ser *reconhecidas* por autômatos finitos.
+#### O **Teorema de Kleene**: A Grande Unificação
 
-A prova deste teorema é construtiva e, por isso, de enorme importância prática. A curiosa leitora deve notar que uma prova construtiva é um tipo de prova matemática que não apenas demonstra a existência de um objeto matemático, mas também fornece um método explícito para construí-lo ou encontrá-lo. Neste caso, em vez de provar que algo *deve* existir por meio de uma contradição, a prova construtiva **mostra** o objeto.
+A genialidade do trabalho de Kleene não reside apenas na invenção das expressões regulares, mas na prova de sua profunda ligação com os Autômatos Finitos. O ****Teorema de Kleene**** estabelece uma equivalência fundamental: **a classe de linguagens que podem ser *descritas* por expressões regulares é precisamente a mesma classe de linguagens que podem ser *reconhecidas* por Autômatos Finitos**. A prova deste teorema é construtiva e, por isso, de enorme importância prática. 
+
+::: {.callout-note}
+A curiosa leitora deve notar que uma prova construtiva é um tipo de prova matemática que não apenas demonstra a existência de um objeto matemático, mas também fornece um método explícito para construí-lo ou encontrá-lo. Neste caso, em vez de provar que algo *deve* existir por meio de uma contradição, a prova construtiva **mostra** o objeto.
 
 **Exemplo**: Provar que entre quaisquer dois números racionais distintos, $x$ e $y$, existe um outro número racional, $z$.
 
@@ -90,24 +95,29 @@ Assumindo $x, y \in \mathbb{Q}$ e $x < y$.
     * Como $x < y$, pode-se provar que $x < z < y$.
 
 A prova funciona porque nós **construímos** um valor específico para $z$ e demonstramos que ele satisfaz as condições exigidas.
- 
-No caso do Teorema de Kleene, a prova construtiva é dividida em duas partes fundamentais, cada uma correspondendo a uma direção da equivalência.
+:::
 
-1. **De Expressão Regular para autômato Finito**: esta parte da prova demonstra que, para qualquer expressão regular, é possível construir um autômato finito, especificamente, um autômato finito não-determinístico com transições épsilon, ou NFA-$\epsilon$, que aceita a mesma linguagem. A construção é indutiva sobre a estrutura da expressão regular. Começa-se com autômatos simples para os casos base, a linguagem vazia $\emptyset$, a linguagem contendo a cadeia vazia $\{\epsilon}$, e a linguagem contendo um único símbolo $\{a\}$) e depois mostram-se métodos para combinar autômatos existentes para corresponder às operações de união, concatenação e fecho de Kleene.
+No caso do **Teorema de Kleene**, a prova construtiva é dividida em duas partes fundamentais, cada uma correspondendo a uma direção da equivalência.
 
-2. **De autômato Finito para Expressão Regular**: a segunda parte demonstra que, para qualquer autômato finito, é possível derivar uma expressão regular que descreve a linguagem que ele aceita. Este processo é mais complexo e envolve a eliminação progressiva de estados do autômato, enquanto as etiquetas das transições são substituídas por expressões regulares cada vez mais complexas que representam os caminhos que foram eliminados.
+1. **De Expressão Regular para Autômato Finito**: esta parte da prova demonstra que, para qualquer expressão regular, é possível construir um Autômato Finito, especificamente, um Autômato Finito Não-Determinístico (**Autômato Finito Não-Determinístico**) com transições épsilon, ou **Autômato Finito Não-Determinístico**-$\epsilon$, que aceita a mesma linguagem. A construção deste Autômato é indutiva sobre a estrutura da expressão regular. Começa-se com autômatos simples para os casos base, a linguagem vazia $\emptyset$, a linguagem contendo a cadeia vazia $\{\epsilon}$, e a linguagem contendo um único símbolo $\{a\}$) e depois mostram-se métodos para combinar autômatos existentes para corresponder às operações de união, concatenação e fechamento de Kleene.
 
-O Teorema de Kleene é a pedra angular teórica que sustenta os geradores de analisadores léxicos modernos como o Lex [@lesk1975lex] e o Flex [@paxson1995flex]. O Teorema de Kleene garante que os programadores podem usar a notação declarativa e legível das expressões regulares para *especificar* os padrões dos _tokens_, com a confiança de que estas especificações podem ser automaticamente compiladas por um sistema eficiente de reconhecimento, o autômato finito.
+2. **De Autômato Finito para Expressão Regular**: a segunda parte demonstra que, para qualquer Autômato Finito, é possível derivar uma expressão regular que descreve a linguagem que ele aceita. Este processo é mais complexo e envolve a eliminação progressiva de estados do autômato, enquanto as etiquetas das transições são substituídas por expressões regulares cada vez mais complexas que representam os caminhos que foram eliminados.
+
+O **Teorema de Kleene** é a pedra angular teórica que sustenta os programas geradores de Analisadores Léxicos modernos como o Lex [@lesk1975lex] e o Flex [@paxson1995flex]. O **Teorema de Kleene** garante que os programadores podem usar a notação declarativa e legível das expressões regulares para *especificar* os padrões dos _tokens_, com a confiança de que estas especificações podem ser automaticamente compiladas por um sistema eficiente de reconhecimento, o Autômato Finito. 
+
+Sim, a leitora entendeu corretamente. Existem programas capazes de gerar Analisadores Léxicos a partir de especificações da linguagem. O Lex e o Flex são exemplos clássicos desses programas. Porém, o que queremos neste livro, é entender linguagens formais e compiladores, e não apenas usar ferramentas prontas. 
 
 #### A Introdução de Saídas: Máquinas Transdutoras
 
-Os autômatos de Kleene, tal como os de McCulloch e Pitts, eram artefatos para o reconhecimento, ou aceitação de padrões. Sua única função era emitir um veredito binário: o _string_ de entrada pertence ou não à linguagem. Todavia, muitas aplicações, desde circuitos de controle à partes de um compilador, necessitam não apenas de reconhecer padrões, mas de *gerar uma sequência de saídas* em resposta às entradas.
+Os autômatos de Kleene, tal como os de McCulloch e Pitts, eram artefatos para o reconhecimento, ou aceitação de padrões. Sua única função era emitir um veredito binário: o _string_ de entrada pertence ou não à linguagem. Todavia, muitas aplicações, desde circuitos de controle à sistemas de Inteligência Artificial, necessitam *gerar uma sequência de saídas* em resposta às entradas.
 
-As **Máquinas de Estados Finitos** que produzem saídas são chamadas de **transdutores de estados finitos (FSTs)**. Um **FST** estende a definição da **Máquina de Estado Finito** para uma 6-tupla,
+As Máquinas de Estados Finitos que produzem saídas são chamadas de **transdutores de estados finitos**. Um Transdutor de Estados Finitos estende a definição da Máquina de Estado Finito para uma 6-tupla,
 
 $$(Q, \Sigma, \Gamma, \delta, \lambda, q_0)$$
 
-na qual $\Gamma$ é um alfabeto finito de símbolos de saída e $\lambda$ é uma função de saída. Em meados da década de 1950, G.H. Mealy e E.F. Moore, trabalhando de forma independente, propuseram dois modelos distintos para estes transdutores, generalizando a teoria para máquinas muito mais poderosas.
+na qual $\Gamma$ é um alfabeto finito de símbolos de saída e $\lambda$ é uma função de saída. 
+
+Em meados da década de 1950, [G.H. Mealy](https://en.wikipedia.org/wiki/George_H._Mealy) e [E.F. Moore](https://en.wikipedia.org/wiki/Edward_F._Moore), trabalhando de forma independente, propuseram dois modelos distintos para os Transdutores de Estados Finitos, generalizando a teoria para englobar máquinas muito mais poderosas. 
 
 No seu artigo "Gedanken-experiments on Sequential Machines"[@Moore1956][^moore1], Edward F. Moore introduziu um modelo de transdutor no qual *a saída é determinada exclusivamente pelo estado atual* da máquina. A função de saída é, portanto, definida como:
 
@@ -115,15 +125,17 @@ $$\lambda: Q \to \Gamma$$
 
 [^moore1]: em tradução livre, "Experimentos Mentais sobre Máquinas Sequenciais".
 
-Esta definição implica que a saída é estável enquanto a máquina permanece em um determinado estado. Uma mudança na saída só ocorre quando há uma transição para um novo estado. Em implementações de hardware, isto significa que as saídas são síncronas com as transições de estado, que por sua vez são frequentemente sincronizadas por um sinal de relógio, um _clock_. Nos diagramas de estado, a saída de uma máquina de Moore é tipicamente associada ao próprio estado, sendo escrita dentro do círculo que o representa. Uma máquina de Moore tende a necessitar de mais estados do que uma máquina de Mealy para realizar a mesma tarefa, pois um estado pode ser necessário apenas para gerar uma saída específica.
+Esta definição implica que a saída é estável enquanto a máquina permanece em um determinado estado. Isto quer dizer que uma mudança na saída só ocorre quando há uma transição para um novo estado. Em implementações de hardware, isto significa que as saídas são síncronas com as transições de estado, que por sua vez são frequentemente sincronizadas por um sinal de relógio, um _clock_. Nos diagramas de estado, a saída de uma máquina de Moore é tipicamente associada ao próprio estado, sendo escrita dentro do círculo que o representa. Uma máquina de Moore tende a necessitar de mais estados do que uma máquina de Mealy para realizar a mesma tarefa, pois um estado pode ser necessário apenas para gerar uma saída específica.
 
-Um ano antes, George H. Mealy, em seu artigo "A Method for Synthesizing Sequential Circuits"[@rabin1959finite] publicado no *Bell System Technical Journal*, propôs um modelo alternativo. Em uma máquina de Mealy, a saída depende tanto do **estado atual como da entrada atual**. A função de saída é definida como
+Um ano antes, George H. Mealy, em seu artigo "A Method for Synthesizing Sequential Circuits"[@Mealy1955][^mealy1] publicado no *Bell System Technical Journal*, propôs um modelo alternativo. Em uma máquina de Mealy, a saída depende tanto do **estado atual como da entrada atual**. A função de saída é definida como
 
 $$\lambda: Q \times \Sigma \to \Gamma$$
 
-Como a saída pode mudar instantaneamente com uma mudança na entrada, mesmo sem uma transição de estado, as saídas de uma máquina de Mealy são consideradas assíncronas. Isto pode permitir uma resposta mais rápida do sistema, mas também introduz a possibilidade de problemas de temporização em circuitos sequenciais. Nos diagramas de estado, a saída é associada à transição, sendo escrita no arco da transição, tipicamente separada da entrada por uma barra (ex.: `a/b` indica que a máquina transita de um estado a outro com a entrada `a` e produz a saída `b`). Esta característica permite que as máquinas de Mealy sejam mais compactas, frequentemente necessitando de menos estados do que uma máquina de Moore equivalente.
+Como a saída pode mudar instantaneamente com uma mudança na entrada, mesmo sem uma transição de estado, as saídas de uma máquina de Mealy são consideradas assíncronas. Isto pode permitir uma resposta mais rápida do sistema, mas também introduz a possibilidade de problemas de temporização em circuitos sequenciais. Nos diagramas de estado, a saída é associada à transição, sendo escrita no arco da transição, tipicamente separada da entrada por uma barra (ex.: `a/b` indica que a máquina transita de um estado a outro com a entrada `a` e produz a saída `b`). Esta característica permite que as máquinas de Mealy sejam mais compactas, frequentemente necessitando de menos estados do que a máquina de Moore equivalente.
 
-A tabela @tbl-compara1 resume as diferenças cruciais entre os dois modelos.
+[^mealy1]: em tradução livre, "Um Método para Sintetizar Circuitos Sequenciais".
+
+A tabela @tbl-compara2 resume as diferenças entre os dois modelos.
 
 | Característica | Máquina de Moore | Máquina de Mealy |
 | :---- | :---- | :---- |
@@ -134,67 +146,56 @@ A tabela @tbl-compara1 resume as diferenças cruciais entre os dois modelos.
 | **Número de Estados** | Geralmente necessita de mais estados | Geralmente necessita de menos estados |
 | **Aplicação Típica** | Ativação de um conjunto de ações estáveis num estado | Desencadear eventos ou sinais em resposta a transições |
 
-: Comparação Detalhada entre Máquinas de Moore e Mealy {#tbl-compara1}
+: Comparação Detalhada entre Máquinas de Moore e Mealy {#tbl-compara2}
 
-A esforçada leitora deve ter em mente que o Teorema de Kleene não é apenas um resultado matemático elegante; ele estabelece uma dicotomia que serve como alicerce para grande parte da engenharia de software moderna. Essa dicotomia se manifesta de forma clara:
+A esforçada leitora deve ter em mente que o **Teorema de Kleene** não é apenas um resultado matemático elegante; ele estabelece uma dicotomia que serve como alicerce para grande parte da engenharia de software moderna. Essa dicotomia se manifesta de forma clara:
 
 * As **expressões regulares** são uma linguagem *declarativa*: descrevem **o que** é o padrão;
-* Os **autômatos finitos** são um modelo *operacional*: descrevem **como** reconhecer o padrão.
+* Os **Autômatos Finitos** são um modelo *operacional*: descrevem **como** reconhecer o padrão.
 
-A genialidade do teorema, amável leitora, reside na garantia de que podemos traduzir sem perdas do mundo declarativo, que é mais fácil para os humanos, para o mundo operacional, que é eficiente para as máquinas. 
+A genialidade do **Teorema de Kleene**, amável leitora, reside na garantia de que podemos traduzir informações, sem perdas, do mundo declarativo, que é mais fácil para os humanos, para o mundo operacional, que é eficiente para as máquinas. Ou vice-versa. 
 
-Este padrão, traduzir uma especificação de alto nível em uma implementação de baixo nível, é o cerne do que um compilador faz. Dessa forma, o trabalho de Kleene pode ser visto como o arquétipo da poderosa ideia de **separação de preocupações**, um princípio de design que permite criar abstrações elegantes sem sacrificar a performance. Esta é uma lição de design de software de profundo alcance, que ilustra como a teoria rigorosa se converte em tecnologia robusta.
+Este padrão, traduzir uma especificação de alto nível em uma implementação de baixo nível, é a descrição sintética do que um compilador faz. Além disso, o trabalho de Kleene pode ser visto como o arquétipo da poderosa ideia de **separação de preocupações**, um princípio de design tecnológico que permite criar abstrações elegantes sem sacrificar a performance.
 
-### O Poder do Não-Determinismo e sua Domesticação
+### O Poder do Não-Determinismo
 
-Enquanto Kleene, Moore e Mealy solidificavam e expandiam a teoria dos autômatos determinísticos, uma nova ideia emergia. Esta ideia, o não-determinismo, parecia à primeira vista conceder um poder quase mágico às máquinas, mas acabaria por se revelar uma das ferramentas conceituais mais úteis para simplificar o design e a teoria dos autômatos.
+Enquanto Kleene, Moore e Mealy solidificavam e expandiam a teoria dos autômatos determinísticos, uma nova ideia despontava no horizonte. Esta ideia, o não-determinismo, parecia à primeira vista conceder um poder quase mágico às máquinas, mas acabaria por se revelar uma das ferramentas conceituais mais úteis para simplificar o design e a teoria dos autômatos.
 
-### A Inovação de Rabin e Scott (1959): O NFA
+Em 1959, [Michael O. Rabin](https://en.wikipedia.org/wiki/Michael_O._Rabin) e [Dana Scott](https://en.wikipedia.org/wiki/Dana_Scott) publicaram seu artigo clássico e profundamente influente, _Finite Automata and Their Decision Problems_[@rabin1959]. Por este trabalho, que introduziu formalmente o conceito de **Autômato Finito Não-Determinístico**, foram agraciados com o Prêmio Turing, a mais alta honra da ciência da computação.
 
-Em 1959, Michael O. Rabin e Dana Scott publicaram seu artigo clássico e profundamente influente, "Finite Automata and Their Decision Problems". Por este trabalho, que introduziu formalmente o conceito de
+Um Autômato Finito Não-Determinístico relaxa as restrições de um Autômato Finito Determinístico de três formas cruciais:
 
-**Autômato Finito Não-Determinístico (NFA)**, foram agraciados com o Prêmio Turing, a mais alta honra da ciência da computação.
+1. **Múltiplas Transições**: para um dado estado e um símbolo de entrada, um Autômato Finito Não-Determinístico pode ter zero, uma ou múltiplas transições possíveis. A função de transição mapeia para um *conjunto* de estados, não para um único estado. Formalmente, $\delta: Q \times \Sigma \to \mathcal{P}(Q)$, em que $\mathcal{P}(Q)$ é o conjunto das partes de $Q$.  
 
-Um NFA relaxa as restrições de um Autômato Finito Determinístico (DFA) de três formas cruciais:
+2. **Transições-Épsilon ($\epsilon$-transitions)**: um Autômato Finito Não-Determinístico pode mudar de estado sem consumir qualquer símbolo da entrada. Estas transições, rotuladas com $\epsilon$, permitem que a máquina _salte_ espontaneamente entre estados. A função de transição é então $\delta: Q \times (\Sigma \cup \{\epsilon\}) \to \mathcal{P}(Q)$.  
 
-1. **Múltiplas Transições**: Para um dado estado e um símbolo de entrada, um NFA pode ter zero, uma ou múltiplas transições possíveis. A função de transição mapeia para um *conjunto* de estados, não para um único estado. Formalmente, $\delta: Q \times \Sigma \to \mathcal{P}(Q)$, onde $\mathcal{P}(Q)$ é o conjunto das partes de $Q$.  
-2. **Transições-Épsilon ($\epsilon$-transitions)**: Um NFA pode mudar de estado sem consumir qualquer símbolo da entrada. Estas transições, rotuladas com $\epsilon$, permitem que a máquina "salte" espontaneamente entre estados. A função de transição é então  
-   $\delta: Q \times (\Sigma \cup \{\epsilon\}) \to \mathcal{P}(Q)$.  
-3. **Transições Ausentes**: Para um par (estado, símbolo), o conjunto de próximos estados pode ser o conjunto vazio, significando que a computação nesse "ramo" termina.
+3. **Transições Ausentes**: para um determinado par, estado e símbolo de entrada, o conjunto de próximos estados pode ser o conjunto vazio, significando que a computação nesse _ramo_ termina.
 
-O modelo de computação de um NFA é inerentemente paralelo ou baseado em "adivinhação". Ao processar uma cadeia de entrada, o NFA explora todos os caminhos de transição possíveis simultaneamente. A cadeia é considerada "aceita" se
+O modelo de computação de um Autômato Finito Não-Determinístico permite a existência de múltiplas transições possíveis a partir de um mesmo estado para um mesmo símbolo de entrada. Essa característica resulta em um modelo de computação inerentemente paralelo, no qual o Autômato Finito Não-Determinístico explora todos os caminhos de transição possíveis simultaneamente ao processar uma cadeia de entrada. A cadeia é considerada _aceita_ se *pelo menos um* destes caminhos terminar em um estado de aceitação após a leitura de toda a cadeia.
 
-*pelo menos um* destes caminhos terminar em um estado de aceitação após a leitura de toda a cadeia.
+#### A Construção do Conjunto das Partes (Powerset Construction)
 
-### **3.2 A Construção do Conjunto das Partes (Powerset Construction)**
+A conclusão mais surpreendente e poderosa do artigo de Rabin e Scott é que, apesar de sua aparente flexibilidade e poder acrescido, os Autômatos Finitos Não-Determinísticos não são mais expressivos do que os Autômatos Finitos Determinísticos. Isto é uma forma elegante de dizer que para qualquer Autômato Finito Não-Determinístico, existe um Autômato Finito Determinístico equivalente que reconhece exatamente a mesma linguagem.
 
-A conclusão mais surpreendente e poderosa do artigo de Rabin e Scott é que, apesar de sua aparente flexibilidade e poder acrescido, os NFAs não são mais expressivos do que os DFAs. Ou seja, para qualquer NFA, existe um DFA equivalente que reconhece exatamente a mesma linguagem.
+A prova da equivalência entre Autômatos Finitos Não-Determinísticos e Determinísticos, mais uma vez, construtiva, através de um algoritmo conhecido como a **construção do conjunto das partes** (*powerset construction*). A ideia central desse algoritmo é simular o comportamento paralelo do Autômato Finito Não-Determinístico de forma determinística. Para tanto, cada estado no Autômato Finito Não-Determinístico construído corresponde a um *conjunto* de estados nos quais o Autômato Finito Não-Determinístico poderia estar em um mesmo momento. O algoritmo da **construção do conjunto das partes** funciona da seguinte forma:
 
-A prova dessa equivalência é, mais uma vez, construtiva, através de um algoritmo fundamental conhecido como a **construção do conjunto das partes** (*powerset construction*). A ideia central e elegante desse algoritmo é simular o comportamento paralelo do NFA de forma determinística. Cada estado no DFA construído corresponde a um
+1. **Estado Inicial do Autômato Finito Determinístico**: o estado inicial do Autômato Finito Determinístico (AFD) é o conjunto de todos os estados do Autômato Finito Não-Determinístico que são alcançáveis a partir do estado inicial do Autômato Finito Não-Determinístico usando apenas transições-$\epsilon$. Este conjunto é conhecido como o **fechamento-$\epsilon$** (*epsilon-closure*) do estado inicial do Autômato Finito Não-Determinístico.
 
-*conjunto* de estados nos quais o NFA poderia estar em simultâneo.
+2. **Transições do Autômato Finito Determinístico**: para cada estado do Autômato Finito Determinístico, que corresponde a um conjunto de estados do Autômato Finito Não-Determinístico, e para cada símbolo do alfabeto, a transição do Autômato Finito Determinístico é calculada em duas etapas: primeiro, determina-se o conjunto de todos os estados do Autômato Finito Não-Determinístico que podem ser alcançados a partir do conjunto atual ao ler esse símbolo; segundo, calcula-se o fechamento-$\epsilon$ desse novo conjunto. O resultado é o novo estado do Autômato Finito Determinístico.
 
-O algoritmo funciona da seguinte forma:
+3. **Estados de Aceitação do Autômato Finito Determinístico**: um estado no Autômato Finito Determinístico é um estado de aceitação se seu conjunto correspondente de estados do Autômato Finito Não-Determinístico contiver pelo menos um dos estados de aceitação originais do Autômato Finito Não-Determinístico.
 
-1. **Estado Inicial do DFA**: O estado inicial do DFA é o conjunto de todos os estados do NFA que são alcançáveis a partir do estado inicial do NFA usando apenas transições-$\epsilon$. Este conjunto é conhecido como o **fecho-$\epsilon$** (*epsilon-closure*) do estado inicial do NFA.  
-2. **Transições do DFA**: Para cada estado do DFA (que é um conjunto de estados do NFA) e para cada símbolo do alfabeto, a transição do DFA é calculada em duas etapas: primeiro, determina-se o conjunto de todos os estados do NFA que podem ser alcançados a partir do conjunto atual ao ler esse símbolo; segundo, calcula-se o fecho-$\epsilon$ desse novo conjunto. O resultado é o novo estado do DFA.  
-3. **Estados de Aceitação do DFA**: Um estado no DFA é um estado de aceitação se seu conjunto correspondente de estados do NFA contiver pelo menos um dos estados de aceitação originais do NFA.
+Este processo é repetido até que não sejam gerados novos estados no Autômato Finito Não-Determinístico. Como o número de subconjuntos de um conjunto finito de estados é finito, embora potencialmente grande, o processo garante a terminação.
 
-Este processo é repetido até que não sejam gerados novos estados no DFA. Como o número de subconjuntos de um conjunto finito de estados é finito (embora potencialmente grande), o processo garante a terminação.
+A existência da construção do conjunto das partes estabelece uma relação de compromisso (*trade-off*) entre Autômatos Finitos Não-Determinísticos e Determinísticos, que é de extrema importância na prática da engenharia de compiladores.
 
-### **3.3 Análise Comparativa: NFA vs. DFA**
+* **Construção e Tamanho**: os Autômatos Finitos Não-Determinísticos são geralmente muito mais fáceis e intuitivos de construir diretamente a partir de uma especificação de uma linguagem, como uma expressão regular. Um Autômato Finito Determinístico para uma dada linguagem é tipicamente muito menor, em termos de número de estados e transições, do que seu Autômato Finito Não-Determinístico equivalente. A conversão de um Autômato Finito Não-Determinístico com $n$ estados para um Autômato Finito Determinístico pode, no pior dos casos, resultar em um Autômato Finito Determinístico com até $2^n$ estados, um fenômeno conhecido como _explosão de estados_.
 
-A existência da construção do conjunto das partes estabelece uma relação de compromisso (*trade-off*) entre NFAs e DFAs, que é de extrema importância na prática da engenharia de compiladores.
+* **Simulação e Eficiência**: por outro lado, os Autômatos Finitos Determinísticos são muito mais fáceis de simular. Para uma cadeia de entrada de comprimento $k$, um Autômato Finito Determinístico executa exatamente $k$ transições, resultando em uma execução em tempo linear. A simulação direta de um Autômato Finito Não-Determinístico é mais complexa, pois pode exigir o rastreamento de múltiplos caminhos de computação em paralelo, tornando-a mais lenta.
 
-* **Construção e Tamanho**: Os NFAs são geralmente muito mais fáceis e intuitivos de construir diretamente a partir de uma especificação de linguagem, como uma expressão regular. Um NFA para uma dada linguagem é tipicamente muito mais pequeno, em termos de número de estados e transições, do que seu DFA equivalente. A conversão de um NFA com  
-  $n$ estados para um DFA pode, no pior dos casos, resultar em um DFA com até $2^n$ estados, um fenômeno de "explosão de estados".  
-* **Simulação e Eficiência**: Por outro lado, os DFAs são muito mais rápidos de simular. Para uma cadeia de entrada de comprimento $k$, um DFA executa exatamente $k$ transições, resultando em uma execução em tempo linear. A simulação direta de um NFA é mais complexa, pois pode exigir o rastreamento de múltiplos caminhos de computação em paralelo, tornando-a mais lenta.
+A tabela @tbl-compara1 resume esses compromissos práticos.
 
-A tabela seguinte resume esses compromissos práticos.
-
-**Tabela 2: NFA vs. DFA — Uma Comparação Prática**
-
-| Critério | Autômato Finito Não-Determinístico (NFA) | Autômato Finito Determinístico (DFA) |
+| Critério | Autômato Finito Não-Determinístico (Autômato Finito Não-Determinístico) | Autômato Finito Determinístico (Autômato Finito Não-Determinístico) |
 | :---- | :---- | :---- |
 | **Função de Transição** | $\delta: Q \times (\Sigma \cup \{\epsilon\}) \to \mathcal{P}(Q)$ | $\delta: Q \times \Sigma \to Q$ |
 | **Transições-$\epsilon$** | Permitidas | Não permitidas |
@@ -203,72 +204,158 @@ A tabela seguinte resume esses compromissos práticos.
 | **Velocidade de Execução** | Lenta (simulação direta) | Rápida (execução em tempo linear) |
 | **Utilização na Prática** | Passo intermédio na compilação de RE | Produto final para analisadores léxicos eficientes |
 
-O não-determinismo, tal como introduzido por Rabin e Scott, não é um recurso computacional físico. Nenhuma máquina real "adivinha" o caminho correto. Em vez disso, o não-determinismo é uma poderosa **ferramenta de abstração conceitual**. Ele permite que os projetistas humanos pensem em termos de "possibilidade" — "existe algum caminho que leve à aceitação?" — em vez de se prenderem aos detalhes mecânicos de uma única computação determinística. A prova de que NFAs são equivalentes a DFAs é mais do que um resultado teórico; é uma licença para usar a abstração mais conveniente (NFA) para o design e a especificação, com a garantia de que ela pode ser compilada para uma forma eficiente e mecanicamente executável (DFA). Este princípio é o que torna os geradores de analisadores léxicos tão eficazes: eles permitem que o programador pense ao nível de abstração do NFA (ou ainda mais alto, ao nível da RE), enquanto a máquina opera eficientemente ao nível do DFA.
+: Autômato Finito Não-Determinístico vs. Autômato Finito Determinístico. {#tbl-compara1}
 
-## **Capítulo 4: Autômatos Finitos na Prática — O Analisador Léxico**
+O não-determinismo, tal como introduzido por Rabin e Scott, não é um recurso computacional físico. Nenhuma máquina real _adivinha_ o caminho correto, ou verifica todos os caminhos no mesmo instante. Em vez disso, o não-determinismo é uma poderosa **ferramenta de abstração conceitual**. O não-determinismo permite que os projetistas humanos pensem em termos de possibilidades: _existe algum caminho que leve à aceitação? Em vez de se prenderem aos detalhes físicos de uma única computação determinística. Além disso, a prova de que Autômatos Finitos Não-Determinísticos são equivalentes a Autômatos Finitos Determinísticos é mais do que um resultado teórico; é uma licença para usar a abstração mais conveniente, geralmente o Autômato Finito Não-Determinístico, para o design e a especificação, com a garantia de que ela pode ser convertida em uma forma eficiente e fisicamente executável, geralmente o Autômato Finito Não-Determinístico.
 
-A teoria dos autômatos finitos, com suas provas de equivalência e algoritmos de conversão, poderia ter permanecido um tópico de interesse puramente acadêmico. No entanto, encontrou uma aplicação prática tão perfeita na construção de compiladores que se tornou um exemplo canônico de como a teoria fundamental pode informar diretamente a engenharia de software. Esta aplicação é a análise lexical.
+## Autômatos Finitos: O Analisador Léxico
 
-### **4.1 A Ponte entre a Teoria e a Prática**
+A teoria dos Autômatos Finitos, com suas provas de equivalência e algoritmos de conversão, poderia ter permanecido um tópico de interesse puramente acadêmico. No entanto, encontrou uma aplicação prática tão perfeita na construção de compiladores que se tornou um exemplo de como a teoria fundamental pode transformar a engenharia de software. Esta aplicação é a análise léxica.
 
-A primeira fase de um compilador é o **analisador léxico**, também conhecido como *scanner* ou *lexer*. Sua tarefa é ler o fluxo de caracteres do programa fonte e agrupá-los em subsequências significativas chamadas
+Como eu disse antes, a primeira fase de um compilador é o **analisador léxico**, também conhecido como *scanner* ou *lexer*. Sua tarefa é ler um fluxo de caracteres criados a partir do código fonte, e identificar conjuntos significativos de símbolos para uma dada linguagem, os **lexemas**. Para cada lexema, o analisador léxico produzirá um **_token_**, que é tipicamente uma estrutura de dados consistindo em uma classe de _token_ (ex.: IDENTIFICADOR, NÚMERO, PALAVRA-CHAVE), o valor do lexema, a cadeia de símbolos real, e a posição do lexema no código fonte. Por exemplo, a linha de código `if (i == j)` seria transformada em uma sequência de _tokens_ como (IF, "if", 0, 0), (LPAREN, "(", 0, 1), (ID, "i", 0, 2), (EQ, "==", 0, 4), (ID, "j", 0, 6), (RPAREN, ")", 0, 7). O fragmento de código @lst-lex1 ilustra uma estrutura de armazenamento para tokens.
 
-**lexemas**. Para cada lexema, o analisador produz um **token**, que é tipicamente um par consistindo em uma classe de token (ex.: IDENTIFICADOR, NÚMERO, PALAVRA-CHAVE) e o valor do lexema (a cadeia de caracteres real). Por exemplo, a linha de código
+::: {#lst-lex1}
+```cpp
+#include <string>
+#include <string_view>
+#include <array>
 
-if (i == j) seria transformada em uma sequência de _tokens_ como (IF, "if"), (LPAREN, "("), (ID, "i"), (EQ, "=="), (ID, "j"), (RPAREN, ")").
+// Enumeração para os tipos de token
+enum class TokenType {
+    // Palavras-chave
+    IF,
+    // outras palavras-chave como ELSE, WHILE, FOR, etc.
+    
+    // Identificadores e literais
+    IDENTIFICADOR,
+    NUMERO,
+    STRING_LITERAL,
+    
+    // Operadores
+    EQ,          // ==
+    // outros operadores como NEQ, LT, GT, LE, GE, ADD, SUB, MUL, DIV
 
-A questão fundamental é: como reconhecer estes padrões? Os padrões que definem os _tokens_ na maioria das linguagens de programação — como identificadores (letra(letra|dígito)*), números inteiros (dígito+), e palavras-chave (if|else|while) — são quase invariavelmente **linguagens regulares**. Como estabelecido pelo Teorema de Kleene, as linguagens regulares são precisamente aquelas que podem ser reconhecidas por autômatos finitos. Portanto, as **Máquinas de Estados Finitos** são o modelo computacional perfeitamente adequado e suficientemente poderoso para a tarefa da análise lexical.
+    // Delimitadores
+    LPAREN,      // (
+    RPAREN,      // )
+    // outros delimitadores como LBRACE, RBRACE, SEMICOLON, COMMA    
+    // Especiais
+    END_OF_FILE,
+    INVALID
+};
 
-### **4.2 O Pipeline do Gerador de Analisadores Léxicos (ex.: Lex/Flex)**
+// Estrutura para representar um token
+struct Token {
+    TokenType tipo;           // Classe do token
+    std::string lexema;       // Valor do lexema (cadeia de caracteres real)
+    int linha;               // Número da linha
+    int posicao;             // Posição na linha
+    
+    // Construtor
+    Token(TokenType t, std::string_view lex, int lin, int pos)
+        : tipo(t), lexema(lex), linha(lin), posicao(pos) {}
+    
+    // Construtor padrão
+    Token() : tipo(TokenType::INVALID), linha(0), posicao(0) {}
+};
 
-Em vez de escrever um analisador léxico manualmente, o que seria tedioso e propenso a erros, os programadores utilizam **geradores de analisadores léxicos** como Lex, Flex ou Foma. Estas ferramentas automatizam a criação de um scanner eficiente a partir de uma especificação de alto nível. O processo interno destas ferramentas é uma implementação direta da teoria dos autômatos discutida nos capítulos anteriores:
+// Exemplo de array de tokens para o fragmento "if (i == j)"
+std::array<Token, 6> exemplo_tokens = {{
+    Token(TokenType::IF, "if", 1, 0),
+    Token(TokenType::LPAREN, "(", 1, 3),
+    Token(TokenType::IDENTIFICADOR, "i", 1, 4),
+    Token(TokenType::EQ, "==", 1, 6),
+    Token(TokenType::IDENTIFICADOR, "j", 1, 9),
+    Token(TokenType::RPAREN, ")", 1, 10)
+}};
+```
+:::
 
-1. **Entrada (Especificação Léxica)**: O programador fornece um arquivo de especificação que contém uma lista de pares: uma **expressão regular** que define o padrão para um tipo de token, e uma **ação** (tipicamente um bloco de código C) a ser executada quando esse padrão é encontrado.  
-2. **RE → NFA**: A ferramenta primeiro combina todas as expressões regulares em uma única grande expressão regular, usando a operação de união. Em seguida, constrói um NFA equivalente para esta expressão combinada. A **construção de Thompson** é um algoritmo clássico e elegante para esta etapa, pois produz NFAs com uma estrutura regular e fácil de compor.  
-3. **NFA → DFA**: O NFA resultante, que é fácil de construir mas lento de simular, é então convertido em um DFA equivalente usando a **construção do conjunto das partes**. Este passo é  para a eficiência do scanner final, pois o DFA pode ser simulado em tempo linear. Os estados de aceitação do DFA são anotados com a ação correspondente ao token que reconhecem.  
-4. **Minimização do DFA**: O DFA gerado pela construção do conjunto das partes não é necessariamente o menor possível. Para reduzir o tamanho das tabelas de transição e, consequentemente, a memória utilizada pelo scanner, o DFA é minimizado. Este processo envolve a identificação e fusão de estados que são indistinguíveis — ou seja, estados que se comportam da mesma forma para todas as sequências de entrada restantes.  
-5. **Saída (Código do Scanner)**: Finalmente, o gerador produz o código-fonte (geralmente em C) para um analisador léxico altamente eficiente. Este scanner é tipicamente implementado como um **autômato baseado em tabelas**. O "motor" do scanner é um simples ciclo que, em cada iteração, lê um caractere da entrada, usa o estado atual e o caractere lido como índices para uma matriz bidimensional (a tabela de transição) para determinar o próximo estado, e repete até o final da entrada.
+A questão fundamental que deve estar incomodando a curiosa leitora é: como reconhecer estes padrões? 
 
-### **4.3 Gestão de Ambiguidades e Desafios Práticos**
+Os padrões que definem os _tokens_ na maioria das linguagens de programação, como identificadores, números inteiros, e palavras-chave, são quase invariavelmente descritos por **linguagens regulares**. Como estabelecido pelo **Teorema de Kleene**, as linguagens regulares são precisamente aquelas que podem ser reconhecidas por Autômatos Finitos. Portanto, as **Máquinas de Estados Finitos** são o modelo computacional adequado e suficiente para a tarefa da análise léxica. Parece simples, contudo, na prática, a análise léxica enfrenta ambiguidades que devem ser resolvidas por regras claras:
 
-Na prática, a análise lexical enfrenta ambiguidades que devem ser resolvidas por regras claras:
+* **Regra da Correspondência Mais Longa (_Maximal Munch_)**: se uma porção do texto de entrada pode corresponder a múltiplos padrões de comprimentos diferentes, o analisador léxico escolhe sempre a correspondência mais longa possível. Por exemplo, no _string_ `ifa`, o lexer não irá parar no _token_ `if`; ele continuará a ler para reconhecer o identificador `ifa`. Isto requer que o algoritmo tenha capacidade de *lookahead*, do inglês para olhar para a frente, lendo caracteres para além do final de um potencial lexema para garantir que não há uma correspondência mais longa.
 
-* **Regra da Correspondência Mais Longa (Maximal Munch)**: Se uma porção do texto de entrada pode corresponder a múltiplos padrões de comprimentos diferentes, o analisador léxico escolhe sempre a correspondência mais longa possível. Por exemplo, na cadeia  
-  ifa, o lexer não irá parar no token if; ele continuará a ler para reconhecer o identificador ifa. Isto requer que o scanner tenha capacidade de *lookahead* (olhar para a frente), lendo caracteres para além do final de um potencial lexema para garantir que não há uma correspondência mais longa.  
-* **Prioridade das Regras**: Se dois padrões correspondem a um lexema do mesmo comprimento (ex.: if pode ser uma palavra-chave ou um identificador), a ambiguidade é resolvida dando prioridade à regra que aparece primeiro no arquivo de especificação do Lex/Flex. Por esta razão, as regras para palavras-chave são sempre listadas antes da regra geral para identificadores.
+* **Prioridade das Regras**: se dois padrões correspondem a um lexema do mesmo comprimento, por exemplo `if` poderia ser uma palavra-chave ou um identificador, a ambiguidade é resolvida dando prioridade à regra que aparece primeiro no arquivo de especificação das regras do analisador léxico. Por esta razão, as regras para palavras-chave são sempre listadas antes, e têm precedência, sobre a regra geral para identificadores.
 
-O pipeline de um gerador como o Lex ou o Flex não é uma coleção de heurísticas ad-hoc; é uma implementação direta e fiel da teoria dos autômatos. Cada passo do processo — RE→NFA, NFA→DFA, e a minimização do DFA — corresponde a um teorema ou algoritmo fundamental da teoria da computação. O Teorema de Kleene justifica o uso de expressões regulares como uma linguagem de especificação de alto nível. A prova de equivalência de Rabin e Scott justifica a conversão de NFA para DFA como um passo de otimização que preserva a correção. Os algoritmos de minimização de DFA otimizam ainda mais o resultado final. Esta aplicação demonstra um dos exemplos mais claros e bem-sucedidos da teoria da ciência da computação a informar diretamente a construção de ferramentas de software práticas, eficientes e ubíquas. O estudo das **Máquinas de Estados Finitos** não é, portanto, apenas um exercício acadêmico; é o manual de instruções para construir uma parte essencial de qualquer compilador moderno.
+* **Tratamento de Erros**: se uma sequência de caracteres não corresponder a nenhum padrão conhecido, o analisador léxico deve sinalizar um erro. Normalmente, isso é feito emitindo um _token_ especial, como `INVALID`, e registrando a posição do erro.
 
-## **Capítulo 5: Extensões Modernas e Conclusão**
+## Extensões Modernas e Conclusão
 
-Embora o modelo clássico da máquina de estado finito seja perfeitamente adequado para a análise lexical, sua simplicidade pode tornar-se uma limitação ao modelar sistemas mais complexos. A história das **Máquinas de Estados Finitos** não termina com sua aplicação em compiladores; ela continua com extensões que procuram gerir a complexidade em domínios como sistemas reativos e de controle.
+Embora o modelo clássico da máquina de estado finito seja perfeitamente adequado para a análise léxica, sua simplicidade pode tornar-se uma limitação ao modelar sistemas mais complexos. A história das Máquinas de Estados Finitos não termina com sua aplicação em compiladores; ela continua com extensões que procuram gerir a complexidade em domínios como sistemas reativos e de controle.
 
-### **5.1 Lidando com a Complexidade: O Problema da Explosão de Estados**
+Uma das principais dificuldades ao aplicar Máquinas de Estados Finitos a sistemas complexos é o problema da **explosão de estados**. Se um sistema é composto por múltiplas variáveis ou componentes, o número total de estados na Máquina de Estado Finito que o descreve pode crescer exponencialmente, tornando o modelo intratável e incompreensível. Por exemplo, um sistema com $n$ variáveis, cada uma podendo assumir $Z$ valores, pode ter até $Z^n$ estados possíveis. Uma Máquina de Estado Finito _plana_, na qual todos os estados existem ao mesmo nível, não escala bem para esses cenários.
 
-Uma das principais dificuldades ao aplicar **Máquinas de Estados Finitos** a sistemas grandes é o problema da **explosão de estados**. Se um sistema é composto por múltiplas variáveis ou componentes, o número total de estados na **Máquina de Estado Finito** que o descreve pode crescer exponencialmente, tornando o modelo intratável e incompreensível. Por exemplo, um sistema com
+O termo _máquina de estados finitos plana_ não é uma definição padrão na teoria formal da computação, mas pode ter algumas interpretações dependendo do contexto. Exemplo de representação plana:
 
-$n$ variáveis, cada uma podendo assumir $Z$ valores, pode ter até $Z^n$ estados possíveis. Uma **Máquina de Estado Finito** "plana", onde todos os estados existem ao mesmo nível, não escala bem para esses cenários.
+**Estados**: $Q = \{q_0, q_1, q_2, q_3\}$
+**Transições**: $q_0 \xrightarrow{a} q_1, q_1 \xrightarrow{b} q_2, q_2 \xrightarrow{c} q_3$
 
-Para resolver esta limitação, David Harel introduziu em 1987 os **Statecharts**, uma poderosa extensão visual e formal das **Máquinas de Estados Finitos**. Os Statecharts enriquecem o formalismo clássico com duas noções fundamentais:
+Para resolver esta limitação, David Harel introduziu em 1987 os **_StateCharts_**, uma poderosa extensão visual e formal das Máquinas de Estados Finitos. Os _StateCharts_ enriquecem o formalismo clássico com duas noções fundamentais:
 
-1. **Hierarquia (Aninhamento de Estados ou Decomposição-OU)**: Os estados podem conter subestados. Isto permite refinar o comportamento de um superestado em vários subestados mais detalhados, organizando a complexidade de forma hierárquica.  
-2. **Concorrência (Estados Ortogonais ou Decomposição-E)**: Os Statecharts permitem que o sistema esteja em múltiplos estados de subsistemas diferentes em simultâneo. Isto é ideal para modelar sistemas compostos por componentes paralelos e independentes, reduzindo drasticamente o número de estados explícitos necessários em comparação com uma **FSM** plana.
+1. **Hierarquia (Aninhamento de Estados ou Decomposição-OU)**: os estados podem conter subestados. Isto permite refinar o comportamento de um superestado em vários subestados mais detalhados, organizando a complexidade de forma hierárquica.  
 
-Embora as **Máquinas de Estados Finitos** clássicas sejam suficientes para a análise lexical, os Statecharts demonstram como o modelo fundamental pode ser estendido para lidar com a complexidade inerente a sistemas de controle de software, protocolos de comunicação e interfaces de usuário, mostrando a versatilidade e a relevância contínua do paradigma de estados.
+2. **Concorrência (Estados Ortogonais ou Decomposição-E)**: os _StateCharts_ permitem que o sistema esteja em múltiplos estados de subsistemas diferentes no mesmo instante. Isto é ideal para modelar sistemas compostos por componentes paralelos e independentes, reduzindo drasticamente o número de estados explícitos necessários em comparação com uma maquina de estados finitos plana. 
 
-### **5.2 O Legado Duradouro e Conclusão**
+Exemplo hierárquico:
 
-Este relatório traçou a notável jornada da máquina de estado finito, desde suas origens inesperadas como um modelo computacional do cérebro (McCulloch e Pitts), passando por sua rigorosa formalização matemática e unificação com a notação de padrões (Kleene), por sua expansão conceitual com o poder do não-determinismo (Rabin e Scott), e por sua diferenciação em máquinas transdutoras capazes de produzir saídas (Moore e Mealy). Esta jornada teórica culminou em sua aplicação prática e indispensável como o motor da análise lexical na construção de compiladores.
+$$\text{Estado\_Principal} \begin{cases}
+\text{Subestado\_A} \{q_0, q_1\} \\
+\text{Subestado\_B} \{q_2, q_3\}
+\end{cases}$$
 
-A máquina de estado finito perdura como uma das ideias mais elegantes, poderosas e influentes da ciência da computação. Sua simplicidade matemática esconde uma vasta gama de aplicabilidade, desde o design de circuitos digitais e o processamento de linguagem natural até a verificação de modelos e, claro, a compilação de linguagens de programação. No contexto dos compiladores, a **Máquina de Estado Finito** resolve o problema da análise lexical de forma tão completa e eficiente que a teoria e a prática se alinham de uma forma raramente vista. Ela permanece como um tópico de estudo indispensável para qualquer cientista da computação e um testemunho duradouro do poder da abstração computacional para transformar problemas complexos em soluções simples e eficientes.
+Para facilitar a compreensão da abstração dos _StateCharts_, considere um sistema de um _player_ como mostrado na @fig-statechart1. 
 
-## **Referências**
+:::{#fig-statechart1}
+![](\images\state1.webp)
 
-Snippet de código
+:::
 
+Embora as **Máquinas de Estados Finitos** clássicas sejam suficientes para a análise léxica, os _StateCharts_ demonstram como o modelo fundamental pode ser estendido para lidar com a complexidade inerente a sistemas de controle de software, protocolos de comunicação e interfaces de usuário, mostrando a versatilidade e a relevância contínua do paradigma de estados.
 
+Talvez a leitora esteja se perguntando: "Não determinismo, multiplos estados ao mesmo tempo, onde a computação quântica se encaixa?" A resposta é que, embora os Autômatos Finitos sejam um modelo clássico e determinístico, a computação quântica introduz uma nova camada de complexidade e potencial.
 
+A computação quântica está atualmente na era **NISQ** (**N**oisy **I**ntermediate-**S**cale **Q**uantum). Isso significa que os processadores quânticos existentes são de escala intermediária,  entre dezenas e poucas centenas de qubits, e ainda são significativamente afetados por ruído e erros. o foco da pesquisa e desenvolvimento está concentrado em três áreas principais:
 
+1. **Avanços de Hardware**: Empresas e laboratórios de pesquisa ao redor do mundo estão em uma corrida para aumentar o número de qubits e, mais importante, a sua qualidade. Avanços recentes incluem o desenvolvimento de novos tipos de qubits, como os topológicos, propostos pela Microsoft, que prometem ser mais resistentes a erros, e o aprimoramento na conectividade entre processadores quânticos[@Bolgar2025Majorana].
+
+2. **Mitigação e Correção de Erros**: o grande desafio é a fragilidade dos estados quânticos. Grande parte do esforço atual visa desenvolver algoritmos e técnicas para mitigar os efeitos do ruído e criar códigos de correção de erros quânticos mais eficientes, um passo essencial para a construção de computadores quânticos tolerantes a falhas em larga escala.
+
+3.  **Desenvolvimento de Algoritmos e Aplicações**: a busca é por problemas nos quais os computadores **NISQ** possam demonstrar uma vantagem prática sobre os supercomputadores clássicos. As áreas mais promissoras incluem:
+
+* **Simulação Molecular e de Materiais**: para o desenvolvimento de novos medicamentos e materiais;
+* **Otimização**: em logística, finanças e outras áreas;
+* **Machine Learning Quântico**: explorando novas formas de análise de dados;
+* **Quebra de Criptografia**: embora a quebra de algoritmos como o RSA exija máquinas muito maiores, a ameaça impulsiona o desenvolvimento da criptografia pós-quântica.
+
+Em resumo, a computação quântica é um campo experimental e em rápida evolução, com um potencial transformador, mas que ainda enfrenta barreiras científicas e de engenharia significativas antes de se tornar uma tecnologia de uso geral.
+
+Em contraste, os Autômatos Finitos Não-Determinísticos são uma tecnologia teórica madura e um conceito fundamental na ciência da computação. Seu _estado da arte_ não reside em novas descobertas revolucionárias sobre o modelo em si, mas em sua aplicação contínua e na sofisticação das ferramentas baseadas nele. Eles são a espinha dorsal de diversas aplicações modernas:
+
+* **Compiladores**: na fase de análise léxica, para reconhecer _tokens_ como palavras-chave, identificadores e operadores.
+* **Processamento de Texto**: em editores de texto, processadores de planilhas e bancos de dados para operações de busca e substituição baseadas em padrões.
+* **Bioinformática**: para encontrar e analisar padrões em sequências de **DNA** e proteínas.
+* **Protocolos de Rede**: para filtragem de pacotes e análise de tráfego.
+
+A pesquisa atual envolvendo Autômatos Finitos Não-Determinísticos foca em otimizações de algoritmos, ferramentas pedagógicas para o ensino da teoria da computação, verificação formal de sistemas e extensões do modelo para contextos específicos, mas o modelo fundamental permanece inalterado e tão relevante quanto sempre foi.
+
+A conexão direta entre esses dois mundos se dá no campo teórico dos **Autômatos Finitos Quânticos**=[@Tian2019Experimental]. Um Autômatos Finitos Quânticos é o análogo quântico de um autômato finito, no qual os estados são vetores em um espaço de Hilbert, representando superposições quânticas e as transições são realizadas por matrizes unitárias.
+
+É fundamental entender a diferença entre o não-determinismo de um Autômato Finito Não-Determinístico e a natureza de um Autômatos Finitos Quânticos:
+
+* Um Autômato Finito Não-Determinístico pode estar em múltiplos estados clássicos simultaneamente. Sua computação explora diversos caminhos em paralelo.
+* Um Autômato Finito Quântico está em um único estado de superposição quântico. As probabilidades de se encontrar a máquina em um dos estados base só são definidas no momento da medição.
+
+Essa distinção leva a resultados surpreendentes sobre o poder computacional dos Autômatos Finitos Quânticos:
+
+1.  **Poder de Reconhecimento de Linguagem**: os modelos mais básicos de Autômatos Finitos Quânticos, como os de _medida-única_ ou _medida-múltipla_, são, na verdade, menos poderosos que os Autômatos Finitos Não-Determinísticos. Eles só conseguem reconhecer um subconjunto das linguagens regulares. A razão para isso é a restrição da reversibilidade da evolução quântica, que impede que diferentes caminhos computacionais se fundam de forma irrestrita, algo trivial para um Autômato Finito Não-Determinístico.
+   
+2.  **Vantagem em Eficiência (Complexidade de Estados)**: aqui reside a principal vantagem quântica. Para certas linguagens, um Autômato Finito Quântico pode ser exponencialmente mais eficiente em termos de número de estados do que qualquer autômato clássico equivalente. O exemplo clássico é a linguagem $L_p = \{a^k \mid k \text{ é múltiplo de } p\}$, onde $p$ é um número primo. Um Autômato Finito Determinístico precisa de $p$ estados, enquanto um Autômato Finito Quântico pode reconhecê-la com apenas $O(\log p)$ estados.
+
+3.  **Modelos Avançados**: modelos mais complexos, como os autômatos quânticos de duas vias, que podem mover a cabeça de leitura para frente e para trás, ou modelos híbridos com estados clássicos, são mais poderosos. Eles conseguem reconhecer linguagens não-regulares, como a linguagem dos palíndromos, $\{a^n b^n\}$, superando assim o poder dos autômatos finitos clássicos.
+
+Talvez, o próximo degrau evolutivo da tecnologia esteja justamente na criação de máquinas novas, que consigam explorar o não-determinismo quântico de forma eficiente. 
 
 
 
