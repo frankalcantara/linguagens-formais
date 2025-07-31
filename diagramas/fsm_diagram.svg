@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="600"
+   height="400"
+   version="1.1"
+   id="svg13"
+   sodipodi:docname="fsm_diagram.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview13"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.5114407"
+     inkscape:cx="289.12811"
+     inkscape:cy="217.34229"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg13" />
+  <!-- Definições para setas -->
+  <defs
+     id="defs1">
+    <marker
+       id="arrowhead"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="0 0, 10 3.5, 0 7"
+         fill="black"
+         id="polygon1" />
+    </marker>
+  </defs>
+  <!-- Estado q0 (inicial) -->
+  <circle
+     cx="128.44968"
+     cy="127.88338"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle1"
+     inkscape:export-filename="..\images\maq1.webp"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+  <text
+     x="128.44968"
+     y="132.88338"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     id="text1">q₀</text>
+  <!-- Seta indicando estado inicial -->
+  <line
+     x1="66.752228"
+     y1="151.41013"
+     x2="97.354218"
+     y2="137.00777"
+     stroke="#000000"
+     stroke-width="2.25478"
+     marker-end="url(#arrowhead)"
+     id="line1"
+     inkscape:transform-center-x="3.9446344"
+     inkscape:transform-center-y="-26.024017" />
+  <text
+     x="55.46722"
+     y="175.92432"
+     font-family="Arial"
+     font-size="12px"
+     id="text2">início</text>
+  <!-- Estado q1 -->
+  <circle
+     cx="328.44968"
+     cy="127.88338"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle2" />
+  <text
+     x="328.44968"
+     y="132.88338"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     id="text3">q₁</text>
+  <!-- Estado q2 (final) -->
+  <circle
+     cx="496.87073"
+     cy="127.64946"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle3" />
+  <circle
+     cx="496.87073"
+     cy="127.64946"
+     r="25"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle4" />
+  <text
+     x="496.87073"
+     y="132.64946"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="16px"
+     id="text4">q₂</text>
+  <!-- Transição q0 -> q1 com 'a' -->
+  <line
+     x1="158.44968"
+     y1="127.88338"
+     x2="298.44968"
+     y2="127.88338"
+     stroke="#000000"
+     stroke-width="2"
+     marker-end="url(#arrowhead)"
+     id="line4" />
+  <text
+     x="228.44968"
+     y="117.88338"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="14px"
+     id="text5">a</text>
+  <!-- Transição q1 -> q2 com 'a' -->
+  <line
+     x1="358.44968"
+     y1="127.88338"
+     x2="463.85614"
+     y2="127.88338"
+     stroke="#000000"
+     stroke-width="2"
+     marker-end="url(#arrowhead)"
+     id="line5" />
+  <text
+     x="386.57834"
+     y="124.66701"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="14px"
+     id="text6">a</text>
+  <!-- Auto-transição q0 com 'b' -->
+  <path
+     d="m 114.38535,102.56174 c 6.25731,-28.421051 15.32164,-22.807011 25.32164,-2.807011"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     marker-end="url(#arrowhead)"
+     id="path6"
+     sodipodi:nodetypes="cc" />
+  <text
+     x="133.59587"
+     y="76.479874"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="14px"
+     id="text7">b</text>
+  <!-- Transição q1 -> q0 com 'b' -->
+  <path
+     d="m 308.46179,107.25748 q -78.38478,-58.788581 -156.76956,0"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     marker-end="url(#arrowhead)"
+     id="path7" />
+  <text
+     x="228.44968"
+     y="57.883377"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="14px"
+     id="text8">b</text>
+  <!-- Auto-transição q2 com 'a' -->
+  <path
+     d="m 486.31518,98.585139 c 8.59649,-52.98246 17.19298,-21.87135 22.04678,0.70175"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     marker-end="url(#arrowhead)"
+     id="path8"
+     sodipodi:nodetypes="cc" />
+  <text
+     x="476.75375"
+     y="74.608521"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="14px"
+     id="text9">a,b</text>
+  <!-- Auto-transição q2 com 'b' -->
+  <!-- Título -->
+  <text
+     x="300"
+     y="30"
+     text-anchor="middle"
+     font-family="Arial"
+     font-size="18"
+     font-weight="bold"
+     id="text11">
+    Máquina de Estados Finitos - Alfabeto {a, b}
+  </text>
+  <!-- Legenda -->
+  <text
+     x="58.601067"
+     y="203.12027"
+     font-family="Arial"
+     font-size="12px"
+     id="text12">Estados: q₀ (inicial), q₁ (intermediário), q₂ (final)</text>
+  <text
+     x="58.601067"
+     y="223.12027"
+     font-family="Arial"
+     font-size="12px"
+     id="text13">Essa máquina aceita <tspan
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Italic'"
+   id="tspan13">strings</tspan> que contêm pelo menos dois 'a's consecutivos</text>
+</svg>

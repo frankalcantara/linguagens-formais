@@ -13,14 +13,17 @@ book:
   date: "07/29/2025"
   chapters:
     - index.qmd
-    - part: Autômatos e Gramáticas
+    - part: Analisadores Léxicos
       chapters: 
+        - 01-lexico.qmd
+    - part: Analisadores Sintáticos
+      chapters:
         - parsers.qmd
         - first-follow.qmd
         - tabela-derivacao.qmd
     - part: Projeto da Disciplina
       chapters:
-        - fase1.qmd
+        - fase1.qmd    
     - referencias.qmd
   page-footer: "Copyright © 2025 Frank de Alcantara"
   site-url: https://frankalcantara.com
@@ -32,7 +35,7 @@ csl: associacao-brasileira-de-normas-tecnicas-numerico.csl
 
 format:
   html:
-    theme: cosmo
+    theme: tango
     toc: true
     toc-depth: 3
     toc-title: "Sumário"
@@ -50,6 +53,9 @@ format:
           packages: ['base', 'ams']
         chtml:
           scale: 0.8
+          minScale: .1
+          matchFontHeight: false
+          fontURL: "[mathjax]/components/output/chtml/fonts/woff-v2"
         loader:
           load: ['[tex]/ams']
   pdf:

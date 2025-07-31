@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1200 800"
+   version="1.1"
+   id="svg44"
+   sodipodi:docname="comparacao_plana_statechart.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview44"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.75572037"
+     inkscape:cx="586.85728"
+     inkscape:cy="270.60274"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg44" />
+  <!-- Definições de estilos -->
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; text-anchor: middle; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; text-anchor: middle; }
+      .state-text { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-anchor: middle; }
+      .transition-text { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; }
+      .small-text { font-family: Arial, sans-serif; font-size: 9px; text-anchor: middle; }
+      .flat-state { fill: #e6f3ff; stroke: #0066cc; stroke-width: 2; }
+      .hierarchical-state { fill: #fff0e6; stroke: #cc6600; stroke-width: 2; }
+      .composite-state { fill: #f0f8e6; stroke: #006600; stroke-width: 3; }
+      .initial-state { fill: #000; }
+      .arrow { stroke: #333; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+      .dashed-arrow { stroke: #666; stroke-width: 1.5; fill: none; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
+    </style>
+    <marker
+       id="arrowhead"
+       markerWidth="8"
+       markerHeight="6"
+       refX="7"
+       refY="3"
+       orient="auto">
+      <polygon
+         points="0 0, 8 3, 0 6"
+         fill="#333"
+         id="polygon1" />
+    </marker>
+    <marker
+       id="arrowhead-9"
+       markerWidth="8"
+       markerHeight="6"
+       refX="7"
+       refY="3"
+       orient="auto">
+      <polygon
+         points="8,3 0,6 0,0 "
+         fill="#333333"
+         id="polygon1-4" />
+    </marker>
+  </defs>
+  <!-- Título principal -->
+  <text
+     x="600"
+     y="30"
+     class="title"
+     id="text1"
+     inkscape:export-filename="..\images\state1.webp"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96">Máquina de Estados Plana vs. Statechart</text>
+  <text
+     x="600"
+     y="50"
+     class="small-text"
+     id="text2">Exemplo: Sistema de Player de Música</text>
+  <!-- Divisória vertical -->
+  <line
+     x1="600"
+     y1="70"
+     x2="600"
+     y2="532.98853"
+     stroke="#cccccc"
+     stroke-width="2"
+     stroke-dasharray="10, 5"
+     id="line2" />
+  <!-- LADO ESQUERDO: Máquina Plana -->
+  <text
+     x="300"
+     y="85.36866"
+     class="subtitle"
+     id="text3">Máquina de Estados Plana</text>
+  <!-- Estados da máquina plana -->
+  <!-- Estado Inicial -->
+  <text
+     x="208.17493"
+     y="149.08327"
+     class="small-text"
+     id="text4">início</text>
+  <!-- Carregando -->
+  <ellipse
+     cx="300"
+     cy="140"
+     rx="60"
+     ry="30"
+     class="flat-state"
+     id="ellipse4" />
+  <text
+     x="300"
+     y="146"
+     class="state-text"
+     id="text5">Carregando</text>
+  <!-- Parado -->
+  <ellipse
+     cx="150"
+     cy="250"
+     rx="50"
+     ry="30"
+     class="flat-state"
+     id="ellipse5" />
+  <text
+     x="150"
+     y="256"
+     class="state-text"
+     id="text6">Parado</text>
+  <!-- Tocando -->
+  <ellipse
+     cx="450"
+     cy="250"
+     rx="50"
+     ry="30"
+     class="flat-state"
+     id="ellipse6" />
+  <text
+     x="450"
+     y="256"
+     class="state-text"
+     id="text7">Tocando</text>
+  <!-- Pausado -->
+  <ellipse
+     cx="300"
+     cy="360"
+     rx="50"
+     ry="30"
+     class="flat-state"
+     id="ellipse7" />
+  <text
+     x="300"
+     y="366"
+     class="state-text"
+     id="text8">Pausado</text>
+  <!-- Transições da máquina plana -->
+  <!-- Início -> Carregando -->
+  <line
+     x1="183.09392"
+     y1="140"
+     x2="240.84375"
+     y2="140"
+     class="arrow"
+     id="line8" />
+  <!-- Carregando -> Parado -->
+  <line
+     x1="255.78641"
+     y1="163.67885"
+     x2="184.83447"
+     y2="225.7618"
+     class="arrow"
+     id="line9" />
+  <text
+     x="225.61404"
+     y="221.52046"
+     class="transition-text"
+     id="text9">carregado</text>
+  <!-- Parado -> Tocando -->
+  <line
+     x1="200"
+     y1="250"
+     x2="400"
+     y2="250"
+     class="arrow"
+     id="line10" />
+  <text
+     x="380.44769"
+     y="244.22028"
+     class="transition-text"
+     id="text10">play</text>
+  <!-- Tocando -> Pausado -->
+  <line
+     x1="415.80685"
+     y1="273.24869"
+     x2="334.84326"
+     y2="336.22034"
+     class="arrow"
+     id="line11" />
+  <line
+     x1="335.41425"
+     y1="334.80008"
+     x2="416.37784"
+     y2="271.82843"
+     class="arrow"
+     id="line11-8"
+     style="fill:none;stroke:#333333;stroke-width:1.34939;marker-end:url(#arrowhead-9)" />
+  <text
+     x="362.14597"
+     y="339.78668"
+     class="transition-text"
+     id="text11">pause</text>
+  <!-- Pausado -> Tocando -->
+  <text
+     x="424.65936"
+     y="289.74487"
+     class="transition-text"
+     id="text12">resume</text>
+  <!-- Tocando -> Parado -->
+  <line
+     x1="400"
+     y1="250"
+     x2="200"
+     y2="250"
+     class="arrow"
+     id="line13" />
+  <text
+     x="223.14824"
+     y="261.47919"
+     class="transition-text"
+     id="text13">stop</text>
+  <!-- Pausado -> Parado -->
+  <line
+     x1="250"
+     y1="360"
+     x2="200"
+     y2="250"
+     class="arrow"
+     id="line14" />
+  <text
+     x="199.37163"
+     y="280.01495"
+     class="transition-text"
+     id="text14">stop</text>
+  <!-- Características da máquina plana -->
+  <rect
+     x="50.928646"
+     y="416.01639"
+     width="500.01404"
+     height="97.207031"
+     rx="10.000281"
+     fill="#f9f9f9"
+     stroke="#dddddd"
+     stroke-width="0.98595"
+     id="rect14" />
+  <text
+     x="300"
+     y="438.83041"
+     class="subtitle"
+     id="text15">Características da Máquina Plana:</text>
+  <text
+     x="300"
+     y="458.86557"
+     class="small-text"
+     id="text16">• Todos os estados no mesmo nível hierárquico</text>
+  <text
+     x="300"
+     y="478.79526"
+     class="small-text"
+     id="text17">• Transições diretas entre qualquer par de estados</text>
+  <text
+     x="300"
+     y="498.79526"
+     class="small-text"
+     id="text18">• Implementação simples com tabela de transições</text>
+  <!-- LADO DIREITO: Statechart -->
+  <text
+     x="900"
+     y="85.36866"
+     class="subtitle"
+     id="text19">Statechart (Hierárquico)</text>
+  <!-- Estado composto principal: Operacional -->
+  <rect
+     x="672.70685"
+     y="159.78285"
+     width="450.49277"
+     height="218.21208"
+     rx="14.077899"
+     class="composite-state"
+     id="rect19" />
+  <text
+     x="890"
+     y="185.14619"
+     class="state-text"
+     id="text20">Operacional</text>
+  <!-- Estado inicial dentro de Operacional -->
+  <!-- Subestado: Inativo -->
+  <ellipse
+     cx="750"
+     cy="220"
+     rx="50"
+     ry="25"
+     class="hierarchical-state"
+     id="ellipse20" />
+  <text
+     x="750"
+     y="226"
+     class="state-text"
+     id="text21">Inativo</text>
+  <!-- Estado composto: Ativo -->
+  <rect
+     x="849.94116"
+     y="199.94118"
+     width="260.11765"
+     height="166.08257"
+     rx="10.004525"
+     class="composite-state"
+     id="rect21" />
+  <text
+     x="980"
+     y="220"
+     class="state-text"
+     id="text22">Ativo</text>
+  <!-- Estados dentro de Ativo -->
+  <!-- Estado inicial de Ativo -->
+  <!-- Tocando (dentro de Ativo) -->
+  <ellipse
+     cx="950"
+     cy="260"
+     rx="45"
+     ry="25"
+     class="hierarchical-state"
+     id="ellipse22" />
+  <text
+     x="950"
+     y="266"
+     class="state-text"
+     id="text23">Tocando</text>
+  <!-- Pausado (dentro de Ativo) -->
+  <ellipse
+     cx="1050"
+     cy="330"
+     rx="45"
+     ry="25"
+     class="hierarchical-state"
+     id="ellipse23" />
+  <text
+     x="1050"
+     y="336"
+     class="state-text"
+     id="text24">Pausado</text>
+  <!-- Estado Carregando (fora de Operacional) -->
+  <ellipse
+     cx="890"
+     cy="120"
+     rx="60"
+     ry="25"
+     class="hierarchical-state"
+     id="ellipse24" />
+  <text
+     x="890"
+     y="126"
+     class="state-text"
+     id="text25">Carregando</text>
+  <!-- Estado inicial global -->
+  <!-- Transições do statechart -->
+  <!-- Início global -> Carregando -->
+  <line
+     x1="814.18433"
+     y1="144.11426"
+     x2="830.73682"
+     y2="129.62238"
+     class="arrow"
+     id="line25"
+     inkscape:transform-center-x="5.9313073"
+     inkscape:transform-center-y="-11.951846" />
+  <!-- Carregando -> Operacional.Inativo -->
+  <line
+     x1="890"
+     y1="145"
+     x2="890"
+     y2="160"
+     class="arrow"
+     id="line26" />
+  <text
+     x="921.98828"
+     y="154.26901"
+     class="transition-text"
+     id="text27">carregado</text>
+  <!-- Início de Operacional -> Inativo -->
+  <line
+     x1="688.02142"
+     y1="252.23192"
+     x2="704.76978"
+     y2="234.46979"
+     class="arrow"
+     id="line28"
+     inkscape:transform-center-x="8.8427573"
+     inkscape:transform-center-y="-24.853161" />
+  <!-- Inativo -> Ativo -->
+  <line
+     x1="800"
+     y1="220"
+     x2="850"
+     y2="220"
+     class="arrow"
+     id="line29" />
+  <text
+     x="825"
+     y="215"
+     class="transition-text"
+     id="text29">play</text>
+  <!-- Início de Ativo -> Tocando -->
+  <line
+     x1="888.40826"
+     y1="294.74646"
+     x2="906.59216"
+     y2="270.66641"
+     class="arrow"
+     id="line30" />
+  <!-- Tocando -> Pausado (dentro de Ativo) -->
+  <line
+     x1="979.95978"
+     y1="279.95401"
+     x2="1016.7017"
+     y2="312.10315"
+     class="arrow"
+     id="line31" />
+  <text
+     x="991.72974"
+     y="318.52536"
+     class="transition-text"
+     id="text31">pause</text>
+  <!-- Pausado -> Tocando (dentro de Ativo) -->
+  <line
+     x1="1013.1354"
+     y1="308.9935"
+     x2="979.81158"
+     y2="279.83514"
+     class="arrow"
+     id="line32" />
+  <text
+     x="1008.0151"
+     y="279.74487"
+     class="transition-text"
+     id="text32">resume</text>
+  <!-- Ativo -> Inativo (transição de saída) -->
+  <line
+     x1="849.93665"
+     y1="279.92081"
+     x2="793.17645"
+     y2="234.51265"
+     class="dashed-arrow"
+     id="line33" />
+  <text
+     x="820"
+     y="265"
+     class="transition-text"
+     id="text33">stop</text>
+  <!-- Características do statechart -->
+  <rect
+     x="640.63348"
+     y="416.01361"
+     width="500.01959"
+     height="115.34122"
+     rx="10.000392"
+     fill="#f9f9f9"
+     stroke="#dddddd"
+     stroke-width="0.980415"
+     id="rect33" />
+  <text
+     x="889.70758"
+     y="438.83041"
+     class="subtitle"
+     id="text34">Características do Statechart:</text>
+  <text
+     x="889.70758"
+     y="458.83041"
+     class="small-text"
+     id="text35">• Estados organizados hierarquicamente</text>
+  <text
+     x="889.70758"
+     y="478.83041"
+     class="small-text"
+     id="text36">• Estados compostos contêm subestados</text>
+  <text
+     x="889.70758"
+     y="498.83041"
+     class="small-text"
+     id="text37">• Transições podem cruzar níveis hierárquicos</text>
+  <text
+     x="889.70758"
+     y="518.83038"
+     class="small-text"
+     id="text38">• Maior modularidade e reutilização</text>
+  <!-- Comparação final -->
+  <rect
+     x="98.676758"
+     y="552.36334"
+     width="1000"
+     height="120"
+     rx="10"
+     fill="#f0f0f0"
+     stroke="#999999"
+     stroke-width="1"
+     id="rect38" />
+  <text
+     x="598.67676"
+     y="577.36334"
+     class="subtitle"
+     id="text39">Comparação:</text>
+  <text
+     x="298.67676"
+     y="602.36334"
+     class="small-text"
+     id="text40">Máquina Plana: 4 estados, 6 transições</text>
+  <text
+     x="898.67676"
+     y="602.36334"
+     class="small-text"
+     id="text41">Statechart: 2 níveis, estados compostos</text>
+  <text
+     x="298.67676"
+     y="622.36334"
+     class="small-text"
+     id="text42">Simples de implementar e analisar</text>
+  <text
+     x="898.67676"
+     y="622.36334"
+     class="small-text"
+     id="text43">Mais expressivo e modular</text>
+  <text
+     x="598.67676"
+     y="652.36334"
+     class="small-text"
+     id="text44">O statechart reduz a complexidade ao agrupar estados relacionados e permite reutilização de comportamentos</text>
+  <text
+     x="691.98932"
+     y="266.74069"
+     class="small-text"
+     id="text4-2"
+     style="font-size:9px;font-family:Arial, sans-serif;text-anchor:middle">início</text>
+  <text
+     x="903.91333"
+     y="298.39566"
+     class="small-text"
+     id="text4-5"
+     style="font-size:9px;font-family:Arial, sans-serif;text-anchor:middle">início</text>
+  <text
+     x="800.30511"
+     y="143.41905"
+     class="small-text"
+     id="text4-1"
+     style="font-size:9px;font-family:Arial, sans-serif;text-anchor:middle">início</text>
+</svg>

@@ -2,5 +2,19 @@
 
 Este é o material de suporte para a disciplina de Linguagens Formais, que abrange conceitos fundamentais de teoria da computação, autômatos, gramáticas e linguagens formais. O curso é dividido em várias partes, cada uma focando em aspectos específicos do tema.
 
-Além deste texto o aluno deve consultar os livros e artigos recomendados no plano de ensino da disciplina.
+Além deste texto o aluno deve consultar os livros e artigos recomendados no plano de ensino da disciplina listados a seguir:
+
+**Bibliografia Básica**:
+
+- MEIRA, Silvio Romero de Lemos. **Introdução à programação funcional**. Campinas: Ed. da UNICAMP, 1988. 290 p.;
+- CASANOVA, M.A.; GIORNO, F.A.; FURTADO, A.L..: **Programação em Lógica e a Linguagem Prolog**. São Paulo: Edard Blücher,1987. 461 p.;
+- SEBESTA, Robert W. **Conceitos de linguagens de programação**. 4. ed. Porto Alegre: Bookman, 2000.
+
+**Bibliografia Complementar**:
+
+- THOMPSON, Simon. **Haskell: the craft of functional programming**. Harlow: Addison-Wesley, 1996. 500 p. Prentice-Hall;
+- RUSSELL, Stuart J., NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro, Elsevier, 2013;
+- COPPIN, Bem. **Inteligência Artificial**. Rio de Janeiro, LTC, 2010;
+- SCHWICHTENBERG, Helmut;, Marktoberdorf, Alemanhan. **Berlin**: UFRJ, c1995. 470 p.;
+- ARAÚJO, Stenio Longo; ACIÓLY, Benedito Melo. **Introdução ao Haskell**. Vitória da Conquista: Edições UESB, 2008. 86 p..
 

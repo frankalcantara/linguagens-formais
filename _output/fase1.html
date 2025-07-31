@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -69,7 +103,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles/custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -178,22 +242,39 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#características-especiais" id="toc-características-especiais" class="nav-link" data-scroll-target="#características-especiais"><span class="header-section-number">5.2.1</span> Características Especiais</a></li>
   <li><a href="#comandos-especiais" id="toc-comandos-especiais" class="nav-link" data-scroll-target="#comandos-especiais"><span class="header-section-number">5.2.2</span> Comandos Especiais</a></li>
-  <li><a href="#analisador-léxico-com-fsm" id="toc-analisador-léxico-com-fsm" class="nav-link" data-scroll-target="#analisador-léxico-com-fsm"><span class="header-section-number">5.2.3</span> Analisador Léxico com FSM</a></li>
-  <li><a href="#arquivos-de-teste" id="toc-arquivos-de-teste" class="nav-link" data-scroll-target="#arquivos-de-teste"><span class="header-section-number">5.2.4</span> Arquivos de Teste</a></li>
-  <li><a href="#hospedagem-no-github" id="toc-hospedagem-no-github" class="nav-link" data-scroll-target="#hospedagem-no-github"><span class="header-section-number">5.2.5</span> Hospedagem no GitHub</a></li>
-  <li><a href="#requisitos-do-código" id="toc-requisitos-do-código" class="nav-link" data-scroll-target="#requisitos-do-código"><span class="header-section-number">5.2.6</span> Requisitos do Código</a></li>
   </ul></li>
-  <li><a href="#divisão-de-tarefas-para-o-problema-rpn" id="toc-divisão-de-tarefas-para-o-problema-rpn" class="nav-link" data-scroll-target="#divisão-de-tarefas-para-o-problema-rpn"><span class="header-section-number">5.3</span> Divisão de Tarefas para o Problema RPN</a>
+  <li><a href="#analisador-léxico-com-fsm" id="toc-analisador-léxico-com-fsm" class="nav-link" data-scroll-target="#analisador-léxico-com-fsm"><span class="header-section-number">5.3</span> Analisador Léxico com FSM</a></li>
+  <li><a href="#arquivos-de-teste" id="toc-arquivos-de-teste" class="nav-link" data-scroll-target="#arquivos-de-teste"><span class="header-section-number">5.4</span> Arquivos de Teste</a></li>
+  <li><a href="#hospedagem-no-github" id="toc-hospedagem-no-github" class="nav-link" data-scroll-target="#hospedagem-no-github"><span class="header-section-number">5.5</span> Hospedagem no GitHub</a></li>
+  <li><a href="#requisitos-do-código" id="toc-requisitos-do-código" class="nav-link" data-scroll-target="#requisitos-do-código"><span class="header-section-number">5.6</span> Requisitos do Código</a></li>
+  <li><a href="#sec-divisaoTarefas" id="toc-sec-divisaoTarefas" class="nav-link" data-scroll-target="#sec-divisaoTarefas"><span class="header-section-number">5.7</span> Divisão de Tarefas para a Fase 1</a>
   <ul class="collapse">
-  <li><a href="#aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm" id="toc-aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm" class="nav-link" data-scroll-target="#aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm"><span class="header-section-number">5.3.1</span> Aluno 1: Função <code>parseExpressao</code> e Analisador Léxico com FSM</a></li>
-  <li><a href="#aluno-2-função-executarexpressao-e-gerenciamento-de-memória" id="toc-aluno-2-função-executarexpressao-e-gerenciamento-de-memória" class="nav-link" data-scroll-target="#aluno-2-função-executarexpressao-e-gerenciamento-de-memória"><span class="header-section-number">5.3.2</span> Aluno 2: Função <code>executarExpressao</code> e Gerenciamento de Memória</a></li>
-  <li><a href="#aluno-3-função-gerarassembly-e-leitura-de-arquivo" id="toc-aluno-3-função-gerarassembly-e-leitura-de-arquivo" class="nav-link" data-scroll-target="#aluno-3-função-gerarassembly-e-leitura-de-arquivo"><span class="header-section-number">5.3.3</span> Aluno 3: Função <code>gerarAssembly</code> e Leitura de Arquivo</a></li>
-  <li><a href="#aluno-4-função-exibirresultados-interface-do-usuário-e-testes" id="toc-aluno-4-função-exibirresultados-interface-do-usuário-e-testes" class="nav-link" data-scroll-target="#aluno-4-função-exibirresultados-interface-do-usuário-e-testes"><span class="header-section-number">5.3.4</span> Aluno 4: Função <code>exibirResultados</code>, Interface do Usuário e Testes</a></li>
+  <li><a href="#aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm" id="toc-aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm" class="nav-link" data-scroll-target="#aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm"><span class="header-section-number">5.7.1</span> Aluno 1: Função <code>parseExpressao</code> e Analisador Léxico com FSM</a></li>
+  <li><a href="#aluno-2-função-executarexpressao-e-gerenciamento-de-memória" id="toc-aluno-2-função-executarexpressao-e-gerenciamento-de-memória" class="nav-link" data-scroll-target="#aluno-2-função-executarexpressao-e-gerenciamento-de-memória"><span class="header-section-number">5.7.2</span> Aluno 2: Função <code>executarExpressao</code> e Gerenciamento de Memória</a></li>
+  <li><a href="#aluno-3-função-gerarassembly-e-leitura-de-arquivo" id="toc-aluno-3-função-gerarassembly-e-leitura-de-arquivo" class="nav-link" data-scroll-target="#aluno-3-função-gerarassembly-e-leitura-de-arquivo"><span class="header-section-number">5.7.3</span> Aluno 3: Função <code>gerarAssembly</code> e Leitura de Arquivo</a></li>
+  <li><a href="#aluno-4-função-exibirresultados-interface-do-usuário-e-testes" id="toc-aluno-4-função-exibirresultados-interface-do-usuário-e-testes" class="nav-link" data-scroll-target="#aluno-4-função-exibirresultados-interface-do-usuário-e-testes"><span class="header-section-number">5.7.4</span> Aluno 4: Função <code>exibirResultados</code>, Interface do Usuário e Testes</a></li>
   </ul></li>
-  <li><a href="#considerações-para-integração" id="toc-considerações-para-integração" class="nav-link" data-scroll-target="#considerações-para-integração"><span class="header-section-number">5.4</span> Considerações para Integração</a></li>
-  <li><a href="#avaliação" id="toc-avaliação" class="nav-link" data-scroll-target="#avaliação"><span class="header-section-number">5.5</span> Avaliação</a></li>
-  <li><a href="#prova-de-autoria" id="toc-prova-de-autoria" class="nav-link" data-scroll-target="#prova-de-autoria"><span class="header-section-number">5.6</span> Prova de Autoria</a></li>
-  <li><a href="#entrega" id="toc-entrega" class="nav-link" data-scroll-target="#entrega"><span class="header-section-number">5.7</span> Entrega</a></li>
+  <li><a href="#considerações-para-integração" id="toc-considerações-para-integração" class="nav-link" data-scroll-target="#considerações-para-integração"><span class="header-section-number">5.8</span> Considerações para Integração</a></li>
+  <li><a href="#avaliação" id="toc-avaliação" class="nav-link" data-scroll-target="#avaliação"><span class="header-section-number">5.9</span> Avaliação</a></li>
+  <li><a href="#prova-de-autoria" id="toc-prova-de-autoria" class="nav-link" data-scroll-target="#prova-de-autoria"><span class="header-section-number">5.10</span> Prova de Autoria</a></li>
+  <li><a href="#entrega" id="toc-entrega" class="nav-link" data-scroll-target="#entrega"><span class="header-section-number">5.11</span> Entrega</a></li>
+  <li><a href="#sec-guiaAssembly" id="toc-sec-guiaAssembly" class="nav-link" data-scroll-target="#sec-guiaAssembly"><span class="header-section-number">6</span> Guia de Compilação e Execução do Código Assembly</a>
+  <ul class="collapse">
+  <li><a href="#toolchain-assembly-para-arduino-linha-de-comando" id="toc-toolchain-assembly-para-arduino-linha-de-comando" class="nav-link" data-scroll-target="#toolchain-assembly-para-arduino-linha-de-comando"><span class="header-section-number">6.1</span> Toolchain Assembly para Arduino (Linha de Comando)</a></li>
+  <li><a href="#ferramentas-necessárias" id="toc-ferramentas-necessárias" class="nav-link" data-scroll-target="#ferramentas-necessárias"><span class="header-section-number">6.2</span> 1. Ferramentas Necessárias</a></li>
+  <li><a href="#instalação" id="toc-instalação" class="nav-link" data-scroll-target="#instalação"><span class="header-section-number">6.3</span> 2. Instalação</a>
+  <ul class="collapse">
+  <li><a href="#linux-debianubuntu" id="toc-linux-debianubuntu" class="nav-link" data-scroll-target="#linux-debianubuntu"><span class="header-section-number">6.3.1</span> Linux (Debian/Ubuntu)</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">6.3.2</span> Windows</a></li>
+  </ul></li>
+  <li><a href="#o-processo-de-compilação-e-upload" id="toc-o-processo-de-compilação-e-upload" class="nav-link" data-scroll-target="#o-processo-de-compilação-e-upload"><span class="header-section-number">6.4</span> 3. O Processo de Compilação e Upload</a>
+  <ul class="collapse">
+  <li><a href="#passos-principais" id="toc-passos-principais" class="nav-link" data-scroll-target="#passos-principais"><span class="header-section-number">6.4.1</span> Passos Principais</a></li>
+  <li><a href="#exemplo-completo-para-arduino-uno" id="toc-exemplo-completo-para-arduino-uno" class="nav-link" data-scroll-target="#exemplo-completo-para-arduino-uno"><span class="header-section-number">6.4.2</span> Exemplo Completo para Arduino UNO</a></li>
+  <li><a href="#informações-do-hardware-1" id="toc-informações-do-hardware-1" class="nav-link" data-scroll-target="#informações-do-hardware-1"><span class="header-section-number">6.4.3</span> Informações do Hardware:</a></li>
+  </ul></li>
+  <li><a href="#observações-importantes" id="toc-observações-importantes" class="nav-link" data-scroll-target="#observações-importantes"><span class="header-section-number">6.5</span> Observações Importantes</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/frankalcantara/linguagens-formais/edit/main/fase1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/frankalcantara/linguagens-formais/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav>
@@ -223,148 +304,450 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Autor</strong>: Frank Coelho de Alcantara<br>
-<strong>Exercícios, Pesquisas e Atividades</strong></p>
-<p>Este trabalho pode ser realizado em grupos de até 4 alunos. Grupos com mais de 4 membros terão o trabalho anulado. Leia todo o documento antes de começar e siga o código de ética: você pode discutir as questões com colegas, professores e amigos, consultar livros da disciplina, bibliotecas virtuais ou físicas, e a Internet em geral, em qualquer idioma. No entanto, o trabalho é seu e deve ser realizado por você. Plágio resultará na anulação do trabalho.</p>
+<p>Este trabalho pode ser realizado em grupos de até <span class="math inline">\(4\)</span> alunos. Grupos com mais de 4 membros terão o trabalho anulado. Leia todo este texto antes de começar e siga o seguinte código de ética: <em>você pode discutir as questões com colegas, professores e amigos, consultar livros da disciplina, bibliotecas virtuais ou físicas, e a Internet em geral, em qualquer idioma. Você pode usar qualquer ferramenta de Inteligência Artificial para dúvidas, mas não para fazer o trabalho no seu lugar. O trabalho é seu e deve ser realizado por você. Plágio resultará na anulação do trabalho</em>.</p>
+<p>Os trabalhos entregues serão avaliados por uma ferramenta de Inteligência Artificial, que verificará a originalidade do texto e a autoria do código. O trabalho deve ser entregue em um repositório público no <strong>GitHub</strong>.</p>
 <section id="objetivo" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">5.1</span> Objetivo</h2>
-<p>Pesquisar e praticar conceitos para desenvolver um programa em <strong>Python</strong>, <strong>C</strong>, ou <strong>C++</strong> que processe expressões aritméticas em notação polonesa reversa (RPN) a partir de um arquivo de texto, utilizando máquinas de estado finito (FSMs) implementadas obrigatoriamente com funções. O programa deve executar as expressões em um ambiente de teste (e.g., notebook) e em um Arduino Uno ou Mega, gerando código Assembly para o Arduino. O projeto deve incluir funções de teste para o analisador léxico e ser hospedado em um repositório público no <strong>GitHub</strong>.</p>
+<p>Pesquisar e praticar conceitos de analisador léxico para desenvolver um programa em <strong>Python</strong>, <strong>C</strong>, ou <strong>C++</strong> que processe expressões aritméticas em notação polonesa reversa (RPN), conforme definida neste texto, a partir de um arquivo de texto, utilizando <strong>máquinas de estado finito</strong> (FSMs) implementadas obrigatoriamente com funções. O programa deve executar as expressões em um ambiente de teste (ex.: o notebook do aluno) e em um Arduino Uno, ou Mega. O seu trabalho será gerar o código Assembly, compatível com a arquitetura do Arduino Uno, ou Mega. Um guia de como compilar e executar o código Assembly está incluído na seção <a href="#sec-guiaAssembly" class="quarto-xref"><span>Chapter 6</span></a> no final deste documento.</p>
 </section>
 <section id="descrição-do-trabalho" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="descrição-do-trabalho"><span class="header-section-number">5.2</span> Descrição do Trabalho</h2>
-<p>O objetivo é desenvolver um programa capaz de: 1. Ler um arquivo de texto contendo expressões aritméticas em RPN, com uma expressão por linha. 2. Analisar as expressões usando um analisador léxico baseado em FSMs, implementado com funções. 3. Executar as expressões em um ambiente de teste e em um Arduino Uno/Mega, gerando Assembly para o Arduino. 4. Apresentar os resultados de todas as expressões contidas no arquivo de entrada. 5. Hospedar o código, arquivos de teste e documentação em um repositório público no <strong>GitHub</strong>.</p>
+<p>O objetivo é desenvolver um programa capaz de:</p>
+<ol type="1">
+<li>Ler um arquivo de texto contendo expressões aritméticas em RPN, segundo o formato especificado neste documento, com uma expressão por linha. Este arquivo contém o código do programa que será analisado pelo analisador léxico.</li>
+<li>Analisar as expressões usando um analisador léxico baseado em FSMs, com estados implementados por funções.</li>
+<li>Transformar as expressões em um texto contendo o código Assembly para o Arduino, utilizando as operações aritméticas e comandos especiais especificados. As operações serão realizadas no Arduino.</li>
+<li>Executar as expressões em um Arduino Uno/Mega, de forma que os resultados possam ser acompanhados (display, leds ou serial).</li>
+<li>Hospedar o código, arquivos de teste e documentação em um repositório público no <strong>GitHub</strong>.</li>
+</ol>
 <section id="características-especiais" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="características-especiais"><span class="header-section-number">5.2.1</span> Características Especiais</h3>
-<p>As expressões devem ser escritas em notação RPN, no formato <code>(A B op)</code>, onde: - <strong>A</strong> e <strong>B</strong> são números reais (usar ponto como separador decimal, e.g., 3.14). - Operadores suportados: - Adição: <code>+</code> (e.g., <code>(A B +)</code>). - Subtração: <code>-</code> (e.g., <code>(A B -)</code>). - Multiplicação: <code>*</code> (e.g., <code>(A B *)</code>). - Divisão real: <code>/</code> (e.g., <code>(A B /)</code>). - Divisão inteira: <code>/</code> (e.g., <code>(A B /)</code> para inteiros). - Resto da divisão inteira: <code>%</code> (e.g., <code>(A B %)</code>). - Potenciação: <code>^</code> (e.g., <code>(A B ^)</code>, onde <code>B</code> é um inteiro positivo). - Todas as operações (exceto divisão inteira e resto) usam números reais em formato de meia precisão (16 bits, IEEE 754). - Expressões podem ser aninhadas sem limite, e.g.: - <code>(A (C D *) +)</code>: Soma <code>A</code> ao produto de <code>C</code> e <code>D</code>. - <code>((A B *) (D E *) /)</code>: Divide o produto de <code>A</code> e <code>B</code> pelo produto de <code>D</code> e <code>E</code>.</p>
+<p>As expressões devem ser escritas em notação RPN, no formato <code>(A B op)</code>, no qual <code>A</code> e <code>B</code> são números reais e <code>op</code> é um operador aritmético. O programa deve suportar operações aritméticas básicas, comandos especiais para manipulação de memória, e deve ser capaz de lidar com expressões aninhadas. Segundo a seguinte sintaxe:</p>
+<ul>
+<li><p><strong>A</strong> e <strong>B</strong> são números reais (usar ponto como separador decimal, ex.: 3.14).</p></li>
+<li><p>Operadores suportados na Fase 1:</p>
+<ul>
+<li>Adição: <code>+</code> (ex.: <code>(A B +)</code>);</li>
+<li>Subtração: <code>-</code> (ex.: <code>(A B -)</code>);</li>
+<li>Multiplicação: <code>*</code> (ex.: <code>(A B *)</code>);</li>
+<li>Divisão real: <code>/</code> (ex.: <code>(A B /)</code>);</li>
+<li>Divisão inteira: <code>/</code> (ex.: <code>(A B /)</code> para inteiros);</li>
+<li>Resto da divisão inteira: <code>%</code> (ex.: <code>(A B %)</code>);</li>
+<li>Potenciação: <code>^</code> (ex.: <code>(A B ^)</code>, onde <code>B</code> é um inteiro positivo);</li>
+</ul></li>
+<li><p>Todas as operações (exceto divisão inteira e resto) usam números reais em formato de meia precisão (16 bits, IEEE 754), com duas casas decimais. A página <a href="https://frankalcantara.com/precisao-realidade-os-desafios-da-norma-ieee-754-na-computacao-moderna/">Os desafios da norma IEEE 754</a> contém informações relevantes sobre a norma IEEE 754.</p></li>
+<li><p>Expressões podem ser aninhadas sem limite, por exemplo:</p>
+<ul>
+<li><code>(A (C D *) +)</code>: Soma <code>A</code> ao produto de <code>C</code> e <code>D</code>;</li>
+<li><code>((A B *) (D E *) /)</code>: Divide o produto de <code>A</code> e <code>B</code> pelo produto de <code>D</code> e <code>E</code>.</li>
+<li><code>((A B +) (C D *) /)</code>: Divide a soma de <code>A</code> e <code>B</code> pelo produto de <code>C</code> e <code>D</code>.</li>
+</ul></li>
+</ul>
 </section>
 <section id="comandos-especiais" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="comandos-especiais"><span class="header-section-number">5.2.2</span> Comandos Especiais</h3>
+<p>A linguagem que estamos criando inclui comandos especiais para manipulação de memória e resultados:</p>
 <ul>
-<li><code>(N RES)</code>: Retorna o resultado da expressão <code>N</code> linhas anteriores (<code>N</code> é um inteiro não negativo).</li>
-<li><code>(V MEM)</code>: Armazena o valor real <code>V</code> em uma memória chamada <code>MEM.c</code>.</li>
-<li><code>(MEM)</code>: Retorna o valor armazenado em <code>MEM.c</code>. Se não inicializado, retorna 0.0.</li>
-<li>Cada arquivo de texto representa um escopo independente para a memória.</li>
+<li><p><code>(N RES)</code>: Retorna o resultado da expressão <code>N</code> linhas anteriores (<code>N</code> é um inteiro não negativo).</p></li>
+<li><p><code>(V MEM)</code>: Armazena o valor real <code>V</code> em uma memória chamada <code>MEM</code>.</p></li>
+<li><p><code>(MEM)</code>: Retorna o valor armazenado em <code>MEM</code>. Se não inicializado, retorna <span class="math inline">\(0.0\)</span>.</p></li>
+<li><p>Cada arquivo de texto, código fonte da linguagem que estamos criando, representa um escopo independente de memória.</p></li>
+<li><p><code>MEM</code> pode ser qualquer conjunto de letras maiúsculas, tal como <code>MEM</code>, <code>VAR</code>, <code>X</code>, etc.</p></li>
+<li><p><code>RES</code> é uma <em>keyword</em> da linguagem que estamos criando.</p></li>
 </ul>
 </section>
-<section id="analisador-léxico-com-fsm" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="analisador-léxico-com-fsm"><span class="header-section-number">5.2.3</span> Analisador Léxico com FSM</h3>
+</section>
+<section id="analisador-léxico-com-fsm" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="analisador-léxico-com-fsm"><span class="header-section-number">5.3</span> Analisador Léxico com FSM</h2>
 <ul>
-<li>O analisador léxico deve ser implementado usando máquinas de estado finito (FSMs), com cada estado representado por uma função.</li>
-<li>O FSM deve reconhecer tokens válidos: números reais, operadores (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>), comandos especiais (<code>RES</code>, <code>MEM</code>), e parênteses.</li>
+<li>O analisador léxico deve ser implementado usando máquinas de estado finito (FSMs), com cada estado representado por uma função. Qualquer forma diferente de implementação provocará o zeramento do trabalho.</li>
+<li>O FSM deve reconhecer <em>tokens</em> válidos: números reais (duas casas decimais), operadores (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>), comandos especiais (<code>RES</code>, <code>MEM</code>), e parênteses.</li>
 <li>Funções de teste específicas devem ser criadas para validar o analisador léxico, cobrindo:
 <ul>
-<li>Entradas válidas (e.g., <code>(3.14 2.0 +)</code>, <code>(5 RES)</code>, <code>(10.5 MEM)</code>).</li>
-<li>Entradas inválidas (e.g., <code>(3.14 2.0 &amp;)</code>, números malformados como <code>3.14.5</code>, ou parênteses desbalanceados).</li>
+<li>Entradas válidas (ex.: <code>(3.14 2.0 +)</code>, <code>(5 RES)</code>, <code>(10.5 CONTADOr)</code>);</li>
+<li>Entradas inválidas (ex.: <code>(3.14 2.0 &amp;)</code>, números malformados como <code>3.14.5</code>, <code>3,45</code> ou parênteses desbalanceados).</li>
 </ul></li>
 </ul>
 </section>
-<section id="arquivos-de-teste" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="arquivos-de-teste"><span class="header-section-number">5.2.4</span> Arquivos de Teste</h3>
+<section id="arquivos-de-teste" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="arquivos-de-teste"><span class="header-section-number">5.4</span> Arquivos de Teste</h2>
 <ul>
 <li>Fornecer <strong>mínimo de 3 arquivos de texto</strong>, cada um com <strong>pelo menos 10 linhas</strong> de expressões RPN.</li>
 <li>Cada arquivo deve incluir todas as operações (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>) e comandos especiais (<code>(N RES)</code>, <code>(V MEM)</code>, <code>(MEM)</code>).</li>
-<li>Os arquivos devem estar no mesmo diretório do código-fonte e ser processados via argumento de linha de comando (e.g., <code>./programa teste1.txt</code>).</li>
-<li>O programa não deve incluir menu ou seleção interativa de arquivos.</li>
+<li>Os arquivos devem estar no mesmo diretório do código-fonte e ser processados via argumento de linha de comando (ex.: <code>./programa teste1.txt</code>).</li>
+<li>O programa não deve incluir menu ou qualquer seleção interativa de arquivos.</li>
 </ul>
 </section>
-<section id="hospedagem-no-github" class="level3" data-number="5.2.5">
-<h3 data-number="5.2.5" class="anchored" data-anchor-id="hospedagem-no-github"><span class="header-section-number">5.2.5</span> Hospedagem no GitHub</h3>
+<section id="hospedagem-no-github" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="hospedagem-no-github"><span class="header-section-number">5.5</span> Hospedagem no GitHub</h2>
 <ul>
-<li>O projeto deve ser hospedado em um repositório público no <strong>GitHub</strong>.</li>
-<li>O repositório deve conter:
+<li><p>O projeto deve ser hospedado em um repositório público no <strong>GitHub</strong>. Se o professor não indicar qual repositório deve ser usado, o repositório deve ser criado por um dos alunos do grupo.</p></li>
+<li><p>O repositório deve conter:</p>
 <ul>
-<li>Código-fonte do programa.</li>
-<li>Arquivos de teste (mínimo 3).</li>
-<li>Funções de teste para o analisador léxico.</li>
-<li>Código Assembly para Arduino.</li>
-<li>Documentação (e.g., README.md) explicando como compilar, executar e testar o programa.</li>
+<li>Código-fonte do programa;</li>
+<li>Arquivos de teste (mínimo 3);</li>
+<li>Funções de teste para o analisador léxico;</li>
+<li>Última versão do Código Assembly para Arduino gerado pelo programa;</li>
+<li>Documentação (ex.: README.md) explicando como compilar, executar e testar o programa. Contendo o nome da instituição, disciplina, professor e nome dos alunos do grupo, em ordem alfabética seguido do usuário deste aluno no github.</li>
 </ul></li>
-<li>O repositório deve ser organizado com commits claros, indicando contribuições de cada aluno.</li>
+<li><p>O repositório deve ser organizado com commits claros, as contribuições de cada um dos alunos devem estar registradas na forma de <code>pull requests</code>.</p></li>
 </ul>
 </section>
-<section id="requisitos-do-código" class="level3" data-number="5.2.6">
-<h3 data-number="5.2.6" class="anchored" data-anchor-id="requisitos-do-código"><span class="header-section-number">5.2.6</span> Requisitos do Código</h3>
+<section id="requisitos-do-código" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="requisitos-do-código"><span class="header-section-number">5.6</span> Requisitos do Código</h2>
 <ul>
 <li>As primeiras linhas do código devem conter:
 <ul>
-<li>Nomes dos integrantes do grupo, em ordem alfabética.</li>
+<li>Nomes dos integrantes do grupo, em ordem alfabética seguidos do usuário deste aluno no github.</li>
 <li>Nome do grupo no ambiente virtual de aprendizagem (Canvas).</li>
 </ul></li>
 <li>O programa deve receber o nome do arquivo de teste como argumento na linha de comando.</li>
-<li>O código Assembly gerado para o Arduino deve ser funcional e incluído no repositório.</li>
+<li>O código deve ser escrito em <strong>Python</strong>, <strong>C</strong>, ou <strong>C++</strong>. Com as funções nomeadas de acordo com o que está explicitado na <a href="#sec-divisaoTarefas" class="quarto-xref"><span>Section 5.7</span></a>.</li>
+<li>A última versão do código Assembly gerado para o Arduino deve ser funcional e incluído no repositório.</li>
+</ul>
+</section>
+<section id="sec-divisaoTarefas" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="sec-divisaoTarefas"><span class="header-section-number">5.7</span> Divisão de Tarefas para a Fase 1</h2>
+<p>Para resolver o problema de processamento de expressões RPN, o trabalho será dividido entre até quatro alunos, trabalhando independentemente, na mesma sala, ou de forma remota. Cada aluno será responsável por uma parte específica do sistema, com interfaces claras para facilitar a integração. Abaixo está uma sugestão da divisão das tarefas, considerando as funções solicitadas: <code>parseExpressao</code>, <code>executarExpressao</code>, <code>gerarAssembly</code>, e <code>exibirResultados</code>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Nota</strong>: As tarefas podem ser divididas da forma que cada aluno achar mais conveniente, desde que as funções e interfaces sejam respeitadas.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Nota</strong>: O vetor de <em>tokens</em> deve ser salvo em txt para uso nas próximas fases do projeto. Cabe ao grupo decidir o formato que será usado para salvar os <em>tokens</em>. Apenas os <em>tokens</em> referentes a última execução do analisador léxico devem ser salvos.</p>
+</div>
+</div>
+<section id="aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm"><span class="header-section-number">5.7.1</span> Aluno 1: Função <code>parseExpressao</code> e Analisador Léxico com FSM</h3>
+<p><strong>Responsabilidades</strong>:</p>
+<ul>
+<li>Implementar <code>parseExpressao(std::string linha, std::vector&lt;std::string&gt;&amp; _tokens_)</code> (ou equivalente em Python/C) para analisar uma linha de expressão RPN e extrair <em>tokens</em>.</li>
+<li>Implementar o analisador léxico usando FSMs, com cada estado como uma função (ex.: <code>estadoNumero</code>, <code>estadoOperador</code>, <code>estadoParenteses</code>).</li>
+<li>Validar <em>tokens</em>:
+<ul>
+<li>Números reais (ex.: <code>3.14</code>) usando ponto como separador decimal;</li>
+<li>Operadores (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>);</li>
+<li>Comandos especiais (<code>RES</code>, <code>MEM</code>) e parênteses;</li>
+<li>Detectar erros como números malformados (ex.: <code>3.14.5</code>), parênteses desbalanceados ou operadores inválidos;</li>
+</ul></li>
+<li>Criar funções de teste para o analisador léxico, cobrindo entradas válidas e inválidas.</li>
+</ul>
+<p><strong>Tarefas Específicas</strong>:</p>
+<ul>
+<li>Escrever <code>parseExpressao</code> para dividir a linha em <em>tokens</em> usando um FSM;</li>
+<li>Validar <em>tokens</em> (ex.: em C++: <code>if (token.empty() || !isValidNumber(token))</code>);</li>
+<li>Testar o FSM com entradas como <code>(3.14 2.0 +)</code>, <code>(5 RES)</code>, <code>(3.14.5 2.0 +)</code> (inválido);</li>
+<li>Garantir que o FSM lide com parênteses aninhados e comandos especiais.</li>
+</ul>
+<p><strong>Interface</strong>:</p>
+<ul>
+<li>Recebe uma linha de texto e retorna um vetor de <em>tokens</em>;</li>
+<li>Fornece <em>tokens</em> válidos para <code>executarExpressao</code>.</li>
+</ul>
+</section>
+<section id="aluno-2-função-executarexpressao-e-gerenciamento-de-memória" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="aluno-2-função-executarexpressao-e-gerenciamento-de-memória"><span class="header-section-number">5.7.2</span> Aluno 2: Função <code>executarExpressao</code> e Gerenciamento de Memória</h3>
+<p><strong>Responsabilidades</strong>:</p>
+<ul>
+<li>Implementar <code>executarExpressao(const std::vector&lt;std::string&gt;&amp; _tokens_, std::vector&lt;float&gt;&amp; resultados, float&amp; memoria)</code> para executar uma expressão RPN;</li>
+<li>Gerenciar a memória <code>MEM</code> para comandos <code>(V MEM)</code> e <code>(MEM)</code>;</li>
+<li>Manter um histórico de resultados para suportar <code>(N RES)</code>;</li>
+<li>Criar funções de teste para validar a execução de expressões e comandos especiais.</li>
+</ul>
+<p><strong>Tarefas Específicas</strong>:</p>
+<ul>
+<li>Usar uma pilha para avaliar expressões RPN (ex.: em C++: <code>std::stack&lt;float&gt;</code>);</li>
+<li>Implementar operações (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>) com precisão de 16 bits (IEEE 754);</li>
+<li>Tratar divisão inteira e resto separadamente;</li>
+<li>Testar com expressões como <code>(3.14 2.0 +)</code>, <code>((1.5 2.0 *) (3.0 4.0 *) /)</code>, <code>(5.0 MEM)</code>, <code>(2 RES)</code>;</li>
+<li>Verificar erros como divisão por zero ou <code>N</code> inválido em <code>(N RES)</code>.</li>
+</ul>
+<p><strong>Interface</strong>:</p>
+<ul>
+<li>Recebe <em>tokens</em> de <code>parseExpressao</code> e atualiza <code>resultados</code> e <code>memoria</code>;</li>
+<li>Fornece resultados para <code>exibirResultados</code> e Assembly.</li>
+</ul>
+</section>
+<section id="aluno-3-função-gerarassembly-e-leitura-de-arquivo" class="level3" data-number="5.7.3">
+<h3 data-number="5.7.3" class="anchored" data-anchor-id="aluno-3-função-gerarassembly-e-leitura-de-arquivo"><span class="header-section-number">5.7.3</span> Aluno 3: Função <code>gerarAssembly</code> e Leitura de Arquivo</h3>
+<p><strong>Responsabilidades</strong>:</p>
+<ul>
+<li>Implementar <code>gerarAssembly(const std::vector&lt;std::string&gt;&amp; _tokens_, std::string&amp; codigoAssembly)</code> para gerar código Assembly para Arduino;</li>
+<li>Implementar <code>lerArquivo(std::string nomeArquivo, std::vector&lt;std::string&gt;&amp; linhas)</code> para ler o arquivo de entrada;</li>
+<li>Criar funções de teste para validar a leitura de arquivos e a geração de Assembly;</li>
+<li>Alertar se o arquivo tiver linhas malformadas ou exceder limites.</li>
+</ul>
+<p><strong>Tarefas Específicas</strong>:</p>
+<ul>
+<li>Ler o arquivo linha por linha, ignorando linhas vazias;</li>
+<li>Gerar Assembly AVR para operações RPN e comandos especiais (usando registradores e instruções do ATmega328P/Mega);</li>
+<li>Testar com arquivos contendo 10+ linhas, incluindo expressões aninhadas e comandos especiais;</li>
+<li>Verificar erros de abertura de arquivo e exibir mensagens claras.</li>
+</ul>
+<p><strong>Interface</strong>:</p>
+<ul>
+<li><code>lerArquivo</code> fornece linhas para <code>parseExpressao</code>;</li>
+<li><code>gerarAssembly</code> produz código Assembly para Arduino.</li>
+</ul>
+</section>
+<section id="aluno-4-função-exibirresultados-interface-do-usuário-e-testes" class="level3" data-number="5.7.4">
+<h3 data-number="5.7.4" class="anchored" data-anchor-id="aluno-4-função-exibirresultados-interface-do-usuário-e-testes"><span class="header-section-number">5.7.4</span> Aluno 4: Função <code>exibirResultados</code>, Interface do Usuário e Testes</h3>
+<p><strong>Responsabilidades</strong>:</p>
+<ul>
+<li>Implementar <code>exibirResultados(const std::vector&lt;float&gt;&amp; resultados)</code> para exibir os resultados das expressões;</li>
+<li>Implementar <code>exibirMenu()</code> e gerenciar a interface no <code>main</code>, incluindo leitura do argumento de linha de comando;</li>
+<li>Corrigir problemas de entrada (ex.: em C++: <code>std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n')</code>);</li>
+<li>Criar funções de teste para validar a saída e o comportamento do programa completo.</li>
+</ul>
+<p><strong>Tarefas Específicas</strong>:</p>
+<ul>
+<li>Exibir resultados com formato claro (ex.: uma casa decimal para números reais);</li>
+<li>Implementar o <code>main</code> para chamar <code>lerArquivo</code>, <code>parseExpressao</code>, <code>executarExpressao</code>, e <code>exibirResultados</code>;</li>
+<li>Testar com arquivos de teste fornecidos, verificando saídas para expressões simples e complexas;</li>
+<li>Testar o FSM com comandos especiais como <code>(V MEM)</code> e <code>(MEM)</code>;</li>
+</ul>
+<p><strong>Interface</strong>:</p>
+<ul>
+<li>Usa resultados de <code>executarExpressao</code> para exibir saídas;</li>
+<li>Gerencia a execução do programa via argumento de linha de comando.</li>
 </ul>
 </section>
 </section>
-<section id="divisão-de-tarefas-para-o-problema-rpn" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="divisão-de-tarefas-para-o-problema-rpn"><span class="header-section-number">5.3</span> Divisão de Tarefas para o Problema RPN</h2>
-<p>Para resolver o problema de processamento de expressões RPN, o trabalho será dividido entre até quatro alunos, trabalhando independentemente na mesma sala, sem sistema de controle de versão (exceto GitHub para entrega final). Cada aluno será responsável por uma parte específica do sistema, com interfaces claras para facilitar a integração. Abaixo está a divisão das tarefas, considerando as funções solicitadas: <code>parseExpressao</code>, <code>executarExpressao</code>, <code>gerarAssembly</code>, e <code>exibirResultados</code>.</p>
-<section id="aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="aluno-1-função-parseexpressao-e-analisador-léxico-com-fsm"><span class="header-section-number">5.3.1</span> Aluno 1: Função <code>parseExpressao</code> e Analisador Léxico com FSM</h3>
-<p><strong>Responsabilidades</strong>: - Implementar <code>parseExpressao(std::string linha, std::vector&lt;std::string&gt;&amp; tokens)</code> (ou equivalente em Python/C) para analisar uma linha de expressão RPN e extrair tokens. - Implementar o analisador léxico usando FSMs, com cada estado como uma função (e.g., <code>estadoNumero</code>, <code>estadoOperador</code>, <code>estadoParenteses</code>). - Validar tokens: - Números reais (e.g., <code>3.14</code>) usando ponto como separador decimal. - Operadores (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>). - Comandos especiais (<code>RES</code>, <code>MEM</code>) e parênteses. - Detectar erros como números malformados (e.g., <code>3.14.5</code>) ou operadores inválidos. - Criar funções de teste para o analisador léxico, cobrindo entradas válidas e inválidas.</p>
-<p><strong>Tarefas Específicas</strong>: - Escrever <code>parseExpressao</code> para dividir a linha em tokens usando um FSM. - Validar tokens (e.g., em C++: <code>if (token.empty() || !isValidNumber(token))</code>). - Testar o FSM com entradas como <code>(3.14 2.0 +)</code>, <code>(5 RES)</code>, <code>(3.14.5 2.0 +)</code> (inválido). - Garantir que o FSM lide com parênteses aninhados e comandos especiais.</p>
-<p><strong>Interface</strong>: - Recebe uma linha de texto e retorna um vetor de tokens. - Fornece tokens válidos para <code>executarExpressao</code>.</p>
-</section>
-<section id="aluno-2-função-executarexpressao-e-gerenciamento-de-memória" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="aluno-2-função-executarexpressao-e-gerenciamento-de-memória"><span class="header-section-number">5.3.2</span> Aluno 2: Função <code>executarExpressao</code> e Gerenciamento de Memória</h3>
-<p><strong>Responsabilidades</strong>: - Implementar <code>executarExpressao(const std::vector&lt;std::string&gt;&amp; tokens, std::vector&lt;float&gt;&amp; resultados, float&amp; memoria)</code> para executar uma expressão RPN. - Gerenciar a memória <code>MEM.c</code> para comandos <code>(V MEM)</code> e <code>(MEM)</code>. - Manter um histórico de resultados para suportar <code>(N RES)</code>. - Criar funções de teste para validar a execução de expressões e comandos especiais.</p>
-<p><strong>Tarefas Específicas</strong>: - Usar uma pilha para avaliar expressões RPN (e.g., em C++: <code>std::stack&lt;float&gt;</code>). - Implementar operações (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>^</code>) com precisão de 16 bits (IEEE 754). - Tratar divisão inteira e resto separadamente. - Testar com expressões como <code>(3.14 2.0 +)</code>, <code>((1.5 2.0 *) (3.0 4.0 *) /)</code>, <code>(5.0 MEM)</code>, <code>(2 RES)</code>. - Verificar erros como divisão por zero ou <code>N</code> inválido em <code>(N RES)</code>.</p>
-<p><strong>Interface</strong>: - Recebe tokens de <code>parseExpressao</code> e atualiza <code>resultados</code> e <code>memoria</code>. - Fornece resultados para <code>exibirResultados</code> e Assembly.</p>
-</section>
-<section id="aluno-3-função-gerarassembly-e-leitura-de-arquivo" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="aluno-3-função-gerarassembly-e-leitura-de-arquivo"><span class="header-section-number">5.3.3</span> Aluno 3: Função <code>gerarAssembly</code> e Leitura de Arquivo</h3>
-<p><strong>Responsabilidades</strong>: - Implementar <code>gerarAssembly(const std::vector&lt;std::string&gt;&amp; tokens, std::string&amp; codigoAssembly)</code> para gerar código Assembly para Arduino. - Implementar <code>lerArquivo(std::string nomeArquivo, std::vector&lt;std::string&gt;&amp; linhas)</code> para ler o arquivo de entrada. - Criar funções de teste para validar a leitura de arquivos e a geração de Assembly. - Alertar se o arquivo tiver linhas malformadas ou exceder limites.</p>
-<p><strong>Tarefas Específicas</strong>: - Ler o arquivo linha por linha, ignorando linhas vazias. - Gerar Assembly AVR para operações RPN e comandos especiais (usando registradores e instruções do ATmega328P/Mega). - Testar com arquivos contendo 10+ linhas, incluindo expressões aninhadas e comandos especiais. - Verificar erros de abertura de arquivo e exibir mensagens claras.</p>
-<p><strong>Interface</strong>: - <code>lerArquivo</code> fornece linhas para <code>parseExpressao</code>. - <code>gerarAssembly</code> produz código Assembly para Arduino.</p>
-</section>
-<section id="aluno-4-função-exibirresultados-interface-do-usuário-e-testes" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="aluno-4-função-exibirresultados-interface-do-usuário-e-testes"><span class="header-section-number">5.3.4</span> Aluno 4: Função <code>exibirResultados</code>, Interface do Usuário e Testes</h3>
-<p><strong>Responsabilidades</strong>: - Implementar <code>exibirResultados(const std::vector&lt;float&gt;&amp; resultados)</code> para exibir os resultados das expressões. - Implementar <code>exibirMenu()</code> e gerenciar a interface no <code>main</code>, incluindo leitura do argumento de linha de comando. - Corrigir problemas de entrada (e.g., em C++: <code>std::cin.ignore(std::numeric_limits&lt;std::streamsize&gt;::max(), '\n')</code>). - Criar funções de teste para validar a saída e o comportamento do programa completo.</p>
-<p><strong>Tarefas Específicas</strong>: - Exibir resultados com formato claro (e.g., uma casa decimal para números reais). - Implementar o <code>main</code> para chamar <code>lerArquivo</code>, <code>parseExpressao</code>, <code>executarExpressao</code>, e <code>exibirResultados</code>. - Testar com arquivos de teste fornecidos, verificando saídas para expressões simples e complexas. - Testar o FSM com comandos especiais como <code>(V MEM)</code> e <code>(MEM)</code>.</p>
-<p><strong>Interface</strong>: - Usa resultados de <code>executarExpressao</code> para exibir saídas. - Gerencia a execução do programa via argumento de linha de comando.</p>
-</section>
-</section>
-<section id="considerações-para-integração" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="considerações-para-integração"><span class="header-section-number">5.4</span> Considerações para Integração</h2>
+<section id="considerações-para-integração" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="considerações-para-integração"><span class="header-section-number">5.8</span> Considerações para Integração</h2>
 <ul>
-<li><strong>Interfaces</strong>: Concordar com assinaturas das funções e formatos de dados (e.g., vetor de tokens, resultados em <code>float</code>).</li>
-<li><strong>Depuração</strong>: Testar cada parte isoladamente, simulando entradas/saídas.</li>
-<li><strong>Passos de Integração</strong>:
+<li><p><strong>Interfaces</strong>: concordar com assinaturas das funções e formatos de dados (ex.: vetor de <em>tokens</em>, resultados em <code>float</code>);</p></li>
+<li><p><strong>Depuração</strong>: testar cada parte isoladamente, simulando entradas/saídas;</p></li>
+<li><p><strong>Passos de Integração</strong>:</p>
 <ol type="1">
-<li>Copiar <code>main</code> e <code>exibirMenu</code> do Aluno 4.</li>
-<li>Inserir <code>lerArquivo</code> e <code>gerarAssembly</code> do Aluno 3.</li>
-<li>Adicionar <code>executarExpressao</code> do Aluno 2.</li>
-<li>Incluir <code>parseExpressao</code> do Aluno 1.</li>
+<li>Copiar <code>main</code> e <code>exibirMenu</code> do Aluno 4;</li>
+<li>Inserir <code>lerArquivo</code> e <code>gerarAssembly</code> do Aluno 3;</li>
+<li>Adicionar <code>executarExpressao</code> do Aluno 2;</li>
+<li>Incluir <code>parseExpressao</code> do Aluno 1;</li>
 </ol></li>
-<li><strong>Resolução de Conflitos</strong>: Discutir problemas imediatamente na sala.</li>
-<li><strong>Depuração Final</strong>: Testar o programa com os 3 arquivos de teste, verificando expressões, comandos especiais, e saída Assembly.</li>
+<li><p><strong>Resolução de Conflitos</strong>: discutir problemas imediatamente na sala, ou de forma remota.</p></li>
+<li><p><strong>Depuração Final</strong>: Testar o programa com os 3 arquivos de teste, verificando expressões, comandos especiais, e saída Assembly.</p></li>
 </ul>
 </section>
-<section id="avaliação" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="avaliação"><span class="header-section-number">5.5</span> Avaliação</h2>
-<p>O trabalho será avaliado antes da prova de autoria, com os seguintes critérios: 1. <strong>Cálculos e Funcionalidades (70%)</strong>: - Implementação completa de todas as operações RPN e comandos especiais. - Cada operação não implementada reduz 10% dos 70%. - Falha na divisão inteira reduz 50% dos 70%. - Analisador léxico com FSM funcional e testado. 2. <strong>Organização e Legibilidade do Código (15%)</strong>: - Código claro, comentado e bem estruturado. - Repositório GitHub organizado, com README claro. 3. <strong>Robustez (15%)</strong>: - Tratamento de erros em expressões complexas e entradas inválidas. - Testes do analisador léxico cobrindo todos os casos.</p>
-</section>
-<section id="prova-de-autoria" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="prova-de-autoria"><span class="header-section-number">5.6</span> Prova de Autoria</h2>
+<section id="avaliação" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="avaliação"><span class="header-section-number">5.9</span> Avaliação</h2>
+<p>O trabalho será avaliado antes da prova de autoria, com os seguintes critérios: 1. <strong>Cálculos e Funcionalidades (70%)</strong>:</p>
 <ul>
-<li>Um aluno do grupo será sorteado para responder uma pergunta (escolhida de 1 a 10).</li>
-<li>Falha na resposta reduz 35% da nota do projeto.</li>
+<li>Implementação completa de todas as operações RPN e comandos especiais.</li>
+<li>Cada operação não implementada reduz 10% dos 70%.</li>
+<li>Falha na divisão inteira reduz 50% dos 70%.</li>
+<li>Analisador léxico com FSM funcional e testado.</li>
+</ul>
+<ol start="2" type="1">
+<li><p><strong>Organização e Legibilidade do Código (15%)</strong>:</p>
+<ul>
+<li>Código claro, comentado e bem estruturado.</li>
+<li>Repositório GitHub organizado, com README claro.</li>
+</ul></li>
+<li><p><strong>Robustez (15%)</strong>:</p>
+<ul>
+<li>Tratamento de erros em expressões complexas e entradas inválidas.</li>
+<li>Testes do analisador léxico cobrindo todos os casos.</li>
+</ul></li>
+</ol>
+</section>
+<section id="prova-de-autoria" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="prova-de-autoria"><span class="header-section-number">5.10</span> Prova de Autoria</h2>
+<ul>
+<li>Um aluno do grupo será sorteado para responder uma pergunta em uma lista de 10 perguntas;</li>
+<li>Falha na resposta reduz 35% da nota obtida na Avaliação do Projeto.</li>
 </ul>
 </section>
-<section id="entrega" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="entrega"><span class="header-section-number">5.7</span> Entrega</h2>
+<section id="entrega" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="entrega"><span class="header-section-number">5.11</span> Entrega</h2>
 <ul>
 <li>O repositório GitHub deve conter:
 <ul>
-<li>Código-fonte (Python, C, ou C++).</li>
-<li>Três arquivos de teste com expressões RPN.</li>
-<li>Funções de teste para o analisador léxico.</li>
-<li>Código Assembly para Arduino.</li>
-<li>README com instruções de compilação, execução e testes.</li>
+<li>Código-fonte (Python, C, ou C++);</li>
+<li>Três arquivos de teste com expressões RPN;</li>
+<li>Funções de teste para o analisador léxico;</li>
+<li>Código Assembly para Arduino da última execução do analisador léxico;</li>
+<li>Arquivo de texto contendo os <em>tokens</em> gerados na última execução do analisador léxico;</li>
+<li>README com instruções de compilação, execução e testes;</li>
 </ul></li>
-<li>O programa deve ser executado com o comando <code>./programa nome_arquivo.txt</code> (ou equivalente).</li>
+<li>O programa deve ser executado com o comando <code>./programa nome_arquivo.cpp</code> (ou equivalente).</li>
 </ul>
+</section>
+<section id="sec-guiaAssembly" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Guia de Compilação e Execução do Código Assembly</h1>
+<section id="toolchain-assembly-para-arduino-linha-de-comando" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="toolchain-assembly-para-arduino-linha-de-comando"><span class="header-section-number">6.1</span> Toolchain Assembly para Arduino (Linha de Comando)</h2>
+<p>O conjunto de ferramentas (toolchain) padrão, gratuito e de código aberto para a arquitetura AVR (usada no Arduino Uno/Mega) é o <strong>AVR-GCC Toolchain</strong> e o <strong>AVRDUDE</strong>. Este guia mostra como compilar um arquivo Assembly (<code>.s</code>) e enviá-lo para a placa via linha de comando, sem usar a IDE do Arduino.</p>
+</section>
+<section id="ferramentas-necessárias" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="ferramentas-necessárias"><span class="header-section-number">6.2</span> 1. Ferramentas Necessárias</h2>
+<p>Você precisa instalar:</p>
+<ul>
+<li><strong><code>avr-gcc</code></strong>: compilador/montador para AVR.</li>
+<li><strong><code>avr-libc</code></strong>: biblioteca C padrão para AVR (necessária mesmo em código assembly puro, pois fornece símbolos de inicialização como <code>__do_copy_data</code>, <code>__do_clear_bss</code>, etc.).</li>
+<li><strong><code>avrdude</code></strong>: programa de upload para o microcontrolador.</li>
+</ul>
+</section>
+<section id="instalação" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="instalação"><span class="header-section-number">6.3</span> 2. Instalação</h2>
+<section id="linux-debianubuntu" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="linux-debianubuntu"><span class="header-section-number">6.3.1</span> Linux (Debian/Ubuntu)</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install gcc-avr binutils-avr avr-libc avrdude</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p><strong>Observação</strong>: Para outras distribuições, use o gerenciador de pacotes correspondente (ex: <code>dnf</code> para Fedora ou <code>pacman</code> para Arch).</p>
+</blockquote>
+</section>
+<section id="windows" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="windows"><span class="header-section-number">6.3.2</span> Windows</h3>
+<section id="opção-1-microchip-avr-gcc-toolchain-recomendado" class="level4" data-number="6.3.2.1">
+<h4 data-number="6.3.2.1" class="anchored" data-anchor-id="opção-1-microchip-avr-gcc-toolchain-recomendado"><span class="header-section-number">6.3.2.1</span> Opção 1: Microchip AVR-GCC Toolchain (Recomendado)</h4>
+<ol type="1">
+<li><p>Faça o download do “AVR 8-bit Toolchain” do site da <a href="https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-avr-8-bit-microcontrollers">Microchip</a>.</p></li>
+<li><p>Instale o <code>.exe</code> e adicione a pasta <code>bin</code> da toolchain à variável de ambiente <code>PATH</code> (ex: <code>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin</code>).</p></li>
+<li><p>Instale <code>avrdude</code> via <a href="https://chocolatey.org/">Chocolatey</a> ou <a href="https://scoop.sh/">Scoop</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install avrdude</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+</section>
+<section id="opção-2-wsl-windows-subsystem-for-linux" class="level4" data-number="6.3.2.2">
+<h4 data-number="6.3.2.2" class="anchored" data-anchor-id="opção-2-wsl-windows-subsystem-for-linux"><span class="header-section-number">6.3.2.2</span> Opção 2: WSL (Windows Subsystem for Linux)</h4>
+<ol type="1">
+<li><p>Instale o WSL e uma distribuição Linux (ex: Ubuntu) via Microsoft Store.</p></li>
+<li><p>Siga as mesmas instruções de instalação para Linux dentro do ambiente WSL.</p></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="o-processo-de-compilação-e-upload" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="o-processo-de-compilação-e-upload"><span class="header-section-number">6.4</span> 3. O Processo de Compilação e Upload</h2>
+<p>Assumindo que você tenha um arquivo chamado <code>meu_codigo.s</code>.</p>
+<section id="passos-principais" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="passos-principais"><span class="header-section-number">6.4.1</span> Passos Principais</h3>
+<ol type="1">
+<li><strong>Montar e Linkar</strong>: Converter o código Assembly (<code>.s</code>) em um arquivo executável no formato ELF (<code>.elf</code>).</li>
+<li><strong>Extrair o HEX</strong>: Converter o arquivo <code>.elf</code> para o formato Intel HEX (<code>.hex</code>).</li>
+<li><strong>Fazer o Upload</strong>: Enviar o arquivo <code>.hex</code> para a memória flash do Arduino usando <code>avrdude</code>.</li>
+</ol>
+</section>
+<section id="exemplo-completo-para-arduino-uno" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="exemplo-completo-para-arduino-uno"><span class="header-section-number">6.4.2</span> Exemplo Completo para Arduino UNO</h3>
+<section id="informações-do-hardware" class="level4" data-number="6.4.2.1">
+<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="informações-do-hardware"><span class="header-section-number">6.4.2.1</span> Informações do Hardware</h4>
+<ul>
+<li><strong>MCU</strong>: <code>atmega328p</code></li>
+<li><strong>Programador</strong>: <code>arduino</code></li>
+<li><strong>Baud Rate</strong>: <code>115200</code></li>
+<li><strong>Porta Serial</strong>: <code>/dev/ttyACM0</code> (Linux) ou <code>COM3</code> (Windows)</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nome do arquivo de entrada (sem extensão)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">FILENAME</span><span class="op">=</span>meu_codigo</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># MCU e parâmetros do avrdude</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">MCU</span><span class="op">=</span>atmega328p</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_PARTNO</span><span class="op">=</span>m328p</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_PROGRAMMER</span><span class="op">=</span>arduino</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_PORT</span><span class="op">=</span>COM3 <span class="co"># Mude para sua porta. Ex: /dev/ttyACM0 no Linux</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_BAUDRATE</span><span class="op">=</span>115200</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Montar e Linkar (Assembly -&gt; ELF)</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos avr-gcc como front-end. Ele chamará o montador (avr-as) e o linker (avr-ld)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">avr-gcc</span> <span class="at">-mmcu</span><span class="op">=</span><span class="va">$MCU</span> <span class="at">-o</span> <span class="va">$FILENAME</span>.elf <span class="va">$FILENAME</span>.s</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Extrair o arquivo .hex (ELF -&gt; HEX)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># -O ihex: formato de saída Intel HEX</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># -R .eeprom: remove a seção de dados da EEPROM do arquivo de saída</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="ex">avr-objcopy</span> <span class="at">-O</span> ihex <span class="at">-R</span> .eeprom <span class="va">$FILENAME</span>.elf <span class="va">$FILENAME</span>.hex</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Fazer o Upload para o Arduino UNO</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ex">avrdude</span> <span class="at">-c</span> <span class="va">$AVRDUDE_PROGRAMMER</span> <span class="at">-p</span> <span class="va">$AVRDUDE_PARTNO</span> <span class="at">-P</span> <span class="va">$AVRDUDE_PORT</span> <span class="at">-b</span> <span class="va">$AVRDUDE_BAUDRATE</span> <span class="at">-U</span> flash:w:<span class="va">$FILENAME</span>.hex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exemplo-completo-para-arduino-mega" class="level4" data-number="6.4.2.2">
+<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="exemplo-completo-para-arduino-mega"><span class="header-section-number">6.4.2.2</span> Exemplo Completo para Arduino MEGA</h4>
+</section>
+</section>
+<section id="informações-do-hardware-1" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="informações-do-hardware-1"><span class="header-section-number">6.4.3</span> Informações do Hardware:</h3>
+<ul>
+<li><strong>MCU</strong>: <code>atmega2560</code></li>
+<li><strong>Programador</strong>: <code>wiring</code></li>
+<li><strong>Baud Rate</strong>: <code>115200</code></li>
+<li><strong>Porta Serial</strong>: <code>/dev/ttyACM0</code> (Linux) ou <code>COM4</code> (Windows)</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nome do arquivo de entrada (sem extensão)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">FILENAME</span><span class="op">=</span>meu_codigo_mega</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># MCU e parâmetros do avrdude</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">MCU</span><span class="op">=</span>atmega2560</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_PARTNO</span><span class="op">=</span>m2560</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_PROGRAMMER</span><span class="op">=</span>wiring</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_PORT</span><span class="op">=</span>COM4 <span class="co"># Mude para sua porta. Ex: /dev/ttyACM0 no Linux</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="va">AVRDUDE_BAUDRATE</span><span class="op">=</span>115200</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Montar e Linkar (Assembly -&gt; ELF)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">avr-gcc</span> <span class="at">-mmcu</span><span class="op">=</span><span class="va">$MCU</span> <span class="at">-o</span> <span class="va">$FILENAME</span>.elf <span class="va">$FILENAME</span>.s</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Extrair o arquivo .hex (ELF -&gt; HEX)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">avr-objcopy</span> <span class="at">-O</span> ihex <span class="at">-R</span> .eeprom <span class="va">$FILENAME</span>.elf <span class="va">$FILENAME</span>.hex</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Fazer o Upload para o Arduino MEGA</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="ex">avrdude</span> <span class="at">-c</span> <span class="va">$AVRDUDE_PROGRAMMER</span> <span class="at">-p</span> <span class="va">$AVRDUDE_PARTNO</span> <span class="at">-P</span> <span class="va">$AVRDUDE_PORT</span> <span class="at">-b</span> <span class="va">$AVRDUDE_BAUDRATE</span> <span class="at">-U</span> flash:w:<span class="va">$FILENAME</span>.hex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="observações-importantes" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="observações-importantes"><span class="header-section-number">6.5</span> Observações Importantes</h2>
+<ol type="1">
+<li><strong>Diferença entre <code>avr-gcc</code> e <code>avrdude</code></strong>:
+<ul>
+<li><code>avr-gcc</code> usa <code>-mmcu=atmega328p</code>.</li>
+<li><code>avrdude</code> usa <code>-p m328p</code>.</li>
+</ul></li>
+<li><strong>Bootloader</strong>:
+<ul>
+<li>Pressione o botão <strong>Reset</strong> na placa antes de executar <code>avrdude</code> para garantir que o bootloader esteja ativo.</li>
+</ul></li>
+<li><strong>Exemplo Prático</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode asm code-with-copy"><code class="sourceCode fasm"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>// meu_codigo<span class="op">.</span>s</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>.device atmega328p</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>.<span class="bu">org</span> <span class="bn">0x0000</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>rjmp reset</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">reset:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ldi r16<span class="op">,</span> <span class="bn">0xFF</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">out</span> <span class="bn">0x24</span><span class="op">,</span> r16        <span class="co">; DDRB = 0xFF (PB7..PB0 como saída)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ldi r16<span class="op">,</span> <span class="bn">0x00</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">out</span> <span class="bn">0x25</span><span class="op">,</span> r16        <span class="co">; PORTB = 0x00 (todos apagados)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">loop:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">out</span> <span class="bn">0x25</span><span class="op">,</span> r16        <span class="co">; PORTB = valor atual</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ldi r16<span class="op">,</span> <span class="bn">0x01</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    lsr r16              <span class="co">; desloca bit para baixo</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    rjmp loop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Compile e envie:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">avr-gcc</span> <span class="at">-mmcu</span><span class="op">=</span>atmega328p <span class="at">-o</span> led.elf led.s</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">avr-objcopy</span> <span class="at">-O</span> ihex <span class="at">-R</span> .eeprom led.elf led.hex</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">avrdude</span> <span class="at">-c</span> arduino <span class="at">-p</span> m328p <span class="at">-P</span> COM3 <span class="at">-b</span> 115200 <span class="at">-U</span> flash:w:led.hex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
