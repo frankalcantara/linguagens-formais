@@ -1,4 +1,4 @@
-# Analisadores Léxicos
+# Analisadores Léxicos {#sec-analisadores-lexicos}
 
 Os Analisadores Léxicos formam o primeiro bloco de processamento da maioria dos processos de tradução que ocorrem entre linguagens de programação e linguagens de máquina, incluindo compiladores, interpretadores e sistemas mistos. Os Analisadores Léxicos são responsáveis por ler o código fonte por meio de um fluxo contínuo de caracteres e agrupar esses caracteres em blocos sintáticos significativos para uma dada linguagem, chamados **_tokens_**. Este fluxo contínuo de símbolos de entrada, geralmente caracteres, será chamado de _string_, ou cadeia, de forma intercambiável durante todo este texto. Contudo, é necessário que a atenta leitora já crie uma imagem mental de que estes termos, _string_ e cadeia, se referem a sequências de caracteres, ou símbolos, sem limitação de tamanho. Ou seja, dependendo do parágrafo, ou capítulo, que estiver lendo a palavra _string_ pode se referir a um conjunto vazio, alguns símbolos, um arquivo de código fonte, ou até mesmo um projeto completo.
 
@@ -56,7 +56,7 @@ A origem da **Máquina de Estado Finito** ilustra um dos ciclos virtuosos de ino
 
 Este divórcio foi o passo que permitiu a generalização do conceito e sua aplicação a domínios completamente diferentes. Domínios que abrangem desde o design de circuitos digitais até a análise de textos em um compilador.
 
-### A Era da Formalização — Kleene, Moore e Mealy
+### A Era da Formalização — Kleene, Moore e Mealy {#sec-kleene}
 
 A década de 1950 marcou um período de intensa formalização e expansão da teoria dos Autômatos Finitos. Três figuras destacam-se nesta época: Stephen Kleene, que estabeleceu a ligação fundamental entre autômatos e uma nova notação de padrões, e [Edward F. Moore](https://en.wikipedia.org/wiki/Edward_F._Moore) e [George H. Mealy](https://en.wikipedia.org/wiki/George_H._Mealy), que estenderam o modelo para além do simples reconhecimento, dotando-o da capacidade de produzir saídas.
 
@@ -64,7 +64,7 @@ Seguindo as ideias pioneiras de McCulloch e Pitts, o matemático americano [Step
 
 [^kleene1]: em tradução livre, "Representação de Eventos em Redes Nervosas e Autômatos Finitos".
 
-A contribuição mais notável de Kleene neste artigo foi a criação das **expressões regulares** (**REGEX**). Kleene introduziu esta notação algébrica como uma forma concisa e poderosa para descrever conjuntos de sequências de entrada, ou eventos, que hoje conhecemos como **linguagens regulares**. Na sua obra, Kleene definiu formalmente as três operações fundamentais que formam a base de todas as expressões regulares:
+A contribuição mais notável de Kleene neste artigo foi a criação das **expressões regulares** (**REGEX**). Kleene introduziu esta notação algébrica como uma forma concisa e poderosa para descrever conjuntos de sequências de entrada, ou eventos, que hoje conhecemos como **Linguagens Regulares**. Na sua obra, Kleene definiu formalmente as três operações fundamentais que formam a base de todas as expressões regulares:
 
 1. **União (Alternância)**: representada por $+$, $|$ ou $\cup$, dependendo da área da matemática onde a união é usada, denota uma escolha entre dois padrões.
 2. **Concatenação**: representada pela justaposição de dois padrões, denota a sequência de um padrão seguido por outro. A concatenação é representada simplesmente pela junção dos símbolos, como em $ab$, que denota a sequência do símbolo $a$ seguido pelo símbolo $b$. Ou pelo uso da notação do produto escalar $\cdot$, como em $a \cdot b$.  
@@ -97,7 +97,7 @@ A prova funciona porque nós **construímos** um valor específico para $z$ e de
 
 No caso do **Teorema de Kleene**, a prova construtiva é dividida em duas partes fundamentais, cada uma correspondendo a uma direção da equivalência.
 
-1. **De Expressão Regular para Autômato Finito**: esta parte da prova demonstra que, para qualquer expressão regular, é possível construir um Autômato Finito, especificamente, um Autômato Finito Não-Determinístico (**AFN**) com transições épsilon, ou **AFN***-$\epsilon$, que aceita a mesma linguagem. A construção deste Autômato é indutiva sobre a estrutura da expressão regular. Começa-se com autômatos simples para os casos base, a linguagem vazia $\emptyset$, a linguagem contendo a cadeia vazia $\{\epsilon}$, e a linguagem contendo um único símbolo $\{a\}$) e depois mostram-se métodos para combinar autômatos existentes para corresponder às operações de união, concatenação e fechamento de Kleene.
+1. **De Expressão Regular para Autômato Finito**: esta parte da prova demonstra que, para qualquer expressão regular, é possível construir um Autômato Finito, especificamente, um Autômato Finito Não-Determinístico (**AFN**) com transições épsilon, ou **AFN***-$\epsilon$, que aceita a mesma linguagem. A construção deste Autômato é indutiva sobre a estrutura da expressão regular. Começa-se com autômatos simples para os casos base, a linguagem vazia $\emptyset$, a linguagem contendo a cadeia vazia $\{\epsilon\}$, e a linguagem contendo um único símbolo $\{a\}$) e depois mostram-se métodos para combinar autômatos existentes para corresponder às operações de união, concatenação e fechamento de Kleene.
 
 2. **De Autômato Finito para Expressão Regular**: a segunda parte demonstra que, para qualquer Autômato Finito, é possível derivar uma expressão regular que descreve a linguagem que ele aceita. Este processo é mais complexo e envolve a eliminação progressiva de estados do autômato, enquanto as etiquetas das transições são substituídas por expressões regulares cada vez mais complexas que representam os caminhos que foram eliminados.
 
@@ -206,7 +206,7 @@ A tabela @tbl-compara1 resume esses compromissos práticos.
 
 O não-determinismo, tal como introduzido por Rabin e Scott, não é um recurso computacional físico. Nenhuma máquina real _adivinha_ o caminho correto, ou verifica todos os caminhos no mesmo instante. Em vez disso, o não-determinismo é uma poderosa **ferramenta de abstração conceitual**. O não-determinismo permite que os projetistas humanos pensem em termos de possibilidades: _existe algum caminho que leve à aceitação? Em vez de se prenderem aos detalhes físicos de uma única computação determinística. Além disso, a prova de que Autômatos Finitos Não-Determinísticos são equivalentes a Autômatos Finitos Determinísticos é mais do que um resultado teórico; é uma licença para usar a abstração mais conveniente, geralmente o Autômato Finito Não-Determinístico, para o design e a especificação, com a garantia de que ela pode ser convertida em uma forma eficiente e fisicamente executável, geralmente o Autômato Finito Determinístico.
 
-## Autômatos Finitos: O Analisador Léxico
+## Autômatos Finitos: O Analisador Léxico {#sec-analisador-lexico}
 
 A teoria dos Autômatos Finitos, com suas provas de equivalência e algoritmos de conversão, poderia ter permanecido um tópico de interesse puramente acadêmico. No entanto, encontrou uma aplicação prática tão perfeita na construção de compiladores que se tornou um exemplo de como a teoria fundamental pode transformar a engenharia de software. Esta aplicação é a análise léxica.
 
@@ -271,7 +271,7 @@ std::array<Token, 6> exemplo_tokens = {{
 
 A questão fundamental que deve estar incomodando a curiosa leitora é: como reconhecer estes padrões? 
 
-Os padrões que definem os _tokens_ na maioria das linguagens de programação, como identificadores, números inteiros, e palavras-chave, são quase invariavelmente descritos por **linguagens regulares**. Como estabelecido pelo **Teorema de Kleene**, as linguagens regulares são precisamente aquelas que podem ser reconhecidas por Autômatos Finitos. Portanto, as **Máquinas de Estados Finitos** são o modelo computacional adequado e suficiente para a tarefa da análise léxica. Parece simples, contudo, na prática, a análise léxica enfrenta ambiguidades que devem ser resolvidas por regras claras:
+Os padrões que definem os _tokens_ na maioria das linguagens de programação, como identificadores, números inteiros, e palavras-chave, são quase invariavelmente descritos por **Linguagens Regulares**. Como estabelecido pelo **Teorema de Kleene**, as Linguagens Regulares são precisamente aquelas que podem ser reconhecidas por Autômatos Finitos. Portanto, as **Máquinas de Estados Finitos** são o modelo computacional adequado e suficiente para a tarefa da análise léxica. Parece simples, contudo, na prática, a análise léxica enfrenta ambiguidades que devem ser resolvidas por regras claras:
 
 * **Regra da Correspondência Mais Longa (_Maximal Munch_)**: se uma porção do texto de entrada pode corresponder a múltiplos padrões de comprimentos diferentes, o analisador léxico escolhe sempre a correspondência mais longa possível. Por exemplo, no _string_ `>=`, o lexer não irá parar no _token_ `>`; ele continuará a ler para reconhecer o identificador `>=`. Isto requer que o algoritmo tenha capacidade de *lookahead*, do inglês para olhar para a frente, lendo caracteres para além do final de um potencial lexema para garantir que não há uma correspondência mais longa.
 
@@ -322,7 +322,7 @@ A conexão teórica existe nos **Autômatos Finitos Quânticos**[@Tian2019Experi
 
 * **Paralelismo Quântico:** a máquina evolui em um único estado de **superposição quântica**. Os estados não são caminhos separados, mas sim componentes de um vetor de estado em um espaço de Hilbert complexo. O resultado depende das probabilidades das amplitudes quânticas no momento da medição.
 
-Essa distinção leva a uma consequência surpreendente: os modelos mais básicos de Autômatos Finitos Quânticos são, na verdade, _menos poderosos_ que os Autômatos Finitos Não-Determinísticos clássicos. Os modelos quânticos não conseguem reconhecer todas as linguagens regulares. A razão está nas restrições da mecânica quântica, como a reversibilidade das operações.
+Essa distinção leva a uma consequência surpreendente: os modelos mais básicos de Autômatos Finitos Quânticos são, na verdade, _menos poderosos_ que os Autômatos Finitos Não-Determinísticos clássicos. Os modelos quânticos não conseguem reconhecer todas as Linguagens Regulares. A razão está nas restrições da mecânica quântica, como a reversibilidade das operações.
 
 Onde está a vantagem, então? Na eficiência de estados. Para certas linguagens específicas, um Autômato Finito Quântico pode ser exponencialmente mais compacto que qualquer autômato clássico. O exemplo canônico é a linguagem $L_p = \{a^k \mid k \text{ é múltiplo de } p\}$, para um $p$ primo. Um **Autômato Finito Determinístico (AFD)** precisa de $p$ estados, enquanto um AFQ pode reconhecer a mesma linguagem com apenas $O(\log p)$ estados.
 

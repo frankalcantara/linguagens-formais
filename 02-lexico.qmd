@@ -1,0 +1,301 @@
+# Autômatos Finitos Determinísticos {#sec-aut-finitos-deterministicos}
+
+Como vimos no capítulo anterior, as **Máquinas de Estados Finitos** formam a base teórica para os analisadores léxicos. Entre os diferentes tipos de máquinas de estados, os **Autômatos Finitos Determinísticos** ocupam uma posição de especial importância na engenharia de compiladores, representando a forma mais eficiente e prática de implementar o reconhecimento de padrões léxicos.
+
+Um Autômato Finito Determinístico é um modelo matemático preciso para representar sistemas que podem estar em um número finito de estados e que respondem a entradas de forma completamente previsível e unívoca. A palavra *determinístico* é fundamental aqui: para cada combinação de estado atual e símbolo de entrada, existe **exatamente uma** transição possível. Esta propriedade elimina qualquer ambiguidade no processo de reconhecimento, tornando os Autômatos Finitos Determinísticos ideais para implementações práticas como os analisadores léxicos.
+
+A importância dos Autômatos Finitos Determinísticos na análise léxica não pode ser subestimada. Eles representam o produto final do processo de construção de analisadores léxicos: uma máquina de estados que pode processar um fluxo de caracteres em tempo linear, identificando *tokens* de forma eficiente e sem ambiguidades. Como veremos ao longo deste capítulo, a elegante leitora descobrirá que esta simplicidade aparente esconde uma poderosa capacidade de reconhecimento que fundamenta toda a primeira fase da compilação.
+
+## Definição Formal e Componentes
+
+Um Autômato Finito Determinístico é formalmente definido como uma 5-tupla matemática:
+
+$$M = (Q, \Sigma, \delta, q_0, F)$$
+
+na qual cada componente possui um papel específico e bem definido:
+
+-   $Q$ é o conjunto finito de estados da máquina;
+-   $\Sigma$ é o alfabeto de entrada, um conjunto finito de símbolos;
+-   $\delta$ é a função de transição determinística;
+-   $q_0$ é o estado inicial único;
+-   $F$ é o conjunto de estados de aceitação (ou estados finais).
+
+É importante que a atenta leitora observe que esta definição impõe restrições matemáticas precisas:
+
+$$q_0 \in Q \quad \text{e} \quad F \subseteq Q$$
+
+Estas restrições garantem a consistência do modelo: o estado inicial deve necessariamente pertencer ao conjunto de estados, e todos os estados de aceitação devem ser estados válidos da máquina. Mais formalmente, um Autômato Finito Determinístico representa um sistema que, em qualquer momento, encontra-se em exatamente um estado do conjunto $Q$, e que, ao receber um símbolo de entrada do alfabeto $\Sigma$, transita deterministicamente para um novo estado, que pode, inclusive, ser o mesmo estado atual.
+
+### A Função de Transição Determinística
+
+O coração de um Autômato Finito Determinístico reside na sua **função de transição** $\delta$, que captura completamente o comportamento da máquina. Esta função é definida matematicamente como:
+
+$$\delta : Q \times \Sigma \rightarrow Q$$
+
+A função de transição $\delta$ possui uma propriedade fundamental que a distingue de modelos não-determinísticos: para cada par $(q, a)$ no qual $q \in Q$ e $a \in \Sigma$, existe **exatamente um** estado de destino. Esta unicidade elimina qualquer ambiguidade no processo de computação e permite que a máquina seja simulada de forma eficiente em tempo linear.
+
+A definição matemática da função de transição $\delta : Q \times \Sigma \rightarrow Q$ implica que ela deve ser uma **função total**, ou seja, deve haver exatamente uma transição definida para cada par de estado e símbolo de entrada. Um Autômato Finito Determinístico que cumpre essa exigência é chamado de **completo**.
+
+Na prática, muitos autômatos possuem combinações de estado e símbolo que quebram a lógica do padrão sendo reconhecido. Por exemplo, em um autômato que reconhece a palavra "treco", o que acontece se ele estiver no estado inicial e ler a letra 'z'?
+
+Para tratar esses casos e manter a função de transição total, introduz-se um **estado de erro**, também conhecido como *estado poço* ou *sumidouro*. Este é um estado especial não-final do qual não há escapatória: toda transição a partir do estado de erro aponta para ele mesmo.
+
+$$
+\forall a \in \Sigma, \quad \delta(q_{erro}, a) = q_{erro}
+$$
+
+Dessa forma, qualquer sequência de entrada que desvie do padrão desejado é permanentemente capturada pelo estado de erro, garantindo que a _string_ seja rejeitada. Por uma questão de clareza visual, muitos diagramas de transição omitem o estado de erro e as setas que levam a ele, mas é importante saber que, para um autômato ser formalmente completo, essas transições implícitas devem existir.
+
+A característica determinística da função de transição tem implicações profundas para a implementação prática. Em um Autômato Finito Determinístico, não há *escolhas* a serem feitas durante a execução: dado o estado atual e o símbolo de entrada, o próximo estado é inequivocamente determinado. Esta propriedade permite implementações extremamente eficientes, nas quais cada símbolo de entrada requer apenas uma consulta à tabela de transições, tipicamente implementada como um array bidimensional, ou uma operação equivalente.
+
+O domínio da função $\delta$ é o produto cartesiano $Q \times \Sigma$, que representa o conjunto de todas as combinações possíveis de estado atual e símbolo de entrada. Para uma máquina com cardinalidade $|Q| = n$ estados e um alfabeto com com cardinalidade $|\Sigma| = k$ símbolos, existem exatamente $n \times k$ transições possíveis, e cada uma deve estar definida para que o autômato seja completo e funcional.
+
+## Representações de Autômatos Finitos Determinísticos
+
+Os Autômatos Finitos Determinísticos podem ser representados de diversas formas, cada uma adequada a diferentes contextos e propósitos. As três representações mais comuns são a **algébrica**, a **tabular** e a **gráfica**. Cada representação oferece vantagens específicas: a forma algébrica é precisa e compacta para definições formais, a tabela de transições é eficiente para implementação computacional, e o diagrama de transições oferece intuição visual sobre o comportamento da máquina.
+
+### Representação Tabular
+
+A **tabela de transições** constitui uma das formas mais práticas e amplamente utilizadas para representar Autômatos Finitos Determinísticos, especialmente em implementações computacionais. Esta representação organiza a função de transição $\delta$ em uma matriz bidimensional, na qual as linhas correspondem aos estados e as colunas aos símbolos do alfabeto.
+
+A @tbl-afd1 ilustra um exemplo de tabela de transições para um Autômato Finito Determinístico:
+
+| Estado            | 0     | 1     |
+|:------------------|:------|:------|
+| $\rightarrow q_0$ | $q_2$ | $q_0$ |
+| $*q_1$            | $q_1$ | $q_1$ |
+| $q_2$             | $q_2$ | $q_1$ |
+
+: Exemplo de tabela de transições para um Autômato Finito Determinístico que aceita _strings_ que contenham pelo menos um '0' seguido, em algum momento, por pelo menos um '1'. {#tbl-afd1}
+
+Na @tbl-afd1, as convenções notacionais seguem o padrão estabelecido na literatura de teoria da computação:
+
+-   Os **estados** estão listados na primeira coluna, cada um representando um elemento do conjunto $Q$;
+-   As **colunas subsequentes** representam os símbolos do alfabeto $\Sigma = \{0, 1\}$;
+-   As **células da tabela** contêm os estados de destino, definindo completamente a função $\delta$;
+-   A **seta** $\rightarrow$ identifica o estado inicial $q_0$;
+-   O **asterisco** $*$ marca os estados de aceitação, neste caso, o conjunto $F = \{q_1\}$.
+
+Esta representação tabular possui vantagens computacionais significativas. A implementação de um Autômato Finito Determinístico baseada em tabela permite acesso em tempo constante $O(1)$ para cada transição, resultando em uma complexidade total de $O(n)$ para processar uma *string* de entrada de comprimento $n$. Além disso, a estrutura tabular mapeia-se naturalmente para arrays bidimensionais na maioria das linguagens de programação.
+
+### Representação Gráfica
+
+A representação gráfica, conhecida como **diagrama de transições**, oferece uma visualização intuitiva do comportamento dinâmico do Autômato Finito Determinístico. Nesta representação, a máquina é modelada como um grafo direcionado, no qual os vértices representam estados e as arestas rotuladas representam transições.
+
+A @fig-afd1 apresenta o diagrama de transições correspondente à tabela @tbl-afd1:
+
+::: {#fig-afd1}
+![](images/dia1.webp)
+
+Diagrama de transições de um Autômato Finito Determinístico que aceita _strings_ que contenham pelo menos um '0' seguido, em algum momento, por pelo menos um '1'.
+:::
+
+No diagrama da @fig-afd1, as convenções visuais estabelecem uma linguagem gráfica precisa:
+
+-   Os **círculos** representam os estados do conjunto $Q$;
+-   As **setas direcionadas** representam as transições, codificando a função $\delta$;
+-   Os **rótulos nas setas** indicam os símbolos de entrada que causam as transições;
+-   O **estado inicial** é identificado por uma seta sem origem, *vinda do nada*;
+-   Os **estados de aceitação** são representados por círculos duplos, destacando visualmente sua função especial.
+
+A representação gráfica é particularmente valiosa para compreender o comportamento global da máquina e para visualizar caminhos de computação. Para a atenta leitora, o diagrama torna evidente qualquer quantidade de '1's iniciais será ignorada no estado $q_0$. A máquina só avança ao ler um '0', transicionando para o estado $q_2$. A partir daí, qualquer '1' lido leva ao estado de aceitação $q_1$, enquanto mais '0's mantêm a máquina em $q_2$. Esta visualização facilita a compreensão do fluxo de estados e das condições de aceitação.
+
+### Especificação Formal do Exemplo
+
+Para o Autômato Finito Determinístico ilustrado na @tbl-afd1 e na @fig-afd1, a especificação formal completa é:
+
+A especificação formal para o autômato que aceita _strings_ contendo um '0' seguido em algum momento por um '1' é a seguinte 5-tupla $M = (Q, \Sigma, \delta, q_0, F)$:
+
+- **Conjunto de Estados ($Q$)**: $Q = \{q_0, q_1, q_2\}$;
+- **Alfabeto ($\Sigma$)**: $\Sigma = \{0, 1\}$;
+- **Estado Inicial ($q_0$)**: o estado inicial é $q_0$;
+- **Conjunto de Estados de Aceitação ($F$)**: $F = \{q_1\}$;
+- **Função de Transição ($\delta$)**:
+  - $\delta(q_0, 0) = q_2$
+  - $\delta(q_0, 1) = q_0$
+  - $\delta(q_1, 0) = q_1$
+  - $\delta(q_1, 1) = q_1$
+  - $\delta(q_2, 0) = q_2$
+  - $\delta(q_2, 1) = q_1$
+
+Esta especificação formal define completamente o comportamento do autômato, incluindo seus estados, alfabeto, estado inicial, estados de aceitação e a função de transição. A atenta leitora notará que esta definição é suficiente para implementar ou simular o autômato em qualquer sistema computacional.
+
+## Computação e Aceitação de _strings_
+
+O processo de **computação** em um Autômato Finito Determinístico segue um algoritmo simples e elegante. Dada uma *string* de entrada $w = a_1a_2...a_k$ onde cada $a_i \in \Sigma$, a máquina executa os seguintes passos:
+
+1.  **Inicialização**: a máquina posiciona-se no estado inicial $q_0$;
+2.  **Processamento sequencial**: para cada símbolo $a_i$ da *string* de entrada, a máquina transita do estado atual $q$ para o estado $\delta(q, a_i)$;
+3.  **Decisão de aceitação**: após processar todos os símbolos, a *string* é **aceita** se, e somente se, o estado final atingido pertence ao conjunto $F$ de estados de aceitação.
+
+Formalmente, uma *string* $w$ é aceita pelo Autômato Finito Determinístico $M$ se existe uma sequência de estados $r_0, r_1, ..., r_k$ tal que:
+
+-   $r_0 = q_0$ (inicia no estado inicial);
+-   $\delta(r_i, a_{i+1}) = r_{i+1}$ para $i = 0, 1, ..., k-1$ (cada transição é válida);
+-   $r_k \in F$ (termina em um estado de aceitação).
+
+Esta formalização matemática da computação em Autômatos Finitos Determinísticos fundamenta toda a teoria de Linguagens Regulares e serve como base para os algoritmos de análise léxica utilizados em compiladores modernos.
+
+## Exemplos Práticos de Autômatos Finitos Determinísticos
+
+Para consolidar a compreensão dos conceitos apresentados, a dedicada leitora encontrará a seguir três exemplos práticos que demonstram a versatilidade e aplicabilidade dos Autômatos Finitos Determinísticos em diferentes contextos. Estes exemplos ilustram desde problemas matemáticos básicos, como verificação de paridade, até aplicações práticas em análise léxica, como reconhecimento de senhas e operadores relacionais.
+
+### Exemplo 1: Reconhecimento de Números Binários com Paridade Par
+
+O primeiro exemplo aborda um problema clássico na teoria da computação: o reconhecimento de números binários que possuem uma quantidade par de bits '1'. Este problema ilustra elegantemente como um Autômato Finito Determinístico pode manter informações de estado sobre propriedades matemáticas da entrada processada.
+
+**Definição do Problema**: construir um Autômato Finito Determinístico que aceite todas as _strings_ binárias (sobre o alfabeto $\Sigma = \{0, 1\}$) que contenham um número par de símbolos '1', incluindo zero ocorrências.
+
+**Análise**: O autômato deve *contar* o número de bits '1' processados, distinguindo entre quantidades pares e ímpares. Como só precisamos da paridade (par ou ímpar), dois estados são suficientes para capturar toda a informação necessária.
+
+Uma forma de construir este autômato é definir dois estados: um para quando o número de '1's é par e outro para quando é ímpar. A transição entre esses estados ocorre sempre que um símbolo '1' é lido, enquanto os símbolos '0' não afetam a paridade. Em geral, tentar desenhar o diagrama de transições melhora a compreensão do comportamento do autômato. Neste caso, o @fig-dia2 ilustra o diagrama de transições correspondente:
+
+::: {#fig-dia2}
+![](images/dia2.webp)
+
+Diagrama de transições de um Autômato Finito Determinístico que aceita _strings_ binárias com número par de símbolos '1'.
+:::
+
+**Especificação Formal**: 
+
+- **Estados**: $Q = \{q_{\text{par}}, q_{\text{ímpar}}\}$;
+- **Alfabeto**: $\Sigma = \{0, 1\}$;
+- **Estado inicial**: $q_0 = q_{\text{par}}$, zero, nenhum '1', é par;
+- **Estados de aceitação**: $F = \{q_{\text{par}}\}$;
+- **Função de transição**: $\delta$ definida por:
+  - $\delta(q_{\text{par}}, 0) = q_{\text{par}}$, zeros não alteram a paridade;
+  - $\delta(q_{\text{par}}, 1) = q_{\text{ímpar}}$, primeiro '1' torna ímpar;
+  - $\delta(q_{\text{ímpar}}, 0) = q_{\text{ímpar}}$, zeros não alteram a paridade;
+  - $\delta(q_{\text{ímpar}}, 1) = q_{\text{par}}$, segundo '1' retorna ao par.
+
+A @tbl-paridade apresenta a tabela de transições correspondente:
+
+| Estado                        | 0                  | 1                  |
+|-------------------------------|--------------------|--------------------|
+| $\rightarrow *q_{\text{par}}$ | $q_{\text{par}}$   | $q_{\text{ímpar}}$ |
+| $q_{\text{ímpar}}$            | $q_{\text{ímpar}}$ | $q_{\text{par}}$   |
+
+: Tabela de transições para reconhecimento de números binários com paridade par. {#tbl-paridade}
+
+Este autômato funciona como um contador módulo 2. O estado $q_{\text{par}}$ representa que um número par de '1's foi processado, enquanto $q_{\text{ímpar}}$ indica um número ímpar. Os bits '0' são irrelevantes para a paridade e não causam mudanças de estado. Este é um exemplo perfeito de como um Autômato Finito Determinístico pode manter informações agregadas sobre a entrada sem necessidade de memória ilimitada. A definição zero é par, pode ser vista como uma convenção prática, já que não há '1's para contar. Por isso, o estado inicial (que representa a leitura de zero '1's) é também um estado de aceitação.
+
+### Exemplo 2: Reconhecimento da Senha *abre*
+
+O segundo exemplo demonstra como Autômatos Finitos Determinísticos podem ser utilizados para reconhecer sequências específicas de caracteres, como senhas ou palavras-chave em linguagens de programação. Este tipo de reconhecimento é fundamental em analisadores léxicos.
+
+**Definição do Problema**: construir um Autômato Finito Determinístico que aceite exatamente a *string* *abre* sobre o alfabeto das letras minúsculas.
+
+**Análise**: o autômato deve reconhecer a sequência exata de caracteres 'a', 'b', 'r', 'e'. Qualquer desvio desta sequência deve levar a um estado de rejeição. Como a entrada deve ser exatamente *abre*, necessitamos de cinco estados: um inicial, três intermediários correspondentes aos prefixos *a*, *ab*, *abr*, e um final de aceitação que corresponda a *abre*.
+
+Novamente, o diagrama de transições ajuda a visualizar o comportamento do autômato. A @fig-dia3 ilustra o diagrama de transições correspondente:
+
+::: {#fig-dia3}
+![](/images/dia3.webp) {#fig-dia3}
+
+Diagrama de transições de um Autômato Finito Determinístico que aceita a *string* *abre*.
+:::
+
+No diagrama da @fig-dia3, cada estado representa um prefixo da *string* *abre*. A transição entre os estados ocorre conforme os caracteres são lidos, e o autômato rejeita qualquer entrada que não siga a sequência exata representada no diagrama por $x$. O estado final $q_4$ é o único estado de aceitação, indicando que a *string* completa foi reconhecida com sucesso.
+
+**Especificação Formal**: 
+
+- **Estados**: $Q = \{q_0, q_1, q_2, q_3, q_4, q_{\text{erro}}\}$.
+- **Alfabeto**: $\Sigma = \{a, b, c, ..., z\}$ (letras minúsculas).
+- **Estado inicial**: $q_0$.
+- **Estados de aceitação**: $F = \{q_4\}$.
+- **Função de transição**: $\delta$ definida por:
+  - $\delta(q_0, a) = q_1$, $\delta(q_0, x) = q_{\text{erro}}$ para $x \neq a$;
+  - $\delta(q_1, b) = q_2$, $\delta(q_1, x) = q_{\text{erro}}$ para $x \neq b$;
+  - $\delta(q_2, r) = q_3$, $\delta(q_2, x) = q_{\text{erro}}$ para $x \neq r$;
+  - $\delta(q_3, e) = q_4$, $\delta(q_3, x) = q_{\text{erro}}$ para $x \neq e$;
+  - $\delta(q_4, x) = q_{\text{erro}}$ para qualquer $x \in \Sigma$;
+  - $\delta(q_{\text{erro}}, x) = q_{\text{erro}}$ para qualquer $x \in \Sigma$.
+
+A @tbl-senha apresenta uma versão simplificada da tabela de transições:
+
+| Estado            | a                 | b                 | r                 | e                 | outros            |
+|------------|------------|------------|------------|------------|------------|
+| $\rightarrow q_0$ | $q_1$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_1$             | $q_{\text{erro}}$ | $q_2$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_2$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_3$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_3$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_4$            | $q_{\text{erro}}$ |
+| $q_4$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+
+: Tabela de transições para reconhecimento da senha *abre*. {#tbl-senha}
+
+### Exemplo 3: Reconhecimento de Operadores Relacionais
+
+O terceiro exemplo aborda um problema típico da análise léxica: o reconhecimento de operadores relacionais compostos. Este exemplo ilustra como tratar ambiguidades que surgem quando alguns *tokens* são prefixos de outros [@Aho2007Compilers].
+
+**Definição do Problema**: Construir um Autômato Finito Determinístico que reconheça os operadores relacionais: `>`, `<`, `>=`, `<=`, `==`, e `!=`.
+
+**Análise**: Este problema apresenta desafios interessantes. Os operadores `>` e `<` são prefixos dos operadores `>=` e `<=`, respectivamente. Similarmente, `=` seria prefixo de `==`. O autômato deve implementar a regra da correspondência mais longa (*maximal munch*), continuando a ler enquanto uma correspondência mais longa for possível.
+
+Nós discutimos a regra da correspondência mais longa na seção @sec-analisador-lexico do capítulo anterior. Esta regra é fundamental para resolver ambiguidades de prefixos. O autômato deve ser capaz de distinguir entre os operadores simples e compostos, aceitando os mais longos quando possível.
+
+Vamos como construir o autômato passo a passo, definindo estados que correspondem a cada prefixo dos operadores. O estado inicial $q_0$ inicia o reconhecimento, e os estados subsequentes são alcançados conforme os símbolos de entrada são lidos. A @fig-dia4 ilustra o diagrama de transições correspondente:
+
+::: {#fig-dia4}
+![](/images/dia4.webp) {#fig-dia4}
+
+Diagrama de transições de um Autômato Finito Determinístico capaz de identificar os operadores relacionais '<', '>', '<=', '>=', '==', '!='.
+:::
+
+**Especificação Formal**:
+
+- **Estados**: $Q = \{q_0, q_>, q_<, q_=, q_!, q_{\geq}, q_{\leq}, q_{==}, q_{\neq}, q_{\text{erro}}\}$ ;
+
+- **Alfabeto**: $\Sigma = \{>, <, =, !, \text{outros}\}$ ;
+
+- **Estado inicial**: $q_0$ ;
+
+- **Estados de aceitação**: $F = \{q_>, q_<, q_{\geq}, q_{\leq}, q_{==}, q_{\neq}\}$.
+
+A @tbl-operadores apresenta a tabela de transições:
+
+| Estado            | \>                | \<                | =                 | !                 | outros            |
+|------------|------------|------------|------------|------------|------------|
+| $\rightarrow q_0$ | $*q_>$            | $*q_<$            | $q_=$             | $q_!$             | $q_{\text{erro}}$ |
+| $*q_>$            | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{\geq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_<$            | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{\leq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_=$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{==}$         | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_!$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{\neq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_{\geq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_{\leq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_{==}$         | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_{\neq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+
+: Tabela de transições para reconhecimento de operadores relacionais. {#tbl-operadores}
+
+Note que os estados $q_>$ e $q_<$ são marcados como estados de aceitação, permitindo que os operadores simples `>` e `<` sejam reconhecidos. Contudo, se a entrada continuar com `=`, o autômato transita para os estados de aceitação $q_{\geq}$ ou $q_{\leq}$, implementando assim a regra da correspondência mais longa. Os estados $q_=$ e $q_!$ não são de aceitação porque `=` e `!` isolados não são operadores relacionais válidos neste contexto - apenas `==` e `!=` são aceitos.
+
+## Considerações sobre Implementação Prática
+
+Estes três exemplos demonstram alguns aspectos importantes dos Autômatos Finitos Determinísticos na análise léxica:
+
+1. **Manutenção de Estado**: O exemplo da paridade mostra como informações agregadas podem ser mantidas em estados finitos.
+
+2. **Reconhecimento de Sequências**: O exemplo da senha ilustra o reconhecimento determinístico de _strings_ específicas, fundamental para palavras-chave.
+
+3. **Tratamento de Ambiguidades**: O exemplo dos operadores demonstra como resolver conflitos de prefixos através da regra da correspondência mais longa.
+
+A persistente leitora observará que estes padrões são ubíquos na construção de analisadores léxicos em aplicações práticas, formando os blocos que definem o reconhecimento de identificadores, números, palavras-chave e operadores em linguagens de programação reais.
+
+### Limitações dos Autômatos Finitos
+
+Apesar de sua grande aplicabilidade na análise léxica e no reconhecimento de padrões, os Autômatos Finitos Determinísticos possuem uma limitação fundamental que reside na própria natureza de sua memória: ela é **finita**. Um Autômato Finito Determinístico só consegue se _lembrar_ de informações através do estado em que se encontra. Como o conjunto de estados $Q$ é finito, a capacidade de memorização da máquina é limitada.
+
+Esta limitação impede que os Autômatos Finitos Determinísticos reconheçam linguagens que exigem uma memória ilimitada ou a capacidade de contar sem um teto predefinido. O exemplo mais clássico de uma linguagem que um Autômato Finito Determinístico não pode reconhecer é a linguagem de parênteses balanceados ou, de forma análoga, a linguagem $L$:
+
+$$
+L = \{0^n1^n \mid n \ge 0\}
+$$
+
+Esta linguagem consiste em qualquer número $n$ de símbolos '0', seguido pela **mesma quantidade** $n$ de símbolos '1'. Alguns exemplos de _strings_ em $L$ são $\epsilon$ (a _string_ vazia, com $n=0$), $01$, $0011$, $000111$, e assim por diante.
+
+Para que um autômato pudesse reconhecer esta linguagem, ele precisaria ler todos os '0's, contar quantos foram lidos, e então verificar se a quantidade de '1's subsequentes é exatamente a mesma. Se $n$ pode ser um número arbitrariamente grande, a máquina precisaria de um número infinito de estados para memorizar cada contagem possível de '0's, o que viola a definição de um autômato *finito*.
+
+Essa incapacidade de lidar com estruturas de aninhamento ou contagens ilimitadas é a razão pela qual modelos computacionais mais poderosos, como os **Autômatos de Pilha**, são necessários para as fases seguintes da compilação, como a análise sintática.
+

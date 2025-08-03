@@ -16,6 +16,8 @@ book:
     - part: Analisadores Léxicos
       chapters: 
         - 01-lexico.qmd
+        - 01a-lexico.qmd
+        - 02-lexico.qmd
     - part: Analisadores Sintáticos
       chapters:
         - parsers.qmd
@@ -23,7 +25,8 @@ book:
         - tabela-derivacao.qmd
     - part: Projeto da Disciplina
       chapters:
-        - fase1.qmd    
+        - fase1.qmd
+    - apend1.qmd   
     - referencias.qmd
   page-footer: "Copyright © 2025 Frank de Alcantara"
   site-url: https://frankalcantara.com
