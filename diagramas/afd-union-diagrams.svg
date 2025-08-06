@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 900 800"
+   version="1.1"
+   id="svg45"
+   sodipodi:docname="afd-union-diagrams.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview45"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.5114407"
+     inkscape:cx="342.05774"
+     inkscape:cy="264.31734"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg45" />
+  <!-- Título -->
+  <text
+     x="358.69638"
+     y="55.141575"
+     font-family="Arial, sans-serif"
+     font-size="20px"
+     font-weight="bold"
+     text-anchor="middle"
+     id="text1">Construção da União de Autômatos Finitos Determinísticos</text>
+  <!-- M1: Aceita strings que terminam com 'a' -->
+  <text
+     x="206.89935"
+     y="99.186989"
+     font-family="Arial, sans-serif"
+     font-size="14px"
+     font-weight="bold"
+     text-anchor="middle"
+     id="text2">M₁: Aceita strings que terminam com 'a'</text>
+  <g
+     id="g45"
+     transform="translate(56.899353,19.186991)">
+    <circle
+       cx="95.037849"
+       cy="152.49509"
+       r="25"
+       fill="none"
+       stroke="#000000"
+       stroke-width="2"
+       id="circle2" />
+    <text
+       x="95.037849"
+       y="157.49509"
+       font-family="Arial, sans-serif"
+       font-size="14px"
+       text-anchor="middle"
+       id="text3">p₀</text>
+    <circle
+       cx="195.03784"
+       cy="152.49509"
+       r="25"
+       fill="none"
+       stroke="#000000"
+       stroke-width="2"
+       id="circle3" />
+    <circle
+       cx="195.03784"
+       cy="152.49509"
+       r="20"
+       fill="none"
+       stroke="#000000"
+       stroke-width="2"
+       id="circle4" />
+    <text
+       x="195.03784"
+       y="157.49509"
+       font-family="Arial, sans-serif"
+       font-size="14px"
+       text-anchor="middle"
+       id="text4">p₁</text>
+    <path
+       d="m 120.03785,152.49509 h 50"
+       stroke="#000000"
+       stroke-width="1"
+       marker-end="url(#arrowhead)"
+       id="path5" />
+    <path
+       d="M 46.612121,174.29686 70.19483,159.3024"
+       stroke="#000000"
+       stroke-width="0.747609"
+       marker-end="url(#arrowhead-8)"
+       id="path5-2"
+       style="stroke-width:1.248;stroke-dasharray:none;marker-end:url(#arrowhead-8)" />
+    <text
+       x="145.03784"
+       y="147.49509"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       text-anchor="middle"
+       id="text5">a</text>
+    <path
+       d="m 103.85254,176.33411 c 6.37067,3.52448 13.95219,12.73355 12.44347,19.8557 -1.50871,7.12212 -7.49305,12.42236 -14.74548,13.06132 -7.25244,0.63897 -14.071334,-3.53327 -16.802105,-10.28187 -2.730786,-6.74864 0.23577,-13.3278 4.730087,-21.2041"
+       fill="none"
+       stroke="#000000"
+       stroke-width="0.827896"
+       marker-end="url(#arrowhead)"
+       id="path6"
+       sodipodi:nodetypes="csssc" />
+    <path
+       d="m 180.44785,131.29378 c -7.08586,-1.67269 -16.87304,-8.49161 -17.34416,-15.75655 -0.47113,-7.26491 3.85912,-13.98456 10.66938,-16.558717 6.81028,-2.574183 14.50266,-0.398877 18.9548,5.361267 4.45216,5.76018 3.37297,12.89608 1.17318,21.69357"
+       fill="none"
+       stroke="#000000"
+       stroke-width="0.827896"
+       marker-end="url(#arrowhead-0)"
+       id="path6-4"
+       sodipodi:nodetypes="csssc"
+       style="marker-end:url(#arrowhead-0)" />
+    <text
+       x="119.83317"
+       y="188.84012"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       text-anchor="middle"
+       id="text6">b</text>
+    <text
+       x="159.7644"
+       y="124.58602"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       text-anchor="middle"
+       id="text7">a</text>
+    <path
+       d="m 171.66468,163.94982 q -26.02968,15.61781 -52.05935,0"
+       stroke="#000000"
+       stroke-width="1.04119"
+       marker-end="url(#arrowhead)"
+       id="path8"
+       style="fill:#ffffff" />
+    <text
+       x="145.73961"
+       y="169.45415"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       text-anchor="middle"
+       id="text8">b</text>
+  </g>
+  <!-- M2: Aceita strings de comprimento par -->
+  <text
+     x="506.89935"
+     y="99.186989"
+     font-family="Arial, sans-serif"
+     font-size="14px"
+     font-weight="bold"
+     text-anchor="middle"
+     id="text9">M₂: Aceita strings de comprimento par</text>
+  <circle
+     cx="456.43152"
+     cy="167.43262"
+     r="25"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle9" />
+  <circle
+     cx="456.43152"
+     cy="167.43262"
+     r="20"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle10" />
+  <text
+     x="456.43152"
+     y="172.43262"
+     font-family="Arial, sans-serif"
+     font-size="14px"
+     text-anchor="middle"
+     id="text10">r₀</text>
+  <circle
+     cx="556.43152"
+     cy="167.43262"
+     r="25"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle11" />
+  <text
+     x="556.43152"
+     y="172.43262"
+     font-family="Arial, sans-serif"
+     font-size="14px"
+     text-anchor="middle"
+     id="text11">r₁</text>
+  <path
+     d="m 481.43151,167.4326 h 50"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path12" />
+  <text
+     x="506.43152"
+     y="162.43262"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     text-anchor="middle"
+     id="text12">a,b</text>
+  <path
+     d="m 531.43151,172.4326 q -25,15 -50,0"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path13"
+     style="fill:#ffffff" />
+  <text
+     x="506.43152"
+     y="187.43262"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     text-anchor="middle"
+     id="text13">a,b</text>
+  <!-- M: Autômato União -->
+  <text
+     x="355.02924"
+     y="258.53802"
+     font-family="Arial, sans-serif"
+     font-size="14px"
+     font-weight="bold"
+     text-anchor="middle"
+     id="text14">M = M₁ ∪ M₂: Aceita strings que terminam com 'a' OU têm comprimento par</text>
+  <circle
+     cx="260.86908"
+     cy="328.16653"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle14" />
+  <circle
+     cx="260.86908"
+     cy="328.16653"
+     r="25"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle15" />
+  <text
+     x="260.86908"
+     y="333.16653"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     text-anchor="middle"
+     id="text15">(p₀,r₀)</text>
+  <circle
+     cx="460.86908"
+     cy="328.16653"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle16" />
+  <text
+     x="460.86908"
+     y="333.16653"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     text-anchor="middle"
+     id="text16">(p₀,r₁)</text>
+  <circle
+     cx="260.86908"
+     cy="478.16653"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle17" />
+  <circle
+     cx="260.86908"
+     cy="478.16653"
+     r="25"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle18" />
+  <text
+     x="260.86908"
+     y="483.16653"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     text-anchor="middle"
+     id="text18">(p₁,r₀)</text>
+  <circle
+     cx="460.86908"
+     cy="478.16653"
+     r="30"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle19" />
+  <circle
+     cx="460.86908"
+     cy="478.16653"
+     r="25"
+     fill="none"
+     stroke="#000000"
+     stroke-width="2"
+     id="circle20" />
+  <text
+     x="460.86908"
+     y="483.16653"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     text-anchor="middle"
+     id="text20">(p₁,r₁)</text>
+  <path
+     d="m 285.86907,343.16653 150,120"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path21" />
+  <path
+     d="m 290.86907,328.16653 h 140"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path22" />
+  <text
+     x="360.86908"
+     y="323.16653"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text22">b</text>
+  <text
+     x="296.77985"
+     y="409.48151"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text22-7">b</text>
+  <text
+     x="443.8851"
+     y="427.69205"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text22-7-1">b</text>
+  <path
+     d="m 435.86907,343.16653 -150,120"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path23" />
+  <path
+     d="M 432.74042,313.48817 C 386.07375,299.74548 335.19656,303.02033 288.52989,313.02033"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path24"
+     style="fill:#ffffff"
+     sodipodi:nodetypes="cc" />
+  <text
+     x="360.86908"
+     y="298.16653"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text24">b</text>
+  <path
+     d="m 290.86907,478.16653 h 140"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead)"
+     id="path25" />
+  <text
+     x="359.46558"
+     y="488.60513"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text25">a</text>
+  <text
+     x="359.93341"
+     y="456.11975"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text27">a</text>
+  <!-- Legenda -->
+  <!-- Tabela de exemplos -->
+  <!-- Definição do marcador de seta -->
+  <defs
+     id="defs45"><marker
+   id="arrowhead"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="0 0, 10 3, 0 6"
+     fill="black"
+     id="polygon45" />
+</marker>
+ p1 --&gt;
+     p0 (self loop) --&gt;
+     p1 (self loop) --&gt;
+     p0 --&gt;
+    <marker
+   id="arrowhead-0"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="10,3 0,6 0,0 "
+     fill="#000000"
+     id="polygon45-9" />
+</marker>
+<marker
+   id="arrowhead-8"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="10,3 0,6 0,0 "
+     fill="#000000"
+     id="polygon45-8" />
+</marker>
+ r1 --&gt;
+     r0 --&gt;
+    <marker
+   id="arrowhead-4"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="10,3 0,6 0,0 "
+     fill="#000000"
+     id="polygon45-5" />
+</marker>
+ (p1,r1) --&gt;
+     (p0,r1) --&gt;
+     (p1,r0) --&gt;
+     (p0,r0) --&gt;
+     (p1,r1) --&gt;
+     (p0,r1) --&gt;
+     (p1,r0) --&gt;
+     (p0,r0) --&gt;
+    <marker
+   id="arrowhead-1"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="10,3 0,6 0,0 "
+     fill="#000000"
+     id="polygon45-7" />
+</marker>
+<marker
+   id="arrowhead-4-9"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="0,6 0,0 10,3 "
+     fill="#000000"
+     id="polygon45-5-5" />
+</marker>
+<marker
+   id="arrowhead-3"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="10,3 0,6 0,0 "
+     fill="#000000"
+     id="polygon45-1" />
+</marker>
+<marker
+   id="arrowhead-34"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="10,3 0,6 0,0 "
+     fill="#000000"
+     id="polygon45-11" />
+</marker>
+<marker
+   id="arrowhead-3-7"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="0,6 0,0 10,3 "
+     fill="#000000"
+     id="polygon45-1-4" />
+</marker>
+<marker
+   id="arrowhead-3-7-7"
+   markerWidth="10"
+   markerHeight="10"
+   refX="9"
+   refY="3"
+   orient="auto">
+  <polygon
+     points="0,0 10,3 0,6 "
+     fill="#000000"
+     id="polygon45-1-4-9" />
+</marker>
+</defs>
+  <path
+     d="m 404.93892,187.43193 25.8813,-15.59422"
+     stroke="#000000"
+     stroke-width="0.777383"
+     marker-end="url(#arrowhead-4)"
+     id="path5-5"
+     style="stroke-width:1.077;stroke-dasharray:none;marker-end:url(#arrowhead-4)" />
+  <path
+     d="m 207.33411,355.74348 25.8813,-15.59422"
+     stroke="#000000"
+     stroke-width="0.777383"
+     marker-end="url(#arrowhead-4-9)"
+     id="path5-5-4"
+     style="stroke-width:1.077;stroke-dasharray:none;marker-end:url(#arrowhead-4-9)" />
+  <path
+     d="M 433.68313,468.30376 C 387.01646,454.56107 336.13927,457.83592 289.4726,467.83592"
+     stroke="#000000"
+     stroke-width="1"
+     marker-end="url(#arrowhead-3)"
+     id="path24-2"
+     style="fill:#ffffff;marker-end:url(#arrowhead-3)"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="m 270.42315,449.32294 c 42.25709,-52.72558 101.51067,-88.2704 160.91249,-112.46706"
+     stroke="#000000"
+     stroke-width="1.43405"
+     marker-end="url(#arrowhead-3-7)"
+     id="path24-2-2"
+     style="fill:none;stroke-width:1.18734;stroke-dasharray:none;marker-end:url(#arrowhead-3-7)"
+     sodipodi:nodetypes="cc" />
+  <path
+     d="M 459.05115,446.38849 C 414.8353,395.0494 352.83509,360.43928 290.67979,336.8789"
+     stroke="#000000"
+     stroke-width="1.43405"
+     marker-end="url(#arrowhead-3-7-7)"
+     id="path24-2-2-3"
+     style="fill:none;stroke-width:1.19847;stroke-dasharray:none;marker-end:url(#arrowhead-3-7-7)"
+     sodipodi:nodetypes="cc" />
+  <text
+     x="297.04367"
+     y="366.47134"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text27-3">a</text>
+  <text
+     x="420.61093"
+     y="364.61752"
+     font-family="Arial, sans-serif"
+     font-size="12px"
+     id="text27-3-9">a</text>
+</svg>

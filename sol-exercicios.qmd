@@ -1328,3 +1328,228 @@ $$[a-zA-Z][a-zA-Z0-9]?$$
 **Depois:** $https?://[a-z]^+\.(com|org|net|edu)$
 
 Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concisa.
+
+## Capítulo sec-aut-finitos-deterministicos 
+
+### Exercícios 1 {@sec-definicao-formal}
+
+**1.**
+
+* Q=s\_0,s\_1,s\_2,s\_3: O conjunto finito de estados.  
+* Sigma=a,b: O alfabeto de entrada.  
+* delta: A função de transição, que mapeia pares de estado e símbolo para um estado de destino (ex: delta(s\_0,a)=s\_1).  
+* s\_0: O estado inicial único.  
+* F=s\_0,s\_3: O conjunto de estados de aceitação (ou finais).
+
+**2.** Não, o modelo não representa um AFD válido. A justificativa é que o conjunto de estados de aceitação F=q\_2 contém um estado, q\_2, que não pertence ao conjunto de estados da máquina, Q=q\_0,q\_1. A definição formal exige que FsubseteqQ.
+
+**3.** O domínio da função de transição é QtimesSigma. O número de pares nesse domínio é o produto das cardinalidades dos conjuntos, ou seja, ∣Q∣times∣Sigma∣=3times4=12.
+
+**4.** Sim, é possível. Se F=Q, significa que todo estado do autômato é um estado de aceitação. Isso implica que, independentemente da sequência de transições, o estado final será sempre de aceitação. Portanto, o autômato reconheceria todas as *strings* possíveis sobre seu alfabeto, incluindo a *string* vazia. A linguagem reconhecida seria Sigma\\\*.
+
+**5.** Sim, é perfeitamente possível. Se o estado inicial q\_0 também é um estado de aceitação (q\_0inF), isso significa que a computação que começa e termina em q\_0 sem consumir nenhum símbolo é uma computação de aceitação. Portanto, a *string* vazia (epsilon) é aceita pelo autômato.
+
+### Exercícios 2 {@exercicios-2}
+
+**1.** Não, o autômato não é completo. Faltam transições para o símbolo 'd' a partir de q\_0 e para o símbolo 'l' a partir de q\_1. Para completá-lo, adicionamos q\_e:
+
+* delta(q\_0,l)=q\_1 (existente)  
+* delta(q\_0,d)=q\_e (nova)  
+* delta(q\_1,d)=q\_1 (existente)  
+* delta(q\_1,l)=q\_e (nova)  
+* delta(q\_e,l)=q\_e (nova)  
+* delta(q\_e,d)=q\_e (nova)
+
+**2.** A propriedade determinística garante que para qualquer estado atual e qualquer símbolo de entrada, há apenas um único próximo estado possível. Isso elimina qualquer ambiguidade. Em uma implementação, isso se traduz em uma operação muito rápida e simples: uma única consulta a uma tabela (ou uma instrução switch) para determinar o próximo estado. Não há necessidade de explorar múltiplos caminhos, voltar atrás (backtracking) ou gerenciar escolhas, tornando o processamento da *string* de entrada linear e extremamente eficiente.
+
+**3.** Não. A função de um estado de erro é capturar permanentemente qualquer sequência de entrada que desvie de um padrão válido. Por definição, uma *string* que leva a um estado de erro deve ser rejeitada. Se o estado de erro fosse também um estado de aceitação, ele aceitaria *strings* que deveriam ser rejeitadas, contradizendo seu propósito.
+
+**4.** Assume-se que as transições não mostradas levam a um estado de erro implícito, não desenhado. A partir desse estado de erro, todas as transições subsequentes (para qualquer símbolo do alfabeto) apontam de volta para ele mesmo. Isso é feito para manter os diagramas mais limpos e legíveis.
+
+**2.5.** Sim, é muito comum. Isso é chamado de auto-loop ou laço. Significa que, ao ler um determinado símbolo, a máquina não precisa mudar a informação que está armazenando (representada pelo estado). Exemplo prático: no autômato que reconhece números com paridade par de '1's, a transição delta(q\_par,0)=q\_par indica que ler um '0' não muda a paridade, então a máquina permanece no mesmo estado.
+
+### Exercícios 3: {@exercicios-3}
+
+**1.** O diagrama de transições é o seguinte:
+
+* Três nós: q\_A,q\_B,q\_C.  
+* q\_A tem uma seta de entrada "do nada" (estado inicial).  
+* q\_C é um círculo duplo (estado de aceitação).  
+* Setas:  
+  * De q\_A para q\_B com rótulo '0'.  
+  * Um laço em q\_A com rótulo '1'.  
+  * Um laço em q\_B com rótulo '0'.  
+  * De q\_B para q\_C com rótulo '1'.  
+  * De q\_C para q\_B com rótulo '0'.  
+  * De q\_C para q\_A com rótulo '1'.
+
+**2.**
+
+* Q=q\_pp,q\_ip,q\_pi,q\_ii (par-par, ímpar-par, etc.)  
+* Sigma=a,b  
+* q\_0=q\_pp  
+* F=q\_pp  
+* delta é definida por:  
+  * delta(q\_pp,a)=q\_ip, delta(q\_pp,b)=q\_pi  
+  * delta(q\_ip,a)=q\_pp, delta(q\_ip,b)=q\_ii  
+  * delta(q\_pi,a)=q\_ii, delta(q\_pi,b)=q\_pp  
+  * delta(q\_ii,a)=q\_pi, delta(q\_ii,b)=q\_ip
+
+**3.**
+
+| Estado | a | b | r | e | x |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| rightarrowq\_0 | q\_1 | q\_e | q\_e | q\_e | q\_e |
+| q\_1 | q\_e | q\_2 | q\_e | q\_e | q\_e |
+| q\_2 | q\_e | q\_e | q\_3 | q\_e | q\_e |
+| q\_3 | q\_e | q\_e | q\_e | q\_4 | q\_e |
+| \\\*q\_4 | q\_e | q\_e | q\_e | q\_e | q\_e |
+| q\_e | q\_e | q\_e | q\_e | q\_e | q\_e |
+
+**4.**
+
+* **Para depurar:** A **representação gráfica (diagrama)** é geralmente a mais útil, pois oferece uma visualização intuitiva do fluxo de controle. É fácil seguir os caminhos e entender como diferentes *strings* são processadas.  
+* **Para implementar:** A **representação tabular (tabela de transições)** é a mais direta para implementação. Ela mapeia naturalmente para uma estrutura de dados como um array 2D ou um dicionário de dicionários, permitindo acesso O(1) ao próximo estado.
+
+**3.5.** Para aceitar *strings* que terminam com "010", precisamos de um novo estado final. Podemos adicionar um estado q\_D e modificar as transições.
+
+| Estado | 0 | 1 |
+| :---- | :---- | :---- |
+| rightarrowq\_A | q\_B | q\_A |
+| q\_B | q\_B | q\_C |
+| q\_C | \\\*q\_D | q\_A |
+| \\\*q\_D | q\_B | q\_A |
+
+### Exercícios 4: {@exercicios-4}
+
+**1.**
+
+1. Começa em q\_A.  
+2. Lê '0': q\_Arightarrowq\_B. Estado atual: q\_B.  
+3. Lê '1': q\_Brightarrowq\_C. Estado atual: q\_C.  
+4. Lê '1': q\_Crightarrowq\_A. Estado atual: q\_A.  
+5. Lê '0': q\_Arightarrowq\_B. Estado atual: q\_B.  
+6. Lê '1': q\_Brightarrowq\_C. Estado atual: q\_C.  
+   A computação termina em q\_C, que é um estado de aceitação. Portanto, a string 01101 é aceita.
+
+**2.**
+
+1. Começa em q\_0.  
+2. Lê '\<': q\_0rightarrowq\_\\\<. Estado atual: q\_\\\<.  
+3. Lê '=': q\_\\\<rightarrowq\_leq. Estado atual: q\_leq.  
+   A computação termina em q\_leq, que é um estado de aceitação. A string \<= é aceita.
+
+**3.**
+
+* Para \!=: q\_0xrightarrowq\_xrightarrow=q\_neq. Termina em q\_neq (aceitação). **Aceita**.  
+* Para \=\!: q\_0xrightarrow=q\_=xrightarrowq\_erro. Termina em q\_erro (rejeição). **Rejeitada**.
+
+**4.** Não. A definição formal de aceitação exige que o estado final, após o processamento de **toda** a *string*, pertença ao conjunto F. Passar por um estado de aceitação no meio do caminho é irrelevante para a decisão final.
+
+**5.**
+
+* **Aceita:** ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Ops, essa é rejeitada. Vamos tentar aabb.  
+  * **Aceita:** aabb. Caminho: q\_ppxrightarrowaq\_ipxrightarrowaq\_ppxrightarrowbq\_pixrightarrowbq\_pp. Termina em q\_ppinF. Aceita.  
+* **Rejeitada:** ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Termina em q\_ipnotinF. Rejeitada.
+
+### Exercícios 5: {@exercicios-5}
+
+**1.** Diagrama para "aba":
+
+* q\_0xrightarrowbq\_0  
+* q\_0xrightarrowaq\_1  
+* q\_1xrightarrowaq\_1  
+* q\_1xrightarrowbq\_2  
+* q\_2xrightarrowbq\_0  
+* q\_2xrightarrowaq\_3  
+* q\_3 é estado de aceitação (círculo duplo) com laços para 'a' e 'b' (delta(q\_3,a)=q\_3,delta(q\_3,b)=q\_3).
+
+**2.** Diagrama para múltiplos de 3:
+
+* Estados: q\_0 (resto 0), q\_1 (resto 1), q\_2 (resto 2).  
+* q\_0 é inicial e de aceitação.  
+* Transições:  
+  * delta(q\_0,0)=q\_0, delta(q\_0,1)=q\_1  
+  * delta(q\_1,0)=q\_2, delta(q\_1,1)=q\_0  
+  * delta(q\_2,0)=q\_1, delta(q\_2,1)=q\_2
+
+**3.** Tabela de transições para //:
+
+| Estado | / | c |
+| :---- | :---- | :---- |
+| rightarrowq\_0 | q\_1 | q\_e |
+| q\_1 | \\\*q\_2 | q\_e |
+| \\\*q\_2 | \\\*q\_2 | \\\*q\_2 |
+| q\_e | q\_e | q\_e |
+
+**4.** Diagrama para comprimento ímpar e termina com 'a':
+
+* Estados: q\_0 (par), q\_1 (ímpar, termina 'a'), q\_2 (ímpar, termina 'b'), q\_e (erro).  
+* q\_0 é inicial. q\_1 é de aceitação.  
+* delta(q\_0,a)=q\_1, delta(q\_0,b)=q\_2  
+* delta(q\_1,a)=q\_0, delta(q\_1,b)=q\_0  
+* delta(q\_2,a)=q\_0, delta(q\_2,b)=q\_0  
+  (Uma versão mais simples pode combinar os estados de paridade e o último caractere).
+
+**5.** Diagrama para cat ou car:
+
+* q\_0xrightarrowcq\_1  
+* q\_1xrightarrowaq\_2  
+* q\_2xrightarrowtq\_3 (q\_3 é de aceitação)  
+* q\_2xrightarrowrq\_4 (q\_4 é de aceitação)  
+* Todas as outras transições levam a um estado de erro q\_e.
+
+### Exercícios 6: {@Exercicios-6  }
+
+**1.**
+
+* M\_1: Q\_1=p\_0,p\_1 (par, ímpar), q\_01=p\_0, F\_1=p\_0.  
+* M\_2: Q\_2=r\_0,r\_1 (não termina 'b', termina 'b'), q\_02=r\_0, F\_2=r\_1.  
+* Q=Q\_1timesQ\_2=(p\_0,r\_0),(p\_0,r\_1),(p\_1,r\_0),(p\_1,r\_1).
+
+| Estado | a | b |
+| :---- | :---- | :---- |
+| rightarrow(p\_0,r\_0) | (p\_1,r\_0) | (p\_0,r\_1) |
+| (p\_0,r\_1) | (p\_1,r\_0) | (p\_0,r\_1) |
+| (p\_1,r\_0) | (p\_0,r\_0) | (p\_1,r\_1) |
+| (p\_1,r\_1) | (p\_0,r\_0) | (p\_1,r\_1) |
+
+**2.**
+
+* **Estado Inicial**: (p\_0,r\_0).  
+* **Estados de Aceitação (União)**: Um estado (p\_i,r\_j) é final se p\_iinF\_1 OU r\_jinF\_2.  
+  * F\_1=p\_0, F\_2=r\_1.  
+  * F=(p\_0,r\_0),(p\_0,r\_1),(p\_1,r\_1).
+
+**3.** O autômato produto terá ∣Q\_1∣times∣Q\_2∣=3times4=12 estados.
+
+**4.** A linguagem reconhecida seria a mesma, L(M\_1)cupL(M\_1)=L(M\_1). O autômato produto resultante, no entanto, teria ∣Q\_1∣times∣Q\_1∣ estados. Este novo autômato seria equivalente ao original, mas não seria mínimo. Ele poderia ser minimizado de volta para M\_1.
+
+**5.** Sim. A função de transição do produto é definida como delta((q\_1,q\_2),a)=(delta\_1(q\_1,a),delta\_2(q\_2,a)). Se M\_1 e M\_2 são completos, então delta\_1(q\_1,a) e delta\_2(q\_2,a) estão definidos para todos os pares. Consequentemente, a transição delta do autômato produto também estará definida para todos os pares, tornando-o completo.
+
+### Exercícios 7: {@Exercios-7}
+
+**1.** A tabela de transições é idêntica à da união (exercício 6.1). A única diferença está nos estados de aceitação.
+
+| Estado | a | b |
+| :---- | :---- | :---- |
+| rightarrow(p\_0,r\_0) | (p\_1,r\_0) | (p\_0,r\_1) |
+| (p\_0,r\_1) | (p\_1,r\_0) | (p\_0,r\_1) |
+| (p\_1,r\_0) | (p\_0,r\_0) | (p\_1,r\_1) |
+| (p\_1,r\_1) | (p\_0,r\_0) | (p\_1,r\_1) |
+
+**2.** Para a interseção, um estado (p\_i,r\_j) é final se p\_iinF\_1 E r\_jinF\_2.
+
+* F\_1=p\_0, F\_2=r\_1.  
+* F=F\_1timesF\_2=(p\_0,r\_1).
+
+**3.** O autômato complemento M′ terá a mesma estrutura, mas com os estados finais e não finais trocados.
+
+* M′=(q\_0,q\_1,a,b,delta,q\_0,q\_0).  
+* L(M) é a linguagem das *strings* com pelo menos um 'a'.  
+* overlineL(M) é a linguagem das *strings* sem nenhum 'a', ou seja, *strings* compostas apenas por 'b's (b\\\*). O autômato M′ reconhece exatamente isso: ele só fica em q\_0 (que agora é final) se ler apenas 'b's. Ao ler um 'a', ele vai para q\_1 (agora não final) e nunca mais sai.
+
+**4.** Se o autômato for incompleto, ele possui transições indefinidas que implicitamente levam a um estado de erro e rejeição. Se simplesmente invertermos os estados finais, essas transições indefinidas ainda levam à rejeição. No entanto, no complemento, essas *strings* deveriam ser aceitas. Por exemplo, uma *string* que trava o autômato incompleto é rejeitada. No complemento, ela também seria rejeitada (pois não termina em um estado final), mas a linguagem complemento deveria aceitá-la. Completar o autômato primeiro garante que toda *string* termine em algum estado (seja ele de aceitação, não-aceitação ou erro), permitindo que a simples inversão funcione corretamente.
+
+**5.** Sim. Se L é regular, overlineL é regular. O complemento do complemento, overlineoverlineL, é a própria linguagem original L. Como overlineL é regular, seu complemento (overlineoverlineL=L) também deve ser regular, pelo mesmo teorema.
+

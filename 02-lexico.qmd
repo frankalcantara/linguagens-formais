@@ -6,7 +6,7 @@ Um Autômato Finito Determinístico é um modelo matemático preciso para repres
 
 A importância dos Autômatos Finitos Determinísticos na análise léxica não pode ser subestimada. Eles representam o produto final do processo de construção de analisadores léxicos: uma máquina de estados que pode processar um fluxo de caracteres em tempo linear, identificando *tokens* de forma eficiente e sem ambiguidades. Como veremos ao longo deste capítulo, a elegante leitora descobrirá que esta simplicidade aparente esconde uma poderosa capacidade de reconhecimento que fundamenta toda a primeira fase da compilação.
 
-## Definição Formal e Componentes
+## Definição Formal e Componentes {#sec-definicao-formal}
 
 Um Autômato Finito Determinístico é formalmente definido como uma 5-tupla matemática:
 
@@ -26,7 +26,20 @@ $$q_0 \in Q \quad \text{e} \quad F \subseteq Q$$
 
 Estas restrições garantem a consistência do modelo: o estado inicial deve necessariamente pertencer ao conjunto de estados, e todos os estados de aceitação devem ser estados válidos da máquina. Mais formalmente, um Autômato Finito Determinístico representa um sistema que, em qualquer momento, encontra-se em exatamente um estado do conjunto $Q$, e que, ao receber um símbolo de entrada do alfabeto $\Sigma$, transita deterministicamente para um novo estado, que pode, inclusive, ser o mesmo estado atual.
 
-### A Função de Transição Determinística
+### Exercícios 1
+
+**1.** Dado o AFD M=(s\_0,s\_1,s\_2,s\_3,a,b,delta,s\_0,s\_0,s\_3), identifique cada um dos cinco componentes da tupla com sua respectiva descrição.
+
+**2.** Um modelo foi definido como M=(Q,Sigma,delta,q\_0,F) onde Q=q\_0,q\_1, Sigma=0,1, q\_0=q\_0, e F=q\_2. Este modelo representa um AFD válido? Justifique sua resposta com base nas restrições formais.
+
+**3.** Se um Autômato Finito Determinístico possui ∣Q∣=3 estados e um alfabeto com ∣Sigma∣=4 símbolos, qual é o número exato de pares no domínio da função de transição delta?
+
+**4.** É possível que o conjunto de estados de aceitação F seja igual ao conjunto de todos os estados Q? Se sim, o que isso significaria sobre a linguagem reconhecida pelo autômato?
+
+**5.** É possível que o estado inicial q\_0 também seja um estado de aceitação, ou seja, q\_0inF? Se sim, o que isso implica sobre a aceitação da *string* vazia, epsilon?
+
+
+### A Função de Transição Determinística {#sec-funcao-transicao-deterministica}
 
 O coração de um Autômato Finito Determinístico reside na sua **função de transição** $\delta$, que captura completamente o comportamento da máquina. Esta função é definida matematicamente como:
 
@@ -36,7 +49,7 @@ A função de transição $\delta$ possui uma propriedade fundamental que a dist
 
 A definição matemática da função de transição $\delta : Q \times \Sigma \rightarrow Q$ implica que ela deve ser uma **função total**, ou seja, deve haver exatamente uma transição definida para cada par de estado e símbolo de entrada. Um Autômato Finito Determinístico que cumpre essa exigência é chamado de **completo**.
 
-Na prática, muitos autômatos possuem combinações de estado e símbolo que quebram a lógica do padrão sendo reconhecido. Por exemplo, em um autômato que reconhece a palavra "treco", o que acontece se ele estiver no estado inicial e ler a letra 'z'?
+Na prática, muitos autômatos possuem combinações de estado e símbolo que quebram a lógica do padrão que está sendo reconhecido. Por exemplo, em um autômato que reconhece a palavra "treco", o que acontece se ele estiver no estado inicial e ler a letra 'z'?
 
 Para tratar esses casos e manter a função de transição total, introduz-se um **estado de erro**, também conhecido como *estado poço* ou *sumidouro*. Este é um estado especial não-final do qual não há escapatória: toda transição a partir do estado de erro aponta para ele mesmo.
 
@@ -48,7 +61,19 @@ Dessa forma, qualquer sequência de entrada que desvie do padrão desejado é pe
 
 A característica determinística da função de transição tem implicações profundas para a implementação prática. Em um Autômato Finito Determinístico, não há *escolhas* a serem feitas durante a execução: dado o estado atual e o símbolo de entrada, o próximo estado é inequivocamente determinado. Esta propriedade permite implementações extremamente eficientes, nas quais cada símbolo de entrada requer apenas uma consulta à tabela de transições, tipicamente implementada como um array bidimensional, ou uma operação equivalente.
 
-O domínio da função $\delta$ é o produto cartesiano $Q \times \Sigma$, que representa o conjunto de todas as combinações possíveis de estado atual e símbolo de entrada. Para uma máquina com cardinalidade $|Q| = n$ estados e um alfabeto com com cardinalidade $|\Sigma| = k$ símbolos, existem exatamente $n \times k$ transições possíveis, e cada uma deve estar definida para que o autômato seja completo e funcional.
+O domínio da função $\delta$ é o produto cartesiano $Q \times \Sigma$, que representa o conjunto de todas as combinações possíveis de estado atual e símbolo de entrada. Para uma máquina com cardinalidade $|Q| = n$ estados e um alfabeto com cardinalidade $|\Sigma| = k$ símbolos, existem exatamente $n \times k$ transições possíveis, e cada uma deve estar definida para que o autômato seja completo e funcional.
+
+#### Exercícios 2 {#exercicios-2}
+
+**1.** Considere um AFD que reconhece identificadores que começam com 'l' (letra) e são seguidos por 'd' (dígito). O alfabeto é Sigma=l,d. As transições definidas são delta(q\_0,l)=q\_1 e delta(q\_1,d)=q\_1. O estado de aceitação é F=q\_1. Este autômato é **completo**? Se não, adicione um estado de erro q\_e e liste todas as transições que faltam para completá-lo.
+
+**2.** Explique com suas próprias palavras por que a propriedade determinística (para cada par (q,a), existe **exatamente um** estado de destino) é importante para a eficiência da implementação de um analisador léxico.
+
+**3.** Um estado de erro (ou poço) pode ser um estado de aceitação? Justifique sua resposta com base na função de um estado de erro.
+
+**4.** Se um AFD completo não possui um estado de erro explicitamente desenhado em seu diagrama, o que se assume sobre as transições não mostradas?
+
+**5.** Dada a definição delta:QtimesSigmarightarrowQ, se a máquina está no estado q\_i e lê um símbolo ainSigma, é possível que ela permaneça no mesmo estado, ou seja, delta(q\_i,a)=q\_i? Dê um exemplo prático.
 
 ## Representações de Autômatos Finitos Determinísticos
 
@@ -58,7 +83,7 @@ Os Autômatos Finitos Determinísticos podem ser representados de diversas forma
 
 A **tabela de transições** constitui uma das formas mais práticas e amplamente utilizadas para representar Autômatos Finitos Determinísticos, especialmente em implementações computacionais. Esta representação organiza a função de transição $\delta$ em uma matriz bidimensional, na qual as linhas correspondem aos estados e as colunas aos símbolos do alfabeto.
 
-A @tbl-afd1 ilustra um exemplo de tabela de transições para um Autômato Finito Determinístico:
+A @tbl-Autômato Finito Determinístico1 ilustra um exemplo de tabela de transições para um Autômato Finito Determinístico:
 
 | Estado            | 0     | 1     |
 |:------------------|:------|:------|
@@ -66,9 +91,9 @@ A @tbl-afd1 ilustra um exemplo de tabela de transições para um Autômato Finit
 | $*q_1$            | $q_1$ | $q_1$ |
 | $q_2$             | $q_2$ | $q_1$ |
 
-: Exemplo de tabela de transições para um Autômato Finito Determinístico que aceita _strings_ que contenham pelo menos um '0' seguido, em algum momento, por pelo menos um '1'. {#tbl-afd1}
+: Exemplo de tabela de transições para um Autômato Finito Determinístico que aceita _strings_ que contenham pelo menos um '0' seguido, em algum momento, por pelo menos um '1'. {#tbl-Autômato Finito Determinístico1}
 
-Na @tbl-afd1, as convenções notacionais seguem o padrão estabelecido na literatura de teoria da computação:
+Na @tbl-Autômato Finito Determinístico1, as convenções notacionais seguem o padrão estabelecido na literatura de teoria da computação:
 
 -   Os **estados** estão listados na primeira coluna, cada um representando um elemento do conjunto $Q$;
 -   As **colunas subsequentes** representam os símbolos do alfabeto $\Sigma = \{0, 1\}$;
@@ -76,21 +101,21 @@ Na @tbl-afd1, as convenções notacionais seguem o padrão estabelecido na liter
 -   A **seta** $\rightarrow$ identifica o estado inicial $q_0$;
 -   O **asterisco** $*$ marca os estados de aceitação, neste caso, o conjunto $F = \{q_1\}$.
 
-Esta representação tabular possui vantagens computacionais significativas. A implementação de um Autômato Finito Determinístico baseada em tabela permite acesso em tempo constante $O(1)$ para cada transição, resultando em uma complexidade total de $O(n)$ para processar uma *string* de entrada de comprimento $n$. Além disso, a estrutura tabular mapeia-se naturalmente para arrays bidimensionais na maioria das linguagens de programação.
+Esta representação tabular possui vantagens computacionais significativas. A implementação de um Autômato Finito Determinístico baseada em tabela permite acesso em tempo constante $O(1)$ para cada transição, resultando em uma complexidade total de $O(n)$ para processar uma _string_ de entrada de comprimento $n$. Além disso, a estrutura tabular mapeia-se naturalmente para arrays bidimensionais na maioria das linguagens de programação.
 
 ### Representação Gráfica
 
 A representação gráfica, conhecida como **diagrama de transições**, oferece uma visualização intuitiva do comportamento dinâmico do Autômato Finito Determinístico. Nesta representação, a máquina é modelada como um grafo direcionado, no qual os vértices representam estados e as arestas rotuladas representam transições.
 
-A @fig-afd1 apresenta o diagrama de transições correspondente à tabela @tbl-afd1:
+A @fig-Autômato Finito Determinístico1 apresenta o diagrama de transições correspondente à tabela @tbl-Autômato Finito Determinístico1:
 
-::: {#fig-afd1}
+::: {#fig-Autômato Finito Determinístico1}
 ![](images/dia1.webp)
 
 Diagrama de transições de um Autômato Finito Determinístico que aceita _strings_ que contenham pelo menos um '0' seguido, em algum momento, por pelo menos um '1'.
 :::
 
-No diagrama da @fig-afd1, as convenções visuais estabelecem uma linguagem gráfica precisa:
+No diagrama da @fig-Autômato Finito Determinístico1, as convenções visuais estabelecem uma linguagem gráfica precisa:
 
 -   Os **círculos** representam os estados do conjunto $Q$;
 -   As **setas direcionadas** representam as transições, codificando a função $\delta$;
@@ -98,13 +123,11 @@ No diagrama da @fig-afd1, as convenções visuais estabelecem uma linguagem grá
 -   O **estado inicial** é identificado por uma seta sem origem, *vinda do nada*;
 -   Os **estados de aceitação** são representados por círculos duplos, destacando visualmente sua função especial.
 
-A representação gráfica é particularmente valiosa para compreender o comportamento global da máquina e para visualizar caminhos de computação. Para a atenta leitora, o diagrama torna evidente qualquer quantidade de '1's iniciais será ignorada no estado $q_0$. A máquina só avança ao ler um '0', transicionando para o estado $q_2$. A partir daí, qualquer '1' lido leva ao estado de aceitação $q_1$, enquanto mais '0's mantêm a máquina em $q_2$. Esta visualização facilita a compreensão do fluxo de estados e das condições de aceitação.
+A representação gráfica é particularmente valiosa para compreender o comportamento global da máquina e para visualizar caminhos de computação. Para a atenta leitora, o diagrama torna evidente que qualquer quantidade de '1's iniciais será ignorada no estado $q_0$. A máquina só avança ao ler um '0', transicionando para o estado $q_2$. A partir daí, qualquer '1' lido leva ao estado de aceitação $q_1$, enquanto mais '0's mantêm a máquina em $q_2$. Esta visualização facilita a compreensão do fluxo de estados e das condições de aceitação.
 
 ### Especificação Formal do Exemplo
 
-Para o Autômato Finito Determinístico ilustrado na @tbl-afd1 e na @fig-afd1, a especificação formal completa é:
-
-A especificação formal para o autômato que aceita _strings_ contendo um '0' seguido em algum momento por um '1' é a seguinte 5-tupla $M = (Q, \Sigma, \delta, q_0, F)$:
+Para o Autômato Finito Determinístico ilustrado na @tbl-Autômato Finito Determinístico1 e na @fig-Autômato Finito Determinístico, um autômato que aceita _strings_ contendo um '0' seguido em algum momento por um '1' será dada pela 5-tupla $M = (Q, \Sigma, \delta, q_0, F)$ definida como:
 
 - **Conjunto de Estados ($Q$)**: $Q = \{q_0, q_1, q_2\}$;
 - **Alfabeto ($\Sigma$)**: $\Sigma = \{0, 1\}$;
@@ -120,21 +143,52 @@ A especificação formal para o autômato que aceita _strings_ contendo um '0' s
 
 Esta especificação formal define completamente o comportamento do autômato, incluindo seus estados, alfabeto, estado inicial, estados de aceitação e a função de transição. A atenta leitora notará que esta definição é suficiente para implementar ou simular o autômato em qualquer sistema computacional.
 
+### Exercícios 3 {#exercicios-3}
+
+**1.** Desenhe o diagrama de transições para o AFD descrito pela seguinte tabela. Use as convenções gráficas para o estado inicial e os estados de aceitação.
+
+| Estado | 0 | 1 |
+| :---- | :---- | :---- |
+| rightarrowq\_A | q\_B | q\_A |
+| q\_B | q\_B | q\_C |
+| \\\*q\_C | q\_B | q\_A |
+
+**2.** Para o diagrama de transições abaixo, que reconhece *strings* em a,b com um número par de 'a's e um número par de 'b's, forneça a especificação formal completa (a 5-tupla).
+
+**3.** Converta a especificação formal do Exemplo 2 da seção "Exemplos Práticos" (reconhecimento da senha *abre*) em uma tabela de transições completa, incluindo o estado de erro e todas as transições para ele. Considere o alfabeto Sigma=a,b,r,e,x, onde 'x' representa qualquer outro caractere.
+
+**4.** Qual representação (tabular, gráfica ou formal) você considera mais útil para depurar o comportamento de um autômato? E para implementá-lo em um programa? Justifique.
+
+**5.** Considere a tabela de transições da questão 3.1. Modifique-a para que o autômato passe a aceitar *strings* que terminam com "010" em vez de "01".
+
+
 ## Computação e Aceitação de _strings_
 
-O processo de **computação** em um Autômato Finito Determinístico segue um algoritmo simples e elegante. Dada uma *string* de entrada $w = a_1a_2...a_k$ onde cada $a_i \in \Sigma$, a máquina executa os seguintes passos:
+O processo de **computação** em um Autômato Finito Determinístico segue um algoritmo simples e elegante. Dada uma _string_ de entrada $w = a_1a_2...a_k$ onde cada $a_i \in \Sigma$, a máquina executa os seguintes passos:
 
 1.  **Inicialização**: a máquina posiciona-se no estado inicial $q_0$;
-2.  **Processamento sequencial**: para cada símbolo $a_i$ da *string* de entrada, a máquina transita do estado atual $q$ para o estado $\delta(q, a_i)$;
-3.  **Decisão de aceitação**: após processar todos os símbolos, a *string* é **aceita** se, e somente se, o estado final atingido pertence ao conjunto $F$ de estados de aceitação.
+2.  **Processamento sequencial**: para cada símbolo $a_i$ da _string_ de entrada, a máquina transita do estado atual $q$ para o estado $\delta(q, a_i)$;
+3.  **Decisão de aceitação**: após processar todos os símbolos, a _string_ é **aceita** se, e somente se, o estado final atingido pertence ao conjunto $F$ de estados de aceitação.
 
-Formalmente, uma *string* $w$ é aceita pelo Autômato Finito Determinístico $M$ se existe uma sequência de estados $r_0, r_1, ..., r_k$ tal que:
+Formalmente, uma _string_ $w$ é aceita pelo Autômato Finito Determinístico $M$ se existe uma sequência de estados $r_0, r_1, ..., r_k$ tal que:
 
 -   $r_0 = q_0$ (inicia no estado inicial);
 -   $\delta(r_i, a_{i+1}) = r_{i+1}$ para $i = 0, 1, ..., k-1$ (cada transição é válida);
 -   $r_k \in F$ (termina em um estado de aceitação).
 
 Esta formalização matemática da computação em Autômatos Finitos Determinísticos fundamenta toda a teoria de Linguagens Regulares e serve como base para os algoritmos de análise léxica utilizados em compiladores modernos.
+
+### Exercícios 4 {#exercicios-4}
+
+**1.** Usando o autômato da questão 3.1, trace a computação para a *string* 01101 e determine se ela é aceita ou rejeitada.
+
+**2.** Para o autômato do Exemplo 3 (operadores relacionais), trace a computação para a *string* \<= e determine o resultado.
+
+**3.** Para o mesmo autômato de operadores relacionais, o que acontece ao processar a *string* \!=? E a *string* \=\!?
+
+**4.** Uma *string* é aceita se a computação termina em um estado de aceitação. Se uma *string* passa por um estado de aceitação no meio de sua computação, mas não termina em um, ela é aceita? Justifique com base na definição formal de aceitação.
+
+**5.** Descreva uma *string* de comprimento 5 que é aceita pelo autômato da questão 3.2 e uma que é rejeitada. Mostre o caminho para ambas.
 
 ## Exemplos Práticos de Autômatos Finitos Determinísticos
 
@@ -177,13 +231,13 @@ A @tbl-paridade apresenta a tabela de transições correspondente:
 
 : Tabela de transições para reconhecimento de números binários com paridade par. {#tbl-paridade}
 
-Este autômato funciona como um contador módulo 2. O estado $q_{\text{par}}$ representa que um número par de '1's foi processado, enquanto $q_{\text{ímpar}}$ indica um número ímpar. Os bits '0' são irrelevantes para a paridade e não causam mudanças de estado. Este é um exemplo perfeito de como um Autômato Finito Determinístico pode manter informações agregadas sobre a entrada sem necessidade de memória ilimitada. A definição zero é par, pode ser vista como uma convenção prática, já que não há '1's para contar. Por isso, o estado inicial (que representa a leitura de zero '1's) é também um estado de aceitação.
+Este autômato funciona como um contador módulo 2. O estado $q_{\text{par}}$ representa que um número par de '1's foi processado, enquanto $q_{\text{ímpar}}$ indica um número ímpar. Os bits '0' são irrelevantes para a paridade e não causam mudanças de estado. Este é um exemplo perfeito de como um Autômato Finito Determinístico pode manter informações agregadas sobre a entrada sem necessidade de memória ilimitada. A definição _zero é par_ pode ser vista como uma convenção prática. Quando temos apenas um zero não há '1's para contar. Por isso, o estado inicial (que representa a leitura de zero '1's) é também um estado de aceitação.
 
 ### Exemplo 2: Reconhecimento da Senha *abre*
 
 O segundo exemplo demonstra como Autômatos Finitos Determinísticos podem ser utilizados para reconhecer sequências específicas de caracteres, como senhas ou palavras-chave em linguagens de programação. Este tipo de reconhecimento é fundamental em analisadores léxicos.
 
-**Definição do Problema**: construir um Autômato Finito Determinístico que aceite exatamente a *string* *abre* sobre o alfabeto das letras minúsculas.
+**Definição do Problema**: construir um Autômato Finito Determinístico que aceite exatamente a _string_ *abre* sobre o alfabeto das letras minúsculas.
 
 **Análise**: o autômato deve reconhecer a sequência exata de caracteres 'a', 'b', 'r', 'e'. Qualquer desvio desta sequência deve levar a um estado de rejeição. Como a entrada deve ser exatamente *abre*, necessitamos de cinco estados: um inicial, três intermediários correspondentes aos prefixos *a*, *ab*, *abr*, e um final de aceitação que corresponda a *abre*.
 
@@ -192,10 +246,10 @@ Novamente, o diagrama de transições ajuda a visualizar o comportamento do aut�
 ::: {#fig-dia3}
 ![](/images/dia3.webp) {#fig-dia3}
 
-Diagrama de transições de um Autômato Finito Determinístico que aceita a *string* *abre*.
+Diagrama de transições de um Autômato Finito Determinístico que aceita a _string_ *abre*.
 :::
 
-No diagrama da @fig-dia3, cada estado representa um prefixo da *string* *abre*. A transição entre os estados ocorre conforme os caracteres são lidos, e o autômato rejeita qualquer entrada que não siga a sequência exata representada no diagrama por $x$. O estado final $q_4$ é o único estado de aceitação, indicando que a *string* completa foi reconhecida com sucesso.
+No diagrama da @fig-dia3, cada estado representa um prefixo da _string_ *abre*. A transição entre os estados ocorre conforme os caracteres são lidos, e o autômato rejeita qualquer entrada que não siga a sequência exata representada no diagrama por $x$. O estado final $q_4$ é o único estado de aceitação, indicando que a _string_ completa foi reconhecida com sucesso.
 
 **Especificação Formal**: 
 
@@ -218,8 +272,8 @@ A @tbl-senha apresenta uma versão simplificada da tabela de transições:
 | $\rightarrow q_0$ | $q_1$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 | $q_1$             | $q_{\text{erro}}$ | $q_2$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 | $q_2$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_3$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
-| $q_3$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_4$            | $q_{\text{erro}}$ |
-| $q_4$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $q_3$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_4$            | $q_{\text{erro}}$ |
+| *$q_4$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 
 : Tabela de transições para reconhecimento da senha *abre*. {#tbl-senha}
@@ -234,7 +288,7 @@ O terceiro exemplo aborda um problema típico da análise léxica: o reconhecime
 
 Nós discutimos a regra da correspondência mais longa na seção @sec-analisador-lexico do capítulo anterior. Esta regra é fundamental para resolver ambiguidades de prefixos. O autômato deve ser capaz de distinguir entre os operadores simples e compostos, aceitando os mais longos quando possível.
 
-Vamos como construir o autômato passo a passo, definindo estados que correspondem a cada prefixo dos operadores. O estado inicial $q_0$ inicia o reconhecimento, e os estados subsequentes são alcançados conforme os símbolos de entrada são lidos. A @fig-dia4 ilustra o diagrama de transições correspondente:
+Vamos ver como construir o autômato passo a passo, definindo estados que correspondem a cada prefixo dos operadores. O estado inicial $q_0$ inicia o reconhecimento, e os estados subsequentes são alcançados conforme os símbolos de entrada são lidos. A @fig-dia4 ilustra o diagrama de transições correspondente:
 
 ::: {#fig-dia4}
 ![](/images/dia4.webp) {#fig-dia4}
@@ -257,10 +311,10 @@ A @tbl-operadores apresenta a tabela de transições:
 | Estado            | \>                | \<                | =                 | !                 | outros            |
 |------------|------------|------------|------------|------------|------------|
 | $\rightarrow q_0$ | $*q_>$            | $*q_<$            | $q_=$             | $q_!$             | $q_{\text{erro}}$ |
-| $*q_>$            | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{\geq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
-| $*q_<$            | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{\leq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
-| $q_=$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{==}$         | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
-| $q_!$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $*q_{\neq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_>$            | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\geq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_<$            | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\leq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_=$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{==}$         | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+| $*q_!$             | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\neq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 | $*q_{\geq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 | $*q_{\leq}$       | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 | $*q_{==}$         | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
@@ -270,6 +324,18 @@ A @tbl-operadores apresenta a tabela de transições:
 : Tabela de transições para reconhecimento de operadores relacionais. {#tbl-operadores}
 
 Note que os estados $q_>$ e $q_<$ são marcados como estados de aceitação, permitindo que os operadores simples `>` e `<` sejam reconhecidos. Contudo, se a entrada continuar com `=`, o autômato transita para os estados de aceitação $q_{\geq}$ ou $q_{\leq}$, implementando assim a regra da correspondência mais longa. Os estados $q_=$ e $q_!$ não são de aceitação porque `=` e `!` isolados não são operadores relacionais válidos neste contexto - apenas `==` e `!=` são aceitos.
+
+### Exercícios 5 {#exercicios-5}
+
+**1.** Projete o diagrama de transições de um AFD sobre Sigma=a,b que aceite todas e somente as *strings* que contêm a substring "aba".
+
+**2.** Projete o diagrama de transições de um AFD sobre Sigma=0,1 que aceite *strings* que representam números binários cujo valor é múltiplo de 3\. (Dica: Mantenha o resto da divisão por 3 como estado. v(w0)=2cdotv(w) e v(w1)=2cdotv(w)+1).
+
+**3.** Projete a tabela de transições de um AFD que reconhece comentários de uma linha em uma linguagem de programação hipotética. Um comentário começa com // e vai até o final da linha (não nos preocuparemos com o final da linha). O alfabeto é Sigma=/,c, onde 'c' representa qualquer outro caractere.
+
+**4.** Desenhe o diagrama de um AFD que aceite *strings* em a,b que tenham comprimento ímpar e terminem com 'a'.
+
+**5.** Projete um AFD que aceite apenas as *strings* cat e car sobre o alfabeto Sigma=c,a,t,r.
 
 ## Considerações sobre Implementação Prática
 
@@ -282,6 +348,527 @@ Estes três exemplos demonstram alguns aspectos importantes dos Autômatos Finit
 3. **Tratamento de Ambiguidades**: O exemplo dos operadores demonstra como resolver conflitos de prefixos através da regra da correspondência mais longa.
 
 A persistente leitora observará que estes padrões são ubíquos na construção de analisadores léxicos em aplicações práticas, formando os blocos que definem o reconhecimento de identificadores, números, palavras-chave e operadores em linguagens de programação reais.
+
+## Propriedades Matemáticas dos Autômatos Finitos Determinísticos
+
+Os Autômatos Finitos Determinísticos não são apenas modelos computacionais elegantes; eles formam uma estrutura algébrica rica, dotada de propriedades matemáticas que fundamentam sua aplicabilidade prática. A perspicaz leitora descobrirá que estas propriedades não apenas garantem a robustez teórica do modelo, mas também possibilitam otimizações e transformações essenciais para implementações eficientes.
+
+### Propriedades de Fechamento
+
+Uma das características notáveis da classe dos Autômatos Finitos Determinísticos é que ela é **fechada** sob as operações fundamentais da teoria dos conjuntos. Isto significa que, ao combinarmos Autômatos Finitos Determinísticos usando estas operações, o resultado é sempre outro Autômato Finito Determinístico. Esta propriedade tem implicações profundas tanto teóricas quanto práticas, especialmente na construção de analisadores léxicos que precisam reconhecer múltiplos padrões simultaneamente.
+
+#### Fechamento sob União
+
+**Teorema (Fechamento sob União)**: Sejam $M_1$ e $M_2$ dois Autômatos Finitos Determinísticos que reconhecem as linguagens $L_1$ e $L_2$, respectivamente. Então existe um Autômato Finito Determinístico $M$ que reconhece $L_1 \cup L_2$.
+
+**Construção Paralela**: a ideia central é construir um autômato que execute $M_1$ e $M_2$ **em paralelo**. Para entender o que significa "executar em paralelo", imagine que você tem duas máquinas rodando simultaneamente, processando a mesma entrada. A cada símbolo lido, ambas as máquinas avançam um passo. O novo autômato mantém, em cada momento, a informação sobre o estado atual de ambas as máquinas originais através de pares ordenados.
+
+Formalmente, dados:
+
+- $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$
+- $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$
+
+Construímos $M = (Q, \Sigma, \delta, q_0, F)$ onde:
+
+- $Q = Q_1 \times Q_2$ (produto cartesiano dos conjuntos de estados)
+- $q_0 = (q_{01}, q_{02})$ (par dos estados iniciais)
+- $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$ (aceita se pelo menos um dos autômatos aceita)
+- $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta_2(q_2, a))$ para todo $(q_1, q_2) \in Q$ e $a \in \Sigma$
+
+Alguns autores utilizam o termo **Construção do Produto** para esta construção, devido à natureza do produto cartesiano dos estados. A atenta leitora notará que esta construção é uma aplicação direta da definição de produto cartesiano, refletindo a ideia de manter o estado de ambas as máquinas simultaneamente. Esta mesma construção base (produto cartesiano dos estados) é usada tanto para união quanto para interseção, a única diferença está na definição dos estados finais:
+
+**União**: $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$. o Autômato Finito Determinístico irá aceitar se pelo menos um aceitar.
+
+**Interseção**: $F = F_1 \times F_2$, neste caso o Autômato Finito Determinístico aceita se ambos aceitarem.
+
+**Exemplo Completo e Detalhado**:
+
+Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{a, b\}$:
+
+**Autômato $M_1$** - Aceita _strings_ que terminam com 'a':
+
+- $Q_1 = \{p_0, p_1\}$
+- $q_{01} = p_0$
+- $F_1 = \{p_1\}$
+- Transições de $M_1$:
+  - $\delta_1(p_0, a) = p_1$
+  - $\delta_1(p_0, b) = p_0$
+  - $\delta_1(p_1, a) = p_1$
+  - $\delta_1(p_1, b) = p_0$
+
+**Autômato $M_2$** - Aceita _strings_ de comprimento par (incluindo $\epsilon$):
+
+- $Q_2 = \{r_0, r_1\}$
+- $q_{02} = r_0$
+- $F_2 = \{r_0\}$
+- Transições de $M_2$:
+  - $\delta_2(r_0, a) = r_1$
+  - $\delta_2(r_0, b) = r_1$
+  - $\delta_2(r_1, a) = r_0$
+  - $\delta_2(r_1, b) = r_0$
+
+**Construção do Autômato União $M$**:
+
+1. **Estados**: $Q = Q_1 \times Q_2 = \{(p_0, r_0), (p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
+
+2. **Estado Inicial**: $q_0 = (p_0, r_0)$
+
+3. **Estados de Aceitação**: 
+   - $F_1 \times Q_2 = \{p_1\} \times \{r_0, r_1\} = \{(p_1, r_0), (p_1, r_1)\}$
+   - $Q_1 \times F_2 = \{p_0, p_1\} \times \{r_0\} = \{(p_0, r_0), (p_1, r_0)\}$
+   - $F = \{(p_1, r_0), (p_1, r_1), (p_0, r_0)\}$
+
+4. **Função de Transição $\delta$**:
+
+| Estado | a | b |
+|--------|---|---|
+| $\rightarrow *(p_0, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
+| $(p_0, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
+| $*(p_1, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
+| $*(p_1, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
+
+A @fig-uniao1 apresenta os diagramas de transição dos autômatos $M_1$, $M_2$ e o autômato resultante $M= M_1 \cup M_2$:
+
+::: {#fig-uniao1}
+![](/images/uniao1.webp) {#fig-uniao1}  
+
+Diagramas de transição dos Autômatos Finitos Determinísticos $M_1$, $M_2$ e o autômato resultante $M = M_1 \cup M_2$. O resultado desta união é um autômato que aceita _strings_ que terminam com 'a' ou que possuem comprimento par.
+:::
+
+A matemática é ótima, contudo, a construção da união pode requerer um pouco de prática para ser compreendida completamente. Para treinar, vamos construir a união de dois autômatos simples, ainda sobre o alfabeto $\Sigma = \{a, b\}$, para solidificar o processo algébrico.
+
+**Autômato M₁: Aceita strings que começam com 'a'**. Que pode ser visto como um autômato que reconhece a linguagem $L_1 = \{a, aa, ab, aaa, aab, aba, aaaa, ...\}$. Algebricamente, temos:
+
+- Estados: $Q_1 = \{s_0, s_1, s_2\}$ onde:
+  - $s_0$: estado inicial (ainda não leu nada)
+  - $s_1$: leu 'a' como primeiro símbolo (aceita)
+  - $s_2$: leu 'b' como primeiro símbolo (rejeita)
+- Estado inicial: $s_0$
+- Estados finais: $F_1 = \{s_1\}$
+- Transições:
+  - $\delta_1(s_0, a) = s_1$ (primeiro símbolo é 'a' → aceita)
+  - $\delta_1(s_0, b) = s_2$ (primeiro símbolo é 'b' → rejeita)
+  - $\delta_1(s_1, a) = s_1$ (já aceitou, continua aceitando)
+  - $\delta_1(s_1, b) = s_1$ (já aceitou, continua aceitando)
+  - $\delta_1(s_2, a) = s_2$ (já rejeitou, continua rejeitando)
+  - $\delta_1(s_2, b) = s_2$ (já rejeitou, continua rejeitando)
+
+**Autômato M₂: Aceita strings com número ímpar de 'b's**. Que pode ser visto como um autômato que reconhece a linguagem $L_2 = \{b, ab, aab, aba, aaab, aababb, ...\}$. Que pode ser especificado como:
+
+- Estados: $Q_2 = \{t_0, t_1\}$ onde:
+  - $t_0$: número par de 'b's (incluindo zero)
+  - $t_1$: número ímpar de 'b's
+- Estado inicial: $t_0$
+- Estados finais: $F_2 = \{t_1\}$
+- Transições:
+  - $\delta_2(t_0, a) = t_0$ ('a' não afeta a contagem de 'b's)
+  - $\delta_2(t_0, b) = t_1$ (de par para ímpar)
+  - $\delta_2(t_1, a) = t_1$ ('a' não afeta a contagem)
+  - $\delta_2(t_1, b) = t_0$ (de ímpar para par)
+
+Para construir o autômato união $M = M_1 \cup M_2$, seguimos os seguintes passos:
+
+**Passo 1: Criar o conjunto de estados**: o conjunto de estados do autômato união será dado pelo o produto cartesiano $Q = Q_1 \times Q_2$. Enumerando todos os pares possíveis teremos:
+
+- $(s_0, t_0)$: $M_1$ no estado inicial e $M_2$ com número par de 'b's
+- $(s_0, t_1)$: $M_1$ no estado inicial e $M_2$ com número ímpar de 'b's
+- $(s_1, t_0)$: $M_1$ aceitando (começou com 'a') e $M_2$ com número par de 'b's
+- $(s_1, t_1)$: $M_1$ aceitando e $M_2$ com número ímpar de 'b's
+- $(s_2, t_0)$: $M_1$ rejeitando (começou com 'b') e $M_2$ com número par de 'b's
+- $(s_2, t_1)$: $M_1$ rejeitando e $M_2$ com número ímpar de 'b's
+
+Total: $6$ estados $(3 \times 2 = 6)$.
+
+**Passo 2: Determinar o estado inicial**: o estado inicial é simplesmente o par dos estados iniciais:
+
+- $q_0 = (s_0, t_0)$
+
+**Passo 3: Determinar os estados finais**: para a união, um estado é final se **pelo menos um** dos autômatos originais estaria em estado final. Para determinar os estados finais, verificamos quais pares $(s_i, t_j)$ satisfazem a condição de aceitação. Para cada estado perguntamos:"$M_1$ aceita OU $M_2$ aceita?"
+
+- $(s_0, t_0)$: $s_0 \notin F_1$ e $t_0 \notin F_2$ → NÃO é final;
+- $(s_0, t_1)$: $s_0 \notin F_1$ mas $t_1 \in F_2$ → É FINAL; 
+- $(s_1, t_0)$: $s_1 \in F_1$ mas $t_0 \notin F_2$ → É FINAL; 
+- $(s_1, t_1)$: $s_1 \in F_1$ e $t_1 \in F_2$ → É FINAL;
+- $(s_2, t_0)$: $s_2 \notin F_1$ e $t_0 \notin F_2$ → NÃO é final;
+- $(s_2, t_1)$: $s_2 \notin F_1$ mas $t_1 \in F_2$ → É FINAL.
+
+Assim, os Estados finais são: $F = \{(s_0, t_1), (s_1, t_0), (s_1, t_1), (s_2, t_1)\}$
+
+**Passo 4: Construir a função de transição**: para cada estado $(s_i, t_j)$ e cada símbolo $x \in \{a, b\}$, calculamos:
+$$\delta((s_i, t_j), x) = (\delta_1(s_i, x), \delta_2(t_j, x))$$
+
+**Transições com 'a':**
+
+- $\delta((s_0, t_0), a) = (\delta_1(s_0, a), \delta_2(t_0, a)) = (s_1, t_0)$
+- $\delta((s_0, t_1), a) = (\delta_1(s_0, a), \delta_2(t_1, a)) = (s_1, t_1)$
+- $\delta((s_1, t_0), a) = (\delta_1(s_1, a), \delta_2(t_0, a)) = (s_1, t_0)$
+- $\delta((s_1, t_1), a) = (\delta_1(s_1, a), \delta_2(t_1, a)) = (s_1, t_1)$
+- $\delta((s_2, t_0), a) = (\delta_1(s_2, a), \delta_2(t_0, a)) = (s_2, t_0)$
+- $\delta((s_2, t_1), a) = (\delta_1(s_2, a), \delta_2(t_1, a)) = (s_2, t_1)$
+
+**Transições com 'b':**
+
+- $\delta((s_0, t_0), b) = (\delta_1(s_0, b), \delta_2(t_0, b)) = (s_2, t_1)$
+- $\delta((s_0, t_1), b) = (\delta_1(s_0, b), \delta_2(t_1, b)) = (s_2, t_0)$
+- $\delta((s_1, t_0), b) = (\delta_1(s_1, b), \delta_2(t_0, b)) = (s_1, t_1)$
+- $\delta((s_1, t_1), b) = (\delta_1(s_1, b), \delta_2(t_1, b)) = (s_1, t_0)$
+- $\delta((s_2, t_0), b) = (\delta_1(s_2, b), \delta_2(t_0, b)) = (s_2, t_1)$
+- $\delta((s_2, t_1), b) = (\delta_1(s_2, b), \delta_2(t_1, b)) = (s_2, t_0)$
+
+**Passo 5: Construir a Tabela de Transições da União**: 
+
+| Estado | a | b |
+|--------|---|---|
+| →(s₀,t₀) | (s₁,t₀) | (s₂,t₁) |
+| *(s₀,t₁) | (s₁,t₁) | (s₂,t₀) |
+| *(s₁,t₀) | (s₁,t₀) | (s₁,t₁) |
+| *(s₁,t₁) | (s₁,t₁) | (s₁,t₀) |
+| (s₂,t₀) | (s₂,t₀) | (s₂,t₁) |
+| *(s₂,t₁) | (s₂,t₁) | (s₂,t₀) |
+
+**Passo 6: Depuração**: vamos testar algumas strings para verificar que o autômato funciona corretamente:
+
+**String "ab"** (começa com 'a' e tem um 'b', número ímpar de 'b's):
+
+- $(s_0,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{b} (s_1,t_1)$  ACEITA
+- M₁ aceita (começa com 'a') 
+- M₂ aceita (um 'b' = ímpar) 
+- União aceita 
+
+**String "b"** (não começa com 'a' mas tem número ímpar de 'b's):
+
+- $(s_0,t_0) \xrightarrow{b} (s_2,t_1)$  ACEITA
+- M₁ rejeita (começa com 'b') ✗
+- M₂ aceita (um 'b' = ímpar) 
+- União aceita (pelo menos um aceita) 
+
+**String "bb"** (não começa com 'a' e tem número par de 'b's):
+
+- $(s_0,t_0) \xrightarrow{b} (s_2,t_1) \xrightarrow{b} (s_2,t_0)$ ✗ REJEITA
+- M₁ rejeita (começa com 'b') ✗
+- M₂ rejeita (dois 'b's = par) ✗
+- União rejeita (nenhum aceita) ✗
+
+**String "aaa"** (começa com 'a' mas zero 'b's):
+
+- $(s_0,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{a} (s_1,t_0)$  ACEITA
+- M₁ aceita (começa com 'a') 
+- M₂ rejeita (zero 'b's = par) ✗
+- União aceita (pelo menos um aceita) 
+
+A atenta leitora deve notar que a construção por produto cartesiano funciona como se estivéssemos executando ambos os autômatos simultaneamente em duas "trilhas" paralelas. A cada símbolo lido:
+
+1. **Atualizamos ambas as trilhas**: cada componente do par de estados evolui independentemente segundo sua própria função de transição.
+
+2. **Mantemos a história completa**: o estado $(s_i, t_j)$ nos diz exatamente onde cada autômato original estaria após processar a entrada até aquele ponto.
+
+3. **Decidimos aceitação com lógica OR**: Para a união, basta que uma das trilhas aceite para o autômato combinado aceitar.
+
+Este algoritmo de construção em seis passos, com um passo apenas para depuração, sempre funciona, servindo como evidência de que a classe das linguagens regulares é fechada sob união.
+
+Com base na seção "Fechamento sob União" do texto fornecido, que utiliza o método de construção paralela (ou construtor do produto), seguem dois novos exemplos detalhados da união de autômatos finitos determinísticos, incluindo a definição formal da linguagem para cada autômato.
+
+##### Exemplo 1: União de "Contém 'aa'" com "Número Par de 'a's"
+
+Neste exemplo, vamos criar um autômato que aceita a linguagem $L = L_1 \cup L_2$, onde $L_1$ são as strings que **contenham a substring "aa"** e $L_2$ são as strings que **tenham um número par de 'a's**. O alfabeto é $\Sigma = \{a, b\}$.
+
+**Autômato $M_1$**: aceita a linguagem $L_1$, dada por:
+
+$$ L_1 = \{ w \in \{a, b\}^* \mid w = x \cdot \text{"aa"} \cdot y \text{ para } x, y \in \{a, b\}^* \} $$
+
+Em linguagem natural, $L_1$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que contêm a substring "aa" em qualquer posição. O autômato $M_1$ pode ser especificado como:
+
+* **Estados $Q_1$**: $\{s_0, s_1, s_2\}$
+  * $s_0$: Estado inicial, nenhum 'a' consecutivo detectado.
+  * $s_1$: Leu um 'a' que pode ser o início de "aa".
+  * $s_2$: Já leu "aa", estado de aceitação final e sem saída.
+* **Estado inicial $q_{01}$**: $s_0$
+* **Estados finais $F_1$**: $\{s_2\}$
+* **Transições $\delta_1$**:
+  * $\delta_1(s_0, a) = s_1$
+  * $\delta_1(s_0, b) = s_0$
+  * $\delta_1(s_1, a) = s_2$
+  * $\delta_1(s_1, b) = s_0$
+  * $\delta_1(s_2, a) = s_2$
+  * $\delta_1(s_2, b) = s_2$
+
+**Autômato $M_2$**: aceita a linguagem $L_2$, definida como:
+
+$$ L_2 = \{ w \in \{a, b\}^* \mid \#_a(w) \equiv 0 \pmod{2} \} $$
+
+Em linguagem natural, $L_2$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que possuem uma contagem par do símbolo 'a', onde $\#_a(w)$ denota o número de 'a's na _string_ $w$.
+
+* **Estados $Q_2$**: $\{t_{par}, t_{impar}\}$
+  * $t_{par}$: Número par de 'a's lidos (estado inicial).
+  * $t_{impar}$: Número ímpar de 'a's lidos.
+* **Estado inicial $q_{02}$**: $t_{par}$
+* **Estados finais $F_2$**: $\{t_{par}\}$
+* **Transições $\delta_2$**:
+  * $\delta_2(t_{par}, a) = t_{impar}$
+  * $\delta_2(t_{par}, b) = t_{par}$
+  * $\delta_2(t_{impar}, a) = t_{par}$
+  * $\delta_2(t_{impar}, b) = t_{impar}$
+
+**Construção do Autômato União $M = M_1 \cup M_2$**
+
+1. **Conjunto de Estados $Q$**: $Q_1 \times Q_2 = \{(s_0, t_{par}), (s_0, t_{impar}), (s_1, t_{par}), (s_1, t_{impar}), (s_2, t_{par}), (s_2, t_{impar})\}$
+
+2. **Estado Inicial $q_0$**: $(s_0, t_{par})$
+
+3. **Estados de Aceitação $F$**: Um estado $(s_i, t_j)$ é de aceitação se $s_i \in F_1$ OU $t_j \in F_2$.
+    * $s_i \in \{s_2\}$ OU $t_j \in \{t_{par}\}$
+    * $F = \{(s_0, t_{par}), (s_1, t_{par}), (s_2, t_{par}), (s_2, t_{impar})\}$
+
+4. **Tabela de Transições da União**:
+
+| Estado | a | b |
+| :--- | :--- | :--- |
+| **→\***($s_0, t_{par}$) | ($s_1, t_{impar}$) | ($s_0, t_{par}$) |
+| ($s_0, t_{impar}$) | ($s_1, t_{par}$) | ($s_0, t_{impar}$) |
+| **\***($s_1, t_{par}$) | ($s_2, t_{impar}$) | ($s_0, t_{par}$) |
+| ($s_1, t_{impar}$) | ($s_2, t_{par}$) | ($s_0, t_{impar}$) |
+| **\***($s_2, t_{par}$) | ($s_2, t_{impar}$) | ($s_2, t_{par}$) |
+| **\***($s_2, t_{impar}$) | ($s_2, t_{par}$) | ($s_2, t_{impar}$) |
+
+##### Exemplo 2: União de "Termina com 'b'" com "Termina com 'a'"
+
+Este exemplo criará um autômato para a linguagem $L = L_1 \cup L_2$, onde $L_1$ são as strings que **terminam com 'b'** e $L_2$ são as que **terminam com 'a'**. O alfabeto é $\Sigma = \{a, b\}$.
+
+**Autômato $M_1$**: aceita a linguagem $L_1$, definida como:
+
+$$ L_1 = \{ w \in \{a, b\}^* \mid w = x \cdot b \text{ para algum } x \in \{a, b\}^* \} $$
+
+Em linguagem natural, $L_1$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que terminam com o símbolo 'b'.
+
+* **Estados $Q_1$**: $\{p_0, p_1\}$
+  * $p_0$: Estado inicial, a _string_ lida até agora não termina com 'b'.
+  * $p_1$: O último símbolo lido foi 'b'.
+* **Estado inicial $q_{01}$**: $p_0$
+* **Estados finais $F_1$**: $\{p_1\}$
+* **Transições $\delta_1$**:
+    * $\delta_1(p_0, a) = p_0$
+    * $\delta_1(p_0, b) = p_1$
+    * $\delta_1(p_1, a) = p_0$
+    * $\delta_1(p_1, b) = p_1$
+
+**Autômato $M_2$**: aceita a linguagem $L_2$, que pode ser dada por:
+$$ L_2 = \{ w \in \{a, b\}^* \mid w = x \cdot a \text{ para algum } x \in \{a, b\}^* \} $$
+
+Em linguagem natural, $L_2$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que terminam com o símbolo 'a'.
+
+Especificação de $M_2$**:
+* **Estados $Q_2$**: $\{r_0, r_1\}$
+  * $r_0$: Estado inicial, a _string_ lida até agora não termina com 'a'.
+  * $r_1$: O último símbolo lido foi 'a'.
+* **Estado inicial $q_{02}$**: $r_0$
+* **Estados finais $F_2$**: $\{r_1\}$
+* **Transições $\delta_2$**:
+  * $\delta_2(r_0, a) = r_1$
+  * $\delta_2(r_0, b) = r_0$
+  * $\delta_2(r_1, a) = r_1$
+  * $\delta_2(r_1, b) = r_0$
+
+**Construção do Autômato União $M = M_1 \cup M_2$**
+
+1. **Conjunto de Estados $Q$**: $Q_1 \times Q_2 = \{(p_0, r_0), (p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
+
+2. **Estado Inicial $q_0$**: $(p_0, r_0)$. Este estado representa a _string_ vazia, que não é aceita por nenhum dos autômatos.
+
+3. **Estados de Aceitação $F$**: Um estado $(p_i, r_j)$ é de aceitação se $p_i \in F_1$ OU $r_j \in F_2$.
+    * $p_i \in \{p_1\}$ OU $r_j \in \{r_1\}$
+    * $F = \{(p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
+
+4. **Tabela de Transições da União**:
+
+| Estado | a | b |
+| :--- | :--- | :--- |
+| **→**($p_0, r_0$) | ($p_0, r_1$) | ($p_1, r_0$) |
+| **\***($p_0, r_1$) | ($p_0, r_1$) | ($p_1, r_0$) |
+| **\***($p_1, r_0$) | ($p_0, r_1$) | ($p_1, r_0$) |
+| **\***($p_1, r_1$) | ($p_0, r_1$) | ($p_1, r_0$) |
+
+Neste último exemplo, podemos observar que o estado $(p_1, r_1)$ é inalcançável, pois uma _string_ não pode terminar com 'a' e 'b' simultaneamente. O autômato poderia ser minimizado, mas a construção do produto gera-o desta forma.
+
+##### Exercícios 6 {#exercicio-6}
+
+**1.** Considere dois AFDs sobre Sigma=a,b: M\_1 aceita *strings* com número par de 'a's. M\_2 aceita *strings* que terminam com 'b'. Usando a construção do produto, construa a tabela de transições do autômato M=M\_1cupM\_2.
+
+**2.** No autômato produto M do exercício anterior, quais são o estado inicial e o conjunto de estados de aceitação?
+
+**3.** Se ∣Q\_1∣=3 e ∣Q\_2∣=4, quantos estados o autômato produto M=M\_1cupM\_2 terá?
+
+**4.** Usando a construção do produto, o que aconteceria se tentássemos unir um autômato consigo mesmo (M\_1cupM\_1)? O autômato resultante seria diferente do original?
+
+**5.** A construção do produto para a união sempre resulta em um AFD completo se os autômatos originais M\_1 e M\_2 forem completos? Justifique
+
+#### Fechamento sob Interseção
+
+**Teorema (Fechamento sob Interseção)**: Sejam $M_1$ e $M_2$ dois Autômatos Finitos Determinísticos que reconhecem $L_1$ e $L_2$. Então existe um Autômato Finito Determinístico $M$ que reconhece $L_1 \cap L_2$.
+
+A construção é similar à união, mas com uma modificação crucial no conjunto de estados finais:
+
+- $F = F_1 \times F_2$ (aceita apenas se **ambos** os autômatos aceitam)
+
+Esta diferença sutil tem um impacto profundo: enquanto a união implementa uma lógica "OU", a interseção implementa uma lógica "E". A atenta leitora notará que esta construção permite expressar condições complexas através da composição de autômatos simples.
+
+#### Fechamento sob Complemento
+
+**Teorema (Fechamento sob Complemento)**: Seja $M$ um Autômato Finito Determinístico que reconhece a linguagem $L$. Então existe um Autômato Finito Determinístico $M'$ que reconhece $\overline{L} = \Sigma^* - L$.
+
+A construção do complemento é surpreendentemente elegante:
+
+Dado $M = (Q, \Sigma, \delta, q_0, F)$, construímos $M' = (Q, \Sigma, \delta, q_0, F')$ onde:
+- $F' = Q - F$ (os estados de aceitação tornam-se estados de rejeição e vice-versa)
+
+**Observação Crítica**: Esta construção só funciona para Autômatos Finitos Determinísticos **completos**, onde toda transição está definida. Para Autômatos Finitos Determinísticos incompletos, primeiro devemos adicionar um estado de erro e completar as transições faltantes.
+
+**Exemplo Ilustrativo**: Se $M$ aceita _strings_ com número par de '1's, então $M'$ (com estados finais invertidos) aceita _strings_ com número ímpar de '1's.
+
+#### Exercícios 7 {#exercicio-7}
+
+**1.** Usando os mesmos autômatos M\_1 (par de 'a's) e M\_2 (termina com 'b') do exercício 6.1, construa a tabela de transições para o autômato que reconhece L(M\_1)capL(M\_2).
+
+**2.** Qual é o conjunto de estados de aceitação para o autômato de interseção do exercício 7.1?
+
+**3.** Considere o AFD M que aceita strings sobre Sigma=a,b que contêm pelo menos um 'a'.  
+M=(q\_0,q\_1,a,b,delta,q\_0,q\_1) com delta(q\_0,a)=q\_1, delta(q\_0,b)=q\_0, delta(q\_1,a)=q\_1, delta(q\_1,b)=q\_1.  
+Construa o autômato M′ que reconhece a linguagem complemento overlineL(M). Qual linguagem M′ reconhece?  
+
+**4.** Para construir o complemento de um AFD, o texto afirma que ele deve ser **completo**. Por que essa condição é necessária? O que poderia dar errado se aplicássemos a troca de estados finais em um autômato incompleto?
+
+**5.** Se L é uma linguagem regular, o teorema do fechamento sob complemento garante que overlineL também é regular. A linguagem Sigma\\\*−(overlineL) também é regular? Justifique.
+
+### Minimização de Estados
+
+Um dos resultados mais importantes e práticos da teoria dos Autômatos Finitos Determinísticos é que toda linguagem regular possui um **único Autômato Finito Determinístico mínimo** (a menos de renomeação de estados). Este resultado não apenas tem valor teórico, mas permite otimizações significativas em implementações práticas.
+
+#### O Conceito de Estados Equivalentes
+
+Dois estados $p$ e $q$ são **equivalentes** (denotado $p \equiv q$) se, para toda _string_ $w \in \Sigma^*$:
+
+$$\delta^*(p, w) \in F \iff \delta^*(q, w) \in F$$
+
+Intuitivamente, dois estados são equivalentes se, a partir deles, o autômato aceita exatamente as mesmas continuações. Esta relação de equivalência particiona o conjunto de estados em classes de equivalência.
+
+#### O Algoritmo de Minimização por Refinamento de Partições
+
+O algoritmo clássico para minimização de Autômatos Finitos Determinísticos opera refinando iterativamente uma partição dos estados até alcançar o ponto fixo:
+
+**Algoritmo de Minimização**:
+
+```pseudocode
+1. Inicialização: Particione Q em dois conjuntos:
+   - P₀ = F (estados de aceitação)
+   - P₁ = Q - F (estados de não-aceitação)
+
+2. Refinamento: Enquanto a partição mudar:
+   Para cada classe de equivalência P na partição atual:
+     Para cada símbolo a ∈ Σ:
+       Divida P baseado em δ(q, a) para q ∈ P
+       
+3. Construção: Cada classe de equivalência torna-se
+   um estado do Autômato Finito Determinístico mínimo
+```
+
+**Exemplo de Minimização**: Considere um Autômato Finito Determinístico com estados redundantes que reconhece $(a|b)*abb$:
+
+Estados originais: $\{q_0, q_1, q_2, q_3, q_4, q_5\}$ onde alguns estados são equivalentes.
+
+Após aplicar o algoritmo:
+1. Partição inicial: $\{\{q_3\}, \{q_0, q_1, q_2, q_4, q_5\}\}$
+2. Após refinamentos: $\{\{q_3\}, \{q_2\}, \{q_1, q_4\}, \{q_0, q_5\}\}$
+3. Autômato Finito Determinístico mínimo tem apenas 4 estados ao invés de 6
+
+### A Relação de Myhill-Nerode {#sec-myhill-nerode}
+
+A relação de Myhill-Nerode fornece uma caracterização fundamental das linguagens regulares e estabelece uma conexão profunda entre a estrutura algébrica de uma linguagem e o autômato mínimo que a reconhece.
+
+#### Definição da Relação
+
+Dada uma linguagem $L \subseteq \Sigma^*$, definimos a relação de equivalência de Myhill-Nerode sobre $\Sigma^*$:
+
+$$x \equiv_L y \iff \forall z \in \Sigma^* : xz \in L \leftrightarrow yz \in L$$
+
+Duas _strings_ $x$ e $y$ são equivalentes se elas são **indistinguíveis** com respeito a $L$: qualquer sufixo $z$ que, concatenado com $x$, produza uma _string_ em $L$, também produzirá uma _string_ em $L$ quando concatenado com $y$, e vice-versa.
+
+#### O Teorema de Myhill-Nerode
+
+**Teorema (Myhill-Nerode)**: Uma linguagem $L$ é regular se, e somente se, a relação $\equiv_L$ tem um número finito de classes de equivalência. Além disso, o número de estados do Autômato Finito Determinístico mínimo para $L$ é exatamente igual ao número de classes de equivalência de $\equiv_L$.
+
+Este teorema tem implicações profundas:
+
+1. **Caracterização Algébrica**: Fornece uma condição necessária e suficiente para regularidade sem mencionar autômatos ou expressões regulares.
+
+2. **Limite Inferior**: Estabelece o número mínimo de estados necessários para reconhecer uma linguagem.
+
+3. **Técnica de Prova**: Oferece um método alternativo para provar que uma linguagem não é regular.
+
+**Exemplo de Aplicação**: Para a linguagem $L = \{a^nb^n | n \geq 0\}$:
+
+As _strings_ $\epsilon, a, aa, aaa, ...$ estão todas em classes de equivalência distintas porque:
+- $a^i \cdot b^i \in L$ mas $a^j \cdot b^i \notin L$ para $i \neq j$
+
+Como existem infinitas classes de equivalência, $L$ não é regular. Esta é uma prova alternativa ao Lema do Bombeamento!
+
+### Equivalência entre Modelos
+
+Um dos resultados fundamentais da teoria das linguagens formais é o **Teorema de Kleene**, que estabelece a equivalência entre três formalismos aparentemente distintos.
+
+#### O Teorema de Kleene
+
+**Teorema (Kleene)**: As seguintes classes de linguagens são idênticas:
+1. Linguagens reconhecidas por Autômatos Finitos Determinísticos
+2. Linguagens reconhecidas por Autômatos Finitos Não-Determinísticos
+3. Linguagens denotadas por Expressões Regulares
+
+A demonstração deste teorema envolve três construções algorítmicas:
+
+**1. Expressão Regular → AFN (Construção de Thompson)**:
+Para cada operador da expressão regular, existe uma construção sistemática:
+- Base: $a \in \Sigma$ produz um AFN de dois estados
+- União: $r|s$ combina AFNs com transições-$\epsilon$
+- Concatenação: $rs$ conecta AFNs em sequência
+- Fechamento: $r^*$ adiciona ciclo com transições-$\epsilon$
+
+**2. AFN → Autômato Finito Determinístico (Construção de Subconjuntos)**:
+O algoritmo de subconjuntos constrói um Autômato Finito Determinístico onde cada estado representa um conjunto de estados do AFN original. Embora potencialmente exponencial, garante determinismo.
+
+**3. Autômato Finito Determinístico → Expressão Regular (Eliminação de Estados)**:
+Remove sistematicamente estados do Autômato Finito Determinístico, substituindo-os por expressões regulares nas transições, até restar apenas uma expressão entre o estado inicial e os finais.
+
+### Teste de Equivalência entre Autômatos Finitos Determinísticos
+
+Determinar se dois Autômatos Finitos Determinísticos reconhecem a mesma linguagem é um problema fundamental com aplicações práticas importantes, especialmente na otimização de compiladores.
+
+#### Algoritmo de Teste de Equivalência
+
+**Método 1: Via Minimização**:
+1. Minimize ambos os Autômatos Finitos Determinísticos
+2. Verifique isomorfismo entre os Autômatos Finitos Determinísticos mínimos
+
+**Método 2: Via Construção do Produto**:
+1. Construa Autômato Finito Determinístico para $(L_1 - L_2) \cup (L_2 - L_1)$
+2. Verifique se a linguagem resultante é vazia
+
+**Complexidade**: a complexidade do teste de equivalência entre dois Autômatos Finitos Determinísticos ($M_1$ e $M_2$) depende do método utilizado.
+
+  a. O método via **minimização** tem sua complexidade dominada pelo algoritmo de minimização. Utilizando o algoritmo de [Hopcroft](https://en.wikipedia.org/wiki/John_Hopcroft), a complexidade é de $O(k \cdot n \log n)$, na qual $n$ é o número de estados e $k$ é o tamanho do alfabeto. Se o alfabeto é tratado como uma constante, a complexidade é frequentemente citada como $O(n \log n)$.
+
+  b. O método via **construção do produto**, que verifica se a linguagem $(L_1 \setminus L_2) \cup (L_2 \setminus L_1)$ é vazia, possui uma complexidade de $O(n_1 \cdot n_2)$, na qual $n_1$ é o número de estados de $M_1$ e $n_2$ é o número de estados de $M_2$.
+
+### Implicações Práticas das Propriedades
+
+A diligente leitora observará que estas propriedades matemáticas têm consequências diretas na engenharia de compiladores:
+
+1. **Composição Modular**: As propriedades de fechamento permitem construir analisadores léxicos complexos a partir de componentes simples, sabendo que o resultado permanecerá tratável.
+
+2. **Otimização Garantida**: A minimização garante o menor autômato possível, otimizando tanto memória quanto tempo de execução.
+
+3. **Verificação Formal**: O teste de equivalência permite verificar se otimizações preservam a semântica.
+
+4. **Geração Automática**: A equivalência entre formalismos permite escolher a representação mais conveniente para cada fase do desenvolvimento.
+
+Estas propriedades fundamentais estabelecem os Autômatos Finitos Determinísticos não apenas como um modelo teórico elegante, mas como uma ferramenta prática poderosa para o processamento eficiente de linguagens. A compreensão profunda destas propriedades capacita a engenheira de software a fazer escolhas informadas sobre representações, otimizações e implementações em sistemas reais de análise léxica.
 
 ### Limitações dos Autômatos Finitos
 
