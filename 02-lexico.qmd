@@ -366,6 +366,7 @@ Para a perspicaz leitora, considere o seguinte cenário prático: um analisador 
 A intuição por trás da construção da união é elegante: executamos ambos os autômatos **simultaneamente** sobre a mesma entrada, mantendo o estado atual de cada um em um par ordenado. A atenta leitora pode visualizar isto como duas máquinas trabalhando em paralelo, processando o mesmo fluxo de símbolos. Se ao menos uma delas aceitar a entrada, o autômato combinado também aceita.
 
 **Construção Formal do Produto**: Dados:
+
 - $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$
 - $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$
 
