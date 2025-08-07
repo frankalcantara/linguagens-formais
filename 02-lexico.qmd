@@ -357,14 +357,15 @@ Os Autômatos Finitos Determinísticos não são apenas modelos computacionais e
 
 Uma das características notáveis da classe dos Autômatos Finitos Determinísticos é que ela é **fechada** sob as operações fundamentais da teoria dos conjuntos. Isto significa que, ao combinarmos Autômatos Finitos Determinísticos usando estas operações, o resultado é sempre outro Autômato Finito Determinístico. Esta propriedade tem implicações profundas tanto teóricas quanto práticas, especialmente na construção de analisadores léxicos que precisam reconhecer múltiplos padrões simultaneamente.
 
+Para a perspicaz leitora, considere o seguinte cenário prático: um analisador léxico precisa reconhecer tanto identificadores válidos quanto palavras-chave reservadas. Em vez de construir um único autômato complexo que trate ambos os casos, seria elegante construir dois autômatos simples e depois combiná-los. As propriedades de fechamento garantem que tal composição sempre resulta em outro Autômato Finito Determinístico válido, permitindo uma abordagem modular e sistemática para problemas complexos de reconhecimento.
+
 #### Fechamento sob União
 
 **Teorema (Fechamento sob União)**: Sejam $M_1$ e $M_2$ dois Autômatos Finitos Determinísticos que reconhecem as linguagens $L_1$ e $L_2$, respectivamente. Então existe um Autômato Finito Determinístico $M$ que reconhece $L_1 \cup L_2$.
 
-**Construção Paralela**: a ideia central é construir um autômato que execute $M_1$ e $M_2$ **em paralelo**. Para entender o que significa "executar em paralelo", imagine que você tem duas máquinas rodando simultaneamente, processando a mesma entrada. A cada símbolo lido, ambas as máquinas avançam um passo. O novo autômato mantém, em cada momento, a informação sobre o estado atual de ambas as máquinas originais através de pares ordenados.
+A intuição por trás da construção da união é elegante: executamos ambos os autômatos **simultaneamente** sobre a mesma entrada, mantendo o estado atual de cada um em um par ordenado. A atenta leitora pode visualizar isto como duas máquinas trabalhando em paralelo, processando o mesmo fluxo de símbolos. Se ao menos uma delas aceitar a entrada, o autômato combinado também aceita.
 
-Formalmente, dados:
-
+**Construção Formal do Produto**: Dados:
 - $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$
 - $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$
 
@@ -375,613 +376,163 @@ Construímos $M = (Q, \Sigma, \delta, q_0, F)$ onde:
 - $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$ (aceita se pelo menos um dos autômatos aceita)
 - $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta_2(q_2, a))$ para todo $(q_1, q_2) \in Q$ e $a \in \Sigma$
 
-Alguns autores utilizam o termo **Construção do Produto** para esta construção, devido à natureza do produto cartesiano dos estados. A atenta leitora notará que esta construção é uma aplicação direta da definição de produto cartesiano, refletindo a ideia de manter o estado de ambas as máquinas simultaneamente. Esta mesma construção base (produto cartesiano dos estados) é usada tanto para união quanto para interseção, a única diferença está na definição dos estados finais:
-
-**União**: $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$. o Autômato Finito Determinístico irá aceitar se pelo menos um aceitar.
-
-**Interseção**: $F = F_1 \times F_2$, neste caso o Autômato Finito Determinístico aceita se ambos aceitarem.
-
-**Exemplo Completo e Detalhado**:
+**Exemplo Ilustrativo**: Construção da união de dois autômatos simples
 
 Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{a, b\}$:
 
-**Autômato $M_1$** - Aceita _strings_ que terminam com 'a':
-
-- $Q_1 = \{p_0, p_1\}$
-- $q_{01} = p_0$
-- $F_1 = \{p_1\}$
-- Transições de $M_1$:
-  - $\delta_1(p_0, a) = p_1$
-  - $\delta_1(p_0, b) = p_0$
-  - $\delta_1(p_1, a) = p_1$
-  - $\delta_1(p_1, b) = p_0$
-
-**Autômato $M_2$** - Aceita _strings_ de comprimento par (incluindo $\epsilon$):
-
-- $Q_2 = \{r_0, r_1\}$
-- $q_{02} = r_0$
-- $F_2 = \{r_0\}$
-- Transições de $M_2$:
-  - $\delta_2(r_0, a) = r_1$
-  - $\delta_2(r_0, b) = r_1$
-  - $\delta_2(r_1, a) = r_0$
-  - $\delta_2(r_1, b) = r_0$
-
-**Construção do Autômato União $M$**:
-
-1. **Estados**: $Q = Q_1 \times Q_2 = \{(p_0, r_0), (p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
-
-2. **Estado Inicial**: $q_0 = (p_0, r_0)$
-
-3. **Estados de Aceitação**: 
-   - $F_1 \times Q_2 = \{p_1\} \times \{r_0, r_1\} = \{(p_1, r_0), (p_1, r_1)\}$
-   - $Q_1 \times F_2 = \{p_0, p_1\} \times \{r_0\} = \{(p_0, r_0), (p_1, r_0)\}$
-   - $F = \{(p_1, r_0), (p_1, r_1), (p_0, r_0)\}$
-
-4. **Função de Transição $\delta$**:
-
-| Estado | a | b |
-|--------|---|---|
-| $\rightarrow *(p_0, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
-| $(p_0, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
-| $*(p_1, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
-| $*(p_1, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
-
-A @fig-uniao1 apresenta os diagramas de transição dos autômatos $M_1$, $M_2$ e o autômato resultante $M = M_1 \cup M_2$:
-
-::: {#fig-uniao1}
-![](/images/uniao1.webp) {#fig-uniao1}  
-
-Diagramas de transição dos Autômatos Finitos Determinísticos $M_1$, $M_2$ e o autômato resultante $M = M_1 \cup M_2$. O resultado desta união é um autômato que aceita _strings_ que terminam com 'a' ou que possuem comprimento par.
-:::
-
-A matemática é ótima, contudo, a construção da união pode requerer um pouco de prática para ser compreendida completamente. Para treinar, vamos construir a união de dois autômatos simples, ainda sobre o alfabeto $\Sigma = \{a, b\}$, para solidificar o processo algébrico.
-
-**Autômato M₁: Aceita strings que começam com 'a'**. Que pode ser visto como um autômato que reconhece a linguagem $L_1 = \{a, aa, ab, aaa, aab, aba, aaaa, ...\}$. Algebricamente, temos:
-
-- Estados: $Q_1 = \{s_0, s_1, s_2\}$ onde:
-  - $s_0$: estado inicial (ainda não leu nada)
-  - $s_1$: leu 'a' como primeiro símbolo (aceita)
-  - $s_2$: leu 'b' como primeiro símbolo (rejeita)
+**Autômato $M_1$**: Aceita _strings_ que começam com 'a'
+- Estados: $Q_1 = \{s_0, s_{\text{aceita}}, s_{\text{rejeita}}\}$
 - Estado inicial: $s_0$
-- Estados finais: $F_1 = \{s_1\}$
+- Estados finais: $F_1 = \{s_{\text{aceita}}\}$
+- Transições: 
+  - $\delta_1(s_0, a) = s_{\text{aceita}}$
+  - $\delta_1(s_0, b) = s_{\text{rejeita}}$
+  - $\delta_1(s_{\text{aceita}}, x) = s_{\text{aceita}}$ para $x \in \{a,b\}$
+  - $\delta_1(s_{\text{rejeita}}, x) = s_{\text{rejeita}}$ para $x \in \{a,b\}$
+
+**Autômato $M_2$**: Aceita _strings_ com número par de 'b's
+- Estados: $Q_2 = \{t_{\text{par}}, t_{\text{ímpar}}\}$
+- Estado inicial: $t_{\text{par}}$
+- Estados finais: $F_2 = \{t_{\text{par}}\}$
 - Transições:
-  - $\delta_1(s_0, a) = s_1$ (primeiro símbolo é 'a' → aceita)
-  - $\delta_1(s_0, b) = s_2$ (primeiro símbolo é 'b' → rejeita)
-  - $\delta_1(s_1, a) = s_1$ (já aceitou, continua aceitando)
-  - $\delta_1(s_1, b) = s_1$ (já aceitou, continua aceitando)
-  - $\delta_1(s_2, a) = s_2$ (já rejeitou, continua rejeitando)
-  - $\delta_1(s_2, b) = s_2$ (já rejeitou, continua rejeitando)
+  - $\delta_2(t_{\text{par}}, a) = t_{\text{par}}$, $\delta_2(t_{\text{par}}, b) = t_{\text{ímpar}}$
+  - $\delta_2(t_{\text{ímpar}}, a) = t_{\text{ímpar}}$, $\delta_2(t_{\text{ímpar}}, b) = t_{\text{par}}$
 
-**Autômato M₂: Aceita strings com número ímpar de 'b's**. Que pode ser visto como um autômato que reconhece a linguagem $L_2 = \{b, ab, aab, aba, aaab, aababb, ...\}$. Que pode ser especificado como:
+A construção do autômato união $M = M_1 \cup M_2$ resulta em:
 
-- Estados: $Q_2 = \{t_0, t_1\}$ onde:
-  - $t_0$: número par de 'b's (incluindo zero)
-  - $t_1$: número ímpar de 'b's
-- Estado inicial: $t_0$
-- Estados finais: $F_2 = \{t_1\}$
-- Transições:
-  - $\delta_2(t_0, a) = t_0$ ('a' não afeta a contagem de 'b's)
-  - $\delta_2(t_0, b) = t_1$ (de par para ímpar)
-  - $\delta_2(t_1, a) = t_1$ ('a' não afeta a contagem)
-  - $\delta_2(t_1, b) = t_0$ (de ímpar para par)
+**Estados**: $Q = Q_1 \times Q_2$ possui $|Q_1| \times |Q_2| = 3 \times 2 = 6$ estados
 
-Para construir o autômato união $M = M_1 \cup M_2$, seguimos os seguintes passos:
+**Estados de Aceitação**: Um estado $(s_i, t_j)$ é final se $s_i \in F_1$ **ou** $t_j \in F_2$
 
-**Passo 1: Criar o conjunto de estados**: o conjunto de estados do autômato união será dado pelo o produto cartesiano $Q = Q_1 \times Q_2$. Enumerando todos os pares possíveis teremos:
+Analisando cada par:
+- $(s_0, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$)
+- $(s_0, t_{\text{ímpar}})$: rejeita
+- $(s_{\text{aceita}}, t_{\text{par}})$: aceita (ambos aceitam)
+- $(s_{\text{aceita}}, t_{\text{ímpar}})$: aceita (pois $s_{\text{aceita}} \in F_1$)
+- $(s_{\text{rejeita}}, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$)
+- $(s_{\text{rejeita}}, t_{\text{ímpar}})$: rejeita
 
-- $(s_0, t_0)$: $M_1$ no estado inicial e $M_2$ com número par de 'b's
-- $(s_0, t_1)$: $M_1$ no estado inicial e $M_2$ com número ímpar de 'b's
-- $(s_1, t_0)$: $M_1$ aceitando (começou com 'a') e $M_2$ com número par de 'b's
-- $(s_1, t_1)$: $M_1$ aceitando e $M_2$ com número ímpar de 'b's
-- $(s_2, t_0)$: $M_1$ rejeitando (começou com 'b') e $M_2$ com número par de 'b's
-- $(s_2, t_1)$: $M_1$ rejeitando e $M_2$ com número ímpar de 'b's
-
-Total: $6$ estados $(3 \times 2 = 6)$.
-
-**Passo 2: Determinar o estado inicial**: o estado inicial é simplesmente o par dos estados iniciais:
-
-- $q_0 = (s_0, t_0)$
-
-**Passo 3: Determinar os estados finais**: para a união, um estado é final se **pelo menos um** dos autômatos originais estaria em estado final. Para determinar os estados finais, verificamos quais pares $(s_i, t_j)$ satisfazem a condição de aceitação. Para cada estado perguntamos:"$M_1$ aceita OU $M_2$ aceita?"
-
-- $(s_0, t_0)$: $s_0 \notin F_1$ e $t_0 \notin F_2$ → NÃO é final;
-- $(s_0, t_1)$: $s_0 \notin F_1$ mas $t_1 \in F_2$ → É FINAL; 
-- $(s_1, t_0)$: $s_1 \in F_1$ mas $t_0 \notin F_2$ → É FINAL; 
-- $(s_1, t_1)$: $s_1 \in F_1$ e $t_1 \in F_2$ → É FINAL;
-- $(s_2, t_0)$: $s_2 \notin F_1$ e $t_0 \notin F_2$ → NÃO é final;
-- $(s_2, t_1)$: $s_2 \notin F_1$ mas $t_1 \in F_2$ → É FINAL.
-
-Assim, os Estados finais são: $F = \{(s_0, t_1), (s_1, t_0), (s_1, t_1), (s_2, t_1)\}$
-
-**Passo 4: Construir a função de transição**: para cada estado $(s_i, t_j)$ e cada símbolo $x \in \{a, b\}$, calculamos:
-$$\delta((s_i, t_j), x) = (\delta_1(s_i, x), \delta_2(t_j, x))$$
-
-**Transições com 'a':**
-
-- $\delta((s_0, t_0), a) = (\delta_1(s_0, a), \delta_2(t_0, a)) = (s_1, t_0)$
-- $\delta((s_0, t_1), a) = (\delta_1(s_0, a), \delta_2(t_1, a)) = (s_1, t_1)$
-- $\delta((s_1, t_0), a) = (\delta_1(s_1, a), \delta_2(t_0, a)) = (s_1, t_0)$
-- $\delta((s_1, t_1), a) = (\delta_1(s_1, a), \delta_2(t_1, a)) = (s_1, t_1)$
-- $\delta((s_2, t_0), a) = (\delta_1(s_2, a), \delta_2(t_0, a)) = (s_2, t_0)$
-- $\delta((s_2, t_1), a) = (\delta_1(s_2, a), \delta_2(t_1, a)) = (s_2, t_1)$
-
-**Transições com 'b':**
-
-- $\delta((s_0, t_0), b) = (\delta_1(s_0, b), \delta_2(t_0, b)) = (s_2, t_1)$
-- $\delta((s_0, t_1), b) = (\delta_1(s_0, b), \delta_2(t_1, b)) = (s_2, t_0)$
-- $\delta((s_1, t_0), b) = (\delta_1(s_1, b), \delta_2(t_0, b)) = (s_1, t_1)$
-- $\delta((s_1, t_1), b) = (\delta_1(s_1, b), \delta_2(t_1, b)) = (s_1, t_0)$
-- $\delta((s_2, t_0), b) = (\delta_1(s_2, b), \delta_2(t_0, b)) = (s_2, t_1)$
-- $\delta((s_2, t_1), b) = (\delta_1(s_2, b), \delta_2(t_1, b)) = (s_2, t_0)$
-
-**Passo 5: Construir a Tabela de Transições da União**: 
+A @tbl-uniao-exemplo apresenta a tabela de transições completa:
 
 | Estado | a | b |
 |--------|---|---|
-| →(s₀,t₀) | (s₁,t₀) | (s₂,t₁) |
-| *(s₀,t₁) | (s₁,t₁) | (s₂,t₀) |
-| *(s₁,t₀) | (s₁,t₀) | (s₁,t₁) |
-| *(s₁,t₁) | (s₁,t₁) | (s₁,t₀) |
-| (s₂,t₀) | (s₂,t₀) | (s₂,t₁) |
-| *(s₂,t₁) | (s₂,t₁) | (s₂,t₀) |
+| $\rightarrow *(s_0, t_{\text{par}})$ | $(s_{\text{aceita}}, t_{\text{par}})$ | $(s_{\text{rejeita}}, t_{\text{ímpar}})$ |
+| $(s_0, t_{\text{ímpar}})$ | $(s_{\text{aceita}}, t_{\text{ímpar}})$ | $(s_{\text{rejeita}}, t_{\text{par}})$ |
+| $*(s_{\text{aceita}}, t_{\text{par}})$ | $(s_{\text{aceita}}, t_{\text{par}})$ | $(s_{\text{aceita}}, t_{\text{ímpar}})$ |
+| $*(s_{\text{aceita}}, t_{\text{ímpar}})$ | $(s_{\text{aceita}}, t_{\text{ímpar}})$ | $(s_{\text{aceita}}, t_{\text{par}})$ |
+| $*(s_{\text{rejeita}}, t_{\text{par}})$ | $(s_{\text{rejeita}}, t_{\text{par}})$ | $(s_{\text{rejeita}}, t_{\text{ímpar}})$ |
+| $(s_{\text{rejeita}}, t_{\text{ímpar}})$ | $(s_{\text{rejeita}}, t_{\text{ímpar}})$ | $(s_{\text{rejeita}}, t_{\text{par}})$ |
 
-**Passo 6: Depuração**: vamos testar algumas strings para verificar que o autômato funciona corretamente:
+: Tabela de transições para o autômato união $M_1 \cup M_2$ {#tbl-uniao-exemplo}
 
-**String "ab"** (começa com 'a' e tem um 'b', número ímpar de 'b's):
+**Verificação**: Testemos a _string_ "ba":
+- $(s_0, t_{\text{par}}) \xrightarrow{b} (s_{\text{rejeita}}, t_{\text{ímpar}}) \xrightarrow{a} (s_{\text{rejeita}}, t_{\text{ímpar}})$ 
+- Estado final: $(s_{\text{rejeita}}, t_{\text{ímpar}})$ não é de aceitação
+- $M_1$ rejeita (não começa com 'a'), $M_2$ rejeita (número ímpar de 'b's)
+- União rejeita corretamente
 
-- $(s_0,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{b} (s_1,t_1)$  ACEITA
-- M₁ aceita (começa com 'a') 
-- M₂ aceita (um 'b' = ímpar) 
-- União aceita 
+##### Exercícios 6 {#exercicios-6}
 
-**String "b"** (não começa com 'a' mas tem número ímpar de 'b's):
+**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma=\{a,b\}$: $M_1$ aceita _strings_ que contêm "aa" e $M_2$ aceita _strings_ de comprimento ímpar. Quantos estados terá o autômato produto $M = M_1 \cup M_2$ se $|Q_1| = 3$ e $|Q_2| = 2$?
 
-- $(s_0,t_0) \xrightarrow{b} (s_2,t_1)$  ACEITA
-- M₁ rejeita (começa com 'b') ✗
-- M₂ aceita (um 'b' = ímpar) 
-- União aceita (pelo menos um aceita) 
+**2.** No autômato união, um estado $(p, q)$ é de aceitação quando $p \in F_1$ ou $q \in F_2$. Se modificássemos a condição para $p \in F_1$ **e** $q \in F_2$, que operação estaríamos realizando?
 
-**String "bb"** (não começa com 'a' e tem número par de 'b's):
-
-- $(s_0,t_0) \xrightarrow{b} (s_2,t_1) \xrightarrow{b} (s_2,t_0)$ ✗ REJEITA
-- M₁ rejeita (começa com 'b') ✗
-- M₂ rejeita (dois 'b's = par) ✗
-- União rejeita (nenhum aceita) ✗
-
-**String "aaa"** (começa com 'a' mas zero 'b's):
-
-- $(s_0,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{a} (s_1,t_0)$  ACEITA
-- M₁ aceita (começa com 'a') 
-- M₂ rejeita (zero 'b's = par) ✗
-- União aceita (pelo menos um aceita) 
-
-A atenta leitora deve notar que a construção por produto cartesiano funciona como se estivéssemos executando ambos os autômatos simultaneamente em duas "trilhas" paralelas. A cada símbolo lido:
-
-1. **Atualizamos ambas as trilhas**: cada componente do par de estados evolui independentemente segundo sua própria função de transição.
-
-2. **Mantemos a história completa**: o estado $(s_i, t_j)$ nos diz exatamente onde cada autômato original estaria após processar a entrada até aquele ponto.
-
-3. **Decidimos aceitação com lógica OR**: Para a união, basta que uma das trilhas aceite para o autômato combinado aceitar.
-
-Este algoritmo de construção em seis passos, com um passo apenas para depuração, sempre funciona, servindo como evidência de que a classe das linguagens regulares é fechada sob união.
-
-Com base na seção "Fechamento sob União" do texto fornecido, que utiliza o método de construção paralela (ou construtor do produto), seguem dois novos exemplos detalhados da união de autômatos finitos determinísticos, incluindo a definição formal da linguagem para cada autômato.
-
-##### Exemplo 1: União de "Contém 'aa'" com "Número Par de 'a's"
-
-Neste exemplo, vamos criar um autômato que aceita a linguagem $L = L_1 \cup L_2$, onde $L_1$ são as strings que **contenham a substring "aa"** e $L_2$ são as strings que **tenham um número par de 'a's**. O alfabeto é $\Sigma = \{a, b\}$.
-
-**Autômato $M_1$**: aceita a linguagem $L_1$, dada por:
-
-$$ L_1 = \{ w \in \{a, b\}^* \mid w = x \cdot \text{"aa"} \cdot y \text{ para } x, y \in \{a, b\}^* \} $$
-
-Em linguagem natural, $L_1$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que contêm a substring "aa" em qualquer posição. O autômato $M_1$ pode ser especificado como:
-
-* **Estados $Q_1$**: $\{s_0, s_1, s_2\}$
-  * $s_0$: Estado inicial, nenhum 'a' consecutivo detectado.
-  * $s_1$: Leu um 'a' que pode ser o início de "aa".
-  * $s_2$: Já leu "aa", estado de aceitação final e sem saída.
-* **Estado inicial $q_{01}$**: $s_0$
-* **Estados finais $F_1$**: $\{s_2\}$
-* **Transições $\delta_1$**:
-  * $\delta_1(s_0, a) = s_1$
-  * $\delta_1(s_0, b) = s_0$
-  * $\delta_1(s_1, a) = s_2$
-  * $\delta_1(s_1, b) = s_0$
-  * $\delta_1(s_2, a) = s_2$
-  * $\delta_1(s_2, b) = s_2$
-
-**Autômato $M_2$**: aceita a linguagem $L_2$, definida como:
-
-$$ L_2 = \{ w \in \{a, b\}^* \mid \#_a(w) \equiv 0 \pmod{2} \} $$
-
-Em linguagem natural, $L_2$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que possuem uma contagem par do símbolo 'a', onde $\#_a(w)$ denota o número de 'a's na _string_ $w$.
-
-* **Estados $Q_2$**: $\{t_{par}, t_{impar}\}$
-  * $t_{par}$: Número par de 'a's lidos (estado inicial).
-  * $t_{impar}$: Número ímpar de 'a's lidos.
-* **Estado inicial $q_{02}$**: $t_{par}$
-* **Estados finais $F_2$**: $\{t_{par}\}$
-* **Transições $\delta_2$**:
-  * $\delta_2(t_{par}, a) = t_{impar}$
-  * $\delta_2(t_{par}, b) = t_{par}$
-  * $\delta_2(t_{impar}, a) = t_{par}$
-  * $\delta_2(t_{impar}, b) = t_{impar}$
-
-**Construção do Autômato União $M = M_1 \cup M_2$**
-
-1. **Conjunto de Estados $Q$**: $Q_1 \times Q_2 = \{(s_0, t_{par}), (s_0, t_{impar}), (s_1, t_{par}), (s_1, t_{impar}), (s_2, t_{par}), (s_2, t_{impar})\}$
-
-2. **Estado Inicial $q_0$**: $(s_0, t_{par})$
-
-3. **Estados de Aceitação $F$**: Um estado $(s_i, t_j)$ é de aceitação se $s_i \in F_1$ OU $t_j \in F_2$.
-    * $s_i \in \{s_2\}$ OU $t_j \in \{t_{par}\}$
-    * $F = \{(s_0, t_{par}), (s_1, t_{par}), (s_2, t_{par}), (s_2, t_{impar})\}$
-
-4. **Tabela de Transições da União**:
-
-| Estado | a | b |
-| :--- | :--- | :--- |
-| **→\***($s_0, t_{par}$) | ($s_1, t_{impar}$) | ($s_0, t_{par}$) |
-| ($s_0, t_{impar}$) | ($s_1, t_{par}$) | ($s_0, t_{impar}$) |
-| **\***($s_1, t_{par}$) | ($s_2, t_{impar}$) | ($s_0, t_{par}$) |
-| ($s_1, t_{impar}$) | ($s_2, t_{par}$) | ($s_0, t_{impar}$) |
-| **\***($s_2, t_{par}$) | ($s_2, t_{impar}$) | ($s_2, t_{par}$) |
-| **\***($s_2, t_{impar}$) | ($s_2, t_{par}$) | ($s_2, t_{impar}$) |
-
-##### Exemplo 2: União de "Termina com 'b'" com "Termina com 'a'"
-
-Este exemplo criará um autômato para a linguagem $L = L_1 \cup L_2$, onde $L_1$ são as strings que **terminam com 'b'** e $L_2$ são as que **terminam com 'a'**. O alfabeto é $\Sigma = \{a, b\}$.
-
-**Autômato $M_1$**: aceita a linguagem $L_1$, definida como:
-
-$$ L_1 = \{ w \in \{a, b\}^* \mid w = x \cdot b \text{ para algum } x \in \{a, b\}^* \} $$
-
-Em linguagem natural, $L_1$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que terminam com o símbolo 'b'.
-
-* **Estados $Q_1$**: $\{p_0, p_1\}$
-  * $p_0$: Estado inicial, a _string_ lida até agora não termina com 'b'.
-  * $p_1$: O último símbolo lido foi 'b'.
-* **Estado inicial $q_{01}$**: $p_0$
-* **Estados finais $F_1$**: $\{p_1\}$
-* **Transições $\delta_1$**:
-    * $\delta_1(p_0, a) = p_0$
-    * $\delta_1(p_0, b) = p_1$
-    * $\delta_1(p_1, a) = p_0$
-    * $\delta_1(p_1, b) = p_1$
-
-**Autômato $M_2$**: aceita a linguagem $L_2$, que pode ser dada por:
-$$ L_2 = \{ w \in \{a, b\}^* \mid w = x \cdot a \text{ para algum } x \in \{a, b\}^* \} $$
-
-Em linguagem natural, $L_2$ é o conjunto de todas as strings sobre o alfabeto $\{a, b\}$ que terminam com o símbolo 'a'.
-
-Especificação de $M_2$**:
-* **Estados $Q_2$**: $\{r_0, r_1\}$
-  * $r_0$: Estado inicial, a _string_ lida até agora não termina com 'a'.
-  * $r_1$: O último símbolo lido foi 'a'.
-* **Estado inicial $q_{02}$**: $r_0$
-* **Estados finais $F_2$**: $\{r_1\}$
-* **Transições $\delta_2$**:
-  * $\delta_2(r_0, a) = r_1$
-  * $\delta_2(r_0, b) = r_0$
-  * $\delta_2(r_1, a) = r_1$
-  * $\delta_2(r_1, b) = r_0$
-
-**Construção do Autômato União $M = M_1 \cup M_2$**
-
-1. **Conjunto de Estados $Q$**: $Q_1 \times Q_2 = \{(p_0, r_0), (p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
-
-2. **Estado Inicial $q_0$**: $(p_0, r_0)$. Este estado representa a _string_ vazia, que não é aceita por nenhum dos autômatos.
-
-3. **Estados de Aceitação $F$**: Um estado $(p_i, r_j)$ é de aceitação se $p_i \in F_1$ OU $r_j \in F_2$.
-    * $p_i \in \{p_1\}$ OU $r_j \in \{r_1\}$
-    * $F = \{(p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
-
-4. **Tabela de Transições da União**:
-
-| Estado | a | b |
-| :--- | :--- | :--- |
-| **→**($p_0, r_0$) | ($p_0, r_1$) | ($p_1, r_0$) |
-| **\***($p_0, r_1$) | ($p_0, r_1$) | ($p_1, r_0$) |
-| **\***($p_1, r_0$) | ($p_0, r_1$) | ($p_1, r_0$) |
-| **\***($p_1, r_1$) | ($p_0, r_1$) | ($p_1, r_0$) |
-
-Neste último exemplo, podemos observar que o estado $(p_1, r_1)$ é inalcançável, pois uma _string_ não pode terminar com 'a' e 'b' simultaneamente. O autômato poderia ser minimizado, mas a construção do produto gera-o desta forma.
-
-##### Exercícios 6 {#exercicio-6}
-
-**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma = a, b$: $M_1$ aceita *strings* com número par de 'a's. $M_2$ aceita *strings* que terminam com 'b'. Usando a construção do produto, construa a tabela de transições do autômato $M =M_1 \cup M_2$.
-
-**2.** No autômato produto $M$ do exercício anterior, quais são o estado inicial e o conjunto de estados de aceitação?
-
-**3.** Se $\mid q_1 \mid=3$ e $\mid q_2 \mid=4$, quantos estados o autômato produto $M = M_1 \cup M_2$ terá?
-
-**4.** Usando a construção do produto, o que aconteceria se tentássemos unir um autômato consigo mesmo ($M_1 \cup M_1$)? O autômato resultante seria diferente do original?
-
-**5.** A construção do produto para a união sempre resulta em um Autômato Finito Determinístico completo se os autômatos originais $M_1$ e $M_2$ forem completos? Justifique
+**3.** Construa a tabela de transições completa para a união de: $M_1$ que aceita apenas "a" e $M_2$ que aceita apenas "b", sobre $\Sigma = \{a, b\}$.
 
 #### Fechamento sob Interseção
 
-**Teorema (Fechamento sob Interseção)**: sejam $M_1$ e $M_2$ dois Autômatos Finitos Determinísticos que reconhecem as linguagens $L_1$ e $L_2$, respectivamente. Então existe um Autômato Finito Determinístico $M$ que reconhece $L_1 \cap L_2$.
+**Teorema (Fechamento sob Interseção)**: Sejam $M_1$ e $M_2$ dois Autômatos Finitos Determinísticos que reconhecem as linguagens $L_1$ e $L_2$, respectivamente. Então existe um Autômato Finito Determinístico $M$ que reconhece $L_1 \cap L_2$.
 
-**Construção Paralela para Interseção**: a construção da interseção utiliza exatamente a mesma base da união - o produto cartesiano dos estados para executar ambos os autômatos em paralelo. A única diferença está na definição dos estados finais, que implementa uma lógica "E" em vez de "OU".
+A elegante leitora notará que a construção da interseção é notavelmente similar à da união. A diferença crucial reside apenas na definição dos estados finais: enquanto a união implementa uma lógica "ou", a interseção implementa uma lógica "e".
 
-Formalmente, dados:
+**Construção Formal**: Utilizamos a mesma estrutura de produto cartesiano, mas com:
 
-- $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$
-- $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$
+$$F = F_1 \times F_2$$
 
-Construímos $M = (Q, \Sigma, \delta, q_0, F)$ onde:
+Ou seja, um estado $(q_1, q_2)$ é final se, e somente se, **ambos** $q_1 \in F_1$ **e** $q_2 \in F_2$.
 
-- $Q = Q_1 \times Q_2$ (produto cartesiano dos conjuntos de estados)
-- $q_0 = (q_{01}, q_{02})$ (par dos estados iniciais)
-- $F = F_1 \times F_2$ (aceita apenas se **ambos** os autômatos aceitam)
-- $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta_2(q_2, a))$ para todo $(q_1, q_2) \in Q$ e $a \in \Sigma$
+**Exemplo Conciso**: Usando os mesmos $M_1$ (começa com 'a') e $M_2$ (número par de 'b's) da seção anterior:
 
-A diferença sutil mas fundamental entre união e interseção:
+- A interseção aceita _strings_ que começam com 'a' **e** têm número par de 'b's
+- Estados finais: $F = \{(s_{\text{aceita}}, t_{\text{par}})\}$
+- Exemplos aceitos: "a", "abb", "ababb"
+- Exemplos rejeitados: "ab" (número ímpar de 'b's), "ba" (não começa com 'a')
 
-**União**: $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$ - aceita se **pelo menos um** autômato aceita.
+##### Exercícios 7 {#exercicios-7}
 
-**Interseção**: $F = F_1 \times F_2$ - aceita apenas se **ambos** os autômatos aceitam.
+**1.** Para os autômatos do Exercício 6.1, construa o conjunto de estados finais para $M_1 \cap M_2$.
 
-Esta construção permite expressar condições complexas através da composição de autômatos simples, implementando naturalmente a conjunção lógica de propriedades.
+**2.** É possível que $L(M_1 \cup M_2) = L(M_1 \cap M_2)$? Em que condição isso ocorreria?
 
-**Exemplo Completo e Detalhado**:
-
-Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{a, b\}$:
-
-**Autômato $M_1$** - Aceita _strings_ que terminam com 'a':
-
-- $Q_1 = \{p_0, p_1\}$
-- $q_{01} = p_0$
-- $F_1 = \{p_1\}$
-- Transições de $M_1$:
-  - $\delta_1(p_0, a) = p_1$
-  - $\delta_1(p_0, b) = p_0$
-  - $\delta_1(p_1, a) = p_1$
-  - $\delta_1(p_1, b) = p_0$
-
-**Autômato $M_2$** - Aceita _strings_ de comprimento par (incluindo $\epsilon$):
-
-- $Q_2 = \{r_0, r_1\}$
-- $q_{02} = r_0$
-- $F_2 = \{r_0\}$
-- Transições de $M_2$:
-  - $\delta_2(r_0, a) = r_1$
-  - $\delta_2(r_0, b) = r_1$
-  - $\delta_2(r_1, a) = r_0$
-  - $\delta_2(r_1, b) = r_0$
-
-**Construção do Autômato Interseção $M$**:
-
-1. **Estados**: $Q = Q_1 \times Q_2 = \{(p_0, r_0), (p_0, r_1), (p_1, r_0), (p_1, r_1)\}$
-
-2. **Estado Inicial**: $q_0 = (p_0, r_0)$
-
-3. **Estados de Aceitação**: 
-   - $F = F_1 \times F_2 = \{p_1\} \times \{r_0\} = \{(p_1, r_0)\}$
-
-4. **Função de Transição $\delta$**:
-
-| Estado | a | b |
-|--------|---|---|
-| $\rightarrow (p_0, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
-| $(p_0, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
-| $*(p_1, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
-| $(p_1, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
-
-**Análise do Resultado**: O autômato da interseção aceita _strings_ que **terminam com 'a' E têm comprimento par**. Note que apenas o estado $(p_1, r_0)$ é final, representando a condição onde ambos os critérios são satisfeitos simultaneamente.
-
-**Exemplo Completo e Detalhado em Linguagem Natural: interseção de "Começa com 'a'" com "Número Par de 'b's"**
-
-Vamos construir um exemplo com mais carinho e linguagem natural, português, para que a atenta leitora tenha oportunidade de sanar suas dúvidas e melhorar o entendimento da construção de interseção.
-
-**Autômato $M_1$**: Aceita _strings_ que começam com 'a'. A linguagem formal é:
-
-$$ L_1 = \{ w \in \{a, b\}^* \mid w = a \cdot x \text{ para algum } x \in \{a, b\}^* \} $$
-
-- **Estados**: $Q_1 = \{s_0, s_1, s_2\}$ onde:
-  - $s_0$: estado inicial (ainda não leu nada)
-  - $s_1$: leu 'a' como primeiro símbolo (aceita)
-  - $s_2$: leu 'b' como primeiro símbolo (rejeita)
-- **Estado inicial**: $s_0$
-- **Estados finais**: $F_1 = \{s_1\}$
-- **Transições**:
-  - $\delta_1(s_0, a) = s_1$, $\delta_1(s_0, b) = s_2$
-  - $\delta_1(s_1, a) = s_1$, $\delta_1(s_1, b) = s_1$
-  - $\delta_1(s_2, a) = s_2$, $\delta_1(s_2, b) = s_2$
-
-**Autômato $M_2$**: Aceita _strings_ com número par de 'b's. A linguagem formal é:
-
-$$ L_2 = \{ w \in \{a, b\}^* \mid \#_b(w) \equiv 0 \pmod{2} \} $$
-
-onde $\#_b(w)$ denota o número de 'b's na _string_ $w$.
-
-- **Estados**: $Q_2 = \{t_{par}, t_{ímpar}\}$ onde:
-  - $t_{par}$: número par de 'b's (incluindo zero)
-  - $t_{ímpar}$: número ímpar de 'b's
-- **Estado inicial**: $t_{par}$
-- **Estados finais**: $F_2 = \{t_{par}\}$
-- **Transições**:
-  - $\delta_2(t_{par}, a) = t_{par}$, $\delta_2(t_{par}, b) = t_{ímpar}$
-  - $\delta_2(t_{ímpar}, a) = t_{ímpar}$, $\delta_2(t_{ímpar}, b) = t_{par}$
-
-**Construção do Autômato Interseção**:
-
-**Passo 1: Estados**: $Q = Q_1 \times Q_2 = \{(s_0, t_{par}), (s_0, t_{ímpar}), (s_1, t_{par}), (s_1, t_{ímpar}), (s_2, t_{par}), (s_2, t_{ímpar})\}$
-
-**Passo 2: Estado inicial**: $q_0 = (s_0, t_{par})$
-
-**Passo 3: Estados finais**: Para a interseção, um estado é final apenas se **ambos** os componentes estão em estados finais:
-- $F = F_1 \times F_2 = \{s_1\} \times \{t_{par}\} = \{(s_1, t_{par})\}$
-
-**Passo 4: Tabela de Transições**:
-
-| Estado | a | b |
-|--------|---|---|
-| $\rightarrow (s_0, t_{par})$ | $(s_1, t_{par})$ | $(s_2, t_{ímpar})$ |
-| $(s_0, t_{ímpar})$ | $(s_1, t_{ímpar})$ | $(s_2, t_{par})$ |
-| $*(s_1, t_{par})$ | $(s_1, t_{par})$ | $(s_1, t_{ímpar})$ |
-| $(s_1, t_{ímpar})$ | $(s_1, t_{ímpar})$ | $(s_1, t_{par})$ |
-| $(s_2, t_{par})$ | $(s_2, t_{par})$ | $(s_2, t_{ímpar})$ |
-| $(s_2, t_{ímpar})$ | $(s_2, t_{ímpar})$ | $(s_2, t_{par})$ |
-
-**Passo 5: Verificação**: Vamos testar algumas _strings_:
-
-**String "aa"** (começa com 'a' e tem zero 'b's - par):
-- $(s_0, t_{par}) \xrightarrow{a} (s_1, t_{par}) \xrightarrow{a} (s_1, t_{par})$ ✓ **ACEITA**
-- $M_1$ aceita (começa com 'a') ✓
-- $M_2$ aceita (zero 'b's = par) ✓
-- Interseção aceita (ambos aceitam) ✓
-
-**String "ab"** (começa com 'a' mas tem um 'b' - ímpar):
-- $(s_0, t_{par}) \xrightarrow{a} (s_1, t_{par}) \xrightarrow{b} (s_1, t_{ímpar})$ ✗ **REJEITA**
-- $M_1$ aceita (começa com 'a') ✓
-- $M_2$ rejeita (um 'b' = ímpar) ✗
-- Interseção rejeita (nem todos aceitam) ✗
-
-**String "abb"** (começa com 'a' e tem dois 'b's - par):
-- $(s_0, t_{par}) \xrightarrow{a} (s_1, t_{par}) \xrightarrow{b} (s_1, t_{ímpar}) \xrightarrow{b} (s_1, t_{par})$ ✓ **ACEITA**
-
-O autômato da interseção aceita apenas _strings_ que **começam com 'a' E têm número par de 'b's**.
+**3.** Se $F_1 = Q_1$ (todos os estados de $M_1$ são finais), o que podemos afirmar sobre $L(M_1 \cap M_2)$ em relação a $L(M_2)$?
 
 #### Fechamento sob Complemento
 
-**Teorema (Fechamento sob Complemento)**: Seja $M$ um Autômato Finito Determinístico que reconhece a linguagem $L$. Então existe um Autômato Finito Determinístico $M'$ que reconhece $\overline{L} = \Sigma^* - L$ (o complemento de $L$).
+**Teorema (Fechamento sob Complemento)**: Seja $M$ um Autômato Finito Determinístico que reconhece a linguagem $L$. Então existe um Autômato Finito Determinístico $M'$ que reconhece $\overline{L} = \Sigma^* - L$.
 
-**Construção Elegante do Complemento**: A construção do complemento é notavelmente simples para Autômatos Finitos Determinísticos, consistindo apenas na inversão dos estados finais.
+A construção do complemento é surpreendentemente elegante em sua simplicidade. Para a atenta leitora que acompanhou as construções anteriores, esta parecerá quase trivial: simplesmente invertemos quais estados são finais.
 
-Dado $M = (Q, \Sigma, \delta, q_0, F)$, construímos $M' = (Q, \Sigma, \delta, q_0, F')$ onde:
+**Construção Formal**: Dado $M = (Q, \Sigma, \delta, q_0, F)$, construímos:
 
-- $F' = Q - F$ (os estados finais tornam-se não-finais e vice-versa)
+$$M' = (Q, \Sigma, \delta, q_0, Q - F)$$
 
-**Intuição**: Como um Autômato Finito Determinístico completo sempre termina em algum estado para qualquer _string_ de entrada, inverter os estados finais garantirá que todas as _strings_ anteriormente aceitas sejam rejeitadas e todas as anteriormente rejeitadas sejam aceitas.
+**Condição Crítica**: Esta construção requer que o autômato seja **completo**. Se não for, devemos primeiro adicionar um estado de erro $q_{\text{erro}}$ com:
 
-**Condição Crítica - Completude**: Esta construção só funciona para Autômatos Finitos Determinísticos **completos**, onde $\delta(q, a)$ está definida para todo $q \in Q$ e $a \in \Sigma$. Para autômatos incompletos, primeiro devemos torná-los completos.
+$$\forall a \in \Sigma: \delta(q_{\text{erro}}, a) = q_{\text{erro}}$$
 
-**Processo de Completar um Autômato**:
+**Exemplo Ilustrativo**: Complemento de "strings com número par de 'a's"
 
-1. Adicionar um **estado de erro** (ou **estado sumidouro**) $q_{\text{erro}}$
-2. Para toda transição indefinida $\delta(q, a)$, definir $\delta(q, a) = q_{\text{erro}}$
-3. Definir $\delta(q_{\text{erro}}, a) = q_{\text{erro}}$ para todo $a \in \Sigma$
-4. Garantir que $q_{\text{erro}} \notin F$ (o estado de erro não é final)
-
-**Exemplo Completo: Complemento de "Número Par de 'a's"**
-
-**Autômato $M$**: Aceita _strings_ com número par de 'a's. A linguagem é:
-
-$$ L = \{ w \in \{a, b\}^* \mid \#_a(w) \equiv 0 \pmod{2} \} $$
-
-- **Estados**: $Q = \{q_{par}, q_{ímpar}\}$
-- **Estado inicial**: $q_{par}$
-- **Estados finais**: $F = \{q_{par}\}$
-- **Transições**:
-  - $\delta(q_{par}, a) = q_{ímpar}$, $\delta(q_{par}, b) = q_{par}$
-  - $\delta(q_{ímpar}, a) = q_{par}$, $\delta(q_{ímpar}, b) = q_{ímpar}$
-
-**Tabela de Transições do Autômato Original**:
+Autômato original $M$:
 
 | Estado | a | b |
 |--------|---|---|
-| $\rightarrow *q_{par}$ | $q_{ímpar}$ | $q_{par}$ |
-| $q_{ímpar}$ | $q_{par}$ | $q_{ímpar}$ |
+| $\rightarrow *q_{\text{par}}$ | $q_{\text{ímpar}}$ | $q_{\text{par}}$ |
+| $q_{\text{ímpar}}$ | $q_{\text{par}}$ | $q_{\text{ímpar}}$ |
 
-**Construção do Complemento $M'$**: Simplesmente invertemos os estados finais:
+: Autômato que aceita número par de 'a's {#tbl-complemento-original}
 
-- $F' = Q - F = \{q_{par}, q_{ímpar}\} - \{q_{par}\} = \{q_{ímpar}\}$
-
-**Tabela de Transições do Autômato Complemento**:
+Autômato complemento $\overline{M}$:
 
 | Estado | a | b |
 |--------|---|---|
-| $\rightarrow q_{par}$ | $q_{ímpar}$ | $q_{par}$ |
-| $*q_{ímpar}$ | $q_{par}$ | $q_{ímpar}$ |
+| $\rightarrow q_{\text{par}}$ | $q_{\text{ímpar}}$ | $q_{\text{par}}$ |
+| $*q_{\text{ímpar}}$ | $q_{\text{par}}$ | $q_{\text{ímpar}}$ |
 
-**Verificação**: O complemento $M'$ aceita _strings_ com número **ímpar** de 'a's:
+: Autômato que aceita número ímpar de 'a's {#tbl-complemento-resultado}
 
-- **String "a"**: $q_{par} \xrightarrow{a} q_{ímpar}$ ✓ (aceita - um 'a' é ímpar)
-- **String "aa"**: $q_{par} \xrightarrow{a} q_{ímpar} \xrightarrow{a} q_{par}$ ✗ (rejeita - dois 'a's é par)
-- **String "aba"**: $q_{par} \xrightarrow{a} q_{ímpar} \xrightarrow{b} q_{ímpar} \xrightarrow{a} q_{par}$ ✗ (rejeita - dois 'a's é par)
-- **String "bab"**: $q_{par} \xrightarrow{b} q_{par} \xrightarrow{a} q_{ímpar} \xrightarrow{b} q_{ímpar}$ ✓ (aceita - um 'a' é ímpar)
+A perspicaz leitora observará que apenas trocamos os estados finais: $F' = \{q_{\text{ímpar}}\}$.
 
-**Exemplo com Completude: Complemento de "Termina com 'ab'"**
+**Propriedades Algébricas**: O fechamento sob complemento, combinado com união e interseção, estabelece que as linguagens regulares formam uma **álgebra booleana**:
 
-**Autômato $M$ Incompleto**: Aceita _strings_ que terminam com "ab":
+1. **Leis de De Morgan**: $\overline{L_1 \cup L_2} = \overline{L_1} \cap \overline{L_2}$
+2. **Dupla Negação**: $\overline{\overline{L}} = L$
+3. **Diferença**: $L_1 - L_2 = L_1 \cap \overline{L_2}$
 
-- **Estados**: $Q = \{q_0, q_1, q_2\}$ onde:
-  - $q_0$: estado inicial
-  - $q_1$: último símbolo foi 'a'
-  - $q_2$: últimos dois símbolos foram "ab" (aceita)
-- **Estado inicial**: $q_0$
-- **Estados finais**: $F = \{q_2\}$
-- **Transições** (incompletas):
-  - $\delta(q_0, a) = q_1$, $\delta(q_0, b) = q_0$
-  - $\delta(q_1, a) = q_1$, $\delta(q_1, b) = q_2$
-  - $\delta(q_2, a) = q_1$ (observação: $\delta(q_2, b)$ não está definida!)
+##### Exercícios 8 {#exercicios-8}
 
-**Passo 1: Completar o Autômato**
+**1.** Considere o AFD $M$ com $Q = \{q_0, q_1\}$, $F = \{q_0\}$, $\delta(q_0, a) = q_1$, $\delta(q_0, b) = q_0$, $\delta(q_1, a) = q_0$, $\delta(q_1, b) = q_1$. Construa a tabela de transições de $\overline{M}$.
 
-Adicionamos um estado de erro $q_{\text{erro}}$ e completamos as transições:
+**2.** Por que a completude é essencial para a construção do complemento? Dê um exemplo onde a construção falharia sem completude.
 
-- **Estados**: $Q' = \{q_0, q_1, q_2, q_{\text{erro}}\}$
-- **Transições completadas**:
-  - $\delta(q_2, b) = q_{\text{erro}}$ (transição faltante)
-  - $\delta(q_{\text{erro}}, a) = q_{\text{erro}}$, $\delta(q_{\text{erro}}, b) = q_{\text{erro}}$ (auto-loops no erro)
+**3.** Prove usando as propriedades de fechamento que se $L_1$ e $L_2$ são regulares, então $L_1 - L_2$ também é regular.
 
-**Tabela de Transições Completa**:
+**4.** Se $L$ é regular e $\overline{L} = \emptyset$, o que podemos concluir sobre $L$?
 
-| Estado | a | b |
-|--------|---|---|
-| $\rightarrow q_0$ | $q_1$ | $q_0$ |
-| $q_1$ | $q_1$ | $q_2$ |
-| $*q_2$ | $q_1$ | $q_{\text{erro}}$ |
-| $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+**5.** Usando as leis de De Morgan, expresse $\overline{L_1 \cap L_2 \cap L_3}$ em termos de uniões e complementos individuais.
 
-**Passo 2: Construir o Complemento**
+### Implicações Práticas das Propriedades de Fechamento
 
-$F' = Q' - F = \{q_0, q_1, q_2, q_{\text{erro}}\} - \{q_2\} = \{q_0, q_1, q_{\text{erro}}\}$
+As propriedades de fechamento que a dedicada leitora acaba de estudar não são meras curiosidades matemáticas. Elas fundamentam técnicas essenciais na construção de compiladores e processadores de texto:
 
-**Tabela do Complemento**:
+1. **Composição Modular**: Permite construir reconhecedores complexos a partir de componentes simples e bem testados.
 
-| Estado | a | b |
-|--------|---|---|
-| $\rightarrow *q_0$ | $q_1$ | $q_0$ |
-| $*q_1$ | $q_1$ | $q_2$ |
-| $q_2$ | $q_1$ | $q_{\text{erro}}$ |
-| $*q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
+2. **Otimização de Consultas**: Em sistemas de busca, a interseção permite refinar resultados, enquanto a união expande o escopo.
 
-**Verificação**:
+3. **Análise Léxica Incremental**: Novos padrões podem ser adicionados a um analisador existente através de união, sem reconstruir todo o autômato.
 
-- **String "ab"**: $q_0 \xrightarrow{a} q_1 \xrightarrow{b} q_2$ ✗ (original aceita, complemento rejeita)
-- **String "ba"**: $q_0 \xrightarrow{b} q_0 \xrightarrow{a} q_1$ ✓ (original rejeita, complemento aceita)
-- **String "abb"**: $q_0 \xrightarrow{a} q_1 \xrightarrow{b} q_2 \xrightarrow{b} q_{\text{erro}}$ ✓ (original rejeita, complemento aceita)
+4. **Verificação de Propriedades**: Para verificar se dois autômatos são equivalentes, basta testar se $(L_1 - L_2) \cup (L_2 - L_1) = \emptyset$.
 
-O complemento aceita todas as _strings_ que **não terminam com "ab"**.
-
-**Propriedades Importantes do Fechamento sob Complemento**:
-
-1. **Dupla Negação**: $\overline{\overline{L}} = L$ - o complemento do complemento é a linguagem original
-2. **Leis de De Morgan**: $\overline{L_1 \cup L_2} = \overline{L_1} \cap \overline{L_2}$ e $\overline{L_1 \cap L_2} = \overline{L_1} \cup \overline{L_2}$
-3. **Universalidade**: O complemento de $\emptyset$ é $\Sigma^*$ e vice-versa
-
-Estes teoremas de fechamento (união, interseção e complemento) demonstram que a classe das linguagens regulares forma uma álgebra booleana completa, permitindo a construção de linguagens complexas através da composição sistemática de linguagens mais simples.
-
-#### Exercícios 7 {#exercicio-7}
-
-**1.** Usando os mesmos autômatos $M_1$ (par de 'a's) e $M_2$ (termina com 'b') do exercício 6.1, construa a tabela de transições para o autômato que reconhece L($M_1$)capL($M_2$).
-
-**2.** Qual é o conjunto de estados de aceitação para o autômato de interseção do exercício 1?
-
-**3.** Considere o Autômato Finito Determinístico $M$ que aceita strings sobre $\Sigma= \{a,b\}$ que contêm pelo menos um 'a'.  
-M =(\{q_0, q_1\},\{a,b\},\delta,\{q_0,q_1\})$ com $\delta(q_0,a) = q_1$, $\delta(q_0,b) =q_0$, $\delta(q_1,a) =q_1$, $\delta(q_1,b)=q_1$.  
-Construa o autômato M′ que reconhece a linguagem complemento overlineL(M). Qual linguagem M′ reconhece?
-
-**4.** Para construir o complemento de um Autômato Finito Determinístico, o texto afirma que ele deve ser **completo**. Por que essa condição é necessária? O que poderia dar errado se aplicássemos a troca de estados finais em um autômato incompleto?
-
-**5.** Se L é uma linguagem regular, o teorema do fechamento sob complemento garante que overlineL também é regular. A linguagem \Sigma\\\*−(overlineL) também é regular? Justifique.
-
-### Minimização de Estados
+A compreensão profunda destas propriedades capacita a engenheira a fazer escolhas arquiteturais informadas, sabendo que a modularidade não compromete a eficiência ou a correção do sistema final.### Minimização de Estados
 
 Um dos resultados mais importantes e práticos da teoria dos Autômatos Finitos Determinísticos é que toda linguagem regular possui um **único Autômato Finito Determinístico mínimo** (a menos de renomeação de estados). Este resultado não apenas tem valor teórico, mas permite otimizações significativas em implementações práticas.
 
