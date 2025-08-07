@@ -28,9 +28,9 @@ Estas restrições garantem a consistência do modelo: o estado inicial deve nec
 
 ### Exercícios 1
 
-**1.** Dado o Autômato Finito Determinístico $M=(s_0,s_1,s_2,s_3,a,b,\delta,s_0,s_0,s_3)$, identifique cada um dos cinco componentes da tupla com sua respectiva descrição.
+**1.** Dado o Autômato Finito Determinístico $M =(\{s_0,s_1,s_2,s_3\},\{a,b\},\delta,s_0,\{s_0,s_3\})$, identifique cada um dos cinco componentes da tupla com sua respectiva descrição.
 
-**2.** Um modelo foi definido como $M=(Q,\Sigma,\delta,q_0,F)$ onde $Q=\{q_0,q_1\}$, $\Sigma=\{0,1\}$, $q_0=q_0$, e $F=\{q_2\}$. Este modelo representa um Autômato Finito Determinístico válido? Justifique sua resposta com base nas restrições formais.
+**2.** Um modelo foi definido como $M =(Q,\Sigma,\delta,q_0,F)$ onde $Q=\{q_0,q_1\}$, $\Sigma=\{0,1\}$, $q_0=q_0$, e $F=\{q_2\}$. Este modelo representa um Autômato Finito Determinístico válido? Justifique sua resposta com base nas restrições formais.
 
 **3.** Se um Autômato Finito Determinístico possui $\mid Q \mid=3$ estados e um alfabeto com $\mid \Sigma \mid=4$ símbolos, qual é o número exato de pares no domínio da função de transição $\delta$?
 
@@ -54,7 +54,7 @@ Na prática, muitos autômatos possuem combinações de estado e símbolo que qu
 Para tratar esses casos e manter a função de transição total, introduz-se um **estado de erro**, também conhecido como _estado poço_ ou _sumidouro_. Este é um estado especial não-final do qual não há escapatória: toda transição a partir do estado de erro aponta para ele mesmo.
 
 $$
-\forall a \in \Sigma, \quad \delta(q_{erro}, a) = q_{erro}
+\forall a \in \Sigma, \quad \delta(q_{\text{erro}}, a) = q_{\text{erro}}
 $$
 
 Dessa forma, qualquer sequência de entrada que desvie do padrão desejado é permanentemente capturada pelo estado de erro, garantindo que a _string_ seja rejeitada. Por uma questão de clareza visual, muitos diagramas de transição omitem o estado de erro e as setas que levam a ele, mas é importante saber que, para um autômato ser formalmente completo, essas transições implícitas devem existir.
@@ -149,9 +149,9 @@ Esta especificação formal define completamente o comportamento do autômato, i
 
 | Estado | 0 | 1 |
 | :---- | :---- | :---- |
-| rightarrowq\_A | q\_B | q\_A |
-| q\_B | q\_B | q\_C |
-| \\\*q\_C | q\_B | q\_A |
+| \rightarrow q_A | q_B | q_A |
+| q_B | q_B | q_C |
+| *q_C | q_B | q_A |
 
 **2.** Para o diagrama de transições abaixo, que reconhece *strings* em a,b com um número par de 'a's e um número par de 'b's, forneça a especificação formal completa (a 5-tupla).
 
@@ -427,7 +427,7 @@ Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{
 | $*(p_1, r_0)$ | $(p_1, r_1)$ | $(p_0, r_1)$ |
 | $*(p_1, r_1)$ | $(p_1, r_0)$ | $(p_0, r_0)$ |
 
-A @fig-uniao1 apresenta os diagramas de transição dos autômatos $M_1$, $M_2$ e o autômato resultante $M= M_1 \cup M_2$:
+A @fig-uniao1 apresenta os diagramas de transição dos autômatos $M_1$, $M_2$ e o autômato resultante $M = M_1 \cup M_2$:
 
 ::: {#fig-uniao1}
 ![](/images/uniao1.webp) {#fig-uniao1}  
@@ -691,13 +691,13 @@ Neste último exemplo, podemos observar que o estado $(p_1, r_1)$ é inalcançá
 
 ##### Exercícios 6 {#exercicio-6}
 
-**1.** Considere dois Autômatos Finitos Determinísticos sobre \Sigma=a,b: $M_1$ aceita *strings* com número par de 'a's. $M_2$ aceita *strings* que terminam com 'b'. Usando a construção do produto, construa a tabela de transições do autômato M=$M_1$cup$M_2$.
+**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma = a, b$: $M_1$ aceita *strings* com número par de 'a's. $M_2$ aceita *strings* que terminam com 'b'. Usando a construção do produto, construa a tabela de transições do autômato $M =M_1 \cup M_2$.
 
-**2.** No autômato produto M do exercício anterior, quais são o estado inicial e o conjunto de estados de aceitação?
+**2.** No autômato produto $M$ do exercício anterior, quais são o estado inicial e o conjunto de estados de aceitação?
 
-**3.** Se ∣q_1∣=3 e ∣q_2∣=4, quantos estados o autômato produto M=$M_1$cup$M_2$ terá?
+**3.** Se $\mid q_1 \mid=3$ e $\mid q_2 \mid=4$, quantos estados o autômato produto $M = M_1 \cup M_2$ terá?
 
-**4.** Usando a construção do produto, o que aconteceria se tentássemos unir um autômato consigo mesmo ($M_1$cup$M_1$)? O autômato resultante seria diferente do original?
+**4.** Usando a construção do produto, o que aconteceria se tentássemos unir um autômato consigo mesmo ($M_1 \cup M_1$)? O autômato resultante seria diferente do original?
 
 **5.** A construção do produto para a união sempre resulta em um Autômato Finito Determinístico completo se os autômatos originais $M_1$ e $M_2$ forem completos? Justifique
 
@@ -773,9 +773,9 @@ Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{
 
 **Análise do Resultado**: O autômato da interseção aceita _strings_ que **terminam com 'a' E têm comprimento par**. Note que apenas o estado $(p_1, r_0)$ é final, representando a condição onde ambos os critérios são satisfeitos simultaneamente.
 
-**Exemplo Adicional: Interseção de "Começa com 'a'" com "Número Par de 'b's"**
+**Exemplo Completo e Detalhado em Linguagem Natural: interseção de "Começa com 'a'" com "Número Par de 'b's"**
 
-Vamos construir um exemplo mais elaborado para solidificar o entendimento da construção de interseção.
+Vamos construir um exemplo com mais carinho e linguagem natural, português, para que a atenta leitora tenha oportunidade de sanar suas dúvidas e melhorar o entendimento da construção de interseção.
 
 **Autômato $M_1$**: Aceita _strings_ que começam com 'a'. A linguagem formal é:
 
@@ -862,10 +862,10 @@ Dado $M = (Q, \Sigma, \delta, q_0, F)$, construímos $M' = (Q, \Sigma, \delta, q
 
 **Processo de Completar um Autômato**:
 
-1. Adicionar um **estado de erro** (ou **estado sumidouro**) $q_{erro}$
-2. Para toda transição indefinida $\delta(q, a)$, definir $\delta(q, a) = q_{erro}$
-3. Definir $\delta(q_{erro}, a) = q_{erro}$ para todo $a \in \Sigma$
-4. Garantir que $q_{erro} \notin F$ (o estado de erro não é final)
+1. Adicionar um **estado de erro** (ou **estado sumidouro**) $q_{\text{erro}}$
+2. Para toda transição indefinida $\delta(q, a)$, definir $\delta(q, a) = q_{\text{erro}}$
+3. Definir $\delta(q_{\text{erro}}, a) = q_{\text{erro}}$ para todo $a \in \Sigma$
+4. Garantir que $q_{\text{erro}} \notin F$ (o estado de erro não é final)
 
 **Exemplo Completo: Complemento de "Número Par de 'a's"**
 
@@ -922,12 +922,12 @@ $$ L = \{ w \in \{a, b\}^* \mid \#_a(w) \equiv 0 \pmod{2} \} $$
 
 **Passo 1: Completar o Autômato**
 
-Adicionamos um estado de erro $q_{erro}$ e completamos as transições:
+Adicionamos um estado de erro $q_{\text{erro}}$ e completamos as transições:
 
-- **Estados**: $Q' = \{q_0, q_1, q_2, q_{erro}\}$
+- **Estados**: $Q' = \{q_0, q_1, q_2, q_{\text{erro}}\}$
 - **Transições completadas**:
-  - $\delta(q_2, b) = q_{erro}$ (transição faltante)
-  - $\delta(q_{erro}, a) = q_{erro}$, $\delta(q_{erro}, b) = q_{erro}$ (auto-loops no erro)
+  - $\delta(q_2, b) = q_{\text{erro}}$ (transição faltante)
+  - $\delta(q_{\text{erro}}, a) = q_{\text{erro}}$, $\delta(q_{\text{erro}}, b) = q_{\text{erro}}$ (auto-loops no erro)
 
 **Tabela de Transições Completa**:
 
@@ -935,12 +935,12 @@ Adicionamos um estado de erro $q_{erro}$ e completamos as transições:
 |--------|---|---|
 | $\rightarrow q_0$ | $q_1$ | $q_0$ |
 | $q_1$ | $q_1$ | $q_2$ |
-| $*q_2$ | $q_1$ | $q_{erro}$ |
-| $q_{erro}$ | $q_{erro}$ | $q_{erro}$ |
+| $*q_2$ | $q_1$ | $q_{\text{erro}}$ |
+| $q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 
 **Passo 2: Construir o Complemento**
 
-$F' = Q' - F = \{q_0, q_1, q_2, q_{erro}\} - \{q_2\} = \{q_0, q_1, q_{erro}\}$
+$F' = Q' - F = \{q_0, q_1, q_2, q_{\text{erro}}\} - \{q_2\} = \{q_0, q_1, q_{\text{erro}}\}$
 
 **Tabela do Complemento**:
 
@@ -948,14 +948,14 @@ $F' = Q' - F = \{q_0, q_1, q_2, q_{erro}\} - \{q_2\} = \{q_0, q_1, q_{erro}\}$
 |--------|---|---|
 | $\rightarrow *q_0$ | $q_1$ | $q_0$ |
 | $*q_1$ | $q_1$ | $q_2$ |
-| $q_2$ | $q_1$ | $q_{erro}$ |
-| $*q_{erro}$ | $q_{erro}$ | $q_{erro}$ |
+| $q_2$ | $q_1$ | $q_{\text{erro}}$ |
+| $*q_{\text{erro}}$ | $q_{\text{erro}}$ | $q_{\text{erro}}$ |
 
 **Verificação**:
 
 - **String "ab"**: $q_0 \xrightarrow{a} q_1 \xrightarrow{b} q_2$ ✗ (original aceita, complemento rejeita)
 - **String "ba"**: $q_0 \xrightarrow{b} q_0 \xrightarrow{a} q_1$ ✓ (original rejeita, complemento aceita)
-- **String "abb"**: $q_0 \xrightarrow{a} q_1 \xrightarrow{b} q_2 \xrightarrow{b} q_{erro}$ ✓ (original rejeita, complemento aceita)
+- **String "abb"**: $q_0 \xrightarrow{a} q_1 \xrightarrow{b} q_2 \xrightarrow{b} q_{\text{erro}}$ ✓ (original rejeita, complemento aceita)
 
 O complemento aceita todas as _strings_ que **não terminam com "ab"**.
 
@@ -966,15 +966,16 @@ O complemento aceita todas as _strings_ que **não terminam com "ab"**.
 3. **Universalidade**: O complemento de $\emptyset$ é $\Sigma^*$ e vice-versa
 
 Estes teoremas de fechamento (união, interseção e complemento) demonstram que a classe das linguagens regulares forma uma álgebra booleana completa, permitindo a construção de linguagens complexas através da composição sistemática de linguagens mais simples.
+
 #### Exercícios 7 {#exercicio-7}
 
 **1.** Usando os mesmos autômatos $M_1$ (par de 'a's) e $M_2$ (termina com 'b') do exercício 6.1, construa a tabela de transições para o autômato que reconhece L($M_1$)capL($M_2$).
 
-**2.** Qual é o conjunto de estados de aceitação para o autômato de interseção do exercício 7.1?
+**2.** Qual é o conjunto de estados de aceitação para o autômato de interseção do exercício 1?
 
-**3.** Considere o Autômato Finito Determinístico M que aceita strings sobre \Sigma=a,b que contêm pelo menos um 'a'.  
-M=(q_0,q_1,a,b,\delta,q_0,q_1) com \delta(q_0,a)=q_1, \delta(q_0,b)=q_0, \delta(q_1,a)=q_1, \delta(q_1,b)=q_1.  
-Construa o autômato M′ que reconhece a linguagem complemento overlineL(M). Qual linguagem M′ reconhece?  
+**3.** Considere o Autômato Finito Determinístico $M$ que aceita strings sobre $\Sigma= \{a,b\}$ que contêm pelo menos um 'a'.  
+M =(\{q_0, q_1\},\{a,b\},\delta,\{q_0,q_1\})$ com $\delta(q_0,a) = q_1$, $\delta(q_0,b) =q_0$, $\delta(q_1,a) =q_1$, $\delta(q_1,b)=q_1$.  
+Construa o autômato M′ que reconhece a linguagem complemento overlineL(M). Qual linguagem M′ reconhece?
 
 **4.** Para construir o complemento de um Autômato Finito Determinístico, o texto afirma que ele deve ser **completo**. Por que essa condição é necessária? O que poderia dar errado se aplicássemos a troca de estados finais em um autômato incompleto?
 
