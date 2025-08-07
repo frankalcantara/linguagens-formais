@@ -19,7 +19,7 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.5114407"
-     inkscape:cx="342.05774"
+     inkscape:cx="418.14408"
      inkscape:cy="264.31734"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
@@ -35,7 +35,10 @@
      font-size="20px"
      font-weight="bold"
      text-anchor="middle"
-     id="text1">Construção da União de Autômatos Finitos Determinísticos</text>
+     id="text1"
+     inkscape:export-filename="..\images\AFD-uniao.webp"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96">Construção da União de Autômatos Finitos Determinísticos</text>
   <!-- M1: Aceita strings que terminam com 'a' -->
   <text
      x="206.89935"
