@@ -367,15 +367,15 @@ A intuição por trás da construção da união é elegante: executamos ambos o
 
 **Construção Formal do Produto**: Dados:
 
-- $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$
-- $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$
+- $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$;
+- $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$.
 
 Construímos $M = (Q, \Sigma, \delta, q_0, F)$ onde:
 
-- $Q = Q_1 \times Q_2$ (produto cartesiano dos conjuntos de estados)
-- $q_0 = (q_{01}, q_{02})$ (par dos estados iniciais)
-- $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$ (aceita se pelo menos um dos autômatos aceita)
-- $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta_2(q_2, a))$ para todo $(q_1, q_2) \in Q$ e $a \in \Sigma$
+- $Q = Q_1 \times Q_2$ (produto cartesiano dos conjuntos de estados);
+- $q_0 = (q_{01}, q_{02})$ (par dos estados iniciais);
+- $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$ (aceita se pelo menos um dos autômatos aceita);
+- $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta_2(q_2, a))$ para todo $(q_1, q_2) \in Q$ e $a \in \Sigma$.
 
 **Exemplo Ilustrativo**: Construção da união de dois autômatos simples
 
