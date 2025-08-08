@@ -1,5 +1,11 @@
 # Autômatos Finitos Determinísticos {#sec-aut-finitos-deterministicos}
 
+::: {.content-hidden when-format="pdf"}
+:::{.callout-tip}
+Está sem tempo? Leia o [Expresso](.\ex\02-expresso.html).
+:::
+:::
+
 Como vimos no capítulo anterior, as **Máquinas de Estados Finitos** formam a base teórica para os analisadores léxicos. Entre os diferentes tipos de máquinas de estados, os **Autômatos Finitos Determinísticos** ocupam uma posição de especial importância na engenharia de compiladores, representando a forma mais eficiente e prática de implementar o reconhecimento de padrões léxicos.
 
 Um Autômato Finito Determinístico é um modelo matemático preciso para representar sistemas que podem estar em um número finito de estados e que respondem a entradas de forma completamente previsível e unívoca. A palavra *determinístico* é fundamental aqui: para cada combinação de estado atual e símbolo de entrada, existe **exatamente uma** transição possível. Esta propriedade elimina qualquer ambiguidade no processo de reconhecimento, tornando os Autômatos Finitos Determinísticos ideais para implementações práticas como os analisadores léxicos.
@@ -326,15 +332,15 @@ Note que os estados $q_>$ e $q_<$ são marcados como estados de aceitação, per
 
 ### Exercícios 5 {#exercicios-5}
 
-**1.** Projete o diagrama de transições de um Autômato Finito Determinístico sobre \Sigma=a,b que aceite todas e somente as *strings* que contêm a substring "aba".
+**1.** Projete o diagrama de transições de um Autômato Finito Determinístico sobre $\Sigma=\{a,b\}$ que aceite todas e somente as _strings_ que contêm a substring `aba`.
 
-**2.** Projete o diagrama de transições de um Autômato Finito Determinístico sobre \Sigma=0,1 que aceite *strings* que representam números binários cujo valor é múltiplo de 3\. (Dica: Mantenha o resto da divisão por 3 como estado. v(w0)=2cdotv(w) e v(w1)=2cdotv(w)+1).
+**2.** Projete o diagrama de transições de um Autômato Finito Determinístico sobre $\Sigma=\{0,1\}$ que aceite _strings_ que representam números binários cujo valor é múltiplo de $3$. (Dica: Mantenha o resto da divisão por $3$ como estado. $v(w0)=2 \cdot v(w)$ e $v(w1)=2 \cdot v(w)+1$).
 
-**3.** Projete a tabela de transições de um Autômato Finito Determinístico que reconhece comentários de uma linha em uma linguagem de programação hipotética. Um comentário começa com // e vai até o final da linha (não nos preocuparemos com o final da linha). O alfabeto é \Sigma=/,c, onde 'c' representa qualquer outro caractere.
+**3.** Projete a tabela de transições de um Autômato Finito Determinístico que reconhece comentários de uma linha em uma linguagem de programação hipotética. Um comentário começa com `//` e vai até o final da linha (não nos preocuparemos com o final da linha). O alfabeto é $\Sigma=\{/,c\}$, onde 'c' representa qualquer outro caractere.
 
-**4.** Desenhe o diagrama de um Autômato Finito Determinístico que aceite *strings* em a,b que tenham comprimento ímpar e terminem com 'a'.
+**4.** Desenhe o diagrama de um Autômato Finito Determinístico que aceite _strings_ em $\Sigma=\{a,b\}$ que tenham comprimento ímpar e terminem com 'a'.
 
-**5.** Projete um Autômato Finito Determinístico que aceite apenas as *strings* cat e car sobre o alfabeto \Sigma=c,a,t,r.
+**5.** Projete um Autômato Finito Determinístico que aceite apenas as _strings_ `cat` e `car` sobre o alfabeto $\Sigma=\{c,a,t,r\}$.
 
 ## Considerações sobre Implementação Prática
 
@@ -346,7 +352,7 @@ Estes três exemplos demonstram alguns aspectos importantes dos Autômatos Finit
 
 3. **Tratamento de Ambiguidades**: O exemplo dos operadores demonstra como resolver conflitos de prefixos através da regra da correspondência mais longa.
 
-A persistente leitora observará que estes padrões são ubíquos na construção de analisadores léxicos em aplicações práticas, formando os blocos que definem o reconhecimento de identificadores, números, palavras-chave e operadores em linguagens de programação reais.
+A atenta leitora observará que estes padrões são ubíquos na construção de analisadores léxicos em aplicações práticas, formando os blocos que definem o reconhecimento de identificadores, números, palavras-chave e operadores em linguagens de programação reais.
 
 ## Propriedades Matemáticas dos Autômatos Finitos Determinísticos
 
@@ -356,7 +362,7 @@ Os Autômatos Finitos Determinísticos não são apenas modelos computacionais e
 
 Uma das características notáveis da classe dos Autômatos Finitos Determinísticos é que ela é **fechada** sob as operações fundamentais da teoria dos conjuntos. Isto significa que, ao combinarmos Autômatos Finitos Determinísticos usando estas operações, o resultado é sempre outro Autômato Finito Determinístico. Esta propriedade tem implicações profundas tanto teóricas quanto práticas, especialmente na construção de analisadores léxicos que precisam reconhecer múltiplos padrões simultaneamente.
 
-Para a perspicaz leitora, considere o seguinte cenário prático: um analisador léxico precisa reconhecer tanto identificadores válidos quanto palavras-chave reservadas. Em vez de construir um único autômato complexo que trate ambos os casos, seria elegante construir dois autômatos simples e depois combiná-los. As propriedades de fechamento garantem que tal composição sempre resulta em outro Autômato Finito Determinístico válido, permitindo uma abordagem modular e sistemática para problemas complexos de reconhecimento.
+Considere o seguinte cenário prático: um analisador léxico precisa reconhecer tanto identificadores válidos quanto palavras-chave reservadas. Em vez de construir um único autômato complexo que trate ambos os casos, seria elegante construir dois autômatos simples e depois combiná-los. As propriedades de fechamento garantem que tal composição sempre resulta em outro Autômato Finito Determinístico válido, permitindo uma abordagem modular e sistemática para problemas complexos de reconhecimento.
 
 #### Fechamento sob União
 
@@ -429,19 +435,165 @@ A @tbl-uniao-exemplo apresenta a tabela de transições completa:
 - $M_1$ rejeita (não começa com 'a'), $M_2$ rejeita (número ímpar de 'b's);
 - União rejeita corretamente.
 
+A matemática é ótima, contudo, a construção da união pode requerer um pouco de prática para ser compreendida completamente. Para treinar, vamos construir a união de dois autômatos simples, ainda sobre o alfabeto $\Sigma = \{a, b\}$, com uma pequena alteração do exemplo anterior, para solidificar o processo algébrico. Considere os autômatos a seguir:
+
+**Autômato $M_1$: Aceita strings que começam com 'a'**: um autômato que reconhece a linguagem $L_1 = \{a, aa, ab, aaa, aab, aba, aaaa, ...\}$. Algebricamente, teremos:
+
+- Estados: $Q_1 = \{s_0, s_1, s_2\}$ nos quais:
+  - $s_0$: estado inicial (ainda não leu nada);
+  - $s_1$: leu 'a' como primeiro símbolo (aceita);
+  - $s_2$: leu 'b' como primeiro símbolo (rejeita).
+- Estado inicial: $s_0$.
+- Estados finais: $F_1 = \{s_1\}$.
+- Transições:
+  - $\delta_1(s_0, a) = s_1$ (primeiro símbolo é 'a' → aceita);
+  - $\delta_1(s_0, b) = s_2$ (primeiro símbolo é 'b' → rejeita);
+  - $\delta_1(s_1, a) = s_1$ (já aceitou, continua aceitando);
+  - $\delta_1(s_1, b) = s_1$ (já aceitou, continua aceitando);
+  - $\delta_1(s_2, a) = s_2$ (já rejeitou, continua rejeitando);
+  - $\delta_1(s_2, b) = s_2$ (já rejeitou, continua rejeitando);
+
+**Autômato $M_2$: Aceita strings com número ímpar de 'b's**: um autômato que reconhece a linguagem $L_2 = \{b, ab, aab, aba, aaab, aababb, ...\}$. Que pode ser especificado como:
+
+- Estados: $Q_2 = \{t_0, t_1\}$ onde:
+  - $t_0$: número par de 'b's (incluindo zero);
+  - $t_1$: número ímpar de 'b's.
+- Estado inicial: $t_0$.
+- Estados finais: $F_2 = \{t_1\}$.
+- Transições:
+  - $\delta_2(t_0, a) = t_0$ ('a' não afeta a contagem de 'b's);
+  - $\delta_2(t_0, b) = t_1$ (de par para ímpar);
+  - $\delta_2(t_1, a) = t_1$ ('a' não afeta a contagem);
+  - $\delta_2(t_1, b) = t_0$ (de ímpar para par).
+
+
+Os autômatos $M_1$ e $M_2$ podem ser vistos, representados como diagramas de transição na @fig-uniao1.
+
+:::{#fig-uniao1}
+![Diagrama de transição do autômato $M_1$ e $M_2$](images/uniao.webp)
+:::
+
+Para construir o autômato união $M = M_1 \cup M_2$, a esforçada leitora deve seguir os seguintes passos:
+
+**1. Passo 1: Criar o conjunto de estados**: o conjunto de estados do autômato união será dado pelo o produto cartesiano $Q = Q_1 \times Q_2$. Enumerando todos os pares possíveis teremos:
+
+- $(s_0, t_0)$: $M_1$ no estado inicial e $M_2$ com número par de 'b's;
+- $(s_0, t_1)$: $M_1$ no estado inicial e $M_2$ com número ímpar de 'b's;
+- $(s_1, t_0)$: $M_1$ aceitando (começou com 'a') e $M_2$ com número par de 'b's;
+- $(s_1, t_1)$: $M_1$ aceitando e $M_2$ com número ímpar de 'b's;
+- $(s_2, t_0)$: $M_1$ rejeitando (começou com 'b') e $M_2$ com número par de 'b's;
+- $(s_2, t_1)$: $M_1$ rejeitando e $M_2$ com número ímpar de 'b's.
+
+**Total**: $6$ estados $(3 \times 2 = 6)$.
+
+**2. Passo 2: Determinar o estado inicial**: o estado inicial é simplesmente o par dos estados iniciais:
+
+- $q_0 = (s_0, t_0)$
+
+**3. Passo 3: Determinar os estados finais**: para a união, um estado é final se **pelo menos um** dos autômatos originais estaria em estado final. Para determinar os estados finais, verificamos quais pares $(s_i, t_j)$ satisfazem a condição de aceitação. Para cada estado perguntamos:"$M_1$ aceita OU $M_2$ aceita?"
+
+- $(s_0, t_0)$: $s_0 \notin F_1$ e $t_0 \notin F_2$ → NÃO é final;
+- $(s_0, t_1)$: $s_0 \notin F_1$ mas $t_1 \in F_2$ → É FINAL; 
+- $(s_1, t_0)$: $s_1 \in F_1$ mas $t_0 \notin F_2$ → É FINAL; 
+- $(s_1, t_1)$: $s_1 \in F_1$ e $t_1 \in F_2$ → É FINAL;
+- $(s_2, t_0)$: $s_2 \notin F_1$ e $t_0 \notin F_2$ → NÃO é final;
+- $(s_2, t_1)$: $s_2 \notin F_1$ mas $t_1 \in F_2$ → É FINAL.
+
+Assim, os Estados finais são: $F = \{(s_0, t_1), (s_1, t_0), (s_1, t_1), (s_2, t_1)\}$
+
+**4. Passo 4: Construir a função de transição**: para cada estado $(s_i, t_j)$ e cada símbolo $x \in \{a, b\}$, calculamos:
+$$\delta((s_i, t_j), x) = (\delta_1(s_i, x), \delta_2(t_j, x))$$
+
+**Transições com 'a':**
+
+- $\delta((s_0, t_0), a) = (\delta_1(s_0, a), \delta_2(t_0, a)) = (s_1, t_0)$;
+- $\delta((s_0, t_1), a) = (\delta_1(s_0, a), \delta_2(t_1, a)) = (s_1, t_1)$;
+- $\delta((s_1, t_0), a) = (\delta_1(s_1, a), \delta_2(t_0, a)) = (s_1, t_0)$;
+- $\delta((s_1, t_1), a) = (\delta_1(s_1, a), \delta_2(t_1, a)) = (s_1, t_1)$;
+- $\delta((s_2, t_0), a) = (\delta_1(s_2, a), \delta_2(t_0, a)) = (s_2, t_0)$;
+- $\delta((s_2, t_1), a) = (\delta_1(s_2, a), \delta_2(t_1, a)) = (s_2, t_1)$.
+
+**Transições com 'b':**
+
+- $\delta((s_0, t_0), b) = (\delta_1(s_0, b), \delta_2(t_0, b)) = (s_2, t_1)$;
+- $\delta((s_0, t_1), b) = (\delta_1(s_0, b), \delta_2(t_1, b)) = (s_2, t_0)$;
+- $\delta((s_1, t_0), b) = (\delta_1(s_1, b), \delta_2(t_0, b)) = (s_1, t_1)$;
+- $\delta((s_1, t_1), b) = (\delta_1(s_1, b), \delta_2(t_1, b)) = (s_1, t_0)$;
+- $\delta((s_2, t_0), b) = (\delta_1(s_2, b), \delta_2(t_0, b)) = (s_2, t_1)$;
+- $\delta((s_2, t_1), b) = (\delta_1(s_2, b), \delta_2(t_1, b)) = (s_2, t_0)$.
+
+**5. Passo 5: Construir a Tabela de Transições da União**: 
+
+| Estado | a | b |
+|--------|---|---|
+| →(s₀,t₀) | (s₁,t₀) | (s₂,t₁) |
+| *(s₀,t₁) | (s₁,t₁) | (s₂,t₀) |
+| *(s₁,t₀) | (s₁,t₀) | (s₁,t₁) |
+| *(s₁,t₁) | (s₁,t₁) | (s₁,t₀) |
+| (s₂,t₀) | (s₂,t₀) | (s₂,t₁) |
+| *(s₂,t₁) | (s₂,t₁) | (s₂,t₀) |
+
+**6. Passo 6: Depuração**: vamos testar algumas strings para verificar que o autômato funciona corretamente:
+
+a. **String `ab`** (começa com 'a' e tem um 'b', número ímpar de 'b's):
+
+  - $(s_0,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{b} (s_1,t_1)$  ACEITA;
+  - $M_1$ aceita (começa com 'a');
+  - $M_2$ aceita (um 'b' = ímpar);
+  - União aceita.
+
+b. **String `b`** (não começa com 'a' mas tem número ímpar de 'b's):
+
+  - $(s_0,t_0) \xrightarrow{b} (s_2,t_1)$  ACEITA;
+  - $M_1$ rejeita (começa com 'b');
+  - $M_2$ aceita (um 'b' = ímpar);
+  - União aceita (pelo menos um aceita).
+
+c. **String `bb`** (não começa com 'a' e tem número par de 'b's):
+
+  - $(s_0,t_0) \xrightarrow{b} (s_2,t_1) \xrightarrow{b} (s_2,t_0)$  REJEITA;
+  - $M_1$ rejeita (começa com 'b');
+  - $M_2$ rejeita (dois 'b's = par);
+  - União rejeita (nenhum aceita).
+
+d. **String `aaa`** (começa com 'a' mas zero 'b's):
+
+  - $(s_0,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{a} (s_1,t_0) \xrightarrow{a} (s_1,t_0)$  ACEITA;
+  - $M_1$ aceita (começa com 'a');
+  - $M_2$ rejeita (zero 'b's = par);
+  - União aceita (pelo menos um aceita).
+
+O autômato resultante da união entre $M_1$ e $M_2$ terá estados que representam todas as combinações possíveis de estados de $M_1$ e $M_2$ e pode ser visto na @fig-uniaoresultado1. 
+
+:::{#fig-uniaoresultado1}
+![](images/uniaoresultado1.webp)
+:::
+
+A atenta leitora deve notar que a construção por produto cartesiano funciona como se estivéssemos executando ambos os autômatos simultaneamente em duas _trilhas_ paralelas. A cada símbolo lido:
+
+1. **Atualizamos ambas as trilhas**: cada componente do par de estados evolui independentemente segundo sua própria função de transição;
+2. **Mantemos a história completa**: o estado $(s_i, t_j)$ nos diz exatamente onde cada autômato original estaria após processar a entrada até aquele ponto;
+3. **Decidimos aceitação com lógica OR**: Para a união, basta que uma das trilhas aceite para o autômato combinado aceitar.
+
+Este algoritmo de construção em seis passos, com um passo específico para depuração, sempre funciona, servindo como evidência de que a classe das linguagens regulares é fechada sob união.
+
 ##### Exercícios 6 {#exercicios-6}
 
-**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma=\{a,b\}$: $M_1$ aceita _strings_ que contêm "aa" e $M_2$ aceita _strings_ de comprimento ímpar. Quantos estados terá o autômato produto $M = M_1 \cup M_2$ se $\mid Q_1 \mid = 3$ e $\mid Q_2 \mid = 2$?
+**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma=\{a,b\}$: $M_1$ aceita _strings_ que contêm `aa` e $M_2$ aceita _strings_ de comprimento ímpar. Quantos estados terá o autômato produto $M = M_1 \cup M_2$ se $\mid Q_1 \mid = 3$ e $\mid Q_2 \mid = 2$?
 
 **2.** No autômato união, um estado $(p, q)$ é de aceitação quando $p \in F_1$ ou $q \in F_2$. Se modificássemos a condição para $p \in F_1$ **e** $q \in F_2$, que operação estaríamos realizando?
 
-**3.** Construa a tabela de transições completa para a união de: $M_1$ que aceita apenas "a" e $M_2$ que aceita apenas "b", sobre $\Sigma = \{a, b\}$.
+**3.** Construa a tabela de transições completa para a união de: $M_1$ que aceita apenas `a` e $M_2$ que aceita apenas `b`, sobre $\Sigma = \{a, b\}$.
+
+**4.** Considere dois autômatos sobre $\Sigma = \{0, 1\}$: $M_1$ aceita strings que terminam em '01' e $M_2$ aceita strings com número par de '1's. Construa a tabela de transições para o autômato união $M_1 \cup M_2$.
+
+**5.** Dados dois autômatos binários $M_1$ e $M_2$ onde $M_1$ aceita strings que começam com '1' (2 estados) e $M_2$ aceita strings de comprimento par (2 estados). Construa o passo a passo completo para determinar o autômato união $M_1 \cup M_2$ sobre $\Sigma = \{0, 1\}$.
 
 #### Fechamento sob Interseção
 
 **Teorema (Fechamento sob Interseção)**: Sejam $M_1$ e $M_2$ dois Autômatos Finitos Determinísticos que reconhecem as linguagens $L_1$ e $L_2$, respectivamente. Então existe um Autômato Finito Determinístico $M$ que reconhece $L_1 \cap L_2$.
 
-A elegante leitora notará que a construção da interseção é notavelmente similar à da união. A diferença crucial reside apenas na definição dos estados finais: enquanto a união implementa uma lógica "ou", a interseção implementa uma lógica "e".
+A elegante leitora notará que a construção da interseção é notavelmente similar à da união. A diferença crucial reside apenas na definição dos estados finais: enquanto a união implementa uma lógica **OU**, a interseção implementa uma lógica **E**.
 
 **Construção Formal**: Utilizamos a mesma estrutura de produto cartesiano, mas com:
 
@@ -449,20 +601,98 @@ $$F = F_1 \times F_2$$
 
 Ou seja, um estado $(q_1, q_2)$ é final se, e somente se, **ambos** $q_1 \in F_1$ **e** $q_2 \in F_2$.
 
-**Exemplo Conciso**: Usando os mesmos $M_1$ (começa com 'a') e $M_2$ (número par de 'b's) da seção anterior:
+Vamos construir um exemplo mais elaborado para solidificar o entendimento da construção de interseção. Considere os autômatos $M_1$ e $M_2$ descritos a seguir:
 
-- A interseção aceita _strings_ que começam com 'a' **e** têm número par de 'b's
-- Estados finais: $F = \{(s_{\text{aceita}}, t_{\text{par}})\}$
-- Exemplos aceitos: "a", "abb", "ababb"
-- Exemplos rejeitados: "ab" (número ímpar de 'b's), "ba" (não começa com 'a')
+**Autômato $M_1$**: aceita _strings_ que começam com 'a'. A linguagem formal é:
+
+$$ L_1 = \{ w \in \{a, b\}^* \mid w = a \cdot x \text{ para algum } x \in \{a, b\}^* \} $$
+
+- **Estados**: $Q_1 = \{s_0, s_1, s_2\}$ onde:
+  - $s_0$: estado inicial (ainda não leu nada)
+  - $s_1$: leu 'a' como primeiro símbolo (aceita)
+  - $s_2$: leu 'b' como primeiro símbolo (rejeita)
+- **Estado inicial**: $s_0$
+- **Estados finais**: $F_1 = \{s_1\}$
+- **Transições**:
+  - $\delta_1(s_0, a) = s_1$, $\delta_1(s_0, b) = s_2$
+  - $\delta_1(s_1, a) = s_1$, $\delta_1(s_1, b) = s_1$
+  - $\delta_1(s_2, a) = s_2$, $\delta_1(s_2, b) = s_2$
+
+**Autômato $M_2$**: aceita _strings_ com número par de 'b's. A linguagem formal é:
+
+$$ L_2 = \{ w \in \{a, b\}^* \mid \#_b(w) \equiv 0 \pmod{2} \} $$
+
+no qual $\#_b(w)$ denota o número de 'b's na _string_ $w$.
+
+- **Estados**: $Q_2 = \{t_{par}, t_{ímpar}\}$ onde:
+  - $t_{par}$: número par de 'b's (incluindo zero)
+  - $t_{ímpar}$: número ímpar de 'b's
+- **Estado inicial**: $t_{par}$
+- **Estados finais**: $F_2 = \{t_{par}\}$
+- **Transições**:
+  - $\delta_2(t_{par}, a) = t_{par}$, $\delta_2(t_{par}, b) = t_{ímpar}$
+  - $\delta_2(t_{ímpar}, a) = t_{ímpar}$, $\delta_2(t_{ímpar}, b) = t_{par}$
+
+**Passo a Passo para a Construção do Autômato Interseção**:
+
+**Passo 1: Estados**: $Q = Q_1 \times Q_2 = \{(s_0, t_{par}), (s_0, t_{ímpar}), (s_1, t_{par}), (s_1, t_{ímpar}), (s_2, t_{par}), (s_2, t_{ímpar})\}$
+
+**Passo 2: Estado inicial**: $q_0 = (s_0, t_{par})$
+
+**Passo 3: Estados finais**: Para a interseção, um estado é final apenas se **ambos** os componentes estão em estados finais:
+- $F = F_1 \times F_2 = \{s_1\} \times \{t_{par}\} = \{(s_1, t_{par})\}$
+
+**Passo 4: Tabela de Transições**:
+
+| Estado | a | b |
+|--------|---|---|
+| $\rightarrow (s_0, t_{par})$ | $(s_1, t_{par})$ | $(s_2, t_{ímpar})$ |
+| $(s_0, t_{ímpar})$ | $(s_1, t_{ímpar})$ | $(s_2, t_{par})$ |
+| $*(s_1, t_{par})$ | $(s_1, t_{par})$ | $(s_1, t_{ímpar})$ |
+| $(s_1, t_{ímpar})$ | $(s_1, t_{ímpar})$ | $(s_1, t_{par})$ |
+| $(s_2, t_{par})$ | $(s_2, t_{par})$ | $(s_2, t_{ímpar})$ |
+| $(s_2, t_{ímpar})$ | $(s_2, t_{ímpar})$ | $(s_2, t_{par})$ |
+
+**Passo 5: Verificação**: Vamos testar algumas _strings_:
+
+**String "aa"** (começa com 'a' e tem zero 'b's - par):
+- $(s_0, t_{par}) \xrightarrow{a} (s_1, t_{par}) \xrightarrow{a} (s_1, t_{par})$  **ACEITA**;
+- $M_1$ aceita (começa com 'a'); 
+- $M_2$ aceita (zero 'b's = par); 
+- Interseção aceita (ambos aceitam). 
+
+**String "ab"** (começa com 'a' mas tem um 'b' - ímpar):
+- $(s_0, t_{par}) \xrightarrow{a} (s_1, t_{par}) \xrightarrow{b} (s_1, t_{ímpar})$  **REJEITA**;
+- $M_1$ aceita (começa com 'a');
+- $M_2$ rejeita (um 'b' = ímpar); 
+- Interseção rejeita (nem todos aceitam). 
+
+**String "abb"** (começa com 'a' e tem dois 'b's - par):
+- $(s_0, t_{par}) \xrightarrow{a} (s_1, t_{par}) \xrightarrow{b} (s_1, t_{ímpar}) \xrightarrow{b} (s_1, t_{par})$  **ACEITA**
+
+O autômato da interseção aceita apenas _strings_ que **começam com 'a' E têm número par de 'b's**.
 
 ##### Exercícios 7 {#exercicios-7}
 
-**1.** Para os autômatos do Exercício 6.1, construa o conjunto de estados finais para $M_1 \cap M_2$.
+**1.** Considere dois autômatos sobre $\Sigma = \{0, 1\}$:
+- $M_1$ aceita strings que terminam em '10'
+- $M_2$ aceita strings com número ímpar de '0's
+
+Construa o conjunto de estados finais para $M_1 \cap M_2$ e determine a linguagem aceita pela interseção.
 
 **2.** É possível que $L(M_1 \cup M_2) = L(M_1 \cap M_2)$? Em que condição isso ocorreria?
 
 **3.** Se $F_1 = Q_1$ (todos os estados de $M_1$ são finais), o que podemos afirmar sobre $L(M_1 \cap M_2)$ em relação a $L(M_2)$?
+
+**4.** Considere $M_1$ que aceita strings terminadas em 'ab' e $M_2$ que aceita strings com número par de 'a's. Construa o autômato interseção $M_1 \cap M_2$ e determine sua linguagem.
+
+**5.** Dados três autômatos $M_1$, $M_2$ e $M_3$, tal que:
+
+- $M_1$ aceita strings que começam com 'a' (3 estados)
+- $M_2$ aceita strings de comprimento múltiplo de 3 (3 estados)  
+- $M_3$ aceita strings que contêm 'bb' (3 estados)
+
+Determine quantos estados teria $(M_1 \cup M_2) \cap M_3$ e construa o passo a passo completo desta operação composta.
 
 #### Fechamento sob Complemento
 
@@ -506,9 +736,9 @@ A perspicaz leitora observará que apenas trocamos os estados finais: $F' = \{q_
 2. **Dupla Negação**: $\overline{\overline{L}} = L$
 3. **Diferença**: $L_1 - L_2 = L_1 \cap \overline{L_2}$
 
-##### Exercícios 8 {#exercicios-8}
+##### Exercícios 8 {#Exercicios-8}
 
-**1.** Considere o AFD $M$ com $Q = \{q_0, q_1\}$, $F = \{q_0\}$, $\delta(q_0, a) = q_1$, $\delta(q_0, b) = q_0$, $\delta(q_1, a) = q_0$, $\delta(q_1, b) = q_1$. Construa a tabela de transições de $\overline{M}$.
+**1.** Considere o Autômato Finito Determinístico $M$ com $Q = \{q_0, q_1\}$, $F = \{q_0\}$, $\delta(q_0, a) = q_1$, $\delta(q_0, b) = q_0$, $\delta(q_1, a) = q_0$, $\delta(q_1, b) = q_1$. Construa a tabela de transições de $\overline{M}$.
 
 **2.** Por que a completude é essencial para a construção do complemento? Dê um exemplo no qual a construção falharia sem completude.
 
@@ -570,6 +800,51 @@ Após aplicar o algoritmo:
 1. Partição inicial: $\{\{q_3\}, \{q_0, q_1, q_2, q_4, q_5\}\}$
 2. Após refinamentos: $\{\{q_3\}, \{q_2\}, \{q_1, q_4\}, \{q_0, q_5\}\}$
 3. Autômato Finito Determinístico mínimo tem apenas 4 estados ao invés de 6
+
+### Exercícios 9 {#Exercicios-9}
+
+**1.** Considere o alfabeto $\Sigma = \{0, 1, +, -, *, /, (, )\}$ representando tokens simplificados de expressões aritméticas binárias. Sejam os autômatos:
+
+- $M_1$: aceita strings que começam com '(' e terminam com ')';
+- $M_2$: aceita strings que contêm pelo menos um operador aritmético (+, -, * ou /);
+- $M_3$: aceita strings de comprimento par.
+
+Construa o autômato que reconhece $(M_1 \cap M_2) \cup \overline{M_3}$ e determine três strings aceitas e três rejeitadas.
+
+**2.** Sobre o alfabeto $\Sigma = \{a, b, \_, 0, 1\}$ representando caracteres válidos em identificadores, considere:
+
+- $M_{id}$: aceita strings que começam com letra (a ou b) ou underscore, seguidos de qualquer combinação de letras, underscore ou dígitos;
+- $M_{kw}$: aceita exatamente as strings {"a", "ab", "b0", "b1"} (palavras-chave).
+
+Construa o autômato $M_{id} - M_{kw} = M_{id} \cap \overline{M_{kw}}$ que aceita identificadores válidos que não são palavras-chave. Quantos estados tem o autômato mínimo resultante?
+
+**3.** Considere $\Sigma = \{/, *, ", \text{outro}\}$ onde 'outro' representa qualquer caractere diferente dos anteriores. Sejam:
+
+- $M_{comment}$: aceita strings da forma /* ... */ (comentários de bloco);
+- $M_{string}$: aceita strings da forma " ... " (strings literais);
+- $M_{nested}$: aceita strings que contêm pelo menos um '/*' dentro de aspas.
+
+Prove que $L(M_{comment}) \cap L(M_{string}) = \emptyset$ e construa $M = (M_{comment} \cup M_{string}) \cap \overline{M_{nested}}$.
+
+**4.** Sobre $\Sigma = \{0, 1, \&, |, !, (, )\}$ representando expressões booleanas:
+
+- $M_{balanced}$: aceita strings com parênteses balanceados (mesmo número de '(' e ')');
+- $M_{op}$: aceita strings onde todo operador binário (&, |) é precedido e seguido por 0, 1, ou );
+- $M_{not}$: aceita strings onde todo '!' é seguido por `0`, `1`, ou `(`.
+
+Construa passo a passo o autômato $(M_{balanced} \cap M_{op} \cap M_{not}) \cup \overline{(M_{op} \cup M_{not})}$. Esta construção resulta em um autômato que aceita que tipo de strings?
+
+**5.** Dados três autômatos sobre $\Sigma = \{<, >, =, !, 0, 1\}$:
+
+- $M_1$ com 4 estados, reconhece operadores relacionais válidos (`<`, `>`, `<=`, `>=`, `==`, `!=`);
+- $M_2$ com 3 estados, reconhece strings que começam com operador;
+- $M_3$ com 2 estados, reconhece strings de comprimento ímpar.
+
+a. Determine o número máximo de estados do autômato $(M_1 \cup M_2) \cap \overline{M_3}$ antes da minimização.
+
+b. Se $L(M_1) \subseteq L(M_2)$, simplifique a expressão $(M_1 \cap M_2) \cup (\overline{M_1} \cap M_3)$ e justifique algebricamente.
+
+c. Prove que $\overline{M_1 \cup M_2 \cup M_3} = \overline{M_1} \cap \overline{M_2} \cap \overline{M_3}$ usando as leis de De Morgan e construa o autômato resultante.
 
 ### A Relação de Myhill-Nerode {#sec-myhill-nerode}
 
@@ -661,6 +936,68 @@ A diligente leitora observará que estas propriedades matemáticas têm consequ�
 4. **Geração Automática**: A equivalência entre formalismos permite escolher a representação mais conveniente para cada fase do desenvolvimento.
 
 Estas propriedades fundamentais estabelecem os Autômatos Finitos Determinísticos não apenas como um modelo teórico elegante, mas como uma ferramenta prática poderosa para o processamento eficiente de linguagens. A compreensão profunda destas propriedades capacita a engenheira de software a fazer escolhas informadas sobre representações, otimizações e implementações em sistemas reais de análise léxica.
+
+### Exercícios 10 {#Exercicios-10}
+
+**1.**: Considere a linguagem $L = \{w \in \{0,1\}^* \mid w \text{ contém } 00 \text{ como substring}\}$.
+
+a) Determine todas as classes de equivalência da relação $\equiv_L$.
+
+b) Para cada classe, forneça um representante e explique por que strings dessa classe são equivalentes.
+
+c) Construa o Autômato Finito Determinístico mínimo para $L$ usando as classes de equivalência encontradas.
+
+d) Verifique que o número de estados do Autômato Finito Determinístico mínimo corresponde ao número de classes.
+
+**2.**: Use a relação de Myhill-Nerode para provar que a linguagem $L = \{0^i1^j \mid i > j \geq 0\}$ não é regular.
+
+Dica: Considere as strings $0^n$ para diferentes valores de $n$ e mostre que estão em classes distintas.
+
+**3.**:Considere o Autômato Finito Determinístico $M = (\{q_0, q_1, q_2\}, \{a, b\}, \delta, q_0, \{q_2\})$ com transições:
+
+- $\delta(q_0, a) = q_1$, $\delta(q_0, b) = q_0$;
+- $\delta(q_1, a) = q_1$, $\delta(q_1, b) = q_2$;
+- $\delta(q_2, a) = q_2$, $\delta(q_2, b) = q_2$.
+
+Use o método de eliminação de estados para encontrar a expressão regular equivalente. Mostre cada passo da eliminação.
+
+**4.**: Dados dois Autômatos Finitos Determinísticos sobre $\Sigma = \{a, b\}$:
+
+**Autômato Finito Determinístico $M_1$:** Aceita strings com número par de $a$'s
+- Estados: $\{p_0, p_1\}$
+- Estado inicial: $p_0$
+- Estados finais: $\{p_0\}$
+- $\delta_1(p_0, a) = p_1$, $\delta_1(p_0, b) = p_0$
+- $\delta_1(p_1, a) = p_0$, $\delta_1(p_1, b) = p_1$
+
+**Autômato Finito Determinístico $M_2$:** Aceita strings onde a posição de cada $a$ é ímpar (primeira posição = 1)
+- Estados: $\{q_{par}, q_{impar}, q_{aceita}, q_{rejeita}\}$
+- Estado inicial: $q_{par}$
+- Estados finais: $\{q_{par}, q_{aceita}\}$
+
+a) Determine se $L(M_1) = L(M_2)$ usando o método do produto.
+
+b) Verifique sua resposta testando as strings: $\epsilon$, $a$, $b$, $aa$, $ab$, $ba$, $aba$.
+
+**5.** Considere um Autômato Finito Determinístico $M$ com 8 estados que reconhece strings sobre $\{0, 1\}$ terminadas em $01$.
+
+a) Aplique o algoritmo de minimização de Hopcroft para encontrar o Autômato Finito Determinístico mínimo.
+
+b) Calcule a complexidade temporal da minimização considerando $|\Sigma| = 2$ e $n = 8$.
+
+c) Se tivéssemos dois Autômatos Finitos Determinísticos com 8 e 10 estados respectivamente, compare a complexidade de testar equivalência via minimização versus via construção do produto.
+
+**6.** Você está projetando um analisador léxico que deve reconhecer três tipos de tokens:
+
+- **Inteiros**: sequências de dígitos (0-9);
+- **Identificadores**: começam com letra, seguidos de letras ou dígitos;
+- **Operadores**: `++`, `--`, `+=`, `-=`.
+
+a. Construa Autômatos Finitos Determinísticos individuais para cada tipo.
+
+b. Use as propriedades de fechamento para criar um único Autômato Finito Determinístico que reconheça qualquer um dos três tipos.
+
+c. Discuta como você implementaria a distinção entre os tipos de tokens no Autômato Finito Determinístico combinado.
 
 ### Limitações dos Autômatos Finitos
 

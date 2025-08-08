@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 900 700"
+   version="1.1"
+   id="svg59"
+   sodipodi:docname="UniaoResulatado.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+   id="namedview59"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="0.86368043"
+   inkscape:cx="227.51471"
+   inkscape:cy="127.94084"
+   inkscape:window-width="1920"
+   inkscape:window-height="1057"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg59" />
+<defs
+   id="defs1">
+  <marker
+     id="arrowhead"
+     markerWidth="10"
+     markerHeight="7"
+     refX="9"
+     refY="3.5"
+     orient="auto">
+    <polygon
+       points="0 0, 10 3.5, 0 7"
+       fill="black"
+       id="polygon1" />
+  </marker>
+  <marker
+     id="arrowhead-9-7"
+     markerWidth="10"
+     markerHeight="7"
+     refX="9"
+     refY="3.5"
+     orient="auto">
+    <polygon
+       points="0,0 10,3.5 0,7 "
+       fill="#000000"
+       id="polygon1-4-1" />
+  </marker>
+  <marker
+     id="arrowhead-9-7-2"
+     markerWidth="10"
+     markerHeight="7"
+     refX="9"
+     refY="3.5"
+     orient="auto">
+    <polygon
+       points="10,3.5 0,7 0,0 "
+       fill="#000000"
+       id="polygon1-4-1-7" />
+  </marker>
+  <marker
+     id="arrowhead-9-7-3"
+     markerWidth="10"
+     markerHeight="7"
+     refX="9"
+     refY="3.5"
+     orient="auto">
+    <polygon
+       points="10,3.5 0,7 0,0 "
+       fill="#000000"
+       id="polygon1-4-1-1" />
+  </marker>
+  <marker
+     id="arrowhead-9-7-3-4"
+     markerWidth="10"
+     markerHeight="7"
+     refX="9"
+     refY="3.5"
+     orient="auto">
+    <polygon
+       points="0,7 0,0 10,3.5 "
+       fill="#000000"
+       id="polygon1-4-1-1-1" />
+  </marker>
+</defs>
+<!-- Título -->
+<text
+   x="450"
+   y="30"
+   text-anchor="middle"
+   font-size="18"
+   font-weight="bold"
+   id="text1"
+   inkscape:export-filename="..\images\uniaoresultado1.webp"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+    Autômato União M₁ ∪ M₂
+  </text>
+<text
+   x="450"
+   y="50"
+   text-anchor="middle"
+   font-size="14"
+   id="text2">
+    Aceita strings que começam com 'a' OU têm número ímpar de 'b's
+  </text>
+<!-- Estados do autômato união -->
+<!-- (s₀,t₀) - estado inicial, não final -->
+<circle
+   cx="206.52927"
+   cy="155.58241"
+   r="30"
+   fill="#ffffff"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle2" />
+<text
+   x="206.52927"
+   y="158.65468"
+   text-anchor="middle"
+   font-size="11px"
+   id="text3">(s₀,t₀)</text>
+<!-- Seta inicial -->
+<line
+   x1="146.23325"
+   y1="190.81615"
+   x2="175.63832"
+   y2="165.7982"
+   stroke="#000000"
+   stroke-width="3.2926"
+   marker-end="url(#arrowhead)"
+   id="line3"
+   style="stroke-width:1.55794;stroke-dasharray:none" />
+<!-- (s₀,t₁) - estado final -->
+<circle
+   cx="206.93863"
+   cy="307.21985"
+   r="30"
+   fill="#ffffff"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle3" />
+<circle
+   cx="206.93863"
+   cy="307.21985"
+   r="25"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle4" />
+<text
+   x="206.93863"
+   y="310.29211"
+   text-anchor="middle"
+   font-size="11px"
+   id="text4">(s₀,t₁)</text>
+<!-- (s₁,t₀) - estado final -->
+<circle
+   cx="456.73395"
+   cy="152.71692"
+   r="30"
+   fill="#ffffff"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle5" />
+<circle
+   cx="456.73395"
+   cy="152.71692"
+   r="25"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle6" />
+<text
+   x="456.73395"
+   y="155.78918"
+   text-anchor="middle"
+   font-size="11px"
+   id="text6">(s₁,t₀)</text>
+<line
+   x1="449.53479"
+   y1="274.04639"
+   x2="449.53479"
+   y2="183.48018"
+   stroke="#ff0000"
+   stroke-width="2.00628"
+   marker-end="url(#arrowhead)"
+   id="line20" />
+<!-- (s₁,t₁) - estado final -->
+<circle
+   cx="456.73395"
+   cy="302.71692"
+   r="30"
+   fill="#ffffff"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle7" />
+<circle
+   cx="456.73395"
+   cy="302.71692"
+   r="25"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle8" />
+<text
+   x="456.73395"
+   y="305.78918"
+   text-anchor="middle"
+   font-size="11px"
+   id="text8">(s₁,t₁)</text>
+<line
+   x1="713.28369"
+   y1="181.28625"
+   x2="713.28369"
+   y2="271.28625"
+   stroke="#ff0000"
+   stroke-width="2"
+   marker-end="url(#arrowhead)"
+   id="line21" />
+<!-- (s₂,t₀) - estado não final -->
+<circle
+   cx="706.73395"
+   cy="152.71692"
+   r="30"
+   fill="#ffffff"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle9" />
+<text
+   x="706.73395"
+   y="155.78918"
+   text-anchor="middle"
+   font-size="11px"
+   id="text9">(s₂,t₀)</text>
+<line
+   x1="698.89771"
+   y1="275.5845"
+   x2="698.89771"
+   y2="184.38489"
+   stroke="#ff0000"
+   stroke-width="1.97626"
+   marker-end="url(#arrowhead)"
+   id="line22" />
+<!-- (s₂,t₁) - estado final -->
+<circle
+   cx="706.73395"
+   cy="302.71692"
+   r="30"
+   fill="#ffffff"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle10" />
+<circle
+   cx="706.73395"
+   cy="302.71692"
+   r="25"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2"
+   id="circle11" />
+<text
+   x="706.73395"
+   y="305.78918"
+   text-anchor="middle"
+   font-size="11px"
+   id="text11">(s₂,t₁)</text>
+<!-- Transições com 'a' -->
+<!-- (s₀,t₀) --a-->
+ (s₁,t₀) --&gt;
+  <line
+   x1="236.73395"
+   y1="155.78918"
+   x2="424.7085"
+   y2="155.78918"
+   stroke="#0000ff"
+   stroke-width="2"
+   marker-end="url(#arrowhead)"
+   id="line11" />
+<text
+   x="330.23892"
+   y="150.78918"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#0000ff"
+   id="text12">a</text>
+<!-- (s₀,t₁) --a-->
+ (s₁,t₁) --&gt;
+  <line
+   x1="236.73395"
+   y1="305.78918"
+   x2="424.50595"
+   y2="305.78918"
+   stroke="#0000ff"
+   stroke-width="2"
+   marker-end="url(#arrowhead)"
+   id="line12" />
+<text
+   x="330.23892"
+   y="300.78918"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#0000ff"
+   id="text13">a</text>
+<!-- (s₁,t₀) auto-loop a -->
+<text
+   x="474.68039"
+   y="94.052422"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#0000ff"
+   id="text14">a</text>
+<!-- (s₁,t₁) auto-loop a -->
+<!-- (s₂,t₀) auto-loop a -->
+<!-- (s₂,t₁) auto-loop a -->
+<!-- Transições com 'b' -->
+<!-- (s₀,t₀) --b-->
+ (s₂,t₁) --&gt;
+  <path
+   d="m 236.73238,155.78403 c 104.41873,31.89333 277.35739,93.71558 437.6285,149.19153"
+   fill="none"
+   stroke="#ff0000"
+   stroke-width="1.98922"
+   marker-end="url(#arrowhead)"
+   id="path17"
+   sodipodi:nodetypes="cc" />
+<text
+   x="329.89908"
+   y="181.52089"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#ff0000"
+   id="text18">b</text>
+<!-- (s₀,t₁) --b-->
+ (s₂,t₀) --&gt;
+  <path
+   d="M 236.73229,305.79375 Q 455.65981,226.18374 674.58733,156.52498"
+   fill="none"
+   stroke="#ff0000"
+   stroke-width="2.00373"
+   marker-end="url(#arrowhead)"
+   id="path18" />
+<text
+   x="469.03171"
+   y="199.18761"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#ff0000"
+   id="text19">b</text>
+<!-- (s₁,t₀) --b-->
+ (s₁,t₁) --&gt;
+  <line
+   x1="461.23087"
+   y1="183.09325"
+   x2="461.23087"
+   y2="270.4903"
+   stroke="#ff0000"
+   stroke-width="1.97087"
+   marker-end="url(#arrowhead)"
+   id="line19" />
+<text
+   x="329.89908"
+   y="267.26102"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#ff0000"
+   id="text20">b</text>
+<!-- (s₁,t₁) --b-->
+ (s₁,t₀) --&gt;
+  <text
+   x="441.78583"
+   y="263.20859"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#ff0000"
+   id="text21">b</text>
+<!-- (s₂,t₀) --b-->
+ (s₂,t₁) --&gt;
+  <text
+   x="721.5293"
+   y="197.63129"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#ff0000"
+   id="text22">b</text>
+<!-- (s₂,t₁) --b-->
+ (s₂,t₀) --&gt;
+  <text
+   x="690.6521"
+   y="267.42661"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#ff0000"
+   id="text23">b</text>
+<!-- Tabela de transições -->
+<g
+   id="transition-table">
+  <text
+     x="50"
+     y="450"
+     font-size="14"
+     font-weight="bold"
+     id="text24">Tabela de Transições:</text>
+  <!-- Cabeçalho -->
+  <rect
+     x="50"
+     y="470"
+     width="100"
+     height="25"
+     fill="lightgray"
+     stroke="black"
+     id="rect24" />
+  <text
+     x="100"
+     y="487"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     id="text25">Estado</text>
+  <rect
+     x="150"
+     y="470"
+     width="50"
+     height="25"
+     fill="lightgray"
+     stroke="black"
+     id="rect25" />
+  <text
+     x="175"
+     y="487"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     id="text26">a</text>
+  <rect
+     x="200"
+     y="470"
+     width="50"
+     height="25"
+     fill="lightgray"
+     stroke="black"
+     id="rect26" />
+  <text
+     x="225"
+     y="487"
+     text-anchor="middle"
+     font-size="12"
+     font-weight="bold"
+     id="text27">b</text>
+  <!-- Linhas da tabela -->
+  <!-- (s₀,t₀) -->
+  <rect
+     x="50"
+     y="495"
+     width="100"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect27" />
+  <text
+     x="100"
+     y="512"
+     text-anchor="middle"
+     font-size="10"
+     id="text28">→(s₀,t₀)</text>
+  <rect
+     x="150"
+     y="495"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect28" />
+  <text
+     x="175"
+     y="512"
+     text-anchor="middle"
+     font-size="10"
+     id="text29">(s₁,t₀)</text>
+  <rect
+     x="200"
+     y="495"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect29" />
+  <text
+     x="225"
+     y="512"
+     text-anchor="middle"
+     font-size="10"
+     id="text30">(s₂,t₁)</text>
+  <!-- (s₀,t₁) -->
+  <rect
+     x="50"
+     y="520"
+     width="100"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect30" />
+  <text
+     x="100"
+     y="537"
+     text-anchor="middle"
+     font-size="10"
+     id="text31">*(s₀,t₁)</text>
+  <rect
+     x="150"
+     y="520"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect31" />
+  <text
+     x="175"
+     y="537"
+     text-anchor="middle"
+     font-size="10"
+     id="text32">(s₁,t₁)</text>
+  <rect
+     x="200"
+     y="520"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect32" />
+  <text
+     x="225"
+     y="537"
+     text-anchor="middle"
+     font-size="10"
+     id="text33">(s₂,t₀)</text>
+  <!-- (s₁,t₀) -->
+  <rect
+     x="50"
+     y="545"
+     width="100"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect33" />
+  <text
+     x="100"
+     y="562"
+     text-anchor="middle"
+     font-size="10"
+     id="text34">*(s₁,t₀)</text>
+  <rect
+     x="150"
+     y="545"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect34" />
+  <text
+     x="175"
+     y="562"
+     text-anchor="middle"
+     font-size="10"
+     id="text35">(s₁,t₀)</text>
+  <rect
+     x="200"
+     y="545"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect35" />
+  <text
+     x="225"
+     y="562"
+     text-anchor="middle"
+     font-size="10"
+     id="text36">(s₁,t₁)</text>
+  <!-- (s₁,t₁) -->
+  <rect
+     x="50"
+     y="570"
+     width="100"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect36" />
+  <text
+     x="100"
+     y="587"
+     text-anchor="middle"
+     font-size="10"
+     id="text37">*(s₁,t₁)</text>
+  <rect
+     x="150"
+     y="570"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect37" />
+  <text
+     x="175"
+     y="587"
+     text-anchor="middle"
+     font-size="10"
+     id="text38">(s₁,t₁)</text>
+  <rect
+     x="200"
+     y="570"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect38" />
+  <text
+     x="225"
+     y="587"
+     text-anchor="middle"
+     font-size="10"
+     id="text39">(s₁,t₀)</text>
+  <!-- (s₂,t₀) -->
+  <rect
+     x="50"
+     y="595"
+     width="100"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect39" />
+  <text
+     x="100"
+     y="612"
+     text-anchor="middle"
+     font-size="10"
+     id="text40">(s₂,t₀)</text>
+  <rect
+     x="150"
+     y="595"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect40" />
+  <text
+     x="175"
+     y="612"
+     text-anchor="middle"
+     font-size="10"
+     id="text41">(s₂,t₀)</text>
+  <rect
+     x="200"
+     y="595"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect41" />
+  <text
+     x="225"
+     y="612"
+     text-anchor="middle"
+     font-size="10"
+     id="text42">(s₂,t₁)</text>
+  <!-- (s₂,t₁) -->
+  <rect
+     x="50"
+     y="620"
+     width="100"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect42" />
+  <text
+     x="100"
+     y="637"
+     text-anchor="middle"
+     font-size="10"
+     id="text43">*(s₂,t₁)</text>
+  <rect
+     x="150"
+     y="620"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect43" />
+  <text
+     x="175"
+     y="637"
+     text-anchor="middle"
+     font-size="10"
+     id="text44">(s₂,t₁)</text>
+  <rect
+     x="200"
+     y="620"
+     width="50"
+     height="25"
+     fill="white"
+     stroke="black"
+     id="rect44" />
+  <text
+     x="225"
+     y="637"
+     text-anchor="middle"
+     font-size="10"
+     id="text45">(s₂,t₀)</text>
+</g>
+<!-- Especificações -->
+<g
+   id="specifications">
+  <text
+     x="350"
+     y="450"
+     font-size="14"
+     font-weight="bold"
+     id="text46">Especificação Formal:</text>
+  <text
+     x="350"
+     y="475"
+     font-size="12"
+     id="text47">M = (Q, Σ, δ, q₀, F)</text>
+  <text
+     x="350"
+     y="495"
+     font-size="11"
+     id="text48">Q = Q₁ × Q₂ = {(s₀,t₀), (s₀,t₁), (s₁,t₀), (s₁,t₁), (s₂,t₀), (s₂,t₁)}</text>
+  <text
+     x="350"
+     y="515"
+     font-size="11"
+     id="text49">q₀ = (s₀,t₀)</text>
+  <text
+     x="350"
+     y="535"
+     font-size="11"
+     id="text50">F = {(s₀,t₁), (s₁,t₀), (s₁,t₁), (s₂,t₁)}</text>
+  <text
+     x="350"
+     y="555"
+     font-size="11"
+     id="text51">Σ = {a, b}</text>
+  <text
+     x="350"
+     y="575"
+     font-size="11"
+     id="text52">δ((sᵢ,tⱼ), x) = (δ₁(sᵢ,x), δ₂(tⱼ,x))</text>
+  <text
+     x="350"
+     y="605"
+     font-size="12"
+     font-weight="bold"
+     id="text53">L(M) = L(M₁) ∪ L(M₂)</text>
+  <text
+     x="350"
+     y="625"
+     font-size="11"
+     id="text54">Aceita se a string começa com 'a' OU tem número ímpar de 'b's</text>
+</g>
+<!-- Legenda -->
+<path
+   d="m 446.10927,123.75902 c -5.22792,-48.01056 10.64321,-62.622886 17.88497,-46.521861 5.30234,11.788981 4.12785,26.280771 3.49026,45.337761"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2.27179"
+   marker-end="url(#arrowhead-9-7)"
+   id="path12-8-1"
+   style="stroke:#0066ff;marker-end:url(#arrowhead-9-7)"
+   sodipodi:nodetypes="csc" />
+<text
+   x="725.6087"
+   y="93.260117"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#0000ff"
+   id="text14-9">a</text>
+<path
+   d="m 696.24024,124.09964 c -4.89282,-48.04587 11.07989,-62.547102 18.20913,-46.39594 5.21995,11.825689 3.94438,26.30895 3.17383,45.36102"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2.27179"
+   marker-end="url(#arrowhead-9-7-2)"
+   id="path12-8-1-5"
+   style="stroke:#0066ff;marker-end:url(#arrowhead-9-7-2)"
+   sodipodi:nodetypes="csc" />
+<text
+   x="437.78107"
+   y="373.80234"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#0000ff"
+   id="text14-2">a</text>
+<path
+   d="m 466.44224,331.80213 c 4.65453,48.06953 -11.38988,62.49139 -18.43895,46.30507 -5.16125,-11.85142 -3.81388,-26.32817 -2.94888,-45.37618"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2.27179"
+   marker-end="url(#arrowhead-9-7-3)"
+   id="path12-8-1-3"
+   style="stroke:#0066ff;marker-end:url(#arrowhead-9-7-3)"
+   sodipodi:nodetypes="csc" />
+<text
+   x="688.99133"
+   y="374.90775"
+   text-anchor="middle"
+   font-size="12px"
+   fill="#0000ff"
+   id="text14-2-1">a</text>
+<path
+   d="m 716.96462,331.63372 c 5.53769,47.97581 -10.2388,62.69027 -17.58433,46.63632 -5.37831,-11.75452 -4.29739,-26.25359 -3.78281,-45.31429"
+   fill="none"
+   stroke="#000000"
+   stroke-width="2.27179"
+   marker-end="url(#arrowhead-9-7-3-4)"
+   id="path12-8-1-3-3"
+   style="stroke:#0066ff;marker-end:url(#arrowhead-9-7-3-4)"
+   sodipodi:nodetypes="csc" />
+</svg>

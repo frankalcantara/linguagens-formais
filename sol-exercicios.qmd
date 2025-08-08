@@ -4,7 +4,7 @@
 
 ### Exercícios 1: @sec-ex-alfabeto
 
-1. **Solução:**
+1. **Solução**:
 
 - **$\Sigma_1 = \{a, b, c, +, -, *, /, (, )\}$**
   
@@ -26,15 +26,15 @@
   
   $$|\Sigma_3| = 7$$
 
-2. **Solução:**
+2. **Solução**:
 
-- **Expressões lógicas booleanas simples com variáveis $p$, $q$, $r$:**
+- **Expressões lógicas booleanas simples com variáveis $p$, $q$, $r$**:
   
   $$\Sigma_{\text{bool}} = \{p, q, r, \land, \lor, \neg, (, )\}$$
   
-  **Justificativa:** Inclui as três variáveis proposicionais, os conectivos lógicos básicos (conjunção, disjunção, negação) e parênteses para agrupamento.
+  **Justificativa**: Inclui as três variáveis proposicionais, os conectivos lógicos básicos (conjunção, disjunção, negação) e parênteses para agrupamento.
 
-- **Números em notação científica (ex: $1.23 \times 10^{-4}$):**
+- **Números em notação científica (ex: $1.23 \times 10^{-4}$)**:
   
   $$\Sigma_{\text{cient}} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, ., \times, ^{}, 1, 0\}$$
   
@@ -42,41 +42,41 @@
   
   $$\Sigma_{\text{cient}} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, ., \times, ^\}$$
   
-  **Justificativa:** Inclui dígitos para o número base, sinais para número e expoente, ponto decimal, símbolo de multiplicação e símbolo de potência.
+  **Justificativa**: Inclui dígitos para o número base, sinais para número e expoente, ponto decimal, símbolo de multiplicação e símbolo de potência.
 
-- **Coordenadas cartesianas no formato $(x, y)$:**
+- **Coordenadas cartesianas no formato $(x, y)$**:
   
   $$\Sigma_{\text{coord}} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, ., (, ), ,\}$$
   
-  **Justificativa:** Inclui dígitos para números, sinais, ponto decimal, parênteses para delimitação e vírgula como separador.
+  **Justificativa**: Inclui dígitos para números, sinais, ponto decimal, parênteses para delimitação e vírgula como separador.
 
-3. **Solução:**
+3. **Solução**:
 
 - **$A = \emptyset$**
   
   **NÃO é um alfabeto válido.**
   
-  **Justificativa:** A definição formal exige que um alfabeto seja um conjunto finito **não-vazio**. Como $A$ é o conjunto vazio, ele viola a condição $n \geq 1$.
+  **Justificativa**: A definição formal exige que um alfabeto seja um conjunto finito **não-vazio**. Como $A$ é o conjunto vazio, ele viola a condição $n \geq 1$.
 
 - **$B = \{\epsilon\}$**
   
   **É um alfabeto válido.**
   
-  **Justificativa:** É um conjunto finito ($|B| = 1$) e não-vazio. O símbolo $\epsilon$ pode ser tratado como um símbolo atômico qualquer para fins de definição de alfabeto.
+  **Justificativa**: É um conjunto finito ($|B| = 1$) e não-vazio. O símbolo $\epsilon$ pode ser tratado como um símbolo atômico qualquer para fins de definição de alfabeto.
 
 - **$C = \{1, 2, 3, \ldots\}$**
   
   **NÃO é um alfabeto válido.**
   
-  **Justificativa:** Este é o conjunto dos números naturais positivos, que é infinito ($|C| = \infty$). A definição de alfabeto exige finitude.
+  **Justificativa**: Este é o conjunto dos números naturais positivos, que é infinito ($|C| = \infty$). A definição de alfabeto exige finitude.
 
 - **$D = \{a, b, a\}$**
   
   **É um alfabeto válido, mas equivalente a $\{a, b\}$.**
   
-  **Justificativa:** Como conjuntos não possuem elementos repetidos, $D = \{a, b\}$. É finito ($|D| = 2$) e não-vazio, portanto é um alfabeto válido.
+  **Justificativa**: Como conjuntos não possuem elementos repetidos, $D = \{a, b\}$. É finito ($|D| = 2$) e não-vazio, portanto é um alfabeto válido.
 
-4. **Solução:**
+4. **Solução**:
 
 Dado $S = \{\text{if}, \text{then}, \text{else}, \text{fi}\}$, precisamos encontrar todos os símbolos que aparecem nas strings:
 
@@ -89,19 +89,19 @@ Coletando todos os símbolos únicos:
 
 $$\Sigma_{\text{mín}} = \{e, f, h, i, l, n, s, t\}$$
 
-**Cardinalidade:** $|\Sigma_{\text{mín}}| = 8$
+**Cardinalidade**: $|\Sigma_{\text{mín}}| = 8$
 
-**Verificação:** Todas as strings em $S$ podem ser formadas usando apenas estes símbolos, e nenhum símbolo pode ser removido sem impossibilitar a formação de pelo menos uma string.
+**Verificação**: Todas as strings em $S$ podem ser formadas usando apenas estes símbolos, e nenhum símbolo pode ser removido sem impossibilitar a formação de pelo menos uma string.
 
-5. **Solução:**
+5. **Solução**:
 
 Comparando $\Sigma_A = \{0, 1\}$ e $\Sigma_B = \{a, b, c\}$:
 
-**Cardinalidade:**
+**Cardinalidade**:
 - $|\Sigma_A| = 2$
 - $|\Sigma_B| = 3$
 
-**Número de strings de comprimento 3:**
+**Número de strings de comprimento 3**:
 
 Para um alfabeto de tamanho $n$, o número de strings de comprimento $k$ é $n^k$.
 
@@ -113,47 +113,47 @@ Para um alfabeto de tamanho $n$, o número de strings de comprimento $k$ é $n^k
   
   Exemplos: $\{aaa, aab, aac, aba, abb, abc, \ldots, ccc\}$
 
-**Aplicabilidade para representar números binários:**
+**Aplicabilidade para representar números binários**:
 
-- **$\Sigma_A$:** Perfeitamente adequado para representação binária, pois contém exatamente os símbolos $0$ e $1$ necessários.
+- **$\Sigma_A$**: Perfeitamente adequado para representação binária, pois contém exatamente os símbolos $0$ e $1$ necessários.
 
-- **$\Sigma_B$:** Inadequado para representação binária direta. Seria necessário estabelecer uma convenção de mapeamento (por exemplo, $a \rightarrow 0$, $b \rightarrow 1$, e $c$ seria um símbolo extra não utilizado).
+- **$\Sigma_B$**: Inadequado para representação binária direta. Seria necessário estabelecer uma convenção de mapeamento (por exemplo, $a \rightarrow 0$, $b \rightarrow 1$, e $c$ seria um símbolo extra não utilizado).
 
-**Conclusão:** $\Sigma_A$ é mais eficiente para representação binária, enquanto $\Sigma_B$ oferece maior capacidade expressiva para outras aplicações devido ao seu maior tamanho.
+**Conclusão**: $\Sigma_A$ é mais eficiente para representação binária, enquanto $\Sigma_B$ oferece maior capacidade expressiva para outras aplicações devido ao seu maior tamanho.
 
 ### Exercícios 2: @sec-ex-strings
 
-1. **Solução:**
+1. **Solução**:
 
-**Dado:** $x = ab$ e $y = cd$
+**Dado**: $x = ab$ e $y = cd$
 
-**Concatenações:**
+**Concatenações**:
 - $xy = ab \cdot cd = abcd$
 - $yx = cd \cdot ab = cdab$
 
-**Observação:** Note que $xy \neq yx$, demonstrando que a concatenação não é comutativa.
+**Observação**: Note que $xy \neq yx$, demonstrando que a concatenação não é comutativa.
 
-**Potências:**
+**Potências**:
 - $x^3 = (ab)^3 = ab \cdot ab \cdot ab = ababab$
 - $y^2 = (cd)^2 = cd \cdot cd = cdcd$
 
-**Potências de concatenações:**
+**Potências de concatenações**:
 - $(xy)^2 = (abcd)^2 = abcd \cdot abcd = abcdabcd$
 - $x^2y^2 = (ab)^2(cd)^2 = abab \cdot cdcd = ababcdcd$
 
-**Observação:** $(xy)^2 \neq x^2y^2$, mostrando que $(uv)^n \neq u^nv^n$ em geral.
+**Observação**: $(xy)^2 \neq x^2y^2$, mostrando que $(uv)^n \neq u^nv^n$ em geral.
 
-**Comprimento de $x^n$:**
+**Comprimento de $x^n$**:
 
 Como $|x| = |ab| = 2$, temos:
 
 $$|x^n| = n \cdot |x| = n \cdot 2 = 2n$$
 
-**Verificação:** $|x^3| = |ababab| = 6 = 2 \cdot 3$ 
+**Verificação**: $|x^3| = |ababab| = 6 = 2 \cdot 3$ 
 
-2. **Solução:**
+2. **Solução**:
 
-**Aplicando a definição recursiva $\epsilon^R = \epsilon$ e $(wa)^R = aw^R$:**
+**Aplicando a definição recursiva $\epsilon^R = \epsilon$ e $(wa)^R = aw^R$**:
 
 - **$w_1 = abcde$**
   
@@ -168,199 +168,199 @@ $$|x^n| = n \cdot |x| = n \cdot 2 = 2n$$
   
   $$w_3^R = \epsilon^R = \epsilon$$
 
-**Prova de que $(\epsilon)^R = \epsilon$:**
+**Prova de que $(\epsilon)^R = \epsilon$**:
 
-**Demonstração:** Pela definição recursiva, o caso base estabelece diretamente que $\epsilon^R = \epsilon$. Isso é consistente, pois a string vazia não possui símbolos para inverter, mantendo-se inalterada.
+**Demonstração**: Pela definição recursiva, o caso base estabelece diretamente que $\epsilon^R = \epsilon$. Isso é consistente, pois a string vazia não possui símbolos para inverter, mantendo-se inalterada.
 
-3. **Solução:**
+3. **Solução**:
 
-**Associatividade:** $(xy)z = x(yz)$ para $x = a$, $y = bc$, $z = d$
+**Associatividade**: $(xy)z = x(yz)$ para $x = a$, $y = bc$, $z = d$
 
 $$\text{Lado esquerdo: } (xy)z = (a \cdot bc)d = (abc)d = abcd$$
 $$\text{Lado direito: } x(yz) = a(bc \cdot d) = a(bcd) = abcd$$
 
 $$\therefore (xy)z = x(yz) = abcd$$
 
-**Elemento neutro:** $w\epsilon = \epsilon w = w$ para $w = abc$
+**Elemento neutro**: $w\epsilon = \epsilon w = w$ para $w = abc$
 
 $$w\epsilon = abc \cdot \epsilon = abc$$
 $$\epsilon w = \epsilon \cdot abc = abc$$
 
 $$\therefore w\epsilon = \epsilon w = w = abc$$
 
-**Não-comutatividade:** Encontrar $x$ e $y$ tais que $xy \neq yx$
+**Não-comutatividade**: Encontrar $x$ e $y$ tais que $xy \neq yx$
 
-**Exemplo:** $x = a$ e $y = b$
+**Exemplo**: $x = a$ e $y = b$
 
 $$xy = a \cdot b = ab$$
 $$yx = b \cdot a = ba$$
 
 Como $ab \neq ba$, a concatenação não é comutativa.
 
-4. **Solução:**
+4. **Solução**:
 
-**Dado:** $w = compilador$
+**Dado**: $w = compilador$
 
 **Prefixos próprios** (todos os prefixos exceto a própria string):
 
 $$\{\epsilon, c, co, com, comp, compi, compil, compila, compilado\}$$
 
-**Total de prefixos próprios:** 9
+**Total de prefixos próprios**: 9
 
 **Sufixos próprios** (todos os sufixos exceto a própria string):
 
 $$\{\epsilon, r, or, dor, ador, lador, ilador, pilador, mpilador\}$$
 
-**Total de sufixos próprios:** 9
+**Total de sufixos próprios**: 9
 
-**Substrings de comprimento 4:**
+**Substrings de comprimento 4**:
 
 Posições possíveis para substrings de comprimento 4 em uma string de comprimento 10:
 
 $$\{comp, ompi, mpil, pila, ilad, lado, ador\}$$
 
-**Total de substrings de comprimento 4:** 7
+**Total de substrings de comprimento 4**: 7
 
-**Contagem total:**
-- **Prefixos totais:** 10 (incluindo $\epsilon$ e a própria string)
-- **Sufixos totais:** 10 (incluindo $\epsilon$ e a própria string)
+**Contagem total**:
+- **Prefixos totais**: 10 (incluindo $\epsilon$ e a própria string)
+- **Sufixos totais**: 10 (incluindo $\epsilon$ e a própria string)
 
-**Fórmula geral:** Para uma string de comprimento $n$, existem $n+1$ prefixos e $n+1$ sufixos.
+**Fórmula geral**: Para uma string de comprimento $n$, existem $n+1$ prefixos e $n+1$ sufixos.
 
-5. **Solução:**
+5. **Solução**:
 
-**Dado:** $w = aba$
+**Dado**: $w = aba$
 
-**Cálculo de $w^R$:**
+**Cálculo de $w^R$**:
 $$w^R = (aba)^R = a(ba)^R = ab(a)^R = aba$$
 
-**Observação:** $w = aba$ é um palíndromo, logo $w^R = w$.
+**Observação**: $w = aba$ é um palíndromo, logo $w^R = w$.
 
-**$(w^R)^2$:**
+**$(w^R)^2$**:
 $$w^R = aba$$
 $$(w^R)^2 = (aba)^2 = aba \cdot aba = abaaba$$
 
-**$(w^2)^R$:**
+**$(w^2)^R$**:
 $$w^2 = aba \cdot aba = abaaba$$
 $$(w^2)^R = (abaaba)^R = abaaba$$
 
-**$w^R w$:**
+**$w^R w$**:
 $$w^R w = aba \cdot aba = abaaba$$
 
-**Verificação se $(w^2)^R = (w^R)^2$:**
+**Verificação se $(w^2)^R = (w^R)^2$**:
 
 $$\text{Lado esquerdo: } (w^2)^R = abaaba$$
 $$\text{Lado direito: } (w^R)^2 = abaaba$$
 
 $$\therefore (w^2)^R = (w^R)^2$$
 
-**Explicação:** Esta igualdade vale neste caso específico porque $w$ é um palíndromo ($w = w^R$). Em geral, para strings arbitrárias, $(w^n)^R = (w^R)^n$, que se reduz a $w^n = w^n$ quando $w$ é um palíndromo.
+**Explicação**: Esta igualdade vale neste caso específico porque $w$ é um palíndromo ($w = w^R$). Em geral, para strings arbitrárias, $(w^n)^R = (w^R)^n$, que se reduz a $w^n = w^n$ quando $w$ é um palíndromo.
 
-**Propriedade geral:** Para qualquer string $u$ e inteiro positivo $n$:
+**Propriedade geral**: Para qualquer string $u$ e inteiro positivo $n$:
 $$(u^n)^R = (u^R)^n$$
 
 No nosso caso, como $w^R = w$, ambos os lados se tornam $w^2 = abaaba$.
 
 ### Exercícios 3: @sec-ex-linguagens2
 
-1. **Solução:**
+1. **Solução**:
 
-**Dado:** $L_1 = \{a, ab, b\}$ e $L_2 = \{b, ba, \epsilon\}$
+**Dado**: $L_1 = \{a, ab, b\}$ e $L_2 = \{b, ba, \epsilon\}$
 
-**União:** $L_1 \cup L_2$
+**União**: $L_1 \cup L_2$
 $$L_1 \cup L_2 = \{a, ab, b\} \cup \{b, ba, \epsilon\} = \{a, ab, b, ba, \epsilon\}$$
 
-**Interseção:** $L_1 \cap L_2$
+**Interseção**: $L_1 \cap L_2$
 $$L_1 \cap L_2 = \{a, ab, b\} \cap \{b, ba, \epsilon\} = \{b\}$$
 
-**Diferença:** $L_1 - L_2$
+**Diferença**: $L_1 - L_2$
 $$L_1 - L_2 = \{a, ab, b\} - \{b, ba, \epsilon\} = \{a, ab\}$$
 
-**Cardinalidades:**
+**Cardinalidades**:
 - $|L_1 \cup L_2| = |\{a, ab, b, ba, \epsilon\}| = 5$
 - $|L_1 \cap L_2| = |\{b\}| = 1$
 
-**Verificação:** $|L_1| + |L_2| - |L_1 \cap L_2| = 3 + 3 - 1 = 5 = |L_1 \cup L_2|$ 
+**Verificação**: $|L_1| + |L_2| - |L_1 \cap L_2| = 3 + 3 - 1 = 5 = |L_1 \cup L_2|$ 
 
-2. **Solução:**
+2. **Solução**:
 
-**Dado:** $L_1 = \{a, bb\}$ e $L_2 = \{c, dd\}$
+**Dado**: $L_1 = \{a, bb\}$ e $L_2 = \{c, dd\}$
 
-**$L_1 \cdot L_2$:**
+**$L_1 \cdot L_2$**:
 
 Aplicando a definição $L_1 \cdot L_2 = \{xy \mid x \in L_1 \text{ e } y \in L_2\}$:
 
 $$L_1 \cdot L_2 = \{ac, add, bbc, bbdd\}$$
 
-**Cálculo detalhado:**
+**Cálculo detalhado**:
 - $a \cdot c = ac$
 - $a \cdot dd = add$  
 - $bb \cdot c = bbc$
 - $bb \cdot dd = bbdd$
 
-**$L_2 \cdot L_1$:**
+**$L_2 \cdot L_1$**:
 
 $$L_2 \cdot L_1 = \{ca, cbb, dda, ddbb\}$$
 
-**Cálculo detalhado:**
+**Cálculo detalhado**:
 - $c \cdot a = ca$
 - $c \cdot bb = cbb$
 - $dd \cdot a = dda$
 - $dd \cdot bb = ddbb$
 
-**Cardinalidade:**
+**Cardinalidade**:
 $$|L_1 \cdot L_2| = |L_1| \times |L_2| = 2 \times 2 = 4$$
 $$|L_2 \cdot L_1| = |L_2| \times |L_1| = 2 \times 2 = 4$$
 
-**Verificação de comutatividade:**
+**Verificação de comutatividade**:
 $$L_1 \cdot L_2 = \{ac, add, bbc, bbdd\}$$
 $$L_2 \cdot L_1 = \{ca, cbb, dda, ddbb\}$$
 
 Como os conjuntos são distintos, $L_1 \cdot L_2 \neq L_2 \cdot L_1$. A concatenação de linguagens **não é comutativa**.
 
-3. **Solução:**
+3. **Solução**:
 
-**Dado:** $L = \{a, b\}$
+**Dado**: $L = \{a, b\}$
 
-**$L^0$:**
+**$L^0$**:
 Por definição, $L^0 = \{\epsilon\}$ para qualquer linguagem $L$.
 
-**$L^1$:**
+**$L^1$**:
 $$L^1 = L = \{a, b\}$$
 
-**$L^2$:**
+**$L^2$**:
 $$L^2 = L \cdot L = \{xy \mid x \in L \text{ e } y \in L\}$$
 $$L^2 = \{aa, ab, ba, bb\}$$
 
-**Cálculo detalhado de $L^2$:**
+**Cálculo detalhado de $L^2$**:
 - $a \cdot a = aa$
 - $a \cdot b = ab$
 - $b \cdot a = ba$ 
 - $b \cdot b = bb$
 
-**Fórmula para $|L^n|$:**
+**Fórmula para $|L^n|$**:
 
 Como $|L| = 2$, temos:
 $$|L^n| = |L|^n = 2^n$$
 
-**Verificação:**
+**Verificação**:
 - $|L^0| = |\{\epsilon\}| = 1 = 2^0$ 
 - $|L^1| = |\{a, b\}| = 2 = 2^1$   
 - $|L^2| = |\{aa, ab, ba, bb\}| = 4 = 2^2$ 
 
-**Três primeiras strings de $L^3$ em ordem lexicográfica:**
+**Três primeiras strings de $L^3$ em ordem lexicográfica**:
 
 $L^3$ contém todas as strings de comprimento 3 sobre $\{a, b\}$.
 
 Em ordem lexicográfica: $\{aaa, aab, aba, abb, baa, bab, bba, bbb\}$
 
-**Três primeiras:** $aaa, aab, aba$
+**Três primeiras**: $aaa, aab, aba$
 
-4. **Solução:**
+4. **Solução**:
 
-**Dado:** $L = \{ab\}$
+**Dado**: $L = \{ab\}$
 
-**Elementos de $L^*$ até strings de comprimento 6:**
+**Elementos de $L^*$ até strings de comprimento 6**:
 
 Pela definição: $L^* = L^0 \cup L^1 \cup L^2 \cup L^3 \cup \ldots$
 
@@ -371,11 +371,11 @@ Pela definição: $L^* = L^0 \cup L^1 \cup L^2 \cup L^3 \cup \ldots$
 
 $$L^* \text{ até comprimento 6} = \{\epsilon, ab, abab, ababab\}$$
 
-**$L^+$:**
+**$L^+$**:
 $$L^+ = L^1 \cup L^2 \cup L^3 \cup \ldots = L^* - \{\epsilon\}$$
 $$L^+ = \{ab, abab, ababab, abababab, \ldots\}$$
 
-**Verificações:**
+**Verificações**:
 
 **$\epsilon \in L^*$?**
 Sim, pois $\epsilon \in L^0$ e $L^0 \subseteq L^*$.
@@ -383,14 +383,14 @@ Sim, pois $\epsilon \in L^0$ e $L^0 \subseteq L^*$.
 **$\epsilon \in L^+$?**
 Não, pois $L^+ = L^1 \cup L^2 \cup \ldots$ e $\epsilon \notin L^n$ para $n \geq 1$ quando $L = \{ab\}$.
 
-**Padrão geral:**
+**Padrão geral**:
 Como $L = \{ab\}$ contém apenas uma string de comprimento 2, temos:
 $$L^* = \{\epsilon, ab, (ab)^2, (ab)^3, \ldots\} = \{(ab)^n \mid n \geq 0\}$$
 $$L^+ = \{ab, (ab)^2, (ab)^3, \ldots\} = \{(ab)^n \mid n \geq 1\}$$
 
-5. **Solução:**
+5. **Solução**:
 
-**Dado:** $L = \{a\}$
+**Dado**: $L = \{a\}$
 
 **Propriedade 1: $L^* = L^+$?**
 
@@ -399,26 +399,26 @@ $$L^+ = \{a, aa, aaa, \ldots\} = \{a^n \mid n \geq 1\}$$
 
 Como $\epsilon \in L^*$ mas $\epsilon \notin L^+$, temos $L^* \neq L^+$.
 
-**Resposta:** **FALSO**
+**Resposta**: **FALSO**
 
 **Propriedade 2: $L^* \cup L^+ = L^*$?**
 
 Como $L^+ \subseteq L^*$ (pela definição $L^+ = L^* - \{\epsilon\}$ quando $\epsilon \notin L$), temos:
 $$L^* \cup L^+ = L^*$$
 
-**Resposta:** **VERDADEIRO**
+**Resposta**: **VERDADEIRO**
 
 **Propriedade 3: $(L^*)^* = L^*$?**
 
 Esta é uma propriedade geral do fechamento de Kleene. 
 
-**Demonstração:** 
+**Demonstração**: 
 - $(L^*)^*$ contém todas as concatenações possíveis de elementos de $L^*$
 - Como $L^* = \{a^n \mid n \geq 0\}$, qualquer concatenação de elementos de $L^*$ resulta em $a^k$ para algum $k \geq 0$
 - Portanto, $(L^*)^* \subseteq L^*$
 - Como $L^* \subseteq (L^*)^*$ (pois $L^* \subseteq (L^*)^1 \subseteq (L^*)^*$), temos a igualdade
 
-**Resposta:** **VERDADEIRO**
+**Resposta**: **VERDADEIRO**
 
 **Propriedade 4: Se $\epsilon \in L$, então $L^+ = L^*$?**
 
@@ -430,13 +430,13 @@ Mas vamos analisar o caso geral: se $\epsilon \in L$, então:
 - Como $\epsilon \in L = L^1$, temos $\epsilon \in L^+$
 - Como $\epsilon \in L^0$ também, e $L^+ \supseteq L^1$, de fato $L^+ = L^*$
 
-**Resposta:** **VERDADEIRO** (propriedade geral válida)
+**Resposta**: **VERDADEIRO** (propriedade geral válida)
 
-**Para nosso caso específico:** A propriedade não se aplica pois $\epsilon \notin \{a\}$.
+**Para nosso caso específico**: A propriedade não se aplica pois $\epsilon \notin \{a\}$.
 
 # Exercícios 4: @sec-ex-regex
 
-1. **Solução:**
+1. **Solução**:
 
 **$r_1 = a \cup b$**
 
@@ -467,7 +467,7 @@ $$L(r_4) = L(ab)^* = \{ab\}^*$$
 Como visto no exercício anterior:
 $$L(r_4) = \{(ab)^n \mid n \geq 0\} = \{\epsilon, ab, abab, ababab, \ldots\}$$
 
-2. **Solução:**
+2. **Solução**:
 
 Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Concatenação ($\cdot$)** → **União ($\cup$)**
 
@@ -477,7 +477,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 2. Depois, a concatenação: $a(b^*)$  
 3. Por fim, a união: $(a(b^*)) \cup c$
 
-**Resultado:** $((a(b^*)) \cup c)$
+**Resultado**: $((a(b^*)) \cup c)$
 
 **$a \cup bc^*$**
 
@@ -485,7 +485,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 2. Depois, a concatenação: $b(c^*)$
 3. Por fim, a união: $a \cup (b(c^*))$
 
-**Resultado:** $(a \cup (b(c^*)))$
+**Resultado**: $(a \cup (b(c^*)))$
 
 **$ab \cup cd^*e$**
 
@@ -493,7 +493,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 2. Depois, as concatenações (da esquerda para direita): $(ab)$ e $(c(d^*)e)$
 3. Por fim, a união: $(ab) \cup ((c(d^*))e)$
 
-**Resultado:** $((ab) \cup (c((d^*)e)))$
+**Resultado**: $((ab) \cup (c((d^*)e)))$
 
 **$a^*b^* \cup c^*$**
 
@@ -501,95 +501,95 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 2. Depois, a concatenação: $(a^*)(b^*)$
 3. Por fim, a união: $((a^*)(b^*)) \cup (c^*)$
 
-**Resultado:** $(((a^*)(b^*)) \cup (c^*))$
+**Resultado**: $(((a^*)(b^*)) \cup (c^*))$
 
-3. **Solução:**
+3. **Solução**:
 
-**Para $r = a^*ba^*$ e strings $\{ab, ba, aba, baa, bb\}$:**
+**Para $r = a^*ba^*$ e strings $\{ab, ba, aba, baa, bb\}$**:
 
 $L(a^*ba^*) = \{a^i b a^j \mid i, j \geq 0\}$ (strings com exatamente um $b$, podendo ter qualquer quantidade de $a$'s antes e depois)
 
-- **$ab$:** $ab = a^1 b a^0$ ∈ $L(r)$ 
-- **$ba$:** $ba = a^0 b a^1$ ∈ $L(r)$   
-- **$aba$:** $aba = a^1 b a^1$ ∈ $L(r)$ 
-- **$baa$:** $baa = a^0 b a^2$ ∈ $L(r)$ 
-- **$bb$:** Contém dois $b$'s, não pode ser expressa como $a^i b a^j$ ∉ $L(r)$ 
+- **$ab$**: $ab = a^1 b a^0$ ∈ $L(r)$ 
+- **$ba$**: $ba = a^0 b a^1$ ∈ $L(r)$   
+- **$aba$**: $aba = a^1 b a^1$ ∈ $L(r)$ 
+- **$baa$**: $baa = a^0 b a^2$ ∈ $L(r)$ 
+- **$bb$**: Contém dois $b$'s, não pode ser expressa como $a^i b a^j$ ∉ $L(r)$ 
 
-**Para $r = (a \cup b)^*b$ e strings $\{b, ab, ba, abb, bbb\}$:**
+**Para $r = (a \cup b)^*b$ e strings $\{b, ab, ba, abb, bbb\}$**:
 
 $L((a \cup b)^*b) = \{w b \mid w \in \{a,b\}^*\}$ (strings terminando com $b$)
 
-- **$b$:** $b = \epsilon \cdot b$ ∈ $L(r)$ 
-- **$ab$:** $ab = a \cdot b$ ∈ $L(r)$ 
-- **$ba$:** Termina com $a$, não com $b$ ∉ $L(r)$ 
-- **$abb$:** $abb = ab \cdot b$ ∈ $L(r)$   
-- **$bbb$:** $bbb = bb \cdot b$ ∈ $L(r)$ 
+- **$b$**: $b = \epsilon \cdot b$ ∈ $L(r)$ 
+- **$ab$**: $ab = a \cdot b$ ∈ $L(r)$ 
+- **$ba$**: Termina com $a$, não com $b$ ∉ $L(r)$ 
+- **$abb$**: $abb = ab \cdot b$ ∈ $L(r)$   
+- **$bbb$**: $bbb = bb \cdot b$ ∈ $L(r)$ 
 
-4. **Solução:**
+4. **Solução**:
   
-**Objetivo:** Calcular $L((a \cup b)c)$ usando a definição indutiva.
+**Objetivo**: Calcular $L((a \cup b)c)$ usando a definição indutiva.
 
-**Casos base identificados:**
+**Casos base identificados**:
 - $L(a) = \{a\}$
 - $L(b) = \{b\}$  
 - $L(c) = \{c\}$
 
-**Aplicação das regras indutivas:**
+**Aplicação das regras indutivas**:
 
-**Passo 1:** Calcular $L(a \cup b)$
+**Passo 1**: Calcular $L(a \cup b)$
 
 Usando a regra da união: $L(r \cup s) = L(r) \cup L(s)$
 $$L(a \cup b) = L(a) \cup L(b) = \{a\} \cup \{b\} = \{a, b\}$$
 
-**Passo 2:** Calcular $L((a \cup b)c)$
+**Passo 2**: Calcular $L((a \cup b)c)$
 
 Usando a regla da concatenação: $L(rs) = L(r) \cdot L(s)$
 $$L((a \cup b)c) = L(a \cup b) \cdot L(c) = \{a, b\} \cdot \{c\}$$
 
-**Passo 3:** Calcular o produto cartesiano
+**Passo 3**: Calcular o produto cartesiano
 $$\{a, b\} \cdot \{c\} = \{ac, bc\}$$
 
-**Resultado final:**
+**Resultado final**:
 $$L((a \cup b)c) = \{ac, bc\}$$
 
-5. **Solução:**
+5. **Solução**:
 
 **$L_1 = \{a, b, aa, bb\}$**
 
 Analisando o padrão: strings $a$ ou $b$, e strings $aa$ ou $bb$.
 
-**Estratégia:** $(a \cup b) \cup (aa \cup bb) = (a \cup b) \cup (a \cup b)(a \cup b)$
+**Estratégia**: $(a \cup b) \cup (aa \cup bb) = (a \cup b) \cup (a \cup b)(a \cup b)$
 
 Podemos fatorar: $(a \cup b)(1 \cup (a \cup b))$, mas isso não é uma expressão regular válida.
 
-**Solução direta:**
+**Solução direta**:
 $$r_1 = a \cup b \cup aa \cup bb$$
 
-**Versão mais concisa:**
+**Versão mais concisa**:
 $$r_1 = (a \cup b) \cup (a \cup b)^2$$
 
 **$L_2 = \{\epsilon, a, aa, aaa\}$**
 
 Analisando: $\epsilon$, $a^1$, $a^2$, $a^3$.
 
-**Estratégia:** União de potências específicas de $a$.
+**Estratégia**: União de potências específicas de $a$.
 $$r_2 = \epsilon \cup a \cup a^2 \cup a^3$$
 
-**Observação:** Não há uma forma mais concisa usando apenas as três operações básicas, pois precisamos limitar a 3 repetições de $a$.
+**Observação**: Não há uma forma mais concisa usando apenas as três operações básicas, pois precisamos limitar a 3 repetições de $a$.
 
 **$L_3 = \{w \in \{a,b\}^* \mid w \text{ termina com } a\}$**
 
-**Análise:** Qualquer sequência de $a$'s e $b$'s seguida obrigatoriamente por um $a$.
+**Análise**: Qualquer sequência de $a$'s e $b$'s seguida obrigatoriamente por um $a$.
 
-**Estratégia:** $(a \cup b)^* a$
+**Estratégia**: $(a \cup b)^* a$
 
-**Verificação:**
+**Verificação**:
 - $L((a \cup b)^* a) = \{wa \mid w \in \{a,b\}^*\}$ 
 - Isso corresponde exatamente a todas as strings sobre $\{a,b\}$ terminando com $a$
 
 $$r_3 = (a \cup b)^*a$$
 
-**Verificação com exemplos:**
+**Verificação com exemplos**:
 - $a = \epsilon \cdot a$ ∈ $L(r_3)$ 
 - $ba = b \cdot a$ ∈ $L(r_3)$   
 - $aba = ab \cdot a$ ∈ $L(r_3)$ 
@@ -597,28 +597,28 @@ $$r_3 = (a \cup b)^*a$$
 
 ### Exercícios 5: @sec-ex-regex2
 
-1. **Solução:**
+1. **Solução**:
 
-**Strings terminando em $10$:**
+**Strings terminando em $10$**:
 $$r_1 = (0 \cup 1)^*10$$
 
-**Verificação:** Qualquer sequência de 0's e 1's seguida obrigatoriamente por $10$.
+**Verificação**: Qualquer sequência de 0's e 1's seguida obrigatoriamente por $10$.
 
-**Strings começando com $01$:**
+**Strings começando com $01$**:
 $$r_2 = 01(0 \cup 1)^*$$
 
-**Verificação:** A string deve iniciar com $01$ seguido por qualquer sequência de 0's e 1's.
+**Verificação**: A string deve iniciar com $01$ seguido por qualquer sequência de 0's e 1's.
 
-**Strings que contêm $01$ como substring:**
+**Strings que contêm $01$ como substring**:
 $$r_3 = (0 \cup 1)^*01(0 \cup 1)^*$$
 
-**Verificação:** Qualquer sequência antes, $01$ obrigatório no meio, qualquer sequência depois.
+**Verificação**: Qualquer sequência antes, $01$ obrigatório no meio, qualquer sequência depois.
 
-**Strings que NÃO contêm $01$:**
+**Strings que NÃO contêm $01$**:
 
-**Análise:** Uma string não contém $01$ se nunca há um $0$ seguido diretamente por um $1$.
+**Análise**: Uma string não contém $01$ se nunca há um $0$ seguido diretamente por um $1$.
 
-**Estratégia:** A string pode ter apenas:
+**Estratégia**: A string pode ter apenas:
 - Sequências de $1$'s seguidas de sequências de $0$'s
 - Ou apenas $1$'s
 - Ou apenas $0$'s  
@@ -626,52 +626,52 @@ $$r_3 = (0 \cup 1)^*01(0 \cup 1)^*$$
 
 $$r_4 = 1^*0^*$$
 
-**Justificativa:** Se há algum $0$ seguido de $1$, violaria o padrão $1^*0^*$.
+**Justificativa**: Se há algum $0$ seguido de $1$, violaria o padrão $1^*0^*$.
 
-2. **Solução:**
+2. **Solução**:
 
-**Strings com número ímpar de $a$'s sobre $\{a,b\}$:**
+**Strings com número ímpar de $a$'s sobre $\{a,b\}$**:
 
-**Estratégia:** Modificar o padrão do número par. Para ter número ímpar, precisamos de um número ímpar de grupos "um $a$".
+**Estratégia**: Modificar o padrão do número par. Para ter número ímpar, precisamos de um número ímpar de grupos "um $a$".
 
 $$r_1 = b^*a(b^*ab^*ab^*)^*b^*$$
 
-**Explicação:**
+**Explicação**:
 - $b^*$: pode começar com $b$'s
 - $a$: o primeiro $a$ (garantindo número ímpar)
 - $(b^*ab^*ab^*)^*$: grupos de dois $a$'s (mantém a paridade ímpar)
 - $b^*$: pode terminar com $b$'s
 
-**Strings com número múltiplo de 3 de $a$'s:**
+**Strings com número múltiplo de 3 de $a$'s**:
 
-**Estratégia:** Agrupar os $a$'s de três em três.
+**Estratégia**: Agrupar os $a$'s de três em três.
 
 $$r_2 = b^*(ab^*ab^*ab^*)^*b^*$$
 
-**Explicação:**
+**Explicação**:
 - O grupo $(ab^*ab^*ab^*)$ contém exatamente 3 $a$'s
 - A repetição $(...)^*$ permite 0, 3, 6, 9, ... $a$'s
 
-**Strings com pelo menos dois $a$'s:**
+**Strings com pelo menos dois $a$'s**:
 
-**Estratégia:** Primeiro $a$, depois segundo $a$, depois qualquer coisa.
+**Estratégia**: Primeiro $a$, depois segundo $a$, depois qualquer coisa.
 
 $$r_3 = (a \cup b)^*a(a \cup b)^*a(a \cup b)^*$$
 
-**Simplificação alternativa:**
+**Simplificação alternativa**:
 $$r_3 = b^*ab^*a(a \cup b)^*$$
 
-3. **Solução:**
+3. **Solução**:
 
-**Permitir underscores em qualquer posição:**
+**Permitir underscores em qualquer posição**:
 
 Alfabeto expandido: $\{a, \ldots, z, A, \ldots, Z, 0, \ldots, 9, \_\}$
 
 $$r_1 = [a-zA-Z\_][a-zA-Z0-9\_]^*$$
 
-**Proibir dígitos na primeira e última posições:**
+**Proibir dígitos na primeira e última posições**:
 
-**Estratégia:** 
+**Estratégia**: 
 - Primeiro: apenas letra ou underscore
 - Meio: qualquer coisa permitida
 - Último: apenas letra ou underscore
@@ -682,89 +682,89 @@ $$\text{Caso 1: } [a-zA-Z\_]$$
 Para identificadores de 2+ caracteres:
 $$\text{Caso 2: } [a-zA-Z\_][a-zA-Z0-9\_]^*[a-zA-Z\_]$$
 
-**Combinando:**
+**Combinando**:
 $$r_2 = [a-zA-Z\_] \cup [a-zA-Z\_][a-zA-Z0-9\_]^*[a-zA-Z\_]$$
 
-**Identificadores entre 3 e 8 caracteres:**
+**Identificadores entre 3 e 8 caracteres**:
 
 $$r_3 = [a-zA-Z\_][a-zA-Z0-9\_]\{2,7\}$$
 
-**Explicação:**
+**Explicação**:
 - $[a-zA-Z\_]$: primeiro caractere (1 caractere)
 - $[a-zA-Z0-9\_]\{2,7\}$: de 2 a 7 caracteres adicionais
 - Total: 3 a 8 caracteres
 
-4. **Solução:**
+4. **Solução**:
 
-**Números decimais (com ponto decimal):**
+**Números decimais (com ponto decimal)**:
 
 $$r_1 = (\epsilon \cup + \cup -)[0-9]^*\.[0-9]^+$$
 
-**Análise:**
+**Análise**:
 - Sinal opcional: $(\epsilon \cup + \cup -)$
 - Parte inteira opcional: $[0-9]^*$ 
 - Ponto obrigatório: $\.$
 - Parte decimal obrigatória: $[0-9]^+$
 
-**Versão mais robusta (evitando apenas ".123"):**
+**Versão mais robusta (evitando apenas ".123")**:
 $$r_1' = (\epsilon \cup + \cup -)([0-9]^+\.[0-9]^* \cup [0-9]^*\.[0-9]^+)$$
 
-**Notação científica simples ($1e5$, $2e-3$):**
+**Notação científica simples ($1e5$, $2e-3$)**:
 
 $$r_2 = (\epsilon \cup + \cup -)[0-9]^+e(\epsilon \cup + \cup -)[0-9]^+$$
 
-**Explicação:**
+**Explicação**:
 - Sinal opcional: $(\epsilon \cup + \cup -)$
 - Mantissa: $[0-9]^+$ (pelo menos um dígito)
 - Literal 'e': $e$
 - Sinal do expoente opcional: $(\epsilon \cup + \cup -)$
 - Expoente: $[0-9]^+$
 
-**Números hexadecimais com prefixo $0x$:**
+**Números hexadecimais com prefixo $0x$**:
 
 $$r_3 = 0x[0-9a-fA-F]^+$$
 
-**Explicação:**
+**Explicação**:
 - Prefixo obrigatório: $0x$
 - Dígitos hex: $[0-9a-fA-F]^+$ (pelo menos um)
 
-5. **Solução:**
+5. **Solução**:
 
-**Verificação para "termina em 10" ($r = (0 \cup 1)^*10$):**
+**Verificação para "termina em 10" ($r = (0 \cup 1)^*10$)**:
 
-- **$101$:** Termina em $01$, não em $10$ → **NÃO** pertence
-- **$1010$:** Termina em $10$ → **SIM** pertence  
-- **$0101$:** Termina em $01$, não em $10$ → **NÃO** pertence
+- **$101$**: Termina em $01$, não em $10$ → **NÃO** pertence
+- **$1010$**: Termina em $10$ → **SIM** pertence  
+- **$0101$**: Termina em $01$, não em $10$ → **NÃO** pertence
 
-**Verificação para número ímpar de $a$'s ($r = b^*a(b^*ab^*ab^*)^*b^*$):**
+**Verificação para número ímpar de $a$'s ($r = b^*a(b^*ab^*ab^*)^*b^*$)**:
 
-- **$aab$:** 
+- **$aab$**: 
   - Contagem de $a$'s: 2 (par) → **NÃO** pertence
   
-- **$baba$:** 
+- **$baba$**: 
   - Contagem de $a$'s: 2 (par) → **NÃO** pertence
   
-- **$ababa$:** 
+- **$ababa$**: 
   - Contagem de $a$'s: 3 (ímpar) → **SIM** pertence
 
-**Verificação para identificadores com underscores ($r = [a-zA-Z\_][a-zA-Z0-9\_]^*$):**
+**Verificação para identificadores com underscores ($r = [a-zA-Z\_][a-zA-Z0-9\_]^*$)**:
 
-- **$var\_1$:**
+- **$var\_1$**:
   - Primeiro: $v$ (letra) 
   - Resto: $ar\_1$ (letras, underscore, dígito) 
   - → **SIM** é válido
   
-- **$\_temp$:**
+- **$\_temp$**:
   - Primeiro: $\_$ (underscore)   
   - Resto: $temp$ (letras) 
   - → **SIM** é válido
   
-- **$item2\_$:**
+- **$item2\_$**:
   - Primeiro: $i$ (letra) 
   - Resto: $tem2\_$ (letras, dígito, underscore) 
   - → **SIM** é válido
 
-**Resumo dos resultados:**
+**Resumo dos resultados**:
 
 | String | Termina em 10 | Ímpar de $a$'s | ID com underscore |
 |--------|---------------|----------------|-------------------|
@@ -780,7 +780,7 @@ $$r_3 = 0x[0-9a-fA-F]^+$$
 
 ### Exercícios 6: {@sec-ex-regex3}
 
-1. **Solução:**
+1. **Solução**:
 
 **$(a \cup \emptyset)b$**
 
@@ -810,45 +810,45 @@ $$a \cup ab^*a \equiv a\epsilon \cup ab^*a \equiv a(\epsilon \cup b^*a)$$
 Como $\epsilon \cup b^*a$ não pode ser simplificado usando apenas as leis básicas, a expressão mais simples é:
 $$a \cup ab^*a$$
 
-**Nota:** Esta expressão pode ser simplificada para $ab^*a$ usando propriedades mais avançadas, pois $\epsilon \in b^*$.
+**Nota**: Esta expressão pode ser simplificada para $ab^*a$ usando propriedades mais avançadas, pois $\epsilon \in b^*$.
 
-2. **Solução:**
+2. **Solução**:
 
-**Objetivo:** Simplificar $((a \cup b)a) \cup (aa)$
+**Objetivo**: Simplificar $((a \cup b)a) \cup (aa)$
 
-**Expressão inicial:**
+**Expressão inicial**:
 $$((a \cup b)a) \cup (aa)$$
 
-**Passo 1:** Aplicar distributividade em $(a \cup b)a$
+**Passo 1**: Aplicar distributividade em $(a \cup b)a$
 $$((a \cup b)a) = (aa \cup ba)$$
 
-**Passo 2:** Substituir na expressão original
+**Passo 2**: Substituir na expressão original
 $$(aa \cup ba) \cup (aa)$$
 
-**Passo 3:** Aplicar associatividade da união
+**Passo 3**: Aplicar associatividade da união
 $$aa \cup ba \cup aa$$
 
-**Passo 4:** Aplicar comutatividade para agrupar termos iguais
+**Passo 4**: Aplicar comutatividade para agrupar termos iguais
 $$aa \cup aa \cup ba$$
 
-**Passo 5:** Aplicar idempotência da união: $r \cup r \equiv r$
+**Passo 5**: Aplicar idempotência da união: $r \cup r \equiv r$
 $$aa \cup ba$$
 
-**Passo 6:** Aplicar distributividade reversa
+**Passo 6**: Aplicar distributividade reversa
 $$aa \cup ba \equiv (a \cup b)a$$
 
-**Resultado final:**
+**Resultado final**:
 $$((a \cup b)a) \cup (aa) \equiv (a \cup b)a$$
 
-**Verificação com strings específicas:**
+**Verificação com strings específicas**:
 - Original aceita: $\{aa, ba\}$
 - Simplificada aceita: $\{aa, ba\}$ 
 
-3. **Solução:**
+3. **Solução**:
 
 **$a^*a$ e $aa^*$**
 
-**Demonstração:**
+**Demonstração**:
 
 Para $a^*a$:
 $$L(a^*a) = L(a^*) \cdot L(a) = \{a^n \mid n \geq 0\} \cdot \{a\} = \{a^{n+1} \mid n \geq 0\} = \{a^m \mid m \geq 1\}$$
@@ -861,7 +861,7 @@ $$a^*a \equiv aa^*$$
 
 **$(a \cup b)^*$ e $\epsilon \cup (a \cup b)(a \cup b)^*$**
 
-**Demonstração:**
+**Demonstração**:
 
 Para o lado direito, aplicando a definição recursiva do fechamento de Kleene:
 $$L^* = \epsilon \cup LL^*$$
@@ -876,13 +876,13 @@ $$(a \cup b)^* \equiv \epsilon \cup (a \cup b)(a \cup b)^*$$
 
 **$a^*b^*$ e $(a \cup b)^*$ - esta é FALSA**
 
-**Contraexemplo:**
+**Contraexemplo**:
 - $ab \in L((a \cup b)^*)$ (qualquer intercalação de $a$'s e $b$'s)
 - $ab \notin L(a^*b^*)$ (pois $a^*b^*$ só aceita todos os $a$'s seguidos de todos os $b$'s)
 
 Portanto: $a^*b^* \not\equiv (a \cup b)^*$
 
-4. **Solução:**
+4. **Solução**:
 
 **$(a^*)^*$**
 
@@ -912,56 +912,56 @@ $$L((a \cup \epsilon)^*) = L(a^*)$$
 Portanto:
 $$(a \cup \epsilon)^* \equiv a^*$$
 
-5. **Solução:**
+5. **Solução**:
 
-**Objetivo:** Simplificar $ab^* \cup abb^* \cup abbb^*$
+**Objetivo**: Simplificar $ab^* \cup abb^* \cup abbb^*$
 
-**Identificação do padrão comum:**
+**Identificação do padrão comum**:
 
 Todos os termos começam com $a$ seguido de pelo menos um $b$:
 - $ab^* = a(b^*)$ contém $ab^0, ab^1, ab^2, \ldots$
 - $abb^* = a(bb^*)$ contém $ab^1, ab^2, ab^3, \ldots$  
 - $abbb^* = a(bbb^*)$ contém $ab^2, ab^3, ab^4, \ldots$
 
-**Análise dos conjuntos:**
+**Análise dos conjuntos**:
 - $L(ab^*) = \{a, ab, abb, abbb, \ldots\}$
 - $L(abb^*) = \{ab, abb, abbb, \ldots\}$  
 - $L(abbb^*) = \{abb, abbb, abbbb, \ldots\}$
 
-**Observação:** $L(abb^*) \subseteq L(ab^*)$ e $L(abbb^*) \subseteq L(ab^*)$
+**Observação**: $L(abb^*) \subseteq L(ab^*)$ e $L(abbb^*) \subseteq L(ab^*)$
 
-**Aplicação da distributividade:**
+**Aplicação da distributividade**:
 
 $$ab^* \cup abb^* \cup abbb^* \equiv a(b^* \cup bb^* \cup bbb^*)$$
 
-**Simplificação do termo entre parênteses:**
+**Simplificação do termo entre parênteses**:
 
 Como $bb^* \subseteq b^*$ e $bbb^* \subseteq b^*$:
 $$b^* \cup bb^* \cup bbb^* \equiv b^*$$
 
-**Resultado final:**
+**Resultado final**:
 $$ab^* \cup abb^* \cup abbb^* \equiv ab^*$$
 
-**Verificação da equivalência:**
+**Verificação da equivalência**:
 
-**Linguagem original:**
+**Linguagem original**:
 $$L(ab^* \cup abb^* \cup abbb^*) = L(ab^*) \cup L(abb^*) \cup L(abbb^*)$$
 $$= \{a, ab, abb, \ldots\} \cup \{ab, abb, \ldots\} \cup \{abb, abbb, \ldots\}$$
 $$= \{a, ab, abb, abbb, \ldots\}$$
 
-**Linguagem simplificada:**
+**Linguagem simplificada**:
 $$L(ab^*) = \{a, ab, abb, abbb, \ldots\}$$
 
 Como os conjuntos são idênticos, a simplificação está correta.
 
-**Benefício da otimização:**
-- **Expressão original:** 3 termos unidos
-- **Expressão otimizada:** 1 termo simples
-- **Eficiência:** Redução significativa na complexidade de avaliação
+**Benefício da otimização**:
+- **Expressão original**: 3 termos unidos
+- **Expressão otimizada**: 1 termo simples
+- **Eficiência**: Redução significativa na complexidade de avaliação
 
 ### Exercícios 7: {@sec-ex-regex4}
 
-1. **Solução:**
+1. **Solução**:
 
 **$a^+$**
 
@@ -991,7 +991,7 @@ $$b\{2,4\} \equiv bb \cup bbb \cup bbbb$$
 Ou usando concatenação e opcionalidade:
 $$b\{2,4\} \equiv bb(\epsilon \cup b)(\epsilon \cup b)$$
 
-2. **Solução:**
+2. **Solução**:
 
 **Qualquer dígito: $[0-9]$**
 
@@ -1007,104 +1007,104 @@ Assumindo um alfabeto básico ASCII $\Sigma = \{a, b, \ldots, z, A, B, \ldots, Z
 
 $$[^ ] \equiv (a \cup b \cup \ldots \cup z \cup A \cup \ldots \cup Z \cup 0 \cup \ldots \cup 9 \cup ! \cup @ \cup \ldots)$$
 
-**Nota:** Esta seria a união de todos os símbolos do alfabeto exceto o espaço.
+**Nota**: Esta seria a união de todos os símbolos do alfabeto exceto o espaço.
 
 **Qualquer caractere alfanumérico: $[a-zA-Z0-9]$**
 
 $$[a-zA-Z0-9] \equiv (a \cup b \cup \ldots \cup z \cup A \cup B \cup \ldots \cup Z \cup 0 \cup 1 \cup \ldots \cup 9)$$
 
-3. **Solução:**
+3. **Solução**:
 
-**CEP brasileiro no formato $99999-999$:**
+**CEP brasileiro no formato $99999-999$**:
 
 $$r_1 = [0-9]\{5\}-[0-9]\{3\}$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_1 \equiv [0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9]$$
 
-**Placa de carro brasileira antiga $AAA-9999$:**
+**Placa de carro brasileira antiga $AAA-9999$**:
 
 $$r_2 = [A-Z]\{3\}-[0-9]\{4\}$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_2 \equiv [A-Z][A-Z][A-Z]-[0-9][0-9][0-9][0-9]$$
 
-**Senha com exatamente 8 caracteres alfanuméricos:**
+**Senha com exatamente 8 caracteres alfanuméricos**:
 
 $$r_3 = [a-zA-Z0-9]\{8\}$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_3 \equiv [a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9][a-zA-Z0-9]$$
 
-**Código de área de telefone com 2 ou 3 dígitos:**
+**Código de área de telefone com 2 ou 3 dígitos**:
 
 $$r_4 = [0-9]\{2,3\}$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_4 \equiv [0-9][0-9] \cup [0-9][0-9][0-9]$$
 
-4. **Solução:**
+4. **Solução**:
 
-**URL simples começando com $http$ ou $https$:**
+**URL simples começando com $http$ ou $https$**:
 
 $$r_1 = https?://[a-zA-Z0-9.-]^+$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_1 \equiv (http \cup https)://[a-zA-Z0-9.-]^+$$
 $$\equiv http(\epsilon \cup s)://[a-zA-Z0-9.-]^+$$
 
-**Data no formato $dd/mm/aaaa$ (versão simples):**
+**Data no formato $dd/mm/aaaa$ (versão simples)**:
 
 $$r_2 = [0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_2 \equiv [0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$$
 
-**Horário no formato $hh:mm$ (24 horas):**
+**Horário no formato $hh:mm$ (24 horas)**:
 
 $$r_3 = ([01][0-9] \cup 2[0-3]):[0-5][0-9]$$
 
-**Explicação:**
+**Explicação**:
 - $([01][0-9] \cup 2[0-3])$: horas de 00-19 ou 20-23
 - $:[0-5][0-9]$: minutos de 00-59
 
-**Número de CPF no formato $999.999.999-99$:**
+**Número de CPF no formato $999.999.999-99$**:
 
 $$r_4 = [0-9]\{3\}\.[0-9]\{3\}\.[0-9]\{3\}-[0-9]\{2\}$$
 
-**Expandindo:**
+**Expandindo**:
 $$r_4 \equiv [0-9][0-9][0-9]\.[0-9][0-9][0-9]\.[0-9][0-9][0-9]-[0-9][0-9]$$
 
-5. **Solução:**
+5. **Solução**:
 
 **$(a \cup b \cup c \cup d)(a \cup b \cup c \cup d)^*$**
 
-**Usando classes de caracteres:**
+**Usando classes de caracteres**:
 $$[abcd][abcd]^*$$
 
-**Usando fechamento positivo:**
+**Usando fechamento positivo**:
 $$[abcd]^+$$
 
-**Expandindo $[abcd]^+$:**
+**Expandindo $[abcd]^+$**:
 $$[abcd]^+ \equiv [abcd][abcd]^* \equiv [abcd](\epsilon \cup [abcd][abcd]^*)$$
 
 **$a(\epsilon \cup b)$**
 
-**Usando opcionalidade:**
+**Usando opcionalidade**:
 $$ab?$$
 
-**Expandindo:**
+**Expandindo**:
 $$ab? \equiv a(\epsilon \cup b)$$
 
 **$(0 \cup 1 \cup 2 \cup 3 \cup 4 \cup 5 \cup 6 \cup 7 \cup 8 \cup 9)(0 \cup 1 \cup 2 \cup 3 \cup 4 \cup 5 \cup 6 \cup 7 \cup 8 \cup 9)^*$**
 
-**Usando classes de caracteres:**
+**Usando classes de caracteres**:
 $$[0-9][0-9]^*$$
 
-**Usando fechamento positivo:**
+**Usando fechamento positivo**:
 $$[0-9]^+$$
 
-**Comparação das otimizações:**
+**Comparação das otimizações**:
 
 | Expressão Original | Versão Otimizada | Redução |
 |-------------------|------------------|---------|
@@ -1112,49 +1112,49 @@ $$[0-9]^+$$
 | $a(\epsilon \cup b)$ | $ab?$ | 70% |
 | $(0 \cup 1 \cup \ldots \cup 9)(0 \cup 1 \cup \ldots \cup 9)^*$ | $[0-9]^+$ | 95% |
 
-**Benefícios da otimização:**
+**Benefícios da otimização**:
 
-1. **Legibilidade:** As notações convencionais são muito mais fáceis de ler e entender
-2. **Manutenibilidade:** Modificações (como adicionar novos caracteres) são mais simples
-3. **Eficiência:** Implementações podem otimizar melhor as notações convencionais
-4. **Menos propenso a erros:** Reduz a chance de esquecer casos em uniões longas
+1. **Legibilidade**: As notações convencionais são muito mais fáceis de ler e entender
+2. **Manutenibilidade**: Modificações (como adicionar novos caracteres) são mais simples
+3. **Eficiência**: Implementações podem otimizar melhor as notações convencionais
+4. **Menos propenso a erros**: Reduz a chance de esquecer casos em uniões longas
 
-**Exemplo prático:**
+**Exemplo prático**:
 
 Para aceitar qualquer letra maiúscula ou minúscula:
 
-**Versão expandida (52 termos!):**
+**Versão expandida (52 termos!)**:
 $$(A \cup B \cup C \cup \ldots \cup Z \cup a \cup b \cup c \cup \ldots \cup z)$$
 
-**Versão otimizada:**
+**Versão otimizada**:
 $$[a-zA-Z]$$
 
 A redução é de aproximadamente **98%** no tamanho da expressão!
 
 ### Exercícios 8: {@sec-ex-regex5}
 
-1. **Solução:**
+1. **Solução**:
 
 **Palavras-chave: $\{\text{if}, \text{then}, \text{else}, \text{while}, \text{do}\}$**
 
 $$r_1 = \text{if} \cup \text{then} \cup \text{else} \cup \text{while} \cup \text{do}$$
 
-**Implementação mais eficiente:**
+**Implementação mais eficiente**:
 $$r_1 = \text{if} \cup \text{then} \cup \text{else} \cup \text{while} \cup \text{do}$$
 
-**Números inteiros (incluindo negativos):**
+**Números inteiros (incluindo negativos)**:
 
 $$r_2 = -?([1-9][0-9]^* \cup 0)$$
 
-**Explicação:**
+**Explicação**:
 - $-?$: sinal negativo opcional
 - $([1-9][0-9]^* \cup 0)$: número sem zeros à esquerda ou apenas zero
 
-**Comentários de linha iniciados por $//$ até o final da linha:**
+**Comentários de linha iniciados por $//$ até o final da linha**:
 
 $$r_3 = //[^\n]^*$$
 
-**Explicação:**
+**Explicação**:
 - $//$ literal
 - $[^\n]^*$: qualquer caractere exceto nova linha, zero ou mais vezes
 
@@ -1162,15 +1162,15 @@ $$r_3 = //[^\n]^*$$
 
 $$r_4 = <= \cup >= \cup == \cup != \cup < \cup >$$
 
-**Observação:** A ordem é importante - operadores de dois caracteres devem vir antes dos de um caractere para evitar conflitos durante o parsing.
+**Observação**: A ordem é importante - operadores de dois caracteres devem vir antes dos de um caractere para evitar conflitos durante o parsing.
 
-2. **Solução:**
+2. **Solução**:
 
 **Telefone celular: $(11) 99999-9999$**
 
 $$r_1 = \([0-9]\{2\} [0-9]\{5\}-[0-9]\{4\}$$
 
-**Versão mais flexível (com espaço opcional):**
+**Versão mais flexível (com espaço opcional)**:
 $$r_1' = \([0-9]\{2\) ?[0-9]\{5\}-[0-9]\{4\}$$
 
 **RG: $99.999.999-9$**
@@ -1185,32 +1185,32 @@ $$r_3 = [0-9]\{2\}\.[0-9]\{3\}\.[0-9]\{3\}/[0-9]\{4\}-[0-9]\{2\}$$
 
 $$r_4 = [0-9]\{5\}[-.]?[0-9]\{3\}$$
 
-**Explicação:**
+**Explicação**:
 - $[0-9]\{5\}$: cinco dígitos iniciais
 - $[-.]?$: hífen ou ponto opcional (alguns CEPs não têm separador)
 - $[0-9]\{3\}$: três dígitos finais
 
-3. **Solução:**
+3. **Solução**:
 
-**Endereços de email em um texto:**
+**Endereços de email em um texto**:
 
 $$r_1 = [a-zA-Z0-9._%+-]^+@[a-zA-Z0-9.-]^+\.[a-zA-Z]\{2,\}$$
 
-**Explicação:**
+**Explicação**:
 - $[a-zA-Z0-9._%+-]^+$: parte local (antes do @)
 - $@$: símbolo obrigatório
 - $[a-zA-Z0-9.-]^+$: domínio
 - $\.$: ponto literal
 - $[a-zA-Z]\{2,\}$: extensão com pelo menos 2 letras
 
-**Valores monetários no formato $R\$ 99,99$:**
+**Valores monetários no formato $R\$ 99,99$**:
 
 $$r_2 = R\$ ?[0-9]^+,[0-9]\{2\}$$
 
-**Versão mais robusta:**
+**Versão mais robusta**:
 $$r_2' = R\$ ?[0-9]\{1,3\}(\.[0-9]\{3\})^*,[0-9]\{2\}$$
 
-**Explicação da versão robusta:**
+**Explicação da versão robusta**:
 - $[0-9]\{1,3\}$: 1 a 3 dígitos iniciais
 - $(\.[0-9]\{3\})^*$: grupos de 3 dígitos separados por ponto (milhares)
 - $,[0-9]\{2\}$: vírgula e centavos
@@ -1219,93 +1219,93 @@ $$r_2' = R\$ ?[0-9]\{1,3\}(\.[0-9]\{3\})^*,[0-9]\{2\}$$
 
 $$r_3 = [0-9]\{2\}[/.-][0-9]\{2\}[/.-][0-9]\{4\}$$
 
-**Versão mais específica (garantindo consistência do separador):**
+**Versão mais específica (garantindo consistência do separador)**:
 $$r_3' = ([0-9]\{2\}/[0-9]\{2\}/[0-9]\{4\}) \cup ([0-9]\{2\}-[0-9]\{2\}-[0-9]\{4\}) \cup ([0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\})$$
 
-**Números de cartão de crédito (formato $9999-9999-9999-9999$):**
+**Números de cartão de crédito (formato $9999-9999-9999-9999$)**:
 
 $$r_4 = [0-9]\{4\}-[0-9]\{4\}-[0-9]\{4\}-[0-9]\{4\}$$
 
-**Versão flexível (com separadores opcionais):**
+**Versão flexível (com separadores opcionais)**:
 $$r_4' = [0-9]\{4\} ?-? ?[0-9]\{4\} ?-? ?[0-9]\{4\} ?-? ?[0-9]\{4\}$$
 
-4. **Solução:**
+4. **Solução**:
 
 **Para validar email: $[a-z]+@[a-z]+.[a-z]+$ (problema: ponto literal)**
 
-**Problema identificado:** O ponto $.$ é um metacaractere que corresponde a "qualquer caractere". Para representar um ponto literal, deve ser escapado.
+**Problema identificado**: O ponto $.$ é um metacaractere que corresponde a "qualquer caractere". Para representar um ponto literal, deve ser escapado.
 
-**Correção:**
+**Correção**:
 $$[a-z]^+@[a-z]^+\.[a-z]^+$$
 
-**Melhorias adicionais:**
+**Melhorias adicionais**:
 - Incluir maiúsculas e números: $[a-zA-Z0-9]^+@[a-zA-Z0-9]^+\.[a-zA-Z]\{2,\}$
 - Permitir caracteres especiais válidos: $[a-zA-Z0-9._%+-]^+@[a-zA-Z0-9.-]^+\.[a-zA-Z]\{2,\}$
 
 **Para números decimais: $[0-9]*.[0-9]*$ (problema: pontos opcionais)**
 
-**Problemas identificados:**
+**Problemas identificados**:
 1. Ponto não escapado (deveria ser $\.$)
 2. Ambas as partes são opcionais (aceita strings como "." vazia)
 
-**Correção:**
+**Correção**:
 $$[0-9]^+\.[0-9]^+ \cup [0-9]^+\. \cup \.[0-9]^+$$
 
-**Versão mais simples:**
+**Versão mais simples**:
 $$([0-9]^+\.[0-9]^*) \cup ([0-9]^*\.[0-9]^+)$$
 
 **Para identificadores: $[a-zA-Z][a-zA-Z0-9]?$ (problema: comprimento mínimo)**
 
-**Problema identificado:** O $?$ torna o segundo caractere opcional, permitindo identificadores de apenas 1 caractere, mas limitando a 2 caracteres no máximo.
+**Problema identificado**: O $?$ torna o segundo caractere opcional, permitindo identificadores de apenas 1 caractere, mas limitando a 2 caracteres no máximo.
 
-**Correção para identificadores normais:**
+**Correção para identificadores normais**:
 $$[a-zA-Z][a-zA-Z0-9]^*$$
 
-**Se realmente quiser 1-2 caracteres apenas:**
+**Se realmente quiser 1-2 caracteres apenas**:
 $$[a-zA-Z][a-zA-Z0-9]?$$
 
-5. **Solução:**
+5. **Solução**:
 
 **$(abc|abd|abe) \rightarrow ab(c|d|e)$**
 
-**Análise:** Fatoração do prefixo comum $ab$.
+**Análise**: Fatoração do prefixo comum $ab$.
 
-**Verificação da equivalência:**
+**Verificação da equivalência**:
 - Original: $\{abc, abd, abe\}$
 - Otimizada: $ab(c \cup d \cup e) = ab \{c, d, e\} = \{abc, abd, abe\}$ 
 
-**Benefício:** Reduz backtracking em implementações, pois $ab$ só precisa ser verificado uma vez.
+**Benefício**: Reduz backtracking em implementações, pois $ab$ só precisa ser verificado uma vez.
 
 **$[0-9][0-9][0-9][0-9] \rightarrow [0-9]\{4\}$**
 
-**Análise:** Uso de quantificador para repetição.
+**Análise**: Uso de quantificador para repetição.
 
-**Verificação da equivalência:**
+**Verificação da equivalência**:
 - Ambas aceitam exatamente sequências de 4 dígitos 
 
-**Benefício:** Mais conciso, e muitas implementações otimizam quantificadores internamente.
+**Benefício**: Mais conciso, e muitas implementações otimizam quantificadores internamente.
 
 **$(a^*b^*|b^*a^*) \rightarrow (a|b)^*$ - VERIFICAÇÃO NECESSÁRIA**
 
-**Análise da equivalência:**
+**Análise da equivalência**:
 
-**Lado esquerdo:** $(a^*b^*) \cup (b^*a^*)$
+**Lado esquerdo**: $(a^*b^*) \cup (b^*a^*)$
 - $a^*b^*$: zero ou mais $a$'s seguidos de zero ou mais $b$'s
 - $b^*a^*$: zero ou mais $b$'s seguidos de zero ou mais $a$'s
 - União: strings da forma $a^i b^j$ ou $b^k a^l$
 
-**Lado direito:** $(a \cup b)^*$
+**Lado direito**: $(a \cup b)^*$
 - Qualquer sequência de $a$'s e $b$'s em qualquer ordem
 
-**Contraexemplo:** A string $aba$
+**Contraexemplo**: A string $aba$
 - $aba \in L((a|b)^*)$ 
 - $aba \notin L(a^*b^*)$ (pois tem $a$ após $b$)
 - $aba \notin L(b^*a^*)$ (pois tem $b$ entre $a$'s)
 - Portanto: $aba \notin L((a^*b^*|b^*a^*))$
 
-**Conclusão:** As expressões **NÃO** são equivalentes.
+**Conclusão**: As expressões **NÃO** são equivalentes.
 
-**Análise de performance:**
+**Análise de performance**:
 
 | Expressão | Eficiência | Observações |
 |-----------|------------|-------------|
@@ -1313,7 +1313,7 @@ $$[a-zA-Z][a-zA-Z0-9]?$$
 | $[0-9]\{4\}$ | ⭐⭐⭐⭐⭐ | Otimização interna comum |
 | $(a\|b)^*$ vs $(a^*b^*\|b^*a^*)$ | ⭐⭐⭐ vs ⭐⭐ | Primeira é mais eficiente, mas não equivalente |
 
-**Recomendações gerais para performance:**
+**Recomendações gerais para performance**:
 
 1. **Fatore prefixos comuns** para reduzir backtracking
 2. **Use quantificadores** em vez de repetição manual
@@ -1321,11 +1321,11 @@ $$[a-zA-Z][a-zA-Z0-9]?$$
 4. **Coloque alternativas mais prováveis primeiro** em uniões
 5. **Use classes de caracteres** em vez de uniões longas de caracteres individuais
 
-**Exemplo de otimização completa:**
+**Exemplo de otimização completa**:
 
-**Antes:** $(http|https)://[a-z][a-z][a-z]*\.(com|org|net|edu)$
+**Antes**: $(http|https)://[a-z][a-z][a-z]*\.(com|org|net|edu)$
 
-**Depois:** $https?://[a-z]^+\.(com|org|net|edu)$
+**Depois**: $https?://[a-z]^+\.(com|org|net|edu)$
 
 Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concisa.
 
@@ -1341,7 +1341,7 @@ Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concis
 * s\_0: O estado inicial único.  
 * F=s\_0,s\_3: O conjunto de estados de aceitação (ou finais).
 
-**2.** Não, o modelo não representa um AFD válido. A justificativa é que o conjunto de estados de aceitação F=q\_2 contém um estado, q\_2, que não pertence ao conjunto de estados da máquina, Q=q\_0,q\_1. A definição formal exige que FsubseteqQ.
+**2.** Não, o modelo não representa um Autômato Finito Determinístico válido. A justificativa é que o conjunto de estados de aceitação F=q\_2 contém um estado, q\_2, que não pertence ao conjunto de estados da máquina, Q=q\_0,q\_1. A definição formal exige que FsubseteqQ.
 
 **3.** O domínio da função de transição é QtimesSigma. O número de pares nesse domínio é o produto das cardinalidades dos conjuntos, ou seja, ∣Q∣times∣Sigma∣=3times4=12.
 
@@ -1408,8 +1408,8 @@ Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concis
 
 **4.**
 
-* **Para depurar:** A **representação gráfica (diagrama)** é geralmente a mais útil, pois oferece uma visualização intuitiva do fluxo de controle. É fácil seguir os caminhos e entender como diferentes *strings* são processadas.  
-* **Para implementar:** A **representação tabular (tabela de transições)** é a mais direta para implementação. Ela mapeia naturalmente para uma estrutura de dados como um array 2D ou um dicionário de dicionários, permitindo acesso O(1) ao próximo estado.
+* **Para depurar**: A **representação gráfica (diagrama)** é geralmente a mais útil, pois oferece uma visualização intuitiva do fluxo de controle. É fácil seguir os caminhos e entender como diferentes *strings* são processadas.  
+* **Para implementar**: A **representação tabular (tabela de transições)** é a mais direta para implementação. Ela mapeia naturalmente para uma estrutura de dados como um array 2D ou um dicionário de dicionários, permitindo acesso O(1) ao próximo estado.
 
 **3.5.** Para aceitar *strings* que terminam com "010", precisamos de um novo estado final. Podemos adicionar um estado q\_D e modificar as transições.
 
@@ -1448,9 +1448,9 @@ Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concis
 
 **5.**
 
-* **Aceita:** ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Ops, essa é rejeitada. Vamos tentar aabb.  
-  * **Aceita:** aabb. Caminho: q\_ppxrightarrowaq\_ipxrightarrowaq\_ppxrightarrowbq\_pixrightarrowbq\_pp. Termina em q\_ppinF. Aceita.  
-* **Rejeitada:** ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Termina em q\_ipnotinF. Rejeitada.
+* **Aceita**: ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Ops, essa é rejeitada. Vamos tentar aabb.  
+  * **Aceita**: aabb. Caminho: q\_ppxrightarrowaq\_ipxrightarrowaq\_ppxrightarrowbq\_pixrightarrowbq\_pp. Termina em q\_ppinF. Aceita.  
+* **Rejeitada**: ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Termina em q\_ipnotinF. Rejeitada.
 
 ### Exercícios 5: {@exercicios-5}
 
@@ -1499,57 +1499,856 @@ Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concis
 * q\_2xrightarrowrq\_4 (q\_4 é de aceitação)  
 * Todas as outras transições levam a um estado de erro q\_e.
 
-### Exercícios 6: {@Exercicios-6  }
+### Exercícios 6: {@Exercicios-6}
 
 **1.**
+O autômato união é construído usando o produto cartesiano dos conjuntos de estados:
+$$Q = Q_1 \times Q_2$$
 
-* M\_1: Q\_1=p\_0,p\_1 (par, ímpar), q\_01=p\_0, F\_1=p\_0.  
-* M\_2: Q\_2=r\_0,r\_1 (não termina 'b', termina 'b'), q\_02=r\_0, F\_2=r\_1.  
-* Q=Q\_1timesQ\_2=(p\_0,r\_0),(p\_0,r\_1),(p\_1,r\_0),(p\_1,r\_1).
+Portanto, o número de estados será:
+$$|Q| = |Q_1| \times |Q_2| = 3 \times 2 = 6 \text{ estados}$$
 
-| Estado | a | b |
-| :---- | :---- | :---- |
-| rightarrow(p\_0,r\_0) | (p\_1,r\_0) | (p\_0,r\_1) |
-| (p\_0,r\_1) | (p\_1,r\_0) | (p\_0,r\_1) |
-| (p\_1,r\_0) | (p\_0,r\_0) | (p\_1,r\_1) |
-| (p\_1,r\_1) | (p\_0,r\_0) | (p\_1,r\_1) |
+**Resposta**: O autômato $M_1 \cup M_2$ terá **6 estados**.
 
 **2.**
 
-* **Estado Inicial**: (p\_0,r\_0).  
-* **Estados de Aceitação (União)**: Um estado (p\_i,r\_j) é final se p\_iinF\_1 OU r\_jinF\_2.  
-  * F\_1=p\_0, F\_2=r\_1.  
-  * F=(p\_0,r\_0),(p\_0,r\_1),(p\_1,r\_1).
+Mudando a condição de aceitação de **OU** para **E**, estaríamos realizando a **interseção** dos autômatos.
 
-**3.** O autômato produto terá ∣Q\_1∣times∣Q\_2∣=3times4=12 estados.
+- **União ($M_1 \cup M_2$)**: Estado final se $p \in F_1$ **OU** $q \in F_2$
+  - Aceita strings que são aceitas por $M_1$ **ou** por $M_2$ (ou ambos)
+  
+- **Interseção ($M_1 \cap M_2$)**: Estado final se $p \in F_1$ **E** $q \in F_2$
+  - Aceita strings que são aceitas por $M_1$ **e** por $M_2$ simultaneamente
 
-**4.** A linguagem reconhecida seria a mesma, L(M\_1)cupL(M\_1)=L(M\_1). O autômato produto resultante, no entanto, teria ∣Q\_1∣times∣Q\_1∣ estados. Este novo autômato seria equivalente ao original, mas não seria mínimo. Ele poderia ser minimizado de volta para M\_1.
+**Resposta**: Estaríamos realizando a operação de **interseção** dos autômatos.
 
-**5.** Sim. A função de transição do produto é definida como delta((q\_1,q\_2),a)=(delta\_1(q\_1,a),delta\_2(q\_2,a)). Se M\_1 e M\_2 são completos, então delta\_1(q\_1,a) e delta\_2(q\_2,a) estão definidos para todos os pares. Consequentemente, a transição delta do autômato produto também estará definida para todos os pares, tornando-o completo.
+**3.**
+
+**Especificação dos autômatos originais**:
+
+$M_1$ aceita apenas "a":
+- $Q_1 = \{s_0, s_1, s_2\}$ (inicial, aceita "a", rejeita)
+- $F_1 = \{s_1\}$
+- $\delta_1(s_0, a) = s_1$, $\delta_1(s_0, b) = s_2$
+- $\delta_1(s_1, a) = s_2$, $\delta_1(s_1, b) = s_2$
+- $\delta_1(s_2, a) = s_2$, $\delta_1(s_2, b) = s_2$
+
+$M_2$ aceita apenas "b":
+- $Q_2 = \{t_0, t_1, t_2\}$ (inicial, aceita "b", rejeita)
+- $F_2 = \{t_1\}$
+- $\delta_2(t_0, a) = t_2$, $\delta_2(t_0, b) = t_1$
+- $\delta_2(t_1, a) = t_2$, $\delta_2(t_1, b) = t_2$
+- $\delta_2(t_2, a) = t_2$, $\delta_2(t_2, b) = t_2$
+
+**Autômato união $M_1 \cup M_2$**:
+- Estados finais: $(s_1, t_0)$, $(s_1, t_1)$, $(s_1, t_2)$, $(s_0, t_1)$, $(s_2, t_1)$
+
+**Tabela de transições**:
+
+| Estado | a | b |
+|--------|---|---|
+| →$(s_0,t_0)$ | $(s_1,t_2)$ | $(s_2,t_1)$ |
+| *$(s_0,t_1)$ | $(s_1,t_2)$ | $(s_2,t_2)$ |
+| $(s_0,t_2)$ | $(s_1,t_2)$ | $(s_2,t_2)$ |
+| *$(s_1,t_0)$ | $(s_2,t_2)$ | $(s_2,t_1)$ |
+| *$(s_1,t_1)$ | $(s_2,t_2)$ | $(s_2,t_2)$ |
+| *$(s_1,t_2)$ | $(s_2,t_2)$ | $(s_2,t_2)$ |
+| $(s_2,t_0)$ | $(s_2,t_2)$ | $(s_2,t_1)$ |
+| *$(s_2,t_1)$ | $(s_2,t_2)$ | $(s_2,t_2)$ |
+| $(s_2,t_2)$ | $(s_2,t_2)$ | $(s_2,t_2)$ |
+
+**4.**
+
+**Especificação dos autômatos**:
+
+$M_1$ (termina em '01'):
+- $Q_1 = \{p_0, p_1, p_2\}$ onde $p_0$ é inicial, $p_1$ leu '0', $p_2$ leu '01'
+- $F_1 = \{p_2\}$
+- Transições: $\delta_1(p_0,0) = p_1$, $\delta_1(p_0,1) = p_0$, $\delta_1(p_1,0) = p_1$, $\delta_1(p_1,1) = p_2$, $\delta_1(p_2,0) = p_1$, $\delta_1(p_2,1) = p_0$
+
+$M_2$ (número par de '1's):
+- $Q_2 = \{q_0, q_1\}$ onde $q_0$ é par, $q_1$ é ímpar
+- $F_2 = \{q_0\}$
+- Transições: $\delta_2(q_0,0) = q_0$, $\delta_2(q_0,1) = q_1$, $\delta_2(q_1,0) = q_1$, $\delta_2(q_1,1) = q_0$
+
+**Autômato união $M_1 \cup M_2$**:
+
+Estados finais: $(p_2,q_0)$, $(p_2,q_1)$, $(p_0,q_0)$, $(p_1,q_0)$
+
+**Tabela de transições**:
+
+| Estado | 0 | 1 |
+|--------|---|---|
+| →$(p_0,q_0)$ | $(p_1,q_0)$ | $(p_0,q_1)$ |
+| $(p_0,q_1)$ | $(p_1,q_1)$ | $(p_0,q_0)$ |
+| *$(p_1,q_0)$ | $(p_1,q_0)$ | $(p_2,q_1)$ |
+| $(p_1,q_1)$ | $(p_1,q_1)$ | $(p_2,q_0)$ |
+| *$(p_2,q_0)$ | $(p_1,q_0)$ | $(p_0,q_1)$ |
+| *$(p_2,q_1)$ | $(p_1,q_1)$ | $(p_0,q_0)$ |
+
+A linguagem aceita é $L(M_1 \cup M_2)$: strings que terminam em '01' **OU** têm número par de '1's.
+
+**5.**
+
+**Passo 1: Especificar os autômatos individuais**
+
+$M_1$ (começa com '1'):
+- $Q_1 = \{r_0, r_1\}$ onde $r_0$ é inicial, $r_1$ aceita
+- $F_1 = \{r_1\}$
+- $\delta_1(r_0,0) = r_0$, $\delta_1(r_0,1) = r_1$, $\delta_1(r_1,0) = r_1$, $\delta_1(r_1,1) = r_1$
+
+$M_2$ (comprimento par):
+- $Q_2 = \{s_0, s_1\}$ onde $s_0$ é par, $s_1$ é ímpar
+- $F_2 = \{s_0\}$
+- $\delta_2(s_0,0) = s_1$, $\delta_2(s_0,1) = s_1$, $\delta_2(s_1,0) = s_0$, $\delta_2(s_1,1) = s_0$
+
+**Passo 2: Criar conjunto de estados**
+
+$Q = Q_1 \times Q_2 = \{(r_0,s_0), (r_0,s_1), (r_1,s_0), (r_1,s_1)\}$
+
+Total: $2 \times 2 = 4$ estados
+
+**Passo 3: Determinar estado inicial**
+
+Estado inicial: $(r_0, s_0)$
+
+**Passo 4: Determinar estados finais**
+
+Estados finais onde $r_i \in F_1$ **OU** $s_j \in F_2$:
+- $(r_0,s_0)$: $r_0 \notin F_1$ mas $s_0 \in F_2$ → **FINAL**
+- $(r_0,s_1)$: $r_0 \notin F_1$ e $s_1 \notin F_2$ → não final
+- $(r_1,s_0)$: $r_1 \in F_1$ e $s_0 \in F_2$ → **FINAL**
+- $(r_1,s_1)$: $r_1 \in F_1$ mas $s_1 \notin F_2$ → **FINAL**
+
+Estados finais: $F = \{(r_0,s_0), (r_1,s_0), (r_1,s_1)\}$
+
+**Passo 5: Construir função de transição**
+
+$\delta((r_i,s_j), x) = (\delta_1(r_i,x), \delta_2(s_j,x))$
+
+**Transições com '0'**:
+- $\delta((r_0,s_0), 0) = (r_0,s_1)$
+- $\delta((r_0,s_1), 0) = (r_0,s_0)$
+- $\delta((r_1,s_0), 0) = (r_1,s_1)$
+- $\delta((r_1,s_1), 0) = (r_1,s_0)$
+
+**Transições com '1'**:
+- $\delta((r_0,s_0), 1) = (r_1,s_1)$
+- $\delta((r_0,s_1), 1) = (r_1,s_0)$
+- $\delta((r_1,s_0), 1) = (r_1,s_1)$
+- $\delta((r_1,s_1), 1) = (r_1,s_0)$
+
+**Passo 6: Tabela final**
+
+| Estado | 0 | 1 |
+|--------|---|---|
+| →*$(r_0,s_0)$ | $(r_0,s_1)$ | $(r_1,s_1)$ |
+| $(r_0,s_1)$ | $(r_0,s_0)$ | $(r_1,s_0)$ |
+| *$(r_1,s_0)$ | $(r_1,s_1)$ | $(r_1,s_1)$ |
+| *$(r_1,s_1)$ | $(r_1,s_0)$ | $(r_1,s_0)$ |
+
+**Linguagem aceita**: $L(M_1 \cup M_2)$ são strings que começam com '1' **OU** têm comprimento par.
+
+Exemplos: $\varepsilon$, "00", "1", "10", "11", "0011", "1010"
 
 ### Exercícios 7: {@Exercios-7}
 
-**1.** A tabela de transições é idêntica à da união (exercício 6.1). A única diferença está nos estados de aceitação.
+**1.** 
+**Especificação dos autômatos**:
 
-| Estado | a | b |
-| :---- | :---- | :---- |
-| rightarrow(p\_0,r\_0) | (p\_1,r\_0) | (p\_0,r\_1) |
-| (p\_0,r\_1) | (p\_1,r\_0) | (p\_0,r\_1) |
-| (p\_1,r\_0) | (p\_0,r\_0) | (p\_1,r\_1) |
-| (p\_1,r\_1) | (p\_0,r\_0) | (p\_1,r\_1) |
+$M_1$ (termina em '10'):
+- $Q_1 = \{p_0, p_1, p_2\}$ onde $p_0$ é inicial, $p_1$ leu '1', $p_2$ leu '10'
+- $F_1 = \{p_2\}$
+- Transições:
+  - $\delta_1(p_0, 0) = p_0$, $\delta_1(p_0, 1) = p_1$
+  - $\delta_1(p_1, 0) = p_2$, $\delta_1(p_1, 1) = p_1$
+  - $\delta_1(p_2, 0) = p_0$, $\delta_1(p_2, 1) = p_1$
 
-**2.** Para a interseção, um estado (p\_i,r\_j) é final se p\_iinF\_1 E r\_jinF\_2.
+$M_2$ (número ímpar de '0's):
+- $Q_2 = \{q_0, q_1\}$ onde $q_0$ é par de '0's, $q_1$ é ímpar de '0's
+- $F_2 = \{q_1\}$
+- Transições:
+  - $\delta_2(q_0, 0) = q_1$, $\delta_2(q_0, 1) = q_0$
+  - $\delta_2(q_1, 0) = q_0$, $\delta_2(q_1, 1) = q_1$
 
-* F\_1=p\_0, F\_2=r\_1.  
-* F=F\_1timesF\_2=(p\_0,r\_1).
+**Autômato interseção $M_1 \cap M_2$**:
 
-**3.** O autômato complemento M′ terá a mesma estrutura, mas com os estados finais e não finais trocados.
+Estados: $Q = Q_1 \times Q_2 = \{(p_0,q_0), (p_0,q_1), (p_1,q_0), (p_1,q_1), (p_2,q_0), (p_2,q_1)\}$
 
-* M′=(q\_0,q\_1,a,b,delta,q\_0,q\_0).  
-* L(M) é a linguagem das *strings* com pelo menos um 'a'.  
-* overlineL(M) é a linguagem das *strings* sem nenhum 'a', ou seja, *strings* compostas apenas por 'b's (b\\\*). O autômato M′ reconhece exatamente isso: ele só fica em q\_0 (que agora é final) se ler apenas 'b's. Ao ler um 'a', ele vai para q\_1 (agora não final) e nunca mais sai.
+Estado inicial: $(p_0, q_0)$
 
-**4.** Se o autômato for incompleto, ele possui transições indefinidas que implicitamente levam a um estado de erro e rejeição. Se simplesmente invertermos os estados finais, essas transições indefinidas ainda levam à rejeição. No entanto, no complemento, essas *strings* deveriam ser aceitas. Por exemplo, uma *string* que trava o autômato incompleto é rejeitada. No complemento, ela também seria rejeitada (pois não termina em um estado final), mas a linguagem complemento deveria aceitá-la. Completar o autômato primeiro garante que toda *string* termine em algum estado (seja ele de aceitação, não-aceitação ou erro), permitindo que a simples inversão funcione corretamente.
+**Conjunto de estados finais**:
+Para a interseção, um estado $(p_i, q_j)$ é final se $p_i \in F_1$ **E** $q_j \in F_2$:
 
-**5.** Sim. Se L é regular, overlineL é regular. O complemento do complemento, overlineoverlineL, é a própria linguagem original L. Como overlineL é regular, seu complemento (overlineoverlineL=L) também deve ser regular, pelo mesmo teorema.
+- $(p_0,q_0)$: $p_0 \notin F_1$ → não é final
+- $(p_0,q_1)$: $p_0 \notin F_1$ → não é final  
+- $(p_1,q_0)$: $p_1 \notin F_1$ → não é final
+- $(p_1,q_1)$: $p_1 \notin F_1$ → não é final
+- $(p_2,q_0)$: $p_2 \in F_1$ mas $q_0 \notin F_2$ → não é final
+- $(p_2,q_1)$: $p_2 \in F_1$ e $q_1 \in F_2$ → **É FINAL**
 
+**Resposta**: $F = \{(p_2, q_1)\}$
+
+**Linguagem aceita**: $L(M_1 \cap M_2)$ são strings que terminam em '10' **E** têm número ímpar de '0's.
+
+Exemplos aceitos: "10", "010", "110", "0010", "1010", "0110"
+
+**2.**
+
+**Sim, é possível** que $L(M_1 \cup M_2) = L(M_1 \cap M_2)$.
+
+**Condição necessária e suficiente**: Isso ocorre se e somente se $L(M_1) = L(M_2)$.
+
+**Demonstração**:
+
+**Caso 1**: Se $L(M_1) = L(M_2)$, então:
+- $L(M_1 \cup M_2) = L(M_1) \cup L(M_2) = L(M_1) \cup L(M_1) = L(M_1)$
+- $L(M_1 \cap M_2) = L(M_1) \cap L(M_2) = L(M_1) \cap L(M_1) = L(M_1)$
+
+Portanto, $L(M_1 \cup M_2) = L(M_1 \cap M_2)$.
+
+**Caso 2**: Se $L(M_1) \neq L(M_2)$, então existe alguma string $w$ tal que:
+- $w \in L(M_1)$ e $w \notin L(M_2)$, ou
+- $w \notin L(M_1)$ e $w \in L(M_2)$
+
+Sem perda de generalidade, suponha $w \in L(M_1)$ e $w \notin L(M_2)$.
+
+Então:
+- $w \in L(M_1 \cup M_2)$ (pois $w \in L(M_1)$)
+- $w \notin L(M_1 \cap M_2)$ (pois $w \notin L(M_2)$)
+
+Logo, $L(M_1 \cup M_2) \neq L(M_1 \cap M_2)$.
+
+**Exemplos práticos**:
+- Se $M_1$ e $M_2$ ambos aceitam apenas strings que começam com '1', então $L(M_1 \cup M_2) = L(M_1 \cap M_2)$
+- Se $M_1$ aceita strings pares e $M_2$ aceita strings ímpares, então $L(M_1 \cup M_2) = \Sigma^*$ mas $L(M_1 \cap M_2) = \emptyset$
+
+**3.**
+Se $F_1 = Q_1$, então **$L(M_1 \cap M_2) = L(M_2)$**.
+
+**Demonstração**:
+
+Quando $F_1 = Q_1$, o autômato $M_1$ aceita **todas** as strings sobre o alfabeto $\Sigma$, ou seja, $L(M_1) = \Sigma^*$.
+
+**Análise dos estados finais da interseção**:
+No autômato $M_1 \cap M_2$, um estado $(p, q)$ é final se $p \in F_1$ **E** $q \in F_2$.
+
+Como $F_1 = Q_1$, temos $p \in F_1$ para todo estado $p \in Q_1$.
+
+Portanto, $(p, q)$ é final se e somente se $q \in F_2$.
+
+**Comportamento da interseção**:
+- O autômato $M_1 \cap M_2$ aceita uma string $w$ se e somente se ela leva a um estado $(p, q)$ onde $q \in F_2$
+- Isso é equivalente a dizer que $M_2$ aceita $w$, pois a componente $q$ segue exatamente as transições de $M_2$
+- A componente $p$ não influencia na aceitação, já que todos os estados de $M_1$ são finais
+
+**Resultado**:
+$$L(M_1 \cap M_2) = L(M_1) \cap L(M_2) = \Sigma^* \cap L(M_2) = L(M_2)$$
+
+**Interpretação prática**:
+Quando $M_1$ aceita tudo ($L(M_1) = \Sigma^*$), a interseção $M_1 \cap M_2$ se comporta exatamente como $M_2$, pois a única restrição vem de $M_2$.
+
+**Exemplo**:
+- Se $M_1$ tem $F_1 = Q_1$ e $M_2$ aceita strings com número par de '1's
+- Então $M_1 \cap M_2$ aceita exatamente as strings com número par de '1's
+- Ou seja, $L(M_1 \cap M_2) = L(M_2)$
+
+**4.**
+
+**Especificação dos autômatos**:
+
+$M_1$ (termina em 'ab'):
+- $Q_1 = \{q_0, q_1, q_2\}$ onde $q_0$ é inicial, $q_1$ leu 'a', $q_2$ leu 'ab'
+- $F_1 = \{q_2\}$
+
+$M_2$ (número par de 'a's):
+- $Q_2 = \{r_0, r_1\}$ onde $r_0$ é par de 'a's, $r_1$ é ímpar de 'a's
+- $F_2 = \{r_0\}$
+
+**Autômato interseção $M_1 \cap M_2$**:
+- $Q = Q_1 \times Q_2 = \{(q_0,r_0), (q_0,r_1), (q_1,r_0), (q_1,r_1), (q_2,r_0), (q_2,r_1)\}$
+- Estado inicial: $(q_0, r_0)$
+- Estados finais: $F = \{(q_2, r_0)\}$ (termina em 'ab' **E** número par de 'a's)
+
+**Linguagem aceita**: $L(M_1 \cap M_2)$ são strings que terminam em 'ab' e têm número par de 'a's. 
+
+Exemplos: "ab", "aabb", "baaabb", "aaab", "babab"
+
+**5.**
+
+**Passo 1: Analisar os autômatos individuais**
+
+$M_1$: Começa com 'a'
+- $Q_1 = \{s_0, s_1, s_2\}$ (inicial, aceita, rejeita)
+- $F_1 = \{s_1\}$
+
+$M_2$: Comprimento múltiplo de 3
+- $Q_2 = \{t_0, t_1, t_2\}$ (resto 0, resto 1, resto 2)
+- $F_2 = \{t_0\}$
+
+$M_3$: Contém 'bb'
+- $Q_3 = \{u_0, u_1, u_2\}$ (inicial, leu 'b', encontrou 'bb')
+- $F_3 = \{u_2\}$
+
+**Passo 2: Construir $M_1 \cup M_2$**
+
+Estados: $Q_{1 \cup 2} = Q_1 \times Q_2 = 3 \times 3 = 9$ estados
+
+Estados finais de $M_1 \cup M_2$: $(s_i, t_j)$ onde $s_i \in F_1$ **OU** $t_j \in F_2$
+- Estados finais: $\{(s_1, t_0), (s_1, t_1), (s_1, t_2), (s_0, t_0), (s_2, t_0)\}$
+
+**Passo 3: Construir $(M_1 \cup M_2) \cap M_3$**
+
+Estados: $Q = Q_{1 \cup 2} \times Q_3 = 9 \times 3 = 27$ estados
+
+Cada estado é da forma $((s_i, t_j), u_k)$
+
+**Passo 4: Determinar estados finais de $(M_1 \cup M_2) \cap M_3$**
+
+Um estado $((s_i, t_j), u_k)$ é final se:
+- $(s_i, t_j) \in F_{1 \cup 2}$ **E** $u_k \in F_3$
+- Ou seja: $(s_i \in F_1$ OU $t_j \in F_2)$ **E** $u_k = u_2$
+
+Estados finais:
+- $((s_1, t_0), u_2)$, $((s_1, t_1), u_2)$, $((s_1, t_2), u_2)$, $((s_0, t_0), u_2)$, $((s_2, t_0), u_2)$
+
+**Passo 5: Função de transição**
+
+Para cada estado $((s_i, t_j), u_k)$ e símbolo $x$:
+$$\delta(((s_i, t_j), u_k), x) = ((\delta_1(s_i, x), \delta_2(t_j, x)), \delta_3(u_k, x))$$
+
+**Resposta final**:
+- **Número de estados**: 27 estados
+- **Linguagem aceita**: Strings que (começam com 'a' OU têm comprimento múltiplo de 3) **E** contêm 'bb'
+- **Exemplos**: "abb", "abba", "aabbb", "bbaaa", "bbbbbb"
+
+O autômato resultante aceita strings que satisfazem simultaneamente a condição de união (começa com 'a' ou comprimento múltiplo de 3) e a condição de $M_3$ (contém 'bb').
+
+### Exercícios 8: {@Exercicios-8}
+
+**1.**
+
+**Autômato original $M$**:
+
+| Estado | a | b | Final? |
+|--------|---|---|--------|
+| →$q_0$ | $q_1$ | $q_0$ | Sim |
+| $q_1$ | $q_0$ | $q_1$ | Não |
+
+**Construção do complemento $\overline{M}$**:
+
+Para construir $\overline{M}$, mantemos a mesma estrutura de estados e transições, mas **invertemos** o conjunto de estados finais:
+- Estados que eram finais tornam-se não finais
+- Estados que eram não finais tornam-se finais
+
+**Autômato complemento $\overline{M}$**:
+- $Q_{\overline{M}} = Q = \{q_0, q_1\}$
+- $\delta_{\overline{M}} = \delta$ (mesmas transições)
+- $F_{\overline{M}} = Q \setminus F = \{q_1\}$
+
+**Tabela de transições de $\overline{M}$**:
+
+| Estado | a | b | Final? |
+|--------|---|---|--------|
+| →$q_0$ | $q_1$ | $q_0$ | Não |
+| $q_1$ | $q_0$ | $q_1$ | Sim |
+
+**Verificação**:
+- $M$ aceita strings com número par de 'a's
+- $\overline{M}$ aceita strings com número ímpar de 'a's
+- $L(M) \cup L(\overline{M}) = \Sigma^*$ e $L(M) \cap L(\overline{M}) = \emptyset$
+
+**2.**
+
+**Por que a completude é essencial**:
+
+A completude garante que o autômato tenha uma transição definida para **todo** par (estado, símbolo). Sem completude, strings que levam a transições indefinidas teriam comportamento ambíguo no complemento.
+
+**Problema sem completude**:
+- Em um autômato incompleto, algumas strings podem "travar" (não ter transição definida)
+- Strings que travam são implicitamente rejeitadas no autômato original
+- No complemento, seria necessário decidir se essas strings devem ser aceitas ou rejeitadas
+- Sem completude, essa decisão não fica clara, tornando o complemento mal definido
+
+**Exemplo prático**:
+
+Considere um autômato incompleto $M'$ sobre $\Sigma = \{a, b\}$:
+- $Q = \{q_0, q_1\}$, estado inicial $q_0$, $F = \{q_1\}$
+- $\delta(q_0, a) = q_1$ (transição para 'a')
+- $\delta(q_0, b) = $ **indefinido** (sem transição para 'b')
+- $\delta(q_1, a) = $ **indefinido**
+- $\delta(q_1, b) = $ **indefinido**
+
+**Problema na construção do complemento**:
+1. String "a": aceita por $M'$ → deve ser rejeitada por $\overline{M'}$
+2. String "b": **trava** em $M'$ (rejeitada) → deveria ser aceita por $\overline{M'}$?
+3. String "aa": **trava** em $M'$ após aceitar "a" → comportamento indefinido
+
+**Solução**: Completar primeiro o autômato adicionando um estado "lixeira":
+- Adicionar estado $q_{trap}$ não final
+- $\delta(q_0, b) = q_{trap}$
+- $\delta(q_1, a) = q_{trap}$, $\delta(q_1, b) = q_{trap}$
+- $\delta(q_{trap}, a) = q_{trap}$, $\delta(q_{trap}, b) = q_{trap}$
+
+Agora o complemento fica bem definido com $F_{\overline{M}} = \{q_0, q_{trap}\}$.
+
+**3.**
+
+**Teorema**: Se $L_1$ e $L_2$ são linguagens regulares, então $L_1 - L_2$ (diferença de conjuntos) também é regular.
+
+**Demonstração**:
+
+**Passo 1**: Expressar diferença usando operações básicas
+$$L_1 - L_2 = L_1 \cap \overline{L_2}$$
+
+Esta igualdade é válida pois:
+- $w \in L_1 - L_2 \iff w \in L_1 \text{ e } w \notin L_2$
+- $w \in L_1 \cap \overline{L_2} \iff w \in L_1 \text{ e } w \in \overline{L_2} \iff w \in L_1 \text{ e } w \notin L_2$
+
+**Passo 2**: Aplicar propriedades de fechamento
+
+**Propriedade 1**: Linguagens regulares são fechadas sob complemento
+- Se $L_2$ é regular, então $\overline{L_2}$ também é regular
+
+**Propriedade 2**: Linguagens regulares são fechadas sob interseção
+- Se $L_1$ e $\overline{L_2}$ são regulares, então $L_1 \cap \overline{L_2}$ também é regular
+
+**Passo 3**: Conclusão
+Como:
+1. $L_1$ é regular (dado)
+2. $L_2$ é regular (dado)
+3. $\overline{L_2}$ é regular (por fechamento sob complemento)
+4. $L_1 \cap \overline{L_2}$ é regular (por fechamento sob interseção)
+5. $L_1 - L_2 = L_1 \cap \overline{L_2}$
+
+Concluímos que $L_1 - L_2$ é regular. □
+
+**Algoritmo construtivo**:
+1. Construir autômato $M_2$ para $L_2$
+2. Construir autômato $\overline{M_2}$ para $\overline{L_2}$ (invertendo estados finais)
+3. Construir autômato $M_1 \cap \overline{M_2}$ usando produto cartesiano
+4. O resultado reconhece $L_1 - L_2$
+
+**4.**
+
+**Conclusão**: Se $L$ é regular e $\overline{L} = \emptyset$, então $L = \Sigma^*$.
+
+**Demonstração**:
+
+**Propriedade fundamental**: Para qualquer linguagem $L$ sobre alfabeto $\Sigma$:
+$$L \cup \overline{L} = \Sigma^*$$
+
+Esta propriedade vale porque toda string pertence a $L$ ou ao seu complemento (mas não a ambos).
+
+**Aplicando a hipótese**:
+Se $\overline{L} = \emptyset$, então:
+$$L \cup \overline{L} = L \cup \emptyset = L$$
+
+**Combinando com a propriedade fundamental**:
+$$L = L \cup \overline{L} = \Sigma^*$$
+
+**Verificação por contradição**:
+Suponha que existe $w \in \Sigma^*$ tal que $w \notin L$.
+
+Então, por definição de complemento, $w \in \overline{L}$.
+
+Mas isso contradiz a hipótese $\overline{L} = \emptyset$.
+
+Logo, não existe tal $w$, e portanto $L = \Sigma^*$.
+
+**Interpretação prática**:
+- Se o complemento de uma linguagem é vazio, significa que não existe nenhuma string que a linguagem **não** aceite
+- Portanto, a linguagem aceita **todas** as strings possíveis
+- Ou seja, $L$ é a linguagem universal sobre o alfabeto
+
+**Exemplo**:
+- Se $L = \{w \in \{a,b\}^* : w \text{ contém pelo menos 0 símbolos}\}$
+- Então $L = \{a,b\}^*$ e $\overline{L} = \emptyset$
+
+**5.**
+
+**Lei de De Morgan generalizada**:
+$$\overline{L_1 \cap L_2 \cap L_3} = \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
+
+**Demonstração passo a passo**:
+
+**Método 1: Aplicação direta da lei de De Morgan**
+
+Para três conjuntos, a lei de De Morgan estabelece:
+$$\overline{A \cap B \cap C} = \overline{A} \cup \overline{B} \cup \overline{C}$$
+
+Aplicando diretamente com $A = L_1$, $B = L_2$, $C = L_3$:
+$$\overline{L_1 \cap L_2 \cap L_3} = \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
+
+**Método 2: Aplicação iterativa**
+
+Passo 1: Tratar $(L_1 \cap L_2 \cap L_3)$ como $(L_1 \cap L_2) \cap L_3$
+$$\overline{(L_1 \cap L_2) \cap L_3} = \overline{L_1 \cap L_2} \cup \overline{L_3}$$
+
+Passo 2: Aplicar De Morgan novamente em $\overline{L_1 \cap L_2}$
+$$\overline{L_1 \cap L_2} = \overline{L_1} \cup \overline{L_2}$$
+
+Passo 3: Substituir de volta
+$$\overline{L_1 \cap L_2 \cap L_3} = (\overline{L_1} \cup \overline{L_2}) \cup \overline{L_3} = \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
+
+**Verificação semântica**:
+
+Uma string $w$ pertence a $\overline{L_1 \cap L_2 \cap L_3}$ se e somente se:
+$$w \notin (L_1 \cap L_2 \cap L_3)$$
+
+Isso significa que $w$ **não** pertence simultaneamente a $L_1$, $L_2$ **e** $L_3$.
+
+Ou seja, $w$ falha em pelo menos uma das três linguagens:
+$$w \notin L_1 \text{ ou } w \notin L_2 \text{ ou } w \notin L_3$$
+
+Que é equivalente a:
+$$w \in \overline{L_1} \text{ ou } w \in \overline{L_2} \text{ ou } w \in \overline{L_3}$$
+
+Portanto:
+$$w \in \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
+
+**Resposta final**:
+$$\overline{L_1 \cap L_2 \cap L_3} = \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
+
+### Exercícios 10 {@Exercicios-10}
+
+**1.**
+
+**a) Classes de equivalência de $\equiv_L$**:
+
+Para $L = \{w \mid w \text{ contém } 00\}$, temos três classes de equivalência:
+
+1. **Classe $C_0$**: Strings que não terminam em $0$ e não contêm $00$
+   - Representante: $\epsilon$
+   - Outros membros: $1$, $11$, $111$, $101$, $1101$, etc.
+
+2. **Classe $C_1$**: Strings que terminam em exatamente um $0$ e não contêm $00$
+   - Representante: $0$
+   - Outros membros: $10$, $110$, $1110$, $1010$, etc.
+
+3. **Classe $C_2$**: Strings que contêm $00$
+   - Representante: $00$
+   - Outros membros: $000$, $100$, $001$, $0011$, qualquer string com $00$
+
+**b) Justificativa da equivalência**:
+
+- **$C_0$**: Para strings em $C_0$, adicionar $0$ as move para $C_1$, adicionar $00$ as leva para $L$
+- **$C_1$**: Para strings em $C_1$, adicionar $0$ as leva direto para $L$, adicionar $1$ as retorna para $C_0$
+- **$C_2$**: Para strings em $C_2$, qualquer sufixo mantém a string em $L$ (pois já contém $00$)
+
+**c) Autômato Finito Determinístico mínimo**:
+
+**Conjunto de estados**: $Q = \{q_0, q_1, q_2\}$
+**Alfabeto**: $\Sigma = \{0, 1\}$
+**Estado inicial**: $q_0$
+**Conjunto de estados finais**: $F = \{q_2\}$
+**Função de transição**: $\delta: Q \times \Sigma \to Q$ é definida por:
+
+    $$
+    \begin{aligned}
+    \delta(q_0, 0) &= q_1 \\
+    \delta(q_0, 1) &= q_0 \\
+    \delta(q_1, 0) &= q_2 \\
+    \delta(q_1, 1) &= q_0 \\
+    \delta(q_2, 0) &= q_2 \\
+    \delta(q_2, 1) &= q_2
+    \end{aligned}
+    $$
+
+**d) Verificação**:
+O Autômato Finito Determinístico mínimo tem 3 estados, correspondendo exatamente às 3 classes de equivalência de Myhill-Nerode.
+
+**2.**
+
+**Prova de que $L = \{0^i1^j \mid i > j \geq 0\}$ não é regular**:
+
+Considere as strings $s_n = 0^n$ para $n = 1, 2, 3, ...$
+
+**Afirmação**: Para $m \neq n$, temos $s_m \not\equiv_L s_n$.
+
+**Prova**: 
+Considere o sufixo $z = 1^m$. Então:
+- $s_m \cdot z = 0^m1^m \notin L$ (pois $m = m$, não $m > m$)
+- $s_n \cdot z = 0^n1^m$:
+  - Se $n > m$, então $0^n1^m \in L$
+  - Se $n < m$, então $0^n1^m \notin L$
+
+Como $n \neq m$, pelo menos um dos casos acima distingue $s_m$ de $s_n$.
+
+Portanto, existem infinitas classes de equivalência (uma para cada $n \in \mathbb{N}$), logo $L$ não é regular pelo Teorema de Myhill-Nerode.
+
+
+**3.**
+
+**Eliminação de estados para encontrar ER**:
+
+**Estado inicial**: Autômato Finito Determinístico com 3 estados
+
+**Passo 1**: Eliminar $q_1$
+- Aresta $q_0 \to q_2$: $ab$ (via $q_1$)
+- Aresta $q_0 \to q_0$: $b$ (direto)
+- Nova transição: $q_0 \xrightarrow{ab} q_2$
+
+**Passo 2**: Eliminar $q_2$ (estado final)
+- De $q_0$ para $q_2$: $ab(a|b)^*$
+- Loop em $q_0$: $b^*$
+
+**Expressão regular final**:
+$$r = b^*ab(a|b)^*$$
+
+Esta ER descreve strings que:
+1. Começam com zero ou mais $b$'s
+2. Seguidos por $ab$
+3. Terminam com qualquer sequência de $a$'s e $b$'s
+
+**4.**
+
+**a) Teste de equivalência via produto**:
+
+Construindo $(L(M_1) - L(M_2)) \cup (L(M_2) - L(M_1))$:
+
+**Análise das linguagens**:
+- $L(M_1)$: strings com número par de $a$'s
+- $L(M_2)$: NÃO é equivalente (aceita baseado em posição)
+
+**b) Teste com strings**:
+- $\epsilon$: $M_1$ aceita (0 $a$'s = par), $M_2$ aceita → ambos aceitam ✓
+- $a$: $M_1$ rejeita (1 $a$ = ímpar), $M_2$ rejeita (posição 1 é ímpar) → ambos rejeitam ✓
+- $b$: $M_1$ aceita (0 $a$'s), $M_2$ aceita → ambos aceitam ✓
+- $aa$: $M_1$ aceita (2 $a$'s = par), $M_2$ rejeita → **DIFEREM** ✗
+- $ba$: $M_1$ rejeita (1 $a$), $M_2$ aceita (posição 2 é par) → **DIFEREM** ✗
+
+**Conclusão**: $L(M_1) \neq L(M_2)$
+
+**5.**
+
+**a) Minimização de Hopcroft**:
+
+Autômato Finito Determinístico original para strings terminadas em $01$:
+
+Estados iniciais: $\{q_0, q_1, ..., q_7\}$
+
+Particionamento:
+1. Separar finais e não-finais
+2. Refinar baseado em transições
+3. Resultado: Autômato Finito Determinístico mínimo com 3 estados
+
+**Autômato Finito Determinístico mínimo**:
+- $s_0$: não leu nada relevante
+- $s_1$: último símbolo foi $0$
+- $s_2$: últimos símbolos foram $01$ (final)
+
+**b) Complexidade**:
+- Hopcroft: $O(k \cdot n \log n) = O(2 \cdot 8 \log 8) = O(48)$ operações
+
+**c) Comparação para Autômato Finito Determinísticos com 8 e 10 estados**:
+- Via minimização: $O(8 \log 8) + O(10 \log 10) + O(1)$ ≈ $O(57)$
+- Via produto: $O(8 \times 10) = O(80)$
+
+Para este caso, minimização é mais eficiente.
+
+**6.**
+
+**a) Autômato Finito Determinísticos individuais**:
+
+Este autômato reconhece sequências não vazias de dígitos.
+
+Representação Algébrica:
+
+$A_{int} = (Q_{int}, \Sigma_{int}, \delta_{int}, q_{0,int}, F_{int})$, onde:
+
+* **Conjunto de estados**: $Q_{int} = \{q_0, q_1, q_d\}$
+* **Alfabeto (classes)**: $\Sigma_{int} = \{\text{dígito}, \text{outro}\}$, onde `dígito` é qualquer caractere de '0' a '9' e `outro` é qualquer caractere que não seja um dígito.
+* **Estado inicial**: $q_{0,int} = q_0$
+* **Conjunto de estados finais**: $F_{int} = \{q_1\}$
+* **Função de transição $\delta_{int}$**:
+    $$
+    \begin{aligned}
+    \delta(q_0, \text{dígito}) &= q_1 \\
+    \delta(q_0, \text{outro}) &= q_d \\
+    \delta(q_1, \text{dígito}) &= q_1 \\
+    \delta(q_1, \text{outro}) &= q_d \\
+    \delta(q_d, \text{dígito}) &= q_d \\
+    \delta(q_d, \text{outro}) &= q_d
+    \end{aligned}
+    $$
+
+Tabela de Transição:
+
+| Estado        | dígito (`0-9`) | outro |
+| :------------ | :------------- | :---- |
+| $\to q_0$     | $q_1$          | $q_d$ |
+| $*q_1$       | $q_1$          | $q_d$ |
+| $q_d$         | $q_d$          | $q_d$ |
+
+Este autômato reconhece tokens que começam com uma letra e são seguidos por zero ou mais letras ou dígitos.
+
+Representação Algébrica:
+
+$A_{id} = (Q_{id}, \Sigma_{id}, \delta_{id}, q_{0,id}, F_{id})$, onde:
+
+* **Conjunto de estados**: $Q_{id} = \{q_0, q_1, q_d\}$
+* **Alfabeto (classes)**: $\Sigma_{id} = \{\text{letra}, \text{dígito}, \text{outro}\}$, onde `letra` é 'a'-'z' ou 'A'-'Z', `dígito` é '0'-'9', e `outro` é qualquer caractere que não seja letra nem dígito.
+* **Estado inicial**: $q_{0,id} = q_0$
+* **Conjunto de estados finais**: $F_{id} = \{q_1\}$
+* **Função de transição $\delta_{id}$**:
+    $$
+    \begin{aligned}
+    \delta(q_0, \text{letra}) &= q_1 \\
+    \delta(q_0, \text{dígito}) &= q_d \\
+    \delta(q_0, \text{outro}) &= q_d \\
+    \delta(q_1, \text{letra}) &= q_1 \\
+    \delta(q_1, \text{dígito}) &= q_1 \\
+    \delta(q_1, \text{outro}) &= q_d \\
+    \delta(q_d, \text{letra}) &= q_d \\
+    \delta(q_d, \text{dígito}) &= q_d \\
+    \delta(q_d, \text{outro}) &= q_d
+    \end{aligned}
+    $$
+
+Tabela de Transição:
+
+| Estado        | letra (`a-z, A-Z`) | dígito (`0-9`) | outro |
+| :------------ | :----------------- | :------------- | :---- |
+| $\to q_0$     | $q_1$              | $q_d$          | $q_d$ |
+| $*q_1$       | $q_1$              | $q_1$          | $q_d$ |
+| $q_d$         | $q_d$              | $q_d$          | $q_d$ |
+
+Este autômato reconhece os quatro operadores: `++`, `+=`, `--`, `-=`.
+
+Representação Algébrica:
+
+$A_{op} = (Q_{op}, \Sigma_{op}, \delta_{op}, q_{0,op}, F_{op})$, onde:
+
+* **Conjunto de estados**: $Q_{op} = \{q_0, q_1, q_2, q_3, q_4, q_5, q_6, q_d\}$
+* **Alfabeto (símbolos)**: $\Sigma_{op} = \{+, -, =, \text{outro}\}$
+* **Estado inicial**: $q_{0,op} = q_0$
+* **Conjunto de estados finais**: $F_{op} = \{q_2, q_3, q_5, q_6\}$
+* **Função de transição $\delta_{op}$**:
+    $$
+    \begin{aligned}
+    \delta(q_0, +) &= q_1 \quad & \delta(q_0, -) &= q_4 \quad & \delta(q_0, =) &= q_d \quad & \delta(q_0, \text{outro}) &= q_d \\
+    \delta(q_1, +) &= q_2 \quad & \delta(q_1, =) &= q_3 \quad & \delta(q_1, -) &= q_d \quad & \delta(q_1, \text{outro}) &= q_d \\
+    \delta(q_4, -) &= q_5 \quad & \delta(q_4, =) &= q_6 \quad & \delta(q_4, +) &= q_d \quad & \delta(q_4, \text{outro}) &= q_d \\
+    \end{aligned}
+    $$
+
+Para todos os outros estados $q \in \{q_2, q_3, q_5, q_6, q_d\}$ e para qualquer símbolo $s \in \Sigma_{op}$, a transição é $\delta(q, s) = q_d$.
+
+Tabela de Transição:
+
+| Estado        | +     | -     | =     | outro |
+| :------------ | :---- | :---- | :---- | :---- |
+| $\to q_0$     | $q_1$ | $q_4$ | $q_d$ | $q_d$ |
+| $q_1$         | $q_2$ | $q_d$ | $q_3$ | $q_d$ |
+| $*q_2$ (`++`)| $q_d$ | $q_d$ | $q_d$ | $q_d$ |
+| $*q_3$ (`+=`)| $q_d$ | $q_d$ | $q_d$ | $q_d$ |
+| $q_4$         | $q_d$ | $q_5$ | $q_6$ | $q_d$ |
+| $*q_5$ (`--`)| $q_d$ | $q_d$ | $q_d$ | $q_d$ |
+| $*q_6$ (`-=`)| $q_d$ | $q_d$ | $q_d$ | $q_d$ |
+| $q_d$         | $q_d$ | $q_d$ | $q_d$ | $q_d$ |
+
+**b. Construção do Autômato Finito Determinístico Combinado**
+
+Para criar um único Autômato Finito Determinístico que reconheça a união das linguagens dos três autômatos individuais ($A_{int}$, $A_{id}$, $A_{op}$), utilizamos o método da **construção do produto**. Este método gera um novo Autômato Finito Determinístico cujos estados representam a simulação simultânea dos três autômatos originais.
+
+O novo autômato, $A_{comb}$, é definido pela 5-tupla $A_{comb} = (Q_{comb}, \Sigma_{comb}, \delta_{comb}, q_{0,comb}, F_{comb})$.
+
+**1. Alfabeto ($\Sigma_{comb}$)**:
+O alfabeto combinado é a união de todos os caracteres e classes de caracteres dos autômatos individuais.
+$\Sigma_{comb} = \{\text{letra}, \text{dígito}, +, -, =, \text{outro}\}$
+
+**2. Conjunto de Estados ($Q_{comb}$)**:
+O novo conjunto de estados é o produto cartesiano dos conjuntos de estados dos autômatos originais. Cada estado em $A_{comb}$ é uma tupla que rastreia o estado atual de cada autômato individual.
+
+$Q_{comb} = Q_{int} \times Q_{id} \times Q_{op}$
+
+O número total de estados seria $|Q_{int}| \times |Q_{id}| \times |Q_{op}| = 3 \times 3 \times 8 = 72$ estados. Devido ao grande número, a construção explícita da tabela de transição é impraticável, mas o princípio é o seguinte:
+
+**3. Estado Inicial ($q_{0,comb}$)**:
+O estado inicial do autômato combinado é a tupla contendo os estados iniciais de cada autômato individual.
+
+$q_{0,comb} = (q_{0,int}, q_{0,id}, q_{0,op})$
+
+**4. Função de Transição ($\delta_{comb}$)**:
+A função de transição é aplicada componente a componente. Para um estado tupla $(p, q, r) \in Q_{comb}$ e um símbolo de entrada $s \in \Sigma_{comb}$, a transição é definida como:
+
+$\delta_{comb}((p, q, r), s) = (\delta_{int}(p, s), \delta_{id}(q, s), \delta_{op}(r, s))$
+
+Exemplos de Transição: vamos calcular a transição a partir do estado inicial para dois símbolos diferentes:
+
+a. **Entrada '7' (um `dígito`)**:
+    * Estado atual: $(q_{0,int}, q_{0,id}, q_{0,op})$
+    * $\delta_{int}(q_{0,int}, \text{dígito}) = q_{1,int}$
+    * $\delta_{id}(q_{0,id}, \text{dígito}) = q_{d,id}$
+    * $\delta_{op}(q_{0,op}, \text{dígito}) = q_{d,op}$
+    * **Novo estado**: $(q_{1,int}, q_{d,id}, q_{d,op})$
+
+b. **Entrada '+' (o símbolo `+`)**:
+    * Estado atual: $(q_{0,int}, q_{0,id}, q_{0,op})$
+    * $\delta_{int}(q_{0,int}, +) = q_{d,int}$
+    * $\delta_{id}(q_{0,id}, +) = q_{d,id}$
+    * $\delta_{op}(q_{0,op}, +) = q_{1,op}$
+    * **Novo estado**: $(q_{d,int}, q_{d,id}, q_{1,op})$
+
+**5. Conjunto de Estados Finais ($F_{comb}$)**:
+Um estado no autômato combinado é final se **pelo menos um** de seus componentes for um estado final no seu respectivo autômato original. Isso corresponde à operação de união.
+
+$F_{comb} = \{ (p, q, r) \in Q_{comb} \mid p \in F_{int} \lor q \in F_{id} \lor r \in F_{op} \}$
+
+Por exemplo, o estado $(q_{1,int}, q_{d,id}, q_{d,op})$ seria um estado final em $A_{comb}$ porque $q_{1,int}$ é um estado final em $A_{int}$. Da mesma forma, um estado como $(q_{d,int}, q_{d,id}, q_{2,op})$ também seria final, pois $q_{2,op}$ pertence a $F_{op}$.
+
+**c. Distinção entre os Tipos de Tokens**
+
+O autômato combinado $A_{comb}$ pode reconhecer qualquer um dos tokens, mas, por si só, não informa *qual* tipo de token foi encontrado. A implementação de um analisador léxico real precisa dessa distinção. A chave está em analisar o estado final alcançado.
+
+Como os três autômatos originais reconhecem linguagens disjuntas (um identificador não pode ser um inteiro nem um operador, e vice-versa), nunca haverá ambiguidade. Ao atingir um estado final, apenas um dos componentes da tupla de estado será um estado final de seu autômato original.
+
+**Implementação Prática**: A estratégia para distinguir os tokens no analisador léxico seria:
+
+1.  **Executar o Autômato Finito Determinístico**: processe a cadeia de entrada usando o $A_{comb}$ até que o final da cadeia seja alcançado ou a transição leve a um estado de erro global (ex: uma tupla onde todos os componentes são estados de erro, como $(q_{d,int}, q_{d,id}, q_{d,op})$).
+
+2.  **Verificar o Estado Final**: ao final de um lexema potencial, verifique se o estado atual $(p, q, r)$ é um estado final em $F_{comb}$.
+
+3.  **Identificar o Tipo de Token**: se o estado for final, determine o tipo de token inspecionando qual componente da tupla pertence a um conjunto final original:
+    * Se $p \in F_{int}$ (ex: $p=q_{1,int}$), o token é um **INTEIRO**.
+    * Se $q \in F_{id}$ (ex: $q=q_{1,id}$), o token é um **IDENTIFICADOR**.
+    * Se $r \in F_{op}$ (ex: $r \in \{q_{2,op}, q_{3,op}, q_{5,op}, q_{6,op}\}$), o token é um **OPERADOR**.
+
+4.  **Mapear para um Tipo de Token**: no código, isso se traduz em uma estrutura de decisão. Em vez de ter um único tipo de estado final, cada estado final no modelo teórico é associado a uma ação ou tipo de token no código prático. A sua sugestão de `switch/case` é uma excelente forma de representar isso.
+
+  Para fins de implementação, não se criam as 72 tuplas explicitamente. Em vez disso, mantém-se três variáveis de estado (uma para cada autômato) e as atualiza em paralelo. O tipo do token é determinado pela primeira máquina que atingir um estado final.
+
+  ```c
+    // Pseudocódigo da lógica do analisador
+    enum TokenType { TOKEN_UNKNOWN, TOKEN_INTEGER, TOKEN_IDENTIFIER, TOKEN_OPERATOR_PLUSPLUS, ... };
+
+    TokenType recognize_token(string input) {
+        // Simulação do estado combinado
+        State state_int = q0_int;
+        State state_id  = q0_id;
+        State state_op  = q0_op;
+
+        for (char c : input) {
+            state_int = delta_int(state_int, c);
+            state_id  = delta_id(state_id, c);
+            state_op  = delta_op(state_op, c);
+        }
+
+        // Mapeia o estado final para o tipo de token
+        if (is_final_int(state_int)) {
+            return TOKEN_INTEGER;
+        }
+        if (is_final_id(state_id)) {
+            // Em um sistema real, aqui haveria uma verificação de palavras-chave
+            return TOKEN_IDENTIFIER;
+        }
+        if (is_final_op(state_op)) {
+            // O estado específico (q2, q3, q5, q6) diria qual operador é
+            return map_final_op_state_to_token(state_op); // ex: q2 -> TOKEN_OPERATOR_PLUSPLUS
+        }
+
+        return TOKEN_UNKNOWN; // ou lança um erro léxico
+    }
+    ```
+**Precedência**: Embora não haja ambiguidade neste problema, em sistemas mais complexos (ex: palavras-chave vs. identificadores), a regra da _maior precedência_ ou do _maior casamento_ (_longest match_) é aplicada. Se `if` pudesse ser um identificador e uma palavra-chave, a tabela de símbolos ou a lógica do analisador priorizaria o `TOKEN_KEYWORD_IF` sobre o `TOKEN_IDENTIFIER`.
