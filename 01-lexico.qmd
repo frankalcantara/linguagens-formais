@@ -1,5 +1,11 @@
 # Analisadores Léxicos {#sec-analisadores-lexicos}
 
+::: {.content-hidden when-format="pdf"}
+:::{.callout-tip}
+Está sem tempo? Leia o [Expresso](.\ex\01-expresso.html).
+:::
+:::
+
 Os Analisadores Léxicos formam o primeiro bloco de processamento da maioria dos processos de tradução que ocorrem entre linguagens de programação e linguagens de máquina, incluindo compiladores, interpretadores e sistemas mistos. Os Analisadores Léxicos são responsáveis por ler o código fonte por meio de um fluxo contínuo de caracteres e agrupar esses caracteres em blocos sintáticos significativos para uma dada linguagem, chamados **_tokens_**. Este fluxo contínuo de símbolos de entrada, geralmente caracteres, será chamado de _string_, ou cadeia, de forma intercambiável durante todo este texto. Contudo, é necessário que a atenta leitora já crie uma imagem mental de que estes termos, _string_ e cadeia, se referem a sequências de caracteres, ou símbolos, sem limitação de tamanho. Ou seja, dependendo do parágrafo, ou capítulo, que estiver lendo a palavra _string_ pode se referir a um conjunto vazio, alguns símbolos, um arquivo de código fonte, ou até mesmo um projeto completo.
 
 Não é possível entender analisadores léxicos sem antes compreender o conceito de **Máquina de Estado Finito**. Este é um modelo matemático fundamental que serve como base para a análise léxica. Neste caso, começamos dizendo que uma **Máquina de Estado Finito** é uma abstração matemática que captura o comportamento de sistemas que podem ser descritos por um conjunto finito de estados. Contudo, antes de nos aprofundarmos na teoria, é importante entender a história e o contexto que levaram ao desenvolvimento deste conceito.
@@ -303,11 +309,10 @@ $$\text{Estado\_Principal} \begin{cases}
 \text{Subestado\_B} \{q_2, q_3\}
 \end{cases}$$
 
-Para facilitar a compreensão da abstração dos _StateCharts_, considere um sistema de um _player_ como mostrado na @fig-statechart1. 
+Para facilitar a compreensão da abstração dos _StateCharts_, considere um sistema de um _player_ como mostrado na @fig-statechart1.
 
 :::{#fig-statechart1}
-![](\images\state1.webp)
-
+![](.\images\state1.webp)
 :::
 
 Embora as **Máquinas de Estados Finitos** clássicas sejam suficientes para a análise léxica, os _StateCharts_ demonstram como o modelo fundamental pode ser estendido para lidar com a complexidade inerente a sistemas de controle de software, protocolos de comunicação e interfaces de usuário, mostrando a versatilidade e a relevância contínua do paradigma de estados.
