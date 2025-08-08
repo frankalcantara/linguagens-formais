@@ -161,7 +161,6 @@ Esta especificação formal define completamente o comportamento do autômato, i
 
 **5.** Considere a tabela de transições da questão 3.1. Modifique-a para que o autômato passe a aceitar *strings* que terminam com "010" em vez de "01".
 
-
 ## Computação e Aceitação de _strings_
 
 O processo de **computação** em um Autômato Finito Determinístico segue um algoritmo simples e elegante. Dada uma _string_ de entrada $w = a_1a_2...a_k$ onde cada $a_i \in \Sigma$, a máquina executa os seguintes passos:
@@ -370,18 +369,16 @@ A intuição por trás da construção da união é elegante: executamos ambos o
 - $M_1 = (Q_1, \Sigma, \delta_1, q_{01}, F_1)$;
 - $M_2 = (Q_2, \Sigma, \delta_2, q_{02}, F_2)$.
 
-Construímos $M = (Q, \Sigma, \delta, q_0, F)$ onde:
+Construímos $M = (Q, \Sigma, \delta, q_0, F)$ no qual:
 
 - $Q = Q_1 \times Q_2$ (produto cartesiano dos conjuntos de estados);
 - $q_0 = (q_{01}, q_{02})$ (par dos estados iniciais);
 - $F = (F_1 \times Q_2) \cup (Q_1 \times F_2)$ (aceita se pelo menos um dos autômatos aceita);
 - $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta_2(q_2, a))$ para todo $(q_1, q_2) \in Q$ e $a \in \Sigma$.
 
-**Exemplo Ilustrativo**: Construção da união de dois autômatos simples
+Para entender esse processo, considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{a, b\}$:
 
-Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{a, b\}$:
-
-**Autômato $M_1$**: Aceita _strings_ que começam com 'a'
+1. **Autômato $M_1$**: Aceita _strings_ que começam com 'a'
 - Estados: $Q_1 = \{s_0, s_{\text{aceita}}, s_{\text{rejeita}}\}$
 - Estado inicial: $s_0$
 - Estados finais: $F_1 = \{s_{\text{aceita}}\}$
@@ -391,7 +388,7 @@ Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{
   - $\delta_1(s_{\text{aceita}}, x) = s_{\text{aceita}}$ para $x \in \{a,b\}$
   - $\delta_1(s_{\text{rejeita}}, x) = s_{\text{rejeita}}$ para $x \in \{a,b\}$
 
-**Autômato $M_2$**: Aceita _strings_ com número par de 'b's
+2. **Autômato $M_2$**: Aceita _strings_ com número par de 'b's
 - Estados: $Q_2 = \{t_{\text{par}}, t_{\text{ímpar}}\}$
 - Estado inicial: $t_{\text{par}}$
 - Estados finais: $F_2 = \{t_{\text{par}}\}$
@@ -401,17 +398,16 @@ Considere dois Autômatos Finitos Determinísticos sobre o alfabeto $\Sigma = \{
 
 A construção do autômato união $M = M_1 \cup M_2$ resulta em:
 
-**Estados**: $Q = Q_1 \times Q_2$ possui $|Q_1| \times |Q_2| = 3 \times 2 = 6$ estados
+**Estados**: $Q = Q_1 \times Q_2$ possui $\mid Q_1 \mid \times \mid Q_2 \mid = 3 \times 2 = 6$ estados
 
-**Estados de Aceitação**: Um estado $(s_i, t_j)$ é final se $s_i \in F_1$ **ou** $t_j \in F_2$
+**Estados de Aceitação**: um estado $(s_i, t_j)$ é final se $s_i \in F_1$ **ou** $t_j \in F_2$. Analisando cada par, teremos:
 
-Analisando cada par:
-- $(s_0, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$)
-- $(s_0, t_{\text{ímpar}})$: rejeita
-- $(s_{\text{aceita}}, t_{\text{par}})$: aceita (ambos aceitam)
-- $(s_{\text{aceita}}, t_{\text{ímpar}})$: aceita (pois $s_{\text{aceita}} \in F_1$)
-- $(s_{\text{rejeita}}, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$)
-- $(s_{\text{rejeita}}, t_{\text{ímpar}})$: rejeita
+- $(s_0, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$);
+- $(s_0, t_{\text{ímpar}})$: rejeita;
+- $(s_{\text{aceita}}, t_{\text{par}})$: aceita (ambos aceitam);
+- $(s_{\text{aceita}}, t_{\text{ímpar}})$: aceita (pois $s_{\text{aceita}} \in F_1$);
+- $(s_{\text{rejeita}}, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$);
+- $(s_{\text{rejeita}}, t_{\text{ímpar}})$: rejeita.
 
 A @tbl-uniao-exemplo apresenta a tabela de transições completa:
 
@@ -427,14 +423,15 @@ A @tbl-uniao-exemplo apresenta a tabela de transições completa:
 : Tabela de transições para o autômato união $M_1 \cup M_2$ {#tbl-uniao-exemplo}
 
 **Verificação**: Testemos a _string_ "ba":
-- $(s_0, t_{\text{par}}) \xrightarrow{b} (s_{\text{rejeita}}, t_{\text{ímpar}}) \xrightarrow{a} (s_{\text{rejeita}}, t_{\text{ímpar}})$ 
-- Estado final: $(s_{\text{rejeita}}, t_{\text{ímpar}})$ não é de aceitação
-- $M_1$ rejeita (não começa com 'a'), $M_2$ rejeita (número ímpar de 'b's)
-- União rejeita corretamente
+
+- $(s_0, t_{\text{par}}) \xrightarrow{b} (s_{\text{rejeita}}, t_{\text{ímpar}}) \xrightarrow{a} (s_{\text{rejeita}}, t_{\text{ímpar}})$; 
+- Estado final: $(s_{\text{rejeita}}, t_{\text{ímpar}})$ não é de aceitação;
+- $M_1$ rejeita (não começa com 'a'), $M_2$ rejeita (número ímpar de 'b's);
+- União rejeita corretamente.
 
 ##### Exercícios 6 {#exercicios-6}
 
-**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma=\{a,b\}$: $M_1$ aceita _strings_ que contêm "aa" e $M_2$ aceita _strings_ de comprimento ímpar. Quantos estados terá o autômato produto $M = M_1 \cup M_2$ se $|Q_1| = 3$ e $|Q_2| = 2$?
+**1.** Considere dois Autômatos Finitos Determinísticos sobre $\Sigma=\{a,b\}$: $M_1$ aceita _strings_ que contêm "aa" e $M_2$ aceita _strings_ de comprimento ímpar. Quantos estados terá o autômato produto $M = M_1 \cup M_2$ se $\mid Q_1 \mid = 3$ e $\mid Q_2 \mid = 2$?
 
 **2.** No autômato união, um estado $(p, q)$ é de aceitação quando $p \in F_1$ ou $q \in F_2$. Se modificássemos a condição para $p \in F_1$ **e** $q \in F_2$, que operação estaríamos realizando?
 
@@ -513,7 +510,7 @@ A perspicaz leitora observará que apenas trocamos os estados finais: $F' = \{q_
 
 **1.** Considere o AFD $M$ com $Q = \{q_0, q_1\}$, $F = \{q_0\}$, $\delta(q_0, a) = q_1$, $\delta(q_0, b) = q_0$, $\delta(q_1, a) = q_0$, $\delta(q_1, b) = q_1$. Construa a tabela de transições de $\overline{M}$.
 
-**2.** Por que a completude é essencial para a construção do complemento? Dê um exemplo onde a construção falharia sem completude.
+**2.** Por que a completude é essencial para a construção do complemento? Dê um exemplo no qual a construção falharia sem completude.
 
 **3.** Prove usando as propriedades de fechamento que se $L_1$ e $L_2$ são regulares, então $L_1 - L_2$ também é regular.
 
@@ -567,7 +564,7 @@ O algoritmo clássico para minimização de Autômatos Finitos Determinísticos 
 
 **Exemplo de Minimização**: Considere um Autômato Finito Determinístico com estados redundantes que reconhece $(a|b)*abb$:
 
-Estados originais: $\{q_0, q_1, q_2, q_3, q_4, q_5\}$ onde alguns estados são equivalentes.
+Estados originais: $\{q_0, q_1, q_2, q_3, q_4, q_5\}$ nos quais alguns estados são equivalentes.
 
 Após aplicar o algoritmo:
 1. Partição inicial: $\{\{q_3\}, \{q_0, q_1, q_2, q_4, q_5\}\}$
@@ -618,15 +615,15 @@ Um dos resultados fundamentais da teoria das linguagens formais é o **Teorema d
 
 A demonstração deste teorema envolve três construções algorítmicas:
 
-**1. Expressão Regular → AFN (Construção de Thompson)**:
+**1. Expressão Regular → Autômato Finito Determinístico (Construção de Thompson)**:
 Para cada operador da expressão regular, existe uma construção sistemática:
-- Base: $a \in \Sigma$ produz um AFN de dois estados
-- União: $r|s$ combina AFNs com transições-$\epsilon$
-- Concatenação: $rs$ conecta AFNs em sequência
-- Fechamento: $r^*$ adiciona ciclo com transições-$\epsilon$
+- Base: $a \in \Sigma$ produz um Autômato Finito Determinístico de dois estados;
+- União: $r|s$ combina Autômatos Finitos Determinísticos com transições-$\epsilon$;
+- Concatenação: $rs$ conecta Autômatos Finitos Determinísticos em sequência;
+- Fechamento: $r^*$ adiciona ciclo com transições-$\epsilon$.
 
-**2. AFN → Autômato Finito Determinístico (Construção de Subconjuntos)**:
-O algoritmo de subconjuntos constrói um Autômato Finito Determinístico onde cada estado representa um conjunto de estados do AFN original. Embora potencialmente exponencial, garante determinismo.
+**2. Autômato Finito Determinístico (Construção de Subconjuntos)**:
+O algoritmo de subconjuntos constrói um Autômato Finito Determinístico no qual cada estado representa um conjunto de estados do Autômato Finito Determinístico original. Embora potencialmente exponencial, garante determinismo.
 
 **3. Autômato Finito Determinístico → Expressão Regular (Eliminação de Estados)**:
 Remove sistematicamente estados do Autômato Finito Determinístico, substituindo-os por expressões regulares nas transições, até restar apenas uma expressão entre o estado inicial e os finais.
