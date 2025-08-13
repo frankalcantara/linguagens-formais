@@ -27,6 +27,7 @@ book:
       chapters:
         - fase1.qmd
     - apend1.qmd   
+    - sol-exercicios.qmd
     - referencias.qmd
   page-footer: "Copyright © 2025 Frank de Alcantara"
   site-url: https://frankalcantara.com

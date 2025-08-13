@@ -1305,29 +1305,80 @@ $$[a-zA-Z][a-zA-Z0-9]?$$
 
 **Conclusão**: As expressões **NÃO** são equivalentes.
 
-**Análise de performance**:
+6. **Solução**:
 
-| Expressão | Eficiência | Observações |
-|-----------|------------|-------------|
-| $ab(c\|d\|e)$ | ⭐⭐⭐⭐⭐ | Evita backtracking desnecessário |
-| $[0-9]\{4\}$ | ⭐⭐⭐⭐⭐ | Otimização interna comum |
-| $(a\|b)^*$ vs $(a^*b^*\|b^*a^*)$ | ⭐⭐⭐ vs ⭐⭐ | Primeira é mais eficiente, mas não equivalente |
+**Definição do Alfabeto**
+$$\sigma = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, *, /, (, ), }$$
 
-**Recomendações gerais para performance**:
+**Subconjuntos Úteis**
+- Dígitos: $D = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}$;
+- Dígitos não-zero: $D_{nz} = {1, 2, 3, 4, 5, 6, 7, 8, 9}$;
+- Operadores: $Op = {+, -, *, /}$;
+- Delimitadores: $Del = {(, )}$
+- Espaço: $Esp = { }$.
 
-1. **Fatore prefixos comuns** para reduzir backtracking
-2. **Use quantificadores** em vez de repetição manual
-3. **Evite alternativas desnecessárias** quando uma expressão mais simples serve
-4. **Coloque alternativas mais prováveis primeiro** em uniões
-5. **Use classes de caracteres** em vez de uniões longas de caracteres individuais
+**Expressões Regulares por Componente**
 
-**Exemplo de otimização completa**:
+**Números Inteiros ($r_num$)**
 
-**Antes**: $(http|https)://[a-z][a-z][a-z]*\.(com|org|net|edu)$
+$$r_num = (+|-|ε)(0|(D_nz D^*))$$
 
-**Depois**: $https?://[a-z]^+\.(com|org|net|edu)$
+**Operadores ($r_op$)**
 
-Benefícios: prefixo comum fatorado, quantificador usado, expressão mais concisa.
+$$r_op = +|-|*|/$$
+
+**Espaços Opcionais ($r_esp$)**
+
+$$r_esp = ( )^*$$
+
+**Sem Parênteses (r_expr_simples)**
+
+$$r_expr_simples = r_esp r_num r_esp (r_op r_esp r_num r_esp)^*$$
+
+**Com Um Nível de Parênteses (r_expr_paren)**
+
+$$r_expr_paren = r_esp (r_num | (r_esp r_num r_esp r_op r_esp r_num r_esp)) r_esp
+               (r_op r_esp (r_num | (r_esp r_num r_esp r_op r_esp r_num r_esp)) r_esp)^*$$
+
+**Expressão Regular Completa, Versão Compacta**
+
+$$r_expr = r_esp^* Termo (Op r_esp^* Termo)^* r_esp^*$$
+
+na qual:
+
+$$Termo = Numero | (Esp^* Numero Esp^* Op Esp^* Numero Esp^*)$$
+
+$$Numero = (+|-)?( 0 | D_nz D^* )$$
+
+$$Op = +|-|*|/$$
+
+$$Esp = ( )^*$$
+
+#### Versão Expandida
+
+$$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) | 
+         \(( )^* (+|-)?( 0 | [1-9][0-9]^* ) ( )^* 
+         (+|-|*|/) ( )^* (+|-)?( 0 | [1-9][0-9]^* ) ( )^* \))
+         (( )* (+|-|*|/) ( )^* 
+         ((+|-)?( 0 | [1-9][0-9]^* ) | 
+         \(( )^* (+|-)?( 0 | [1-9][0-9]^* ) ( )^* 
+         (+|-|*|/) ( )^* (+|-)?( 0 | [1-9][0-9]^* ) ( )^* \)))^* ( )^*$$
+
+**Expressões Válidas**
+- $42$
+- $3 + 5$
+- $-10 * 2$
+- $(5 + 3) / 2$
+- $15 - 7 + 2$
+- $(8 * 3) - (4 / 2)$
+
+**Expressões Inválidas**
+- $3 +$          // operador sem segundo operando
+- $+ 5$          // operador sem primeiro operando
+- $(3 + 5$       // parênteses não balanceados
+- $3 ++ 5$       // operador duplo
+- $07 + 3$       // número com zero à esquerda
+- $3.5 + 2$      // número decimal
 
 ## Capítulo sec-aut-finitos-deterministicos 
 

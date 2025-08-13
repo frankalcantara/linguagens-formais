@@ -1068,6 +1068,22 @@ Após a jornada pelos fundamentos matemáticos, a curiosa leitora pode estar se 
 
 Para a resposta longa precisamos abandonar o formalismo puro para ilustrar como as expressões regulares, com suas notações concisas, resolvem problemas concretos.
 
+::: {.callout-note}
+### Do Formalismo à Prática: Expressões Regulares no Mundo Real
+
+A leitora atenta deve notar que as expressões regulares definidas formalmente neste capítulo, baseadas apenas em união, concatenação e Fechamento de Kleene, são o alicerce matemático da teoria. No entanto, as ferramentas que usamos no dia a dia, conhecidas como **regex engines**, são equipadas com funções que vão além dessa definição.
+
+Esses _engines_, como o **PCRE** (**P**erl **C**ompatible **R**egular **E**xpressions), que influencia as implementações em linguagens como Python, PHP e JavaScript, estendem a notação formal com recursos para maior conveniência e poder expressivo. Os mais notáveis são:
+
+a. **`Lookarounds` (`lookaheads` e `lookbehinds`):** Permitem verificar a existência de um padrão antes (`lookbehind`) ou depois (`lookahead`) da posição atual, **sem consumir** os caracteres verificados (ou seja, sem incluí-los no resultado da captura). Um exemplo clássico é a expressão `q(?=u)`, que encontra a letra `q` apenas se ela for imediatamente seguida pela letra `u`, mas sem incluir o `u` no resultado.
+
+b. **`Backreferences` (Retrovisores):** Permitem referenciar um grupo que foi previamente capturado dentro da mesma expressão. Por exemplo, a expressão `(\w)\1` encontra qualquer caractere alfanumérico (`\w`) que é seguido imediatamente por ele mesmo. É com esta capacidade que um motor de regex pode reconhecer a linguagem não-regular $L = \{ww \mid w \in \{a,b\}^*\}$.
+
+A consequência mais importante é que esses sistemas de regex modernos podem reconhecer linguagens que **não são regulares** no sentido estrito da teoria. Enquanto uma expressão regular formal jamais poderia reconhecer a linguagem $L = \{a^n b^n \mid n \geq 1\}$, as extensões práticas oferecem um poder que transcende os limites dos Autômatos Finitos.
+
+Portanto, é valioso distinguir entre a **classe teórica das Linguagens Regulares** e o conjunto de padrões que as **ferramentas de software** podem processar. O formalismo discutido neste livro é a base para entender o poder, as limitações e a complexidade computacional por trás dessas operações, enquanto as extensões práticas oferecem conveniência e expressividade para resolver problemas do mundo real.
+:::
+
 #### Análise Léxica em Compiladores
 
 A análise léxica é a primeira fase da compilação de um programa. O analisador, chamado de *scanner* ou _lexer_, lê o código-fonte como uma sequência de caracteres e a converte em uma sequência de _tokens_, unidades lexicais como identificadores, palavras-chave, números e operadores. Cada tipo de _token_ é definido precisamente por um padrão, que é, em sua essência, uma expressão regular.
@@ -1157,6 +1173,13 @@ Esses exemplos arranham apenas a superfície, mas demonstram a imensa versatilid
    b. $[0-9][0-9][0-9][0-9]$ → $[0-9]\{4\}$;
    c. $(a^*b^*|b^*a^*)$ → $(a|b)^*$ (verifique se são realmente equivalentes);
    d. Analise qual versão seria mais eficiente em uma implementação real.
+
+6. Defina o alfabeto, e as expressões regulares que sejam capazes de validar expressões aritméticas entre números inteiros considerando apenas as operações de soma, subtração, divisão e multiplicação.
+
+### Limitações das Expressões Regulares
+- Parênteses aninhados arbitrariamente não são reconhecíveis
+- Requer gramáticas livres de contexto para estruturas recursivas
+- Exemplo problemático: ((3 + 5) * (7 - 2))   
 
 ## O Lugar das Linguagens Regulares: Poder e Limitações
 
