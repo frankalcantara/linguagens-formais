@@ -10,7 +10,7 @@ Como vimos no capítulo anterior, as **Máquinas de Estados Finitos** formam a b
 
 Um Autômato Finito Determinístico é um modelo matemático preciso para representar sistemas que podem estar em um número finito de estados e que respondem a entradas de forma completamente previsível e unívoca. A palavra *determinístico* é fundamental aqui: para cada combinação de estado atual e símbolo de entrada, existe **exatamente uma** transição possível. Esta propriedade elimina qualquer ambiguidade no processo de reconhecimento, tornando os Autômatos Finitos Determinísticos ideais para implementações práticas como os analisadores léxicos.
 
-A importância dos Autômatos Finitos Determinísticos na análise léxica não pode ser subestimada. Eles representam o produto final do processo de construção de analisadores léxicos: uma máquina de estados que pode processar um fluxo de caracteres em tempo linear, identificando *tokens* de forma eficiente e sem ambiguidades. Como veremos ao longo deste capítulo, a elegante leitora descobrirá que esta simplicidade aparente esconde uma poderosa capacidade de reconhecimento que fundamenta toda a primeira fase da compilação.
+A importância dos Autômatos Finitos Determinísticos na análise léxica não pode ser subestimada. Eles representam o produto final do processo de construção de analisadores léxicos: uma máquina de estados que pode processar um fluxo de caracteres em tempo linear, identificando *_tokens_* de forma eficiente e sem ambiguidades. Como veremos ao longo deste capítulo, a elegante leitora descobrirá que esta simplicidade aparente esconde uma poderosa capacidade de reconhecimento que fundamenta toda a primeira fase da compilação.
 
 ## Definição Formal e Componentes {#sec-definicao-formal}
 
@@ -285,7 +285,7 @@ A @tbl-senha apresenta uma versão simplificada da tabela de transições:
 
 ### Exemplo 3: Reconhecimento de Operadores Relacionais
 
-O terceiro exemplo aborda um problema típico da análise léxica: o reconhecimento de operadores relacionais compostos. Este exemplo ilustra como tratar ambiguidades que surgem quando alguns *tokens* são prefixos de outros [@Aho2007Compilers].
+O terceiro exemplo aborda um problema típico da análise léxica: o reconhecimento de operadores relacionais compostos. Este exemplo ilustra como tratar ambiguidades que surgem quando alguns *_tokens_* são prefixos de outros [@Aho2007Compilers].
 
 **Definição do Problema**: Construir um Autômato Finito Determinístico que reconheça os operadores relacionais: `>`, `<`, `>=`, `<=`, `==`, e `!=`.
 
@@ -350,7 +350,7 @@ Estes três exemplos demonstram alguns aspectos importantes dos Autômatos Finit
 
 2. **Reconhecimento de Sequências**: O exemplo da senha ilustra o reconhecimento determinístico de _strings_ específicas, fundamental para palavras-chave.
 
-3. **Tratamento de Ambiguidades**: O exemplo dos operadores demonstra como resolver conflitos de prefixos através da regra da correspondência mais longa.
+3. **Tratamento de Ambiguidades**: O exemplo dos operadores demonstra como resolver conflitos de prefixos por meio da regra da correspondência mais longa.
 
 A atenta leitora observará que estes padrões são ubíquos na construção de analisadores léxicos em aplicações práticas, formando os blocos que definem o reconhecimento de identificadores, números, palavras-chave e operadores em linguagens de programação reais.
 
@@ -408,11 +408,11 @@ A construção do autômato união $M = M_1 \cup M_2$ resulta em:
 
 **Estados de Aceitação**: um estado $(s_i, t_j)$ é final se $s_i \in F_1$ **ou** $t_j \in F_2$. Analisando cada par, teremos:
 
-- $(s_0, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$);
+- $(s_0, t_{\text{par}})$: aceita (porque $t_{\text{par}} \in F_2$);
 - $(s_0, t_{\text{ímpar}})$: rejeita;
 - $(s_{\text{aceita}}, t_{\text{par}})$: aceita (ambos aceitam);
-- $(s_{\text{aceita}}, t_{\text{ímpar}})$: aceita (pois $s_{\text{aceita}} \in F_1$);
-- $(s_{\text{rejeita}}, t_{\text{par}})$: aceita (pois $t_{\text{par}} \in F_2$);
+- $(s_{\text{aceita}}, t_{\text{ímpar}})$: aceita (porque $s_{\text{aceita}} \in F_1$);
+- $(s_{\text{rejeita}}, t_{\text{par}})$: aceita (porque $t_{\text{par}} \in F_2$);
 - $(s_{\text{rejeita}}, t_{\text{ímpar}})$: rejeita.
 
 A @tbl-uniao-exemplo apresenta a tabela de transições completa:
@@ -504,7 +504,7 @@ Assim, os Estados finais são: $F = \{(s_0, t_1), (s_1, t_0), (s_1, t_1), (s_2, 
 **4. Passo 4: Construir a função de transição**: para cada estado $(s_i, t_j)$ e cada símbolo $x \in \{a, b\}$, calculamos:
 $$\delta((s_i, t_j), x) = (\delta_1(s_i, x), \delta_2(t_j, x))$$
 
-**Transições com 'a':**
+**Transições com 'a'**:
 
 - $\delta((s_0, t_0), a) = (\delta_1(s_0, a), \delta_2(t_0, a)) = (s_1, t_0)$;
 - $\delta((s_0, t_1), a) = (\delta_1(s_0, a), \delta_2(t_1, a)) = (s_1, t_1)$;
@@ -513,7 +513,7 @@ $$\delta((s_i, t_j), x) = (\delta_1(s_i, x), \delta_2(t_j, x))$$
 - $\delta((s_2, t_0), a) = (\delta_1(s_2, a), \delta_2(t_0, a)) = (s_2, t_0)$;
 - $\delta((s_2, t_1), a) = (\delta_1(s_2, a), \delta_2(t_1, a)) = (s_2, t_1)$.
 
-**Transições com 'b':**
+**Transições com 'b'**:
 
 - $\delta((s_0, t_0), b) = (\delta_1(s_0, b), \delta_2(t_0, b)) = (s_2, t_1)$;
 - $\delta((s_0, t_1), b) = (\delta_1(s_0, b), \delta_2(t_1, b)) = (s_2, t_0)$;
@@ -756,7 +756,7 @@ As propriedades de fechamento que a dedicada leitora acaba de estudar não são 
 
 2. **Otimização de Consultas**: Em sistemas de busca, a interseção permite refinar resultados, enquanto a união expande o escopo.
 
-3. **Análise Léxica Incremental**: Novos padrões podem ser adicionados a um analisador existente através de união, sem reconstruir todo o autômato.
+3. **Análise Léxica Incremental**: Novos padrões podem ser adicionados a um analisador existente por meio de união, sem reconstruir todo o autômato.
 
 4. **Verificação de Propriedades**: Para verificar se dois autômatos são equivalentes, basta testar se $(L_1 - L_2) \cup (L_2 - L_1) = \emptyset$.
 
@@ -803,7 +803,7 @@ Após aplicar o algoritmo:
 
 ### Exercícios 9 {#Exercicios-9}
 
-**1.** Considere o alfabeto $\Sigma = \{0, 1, +, -, *, /, (, )\}$ representando tokens simplificados de expressões aritméticas binárias. Sejam os autômatos:
+**1.** Considere o alfabeto $\Sigma = \{0, 1, +, -, *, /, (, )\}$ representando _tokens_ simplificados de expressões aritméticas binárias. Sejam os autômatos:
 
 - $M_1$: aceita strings que começam com '(' e terminam com ')';
 - $M_2$: aceita strings que contêm pelo menos um operador aritmético (+, -, * ou /);
@@ -963,14 +963,14 @@ Use o método de eliminação de estados para encontrar a expressão regular equ
 
 **4.**: Dados dois Autômatos Finitos Determinísticos sobre $\Sigma = \{a, b\}$:
 
-**Autômato Finito Determinístico $M_1$:** Aceita strings com número par de $a$'s
+**Autômato Finito Determinístico $M_1$**: Aceita strings com número par de $a$'s
 - Estados: $\{p_0, p_1\}$
 - Estado inicial: $p_0$
 - Estados finais: $\{p_0\}$
 - $\delta_1(p_0, a) = p_1$, $\delta_1(p_0, b) = p_0$
 - $\delta_1(p_1, a) = p_0$, $\delta_1(p_1, b) = p_1$
 
-**Autômato Finito Determinístico $M_2$:** Aceita strings onde a posição de cada $a$ é ímpar (primeira posição = 1)
+**Autômato Finito Determinístico $M_2$**: Aceita strings onde a posição de cada $a$ é ímpar (primeira posição = 1)
 - Estados: $\{q_{par}, q_{impar}, q_{aceita}, q_{rejeita}\}$
 - Estado inicial: $q_{par}$
 - Estados finais: $\{q_{par}, q_{aceita}\}$
@@ -987,7 +987,7 @@ b) Calcule a complexidade temporal da minimização considerando $|\Sigma| = 2$ 
 
 c) Se tivéssemos dois Autômatos Finitos Determinísticos com 8 e 10 estados respectivamente, compare a complexidade de testar equivalência via minimização versus via construção do produto.
 
-**6.** Você está projetando um analisador léxico que deve reconhecer três tipos de tokens:
+**6.** Você está projetando um analisador léxico que deve reconhecer três tipos de _tokens_:
 
 - **Inteiros**: sequências de dígitos (0-9);
 - **Identificadores**: começam com letra, seguidos de letras ou dígitos;
@@ -997,11 +997,11 @@ a. Construa Autômatos Finitos Determinísticos individuais para cada tipo.
 
 b. Use as propriedades de fechamento para criar um único Autômato Finito Determinístico que reconheça qualquer um dos três tipos.
 
-c. Discuta como você implementaria a distinção entre os tipos de tokens no Autômato Finito Determinístico combinado.
+c. Discuta como você implementaria a distinção entre os tipos de _tokens_ no Autômato Finito Determinístico combinado.
 
 ### Limitações dos Autômatos Finitos
 
-Apesar de sua grande aplicabilidade na análise léxica e no reconhecimento de padrões, os Autômatos Finitos Determinísticos possuem uma limitação fundamental que reside na própria natureza de sua memória: ela é **finita**. Um Autômato Finito Determinístico só consegue se _lembrar_ de informações através do estado em que se encontra. Como o conjunto de estados $Q$ é finito, a capacidade de memorização da máquina é limitada.
+Apesar de sua grande aplicabilidade na análise léxica e no reconhecimento de padrões, os Autômatos Finitos Determinísticos possuem uma limitação fundamental que reside na própria natureza de sua memória: ela é **finita**. Um Autômato Finito Determinístico só consegue se _lembrar_ de informações por meio do estado em que se encontra. Como o conjunto de estados $Q$ é finito, a capacidade de memorização da máquina é limitada.
 
 Esta limitação impede que os Autômatos Finitos Determinísticos reconheçam linguagens que exigem uma memória ilimitada ou a capacidade de contar sem um teto predefinido. O exemplo mais clássico de uma linguagem que um Autômato Finito Determinístico não pode reconhecer é a linguagem de parênteses balanceados ou, de forma análoga, a linguagem $L$:
 

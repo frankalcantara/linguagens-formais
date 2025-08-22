@@ -74,12 +74,12 @@ $$
 
 ### Conjunto FIRST
 
-1. **Para o não-terminal E:**
+1. **Para o não-terminal E**:
 
    - $E \rightarrow T + E$: o primeiro símbolo é $T$. Portanto, incluímos $FIRST(T)$ em $FIRST(E)$.
    - $E \rightarrow T$: o primeiro símbolo é $T$. Portanto, incluímos $FIRST(T)$ em $FIRST(E)$.
 
-2. **Para o não-terminal T:**
+2. **Para o não-terminal T**:
 
    - $T \rightarrow int$: o primeiro símbolo é $int$. Portanto, $FIRST(T)$ inclui $int$.
    - $T \rightarrow (E)$: o primeiro símbolo é $( $. Portanto, $FIRST(T)$ inclui $( $.
@@ -95,16 +95,16 @@ $$
 
 ### Conjunto FOLLOW
 
-1. **Para o símbolo inicial E:**
+1. **Para o símbolo inicial E**:
    - $FOLLOW(E)$ inclui \$.
 
-2. **Para as produções de E:**
+2. **Para as produções de E**:
    - $E \rightarrow T + E$:
      - o símbolo $T$ pode ser seguido por $+$, então $+$ está em $FOLLOW(T)$.
      - o símbolo $E$ é o último da produção, então $FOLLOW(E)$ inclui $FOLLOW(E)$.
    - $E \rightarrow T$: o símbolo $T$ é o último da produção, então $FOLLOW(T)$ inclui $FOLLOW(E)$.
 
-3. **Para as produções de T:**
+3. **Para as produções de T**:
    - $T \rightarrow int$: $int$ é um terminal, não influencia $FOLLOW$.
    - $T \rightarrow (E)$: $E$ pode ser seguido por $)$, então $FOLLOW(E)$ inclui $)$.
 
@@ -121,11 +121,11 @@ $$
 
 Para determinar se algum não-terminal é *nullable*, verificamos se ele pode derivar a string vazia $\epsilon$.
 
-1. **Para E:**
+1. **Para E**:
    - $E \rightarrow T + E$: $T$ não é *nullable*, portanto, $E$ não é *nullable* a partir desta produção.
    - $E \rightarrow T$: $T$ não é *nullable*, portanto, $E$ não é *nullable*.
 
-2. **Para T:**
+2. **Para T**:
    - $T \rightarrow int$: $int$ não é *nullable*.
    - $T \rightarrow (E)$: $E$ não é *nullable* e $($ é um terminal.
 
@@ -194,14 +194,14 @@ Se calcularmos os conjuntos $FIRST$ e $FOLLOW$ novamente, teremos:
 
 ### Conjunto FIRST
 
-1. **Para o não-terminal E:**
+1. **Para o não-terminal E**:
    - $E \rightarrow T E'$: o primeiro símbolo é $T$. Portanto, incluímos $FIRST(T)$ em $FIRST(E)$.
 
-2. **Para o não-terminal E':**
+2. **Para o não-terminal E'**:
    - $E' \rightarrow + E$: o primeiro símbolo é $+$. Portanto, $FIRST(E')$ inclui $+$.
    - $E' \rightarrow \epsilon$: incluímos $\epsilon$ em $FIRST(E')$.
 
-3. **Para o não-terminal T:**
+3. **Para o não-terminal T**:
    - $T \rightarrow int$: o primeiro símbolo é $int$. Portanto, $FIRST(T)$ inclui $int$.
    - $T \rightarrow (E)$: o primeiro símbolo é $( $. Portanto, $FIRST(T)$ inclui $( $.
 
@@ -217,21 +217,21 @@ $$
 
 ### Conjunto FOLLOW
 
-1. **Para o símbolo inicial E:**
+1. **Para o símbolo inicial E**:
    - $FOLLOW(E)$ inclui \$.
 
-2. **Para as produções de E:**
+2. **Para as produções de E**:
    - $E \rightarrow T E'$:
      - O símbolo $E'$ pode ser seguido por $FOLLOW(E)$.
      - Então, $FOLLOW(E')$ inclui $FOLLOW(E)$.
 
-3. **Para as produções de E':**
+3. **Para as produções de E'**:
    - $E' \rightarrow + E$:
      - O símbolo $E$ pode ser seguido por $FOLLOW(E')$.
      - Então, $FOLLOW(E)$ inclui $FOLLOW(E')$.
    - $E' \rightarrow \epsilon$: não há efeito em $FOLLOW$.
 
-4. **Para as produções de T:**
+4. **Para as produções de T**:
    - $T \rightarrow int$: $int$ é um terminal, não influencia $FOLLOW$.
    - $T \rightarrow (E)$: $E$ pode ser seguido por $)$, então $FOLLOW(E)$ inclui $)$.
 
@@ -249,14 +249,14 @@ $$
 
 Para determinar se algum não-terminal é *nullable*, verificamos se ele pode derivar a string vazia $\epsilon$.
 
-1. **Para E:**
+1. **Para E**:
    - $E \rightarrow T E'$: $T$ não é *nullable*, portanto, $E$ não é *nullable*.
 
-2. **Para E':**
+2. **Para E'**:
    - $E' \rightarrow + E$: $+$ é um terminal, portanto, não é *nullable*.
    - $E' \rightarrow \epsilon$: $E'$ é *nullable*.
 
-3. **Para T:**
+3. **Para T**:
    - $T \rightarrow int$: $int$ não é *nullable*.
    - $T \rightarrow (E)$: $( $ é um terminal, portanto, não é *nullable*.
 
@@ -301,7 +301,7 @@ Assim como fiz nos artigos anteriores, vou sugerir um pseudocódigo, um tanto in
 ## Pseudocódigo para a criação da Tabela de Derivação
 
 ```shell
-**Entrada:**
+**Entrada**:
 - Conjuntos de produções da gramática: `Productions`
 - Conjuntos FIRST: `First`
 - Conjuntos FOLLOW: `Follow`
@@ -309,7 +309,7 @@ Assim como fiz nos artigos anteriores, vou sugerir um pseudocódigo, um tanto in
 - Conjunto de não-terminais: `NonTerminals`
 - Conjunto de terminais: `Terminals`
 
-**Saída:**
+**Saída**:
 - Tabela de Derivação LL(1): `ParsingTable`
 
 # Inicialização da Tabela de Derivação LL(1)

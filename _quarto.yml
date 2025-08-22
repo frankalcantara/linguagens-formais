@@ -20,10 +20,11 @@ book:
         - 02-lexico.qmd
     - part: Analisadores Sintáticos
       chapters:
+        - 04-Gramaticas.qmd    
         - parsers.qmd
         - first-follow.qmd
         - tabela-derivacao.qmd
-    - part: Projeto da Disciplina
+    - part: Projeto da Disciplina - 2025-2
       chapters:
         - fase1.qmd
     - apend1.qmd   

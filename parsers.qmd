@@ -16,9 +16,9 @@ Outro ponto importante, neste texto, símbolos não-terminais serão representad
 
 Os *parsers* preditivos são analisadores sintáticos descendentes (*top-down*) que utilizam um único símbolo de *lookahead* (antecipação) para determinar a regra de produção correta a ser aplicada em cada etapa da análise. Eles *predizem* qual regra usar com base no próximo símbolo da entrada e no não-terminal atualmente sendo analisado. O termo $LL(1)$ significa:
 
-* **L:** Left-to-right scan (varredura da esquerda para a direita) da entrada.
-* **L:** Leftmost derivation (derivação mais à esquerda) da gramática.
-* **1:** Um símbolo de *lookahead* (antecipação) para tomada de decisão.
+* **L**: Left-to-right scan (varredura da esquerda para a direita) da entrada.
+* **L**: Leftmost derivation (derivação mais à esquerda) da gramática.
+* **1**: Um símbolo de *lookahead* (antecipação) para tomada de decisão.
 
 Um *parser* $LL(1)$, requer uma gramática $LL(1)$. Nesta gramática não pode existir qualquer ambiguidade na escolha da regra de produção que será aplicada a cada símbolo de *lookahead*. Além disso, a gramática não pode ter recursão à esquerda, seja esta recursão direta ou indireta. A recursão à esquerda é um desafio considerável. Existem duas formas de recursão à esquerda:
 
@@ -39,7 +39,7 @@ Felizmente, existem técnicas para eliminar a recursão à esquerda em gramátic
 
 Agora, a gramática não contém mais recursão à esquerda direta. Este é um exemplo simples, adequado a este texto cujo objetivo é o parser em si. A nova regra inclui o não-terminal $A'$, que permite zero ou mais repetições do símbolo $a$. O uso de $\varepsilon$ (a produção vazia) permite terminar a derivação de $A'$. Será?
 
-Para verificar a recursão à esquerda indireta, você precisa observar se é possível derivar uma recursão através de uma cadeia de substituições:
+Para verificar a recursão à esquerda indireta, você precisa observar se é possível derivar uma recursão por meio de uma cadeia de substituições:
 
 1. Substituindo $A$:
    * $A \rightarrow bA'$
@@ -48,7 +48,7 @@ Para verificar a recursão à esquerda indireta, você precisa observar se é po
    * $A' \rightarrow aA'$
    * $A' \rightarrow \varepsilon$
 
-Observe que substituindo $A$ por $bA'$ e depois $A'$ por $aA'$ ou $\varepsilon$ não leva de volta a $A$. E parece não haver recursão. Contudo, é necessário verificar se foi criada alguma recursão à esquerda indireta, focando em $A'$:
+Observe que substituindo $A$ por $bA'$ e deporque $A'$ por $aA'$ ou $\varepsilon$ não leva de volta a $A$. E parece não haver recursão. Contudo, é necessário verificar se foi criada alguma recursão à esquerda indireta, focando em $A'$:
 
 * **Primeira substituição**:
   * $A \rightarrow bA'$
@@ -62,7 +62,7 @@ Observe que substituindo $A$ por $bA'$ e depois $A'$ por $aA'$ ou $\varepsilon$ 
   
 * E assim por diante... Aqui, $A'$ substitui a si próprio com um prefixo $a$, mas isto não cria recursão indireta ao $A'$ inicial de forma a levar a uma cadeia circular que retorne ao símbolo inicial $A$. A gramática transformada não apresenta recursão à esquerda indireta para $A'$.
 
-* **$A$**: Não tem recursão à esquerda direta nem indireta, pois $A \rightarrow bA'$ começa com um terminal.
+* **$A$**: Não tem recursão à esquerda direta nem indireta, porque $A \rightarrow bA'$ começa com um terminal.
 * **$A'$**: A regra $A' \rightarrow aA' \mid \varepsilon$ apenas permite que $A'$ produza cadeias de $a$ seguidos possivelmente por $\varepsilon$, sem retornar a um estado anterior que causaria recursão indireta.
 
 Portanto, a transformação feita elimina a recursão à esquerda direta sem introduzir recursão à esquerda indireta. A recursão â esquerda indireta é mais complexa e requer um texto específico para o assunto. Mas, em linhas gerais você terá que refazer a gramática em face dos objetivos originais para eliminar este tipo de recursão. Vou deixar por sua conta resolver a recursão à esquerda indireta e a ambiguidade que surjam nas gramáticas que você criar.
@@ -71,17 +71,17 @@ Portanto, a transformação feita elimina a recursão à esquerda direta sem int
 
 Como a classe de gramáticas para um *parser* $LL(1)$ é limitada (nem todas as gramáticas livres de contexto são $LL(1)$, é muito comum que seja necessário modificar a sua ideia original de gramática para eliminar ambiguidades e recursões à esquerda. Um *parser* $LL(1)$, para funcionar, precisa dos seguintes elementos:
 
-1. **Tabela de Derivação:** O *parser* $LL(1)$ utiliza uma Tabela de Derivação, ou Tabela de Derivação, que mapeia cada combinação de não-terminal e terminal (ou símbolo de fim de entrada) para a regra de produção que deve ser aplicada. Essa tabela é construída a partir da gramática e dos conjuntos $FIRST$ e $FOLLOW$ e será o mapa que guiará todo o processo de análise sintática.
+1. **Tabela de Derivação**: O *parser* $LL(1)$ utiliza uma Tabela de Derivação, ou Tabela de Derivação, que mapeia cada combinação de não-terminal e terminal (ou símbolo de fim de entrada) para a regra de produção que deve ser aplicada. Essa tabela é construída a partir da gramática e dos conjuntos $FIRST$ e $FOLLOW$ e será o mapa que guiará todo o processo de análise sintática.
 
-2. **Pilha e Buffer:** O parser mantém uma pilha e lê a entrada da esquerda para a direita, carácter por carácter. A pilha inicialmente contém o símbolo inicial da gramática e o símbolo de fim de entrada, $\$$. A entrada frequentemente é mantida em uma estrutura de dados com funcionalidades de *buffer*, que pode ser a própria *string* que está sendo analisada.
+2. **Pilha e Buffer**: O parser mantém uma pilha e lê a entrada da esquerda para a direita, carácter por carácter. A pilha inicialmente contém o símbolo inicial da gramática e o símbolo de fim de entrada, $\$$. A entrada frequentemente é mantida em uma estrutura de dados com funcionalidades de *buffer*, que pode ser a própria *string* que está sendo analisada.
 
-3. **Análise:** Em cada passo:
+3. **Análise**: Em cada passo:
    * O parser consulta a Tabela de Derivação usando como índices o não-terminal no topo da pilha e o próximo símbolo da entrada.
    * A tabela indica a produção a ser aplicada.
    * O não-terminal no topo da pilha é substituído pelos símbolos da produção (empilhados em ordem inversa).
    * Se o topo da pilha for um terminal que coincide com o próximo símbolo da entrada, ambos são removidos da pilha e da entrada.
 
-4. **Sucesso ou Erro:** A análise termina com sucesso quando a pilha e a entrada estão vazias. Caso contrário, ocorre um erro sintático. Erros poderão ocorrer durante o processo sempre que a combinação de símbolos na pilha e no *buffer* apontarem para uma célula vazia da Tabela de Derivação.
+4. **Sucesso ou Erro**: A análise termina com sucesso quando a pilha e a entrada estão vazias. Caso contrário, ocorre um erro sintático. Erros poderão ocorrer durante o processo sempre que a combinação de símbolos na pilha e no *buffer* apontarem para uma célula vazia da Tabela de Derivação.
 
 ## Conjuntos FIRST, FOLLOW e Símbolos Nullable
 
@@ -91,17 +91,17 @@ A gramática criada para o *parser* $LL(1)$ não pode ter qualquer ambiguidade. 
 
 Uma vez que tenha uma gramática adequada, será possível construir uma Tabela de Derivação $LL(1)$. Para isso vamos precisar:
 
-1. **Encontrar os conjuntos $FIRST$ e $FOLLOW$:**
-    * **$FIRST(A)$:** O conjunto de terminais que podem iniciar uma derivação de $A$.
+1. **Encontrar os conjuntos $FIRST$ e $FOLLOW$**:
+    * **$FIRST(A)$**: O conjunto de terminais que podem iniciar uma derivação de $A$.
 
-    * **$FOLLOW(A)$:** O conjunto de terminais que podem aparecer imediatamente após $A$ em uma derivação.
+    * **$FOLLOW(A)$**: O conjunto de terminais que podem aparecer imediatamente após $A$ em uma derivação.
 
-2. **Considerar Símbolos *Nullable*:**
+2. **Considerar Símbolos *Nullable***:
     * Um símbolo é *nullable* se pode derivar a cadeia vazia ($\epsilon$).
 
     * O cálculo de $FIRST$ e $FOLLOW$ precisa levar em conta os símbolos *nullable*.
 
-3. **Preencher a Tabela:**
+3. **Preencher a Tabela**:
     * Para cada produção $A \rightarrow \alpha$:
         * Se $\alpha$ começa com um terminal $a$, adicione a produção à célula $(A, a)$.
 
@@ -115,7 +115,7 @@ Um símbolo não-terminal é *nullable* se ele pode ser derivado para a cadeia v
 
 ## Exemplo com Símbolos Nullable
 
-**Exemplo 2:** Considere a gramática representada pelo conjunto de regras de produção a seguir:
+**Exemplo 2**: Considere a gramática representada pelo conjunto de regras de produção a seguir:
 
 1. $S → AB$
 2. $A → \varepsilon$
@@ -149,7 +149,7 @@ Neste exemplo, os símbolos *nullable* influenciam diretamente os conjuntos $FIR
 | $A$ | $A \rightarrow \varepsilon$ | $A \rightarrow \varepsilon$ |
 | $B$ | $B \rightarrow b$ | $B \rightarrow \varepsilon$ |
 
-**Observações Importantes sobre as regras de produção:**
+**Observações Importantes sobre as regras de produção**:
 
 1. $S \rightarrow AB$: se o próximo símbolo de entrada for $b$ ou $\$$, a produção $S \rightarrow AB$ deve ser aplicada.
 
@@ -159,7 +159,7 @@ Neste exemplo, os símbolos *nullable* influenciam diretamente os conjuntos $FIR
 
 4. $B \rightarrow \epsilon$: se o próximo símbolo de entrada for $\$$, a produção $B \rightarrow \epsilon$ deve ser aplicada.
 
-**Voltando à gramática original**: perceba que a gramática original é ambígua, pois a string vazia, $\varepsilon$, pode ser derivada de formas diferentes. Esta gramática foi criada, simples, para destacar a ambiguidade. Mas podemos modificar a esta gramática a nosso bel prazer. Lembre-se a linguagem é sua. Sendo assim:
+**Voltando à gramática original**: perceba que a gramática original é ambígua, porque a string vazia, $\varepsilon$, pode ser derivada de formas diferentes. Esta gramática foi criada, simples, para destacar a ambiguidade. Mas podemos modificar a esta gramática a nosso bel prazer. Lembre-se a linguagem é sua. Sendo assim:
 
 $1. S \rightarrow b \mid \varepsilon $
 
@@ -250,20 +250,20 @@ Vou começar com a pilha contendo o símbolo inicial da gramática, $S$, e a *st
 10. Agora a pilha tem 'id' e a entrada é "id + id * id\$". O próximo passo é consumir 'id' da entrada e da pilha, o valor na pilha e no *buffer* coincidem.
 11. O topo da pilha agora é $T$ e o próximo símbolo de entrada é '+'.
 12. A Tabela indica $E \rightarrow E + T$. Substituir $E$ por $E + T$.
-13. Agora a pilha tem $T + T$ e a entrada é "+ id * id\$". Consumir '+' da entrada e da pilha, pois eles coincidem.
+13. Agora a pilha tem $T + T$ e a entrada é "+ id * id\$". Consumir '+' da entrada e da pilha, porque eles coincidem.
 14. O próximo passo é verificar o topo da pilha $T$ e o próximo símbolo de entrada ('id').
 15. A Tabela indica $T \rightarrow F$. Substituir $T$ por $F$.
 16. O próximo passo é verificar o topo da pilha $F$ e o próximo símbolo de entrada ('id').
 17. A Tabela indica $F \rightarrow id$. Substituir $F$ por 'id'.
-18. Consumir 'id' da entrada e da pilha, pois eles coincidem.
+18. Consumir 'id' da entrada e da pilha, porque eles coincidem.
 19. O topo da pilha agora é $T$ e o próximo símbolo de entrada é '*'.
 20. A Tabela indica $T \rightarrow T * F$. Substituir $T$ por $T * F$.
-21. Consumir '*' da entrada e da pilha, pois eles coincidem.
+21. Consumir '*' da entrada e da pilha, porque eles coincidem.
 22. O próximo passo é verificar o topo da pilha $T$ e o próximo símbolo de entrada ('id').
 23. A Tabela indica $T \rightarrow F$. Substituir $T$ por $F$.
 24. O próximo passo é verificar o topo da pilha $F$ e o próximo símbolo de entrada ('id').
 25. A Tabela indica $F \rightarrow id$. Substituir $F$ por 'id'.
-26. Consumir 'id' da entrada e da pilha, pois eles coincidem.
+26. Consumir 'id' da entrada e da pilha, porque eles coincidem.
 27. Finalmente, a pilha está vazia e a entrada foi completamente consumida.
 
 Como foi possível consumir toda *string* da entrada, *id + id * id\$*, e esvaziar a pilha sem encontrar nenhum erro, a *string* *id + id * id* é de fato parte da linguagem identificada pelo *parser* $LL(1)$ que poderá ser criado pela Tabela de Derivação que definimos. Mas estamos em universo onde o céu é sempre azul e as rosas estão sempre desbrochadas.
@@ -354,42 +354,42 @@ Novamente o processo iniciará com a pilha contendo o símbolo inicial da gramá
 7. A Tabela indica $M \rightarrow N$. Substituir $M$ por $N$.
 8. O próximo passo é verificar o topo da pilha ($N$) e o próximo símbolo de entrada ('id').
 9. A Tabela indica $N \rightarrow id$. Substituir $N$ por 'id'.
-10. Agora a pilha tem 'id' e a entrada é *id OR NOT id AND (id OR id)\$*. O próximo passo é consumir 'id' da entrada e da pilha, pois eles coincidem.
+10. Agora a pilha tem 'id' e a entrada é *id OR NOT id AND (id OR id)\$*. O próximo passo é consumir 'id' da entrada e da pilha, porque eles coincidem.
 11. O topo da pilha agora é $M$ e o próximo símbolo de entrada é 'OR'.
 12. A Tabela indica $B \rightarrow B OR M$. Substituir $B$ por $B OR M$.
-13. Agora a pilha tem $M OR M$ e a entrada é "OR NOT id AND (id OR id)\$". Consumir 'OR' da entrada e da pilha, pois eles coincidem.
+13. Agora a pilha tem $M OR M$ e a entrada é "OR NOT id AND (id OR id)\$". Consumir 'OR' da entrada e da pilha, porque eles coincidem.
 14. O próximo passo é verificar o topo da pilha $M$ e o próximo símbolo de entrada ('NOT').
 15. A Tabela indica $M \rightarrow N$. Substituir $M$ por $N$.
 16. O próximo passo é verificar o topo da pilha $N$ e o próximo símbolo de entrada ('NOT').
 17. A Tabela indica $N \rightarrow NOT N$. Substituir $N$ por $NOT N$.
-18. Consumir 'NOT' da entrada e da pilha, pois eles coincidem.
+18. Consumir 'NOT' da entrada e da pilha, porque eles coincidem.
 19. O próximo passo é verificar o topo da pilha $N$ e o próximo símbolo de entrada ('id').
 20. A Tabela indica $N \rightarrow id$. Substituir $N$ por 'id'.
-21. Consumir 'id' da entrada e da pilha, pois eles coincidem.
+21. Consumir 'id' da entrada e da pilha, porque eles coincidem.
 22. O topo da pilha agora é $M$ e o próximo símbolo de entrada é 'AND'.
 23. A Tabela indica $M \rightarrow M AND N$. Substituir $M$ por $M AND N$.
-24. Consumir 'AND' da entrada e da pilha, pois eles coincidem.
+24. Consumir 'AND' da entrada e da pilha, porque eles coincidem.
 25. O próximo passo é verificar o topo da pilha $M$ e o próximo símbolo de entrada ('(').
 26. A Tabela indica $M \rightarrow N$. Substituir $M$ por $N$.
 27. O próximo passo é verificar o topo da pilha $N$ e o próximo símbolo de entrada ('(').
 28. A Tabela indica $N \rightarrow (B)$. Substituir $N$ por $(B)$.
-29. Consumir '(' da entrada e da pilha, pois eles coincidem.
+29. Consumir '(' da entrada e da pilha, porque eles coincidem.
 30. O próximo passo é verificar o topo da pilha $B$ e o próximo símbolo de entrada ('id').
 31. A Tabela indica $B \rightarrow M$. Substituir $B$ por $M$.
 32. O próximo passo é verificar o topo da pilha $M$ e o próximo símbolo de entrada ('id').
 33. A Tabela indica $M \rightarrow N$. Substituir $M$ por $N$.
 34. O próximo passo é verificar o topo da pilha $N$ e o próximo símbolo de entrada ('id').
 35. A Tabela indica $N \rightarrow id$. Substituir $N$ por 'id'.
-36. Consumir 'id' da entrada e da pilha, pois eles coincidem.
+36. Consumir 'id' da entrada e da pilha, porque eles coincidem.
 37. O topo da pilha agora é $B$ e o próximo símbolo de entrada é 'OR'.
 38. A Tabela indica $B \rightarrow B OR M$. Substituir $B$ por $B OR M$.
-39. Consumir 'OR' da entrada e da pilha, pois eles coincidem.
+39. Consumir 'OR' da entrada e da pilha, porque eles coincidem.
 40. O próximo passo é verificar o topo da pilha $M$ e o próximo símbolo de entrada ('id').
 41. A Tabela indica $M \rightarrow N$. Substituir $M$ por $N$.
 42. O próximo passo é verificar o topo da pilha $N$ e o próximo símbolo de entrada ('id').
 43. A Tabela indica $N \rightarrow id$. Substituir $N$ por 'id'.
-44. Consumir 'id' da entrada e da pilha, pois eles coincidem.
-45. Consumir ')' da entrada e da pilha, pois eles coincidem.
+44. Consumir 'id' da entrada e da pilha, porque eles coincidem.
+45. Consumir ')' da entrada e da pilha, porque eles coincidem.
 46. Finalmente, a pilha está vazia e a entrada foi completamente consumida.
 
 Como foi possível consumir toda a *string* de entrada *id OR NOT id AND (id OR id)\$* e esvaziar a pilha sem encontrar nenhum erro, a *string* *id OR NOT id AND (id OR id)* é de fato parte da linguagem definida e pode ser identificada por um *parser* $LL(1)$.

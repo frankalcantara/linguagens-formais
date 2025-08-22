@@ -142,7 +142,7 @@ Por exemplo, se $w = abc$, então $w^R = cba$.
 
 Ao trabalhar com texto e linguagens de programação, raramente tratamos uma _string_ como uma unidade indivisível. Quase sempre precisamos inspecionar, extrair ou analisar suas partes internas. Os conceitos de **substring**, **prefixo** e **sufixo** nos dão um vocabulário formal e preciso para descrever essas partes.
 
-Este vocabulário formado de termos para as partes em que podemos dividir _strings_ será relevante quando: estivermos estudando analisadores léxicos e sintáticos, pois eles frequentemente operam sobre essas partes para identificar padrões, validar estruturas e extrair informações significativas; criando ferramentas de busca e análise de texto, onde precisamos localizar ocorrências de padrões dentro de grandes volumes de texto; ou desenvolvendo algoritmos que manipulam ou processam _strings_ de maneira eficiente; ou ainda, ao implementar funcionalidades de autocompletar em editores de texto e IDEs, onde o sistema sugere palavras ou comandos com base no que o usuário já digitou.
+Este vocabulário formado de termos para as partes em que podemos dividir _strings_ será relevante quando: estivermos estudando analisadores léxicos e sintáticos. Estes analisadores frequentemente operam sobre essas partes para identificar padrões, validar estruturas e extrair informações significativas; criando ferramentas de busca e análise de texto, onde precisamos localizar ocorrências de padrões dentro de grandes volumes de texto; ou desenvolvendo algoritmos que manipulam ou processam _strings_ de maneira eficiente; ou ainda, ao implementar funcionalidades de autocompletar em editores de texto e IDEs, onde o sistema sugere palavras ou comandos com base no que o usuário já digitou.
 
 #### Substring
 
@@ -174,7 +174,7 @@ Dizemos que uma _string_ é um sufixo próprio se for qualquer sufixo que não s
 
 **Exemplo**: Para `$w = compilador$`, `lador` é um sufixo próprio, mas `compilador` não é.
 
-Definir formalmente essas _partes_ de uma _string_ é fundamental para a ciência da computação, pois elas são a base para inúmeras operações e algoritmos:
+Definir formalmente as _partes_ de uma _string_ é fundamental para a ciência da computação. Estas partes são a base para inúmeras operações e algoritmos:
 
 ### Exercícios 2 {#sec-ex-strings}
 
@@ -266,13 +266,13 @@ A palavra _ou_ aqui é inclusiva: uma _string_ pertence à união se está em $L
 
 ##### Exemplos de União
 
-**Exemplo 1**: Linguagens de Tokens Simples
+**Exemplo 1**: Linguagens de _tokens_ Simples
 
 - $L_{\text{num}} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$ (dígitos);
 - $L_{\text{op}} = \{+, -, *, /\}$ (operadores);
 - $L_{\text{token}} = L_{\text{num}} \cup L_{\text{op}} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, -, *, /\}$.
 
-Esta união modela os tokens básicos de uma calculadora simples.
+Esta união modela os _tokens_ básicos de uma calculadora simples.
 
 **Exemplo 2**: Linguagens de Comprimentos Específicos
 
@@ -521,7 +521,7 @@ A relação entre fechamento de Kleene e o fechamento positivo depende crucialme
 **Caso 1**: Se $\epsilon \notin L$, então:
 $$L^+ = L^* - \{\epsilon\}$$
 
-Neste caso, como $\epsilon \notin L$, ela só pode aparecer em $L^*$ através de $L^0 = \{\epsilon\}$. Todas as outras potências $L^i$ para $i \geq 1$ não contêm $\epsilon$, pois são formadas por concatenações de elementos de $L$ que não incluem $\epsilon$.
+Neste caso, como $\epsilon \notin L$, ela só pode aparecer em $L^*$ por meio de $L^0 = \{\epsilon\}$. Todas as outras potências $L^i$ para $i \geq 1$ não contêm $\epsilon$. Estas potências que não contêm $\epsilon$ são formadas por concatenações de elementos de $L$ que não incluem $\epsilon$.
 
 **Caso 2**: Se $\epsilon \in L$, então:
 $$L^+ = L^*$$
@@ -602,7 +602,7 @@ $$X = \{\epsilon\} \cup L \cdot X$$
 
 Esta caracterização como ponto fixo mínimo conecta os fechamentos de Kleene com áreas avançadas da ciência da computação, incluindo semântica denotacional e análise de programas.
 
-O fechamento de Kleene, portanto, não é apenas uma operação matemática abstrata, mas uma ferramenta conceitual poderosa que captura a essência da computação iterativa e da geração de linguagens através de repetição controlada.
+O fechamento de Kleene, portanto, não é apenas uma operação matemática abstrata, mas uma ferramenta conceitual poderosa que captura a essência da computação iterativa e da geração de linguagens por meio de repetição controlada.
 
 #### Propriedades e Fechamento
 
@@ -1075,9 +1075,9 @@ A leitora atenta deve notar que as expressões regulares definidas formalmente n
 
 Esses _engines_, como o **PCRE** (**P**erl **C**ompatible **R**egular **E**xpressions), que influencia as implementações em linguagens como Python, PHP e JavaScript, estendem a notação formal com recursos para maior conveniência e poder expressivo. Os mais notáveis são:
 
-a. **`Lookarounds` (`lookaheads` e `lookbehinds`):** Permitem verificar a existência de um padrão antes (`lookbehind`) ou depois (`lookahead`) da posição atual, **sem consumir** os caracteres verificados (ou seja, sem incluí-los no resultado da captura). Um exemplo clássico é a expressão `q(?=u)`, que encontra a letra `q` apenas se ela for imediatamente seguida pela letra `u`, mas sem incluir o `u` no resultado.
+a. **`Lookarounds` (`lookaheads` e `lookbehinds`)**: Permitem verificar a existência de um padrão antes (`lookbehind`) ou depois (`lookahead`) da posição atual, **sem consumir** os caracteres verificados (ou seja, sem incluí-los no resultado da captura). Um exemplo clássico é a expressão `q(?=u)`, que encontra a letra `q` apenas se ela for imediatamente seguida pela letra `u`, mas sem incluir o `u` no resultado.
 
-b. **`Backreferences` (Retrovisores):** Permitem referenciar um grupo que foi previamente capturado dentro da mesma expressão. Por exemplo, a expressão `(\w)\1` encontra qualquer caractere alfanumérico (`\w`) que é seguido imediatamente por ele mesmo. É com esta capacidade que um motor de regex pode reconhecer a linguagem não-regular $L = \{ww \mid w \in \{a,b\}^*\}$.
+b. **`Backreferences` (Retrovisores)**: Permitem referenciar um grupo que foi previamente capturado dentro da mesma expressão. Por exemplo, a expressão `(\w)\1` encontra qualquer caractere alfanumérico (`\w`) que é seguido imediatamente por ele mesmo. É com esta capacidade que um motor de regex pode reconhecer a linguagem não-regular $L = \{ww \mid w \in \{a,b\}^*\}$.
 
 A consequência mais importante é que esses sistemas de regex modernos podem reconhecer linguagens que **não são regulares** no sentido estrito da teoria. Enquanto uma expressão regular formal jamais poderia reconhecer a linguagem $L = \{a^n b^n \mid n \geq 1\}$, as extensões práticas oferecem um poder que transcende os limites dos Autômatos Finitos.
 
@@ -1145,7 +1145,7 @@ Esses exemplos arranham apenas a superfície, mas demonstram a imensa versatilid
 
 ### Exercícios 8 {#sec-ex-regex5}
 
-1. Projete expressões regulares para tokens de uma linguagem de programação simples:
+1. Projete expressões regulares para _tokens_ de uma linguagem de programação simples:
    a. Palavras-chave: $\{\text{if}, \text{then}, \text{else}, \text{while}, \text{do}\}$;
    b. Números inteiros (incluindo negativos);
    c. Comentários de linha iniciados por $//$; 
@@ -1199,7 +1199,7 @@ A curiosa leitora deve saber que existe uma associação clássica entre as Ling
 
 A utilidade prática das linguagens regulares não se limita à sua capacidade de descrever padrões, mas também se baseia em um conjunto de garantias matemáticas. Duas propriedades centrais neste contexto são:
 
-1. **Fechamento sob Operações**: a classe das Linguagens Regulares é fechada sob todas as operações que vimos: **união**, **concatenação**, **fechamento de Kleene**, e também sob **interseção** e **complemento**. Isso significa que se combinarmos Linguagens Regulares usando essas operações, o resultado será *sempre* outra Linguagem Regular. Essa propriedade é de grande valor prático, pois garante que podemos construir sistemas de reconhecimento complexos a partir de componentes simples com a certeza de que o todo permanecerá computacionalmente tratável.
+1. **Fechamento sob Operações**: a classe das Linguagens Regulares é fechada sob todas as operações que vimos: **união**, **concatenação**, **fechamento de Kleene**, e também sob **interseção** e **complemento**. Isso significa que se combinarmos Linguagens Regulares usando essas operações, o resultado será *sempre* outra Linguagem Regular. Essa propriedade é de grande valor prático, ela garante que podemos construir sistemas de reconhecimento complexos a partir de componentes simples com a certeza de que o todo permanecerá computacionalmente tratável.
 
 2. **Decidibilidade**: Para as Linguagens Regulares, questões fundamentais são sempre _decidíveis_, ou seja, existe um algoritmo que pode respondê-las em um tempo finito. Podemos sempre construir um programa para determinar, por exemplo:
     a. Se uma _string_ $w$ pertence à linguagem $L(r)$;
@@ -1242,7 +1242,7 @@ Vamos usar o Lema do Bombeamento para provar formalmente que a linguagem $L = \{
 
 1. **Assunção Inicial (para Contradição)**: assumimos que $L$ **é** uma linguagem regular.
 2. **Aplicação do Lema**: se $L$ é regular, então o Lema do Bombeamento deve se aplicar. Isso significa que existe uma constante, o _comprimento de bombeamento_ $p$, para a linguagem $L$.
-3. **Escolha da String**: escolhemos uma _string_ $w$ que pertence a $L$ e que seja longa o suficiente, ou seja, $|w| \geq p$. A escolha mais estratégica é $w = a^p b^p$. Esta _string_ claramente pertence a $L$ (pois o número de $a$'s é igual ao de $b$'s) e seu comprimento é $2p$, que é maior ou igual a $p$.
+3. **Escolha da String**: escolhemos uma _string_ $w$ que pertence a $L$ e que seja longa o suficiente, ou seja, $|w| \geq p$. A escolha mais estratégica é $w = a^p b^p$. Esta _string_ claramente pertence a $L$ (o número de $a$'s é igual ao de $b$'s) e seu comprimento é $2p$, que é maior ou igual a $p$.
 4. **Divisão da String**: de acordo com o lema, $w$ pode ser dividida em três partes, $w=xyz$, que devem satisfazer as seguintes condições:
     a. $|y| > 0$;
     b. $|xy| \leq p$;
@@ -1253,7 +1253,7 @@ Vamos usar o Lema do Bombeamento para provar formalmente que a linguagem $L = \{
    b. Como $x$, $y$ e $z$ juntos formavam $a^p b^p$, e $y$ era $a^k$, a nova _string_ $w'$ terá $k$ $a$'s a mais que a original.
    c. Portanto, $w' = a^{p+k} b^p$.
    d. Como sabemos que $k \geq 1$, o número de $a$'s ($p+k$) não é mais igual ao número de $b$'s ($p$). Logo, a _string_ $w' = a^{p+k} b^p$ **não pertence** a $L$.
-7. **Conclusão**: chegamos a uma contradição. Nossa suposição inicial de que $L$ era regular nos levou, através do Lema do Bombeamento, à conclusão de que uma _string_ gerada pelo bombeamento ($w'$) deveria estar em $L$, mas mostramos que ela viola a definição de $L$. Portanto, a suposição inicial estava errada. A linguagem $L = \{a^n b^n \mid n \geq 0\}$ não é regular.
+7. **Conclusão**: chegamos a uma contradição. Nossa suposição inicial de que $L$ era regular nos levou, por meio do Lema do Bombeamento, à conclusão de que uma _string_ gerada pelo bombeamento ($w'$) deveria estar em $L$, mas mostramos que ela viola a definição de $L$. Portanto, a suposição inicial estava errada. A linguagem $L = \{a^n b^n \mid n \geq 0\}$ não é regular.
 
 #### Por que o Lema do Bombeamento é Importante?
 
@@ -1280,7 +1280,7 @@ a. $|y| > 0$;
 b. $|xy| \leq p$;
 c. $xy^iz \in L$ para todo $i \geq 0$.
 
-Escolhemos $w = a^p c^p \in L$ (pois $p + 2 \cdot 0 = p$). Como $|xy| \leq p$ e $w$ começa com $p$ símbolos $a$, temos que $y = a^k$ para algum $1 \leq k \leq p$.
+Escolhemos $w = a^p c^p \in L$ (neste caso, $p + 2 \cdot 0 = p$). Como $|xy| \leq p$ e $w$ começa com $p$ símbolos $a$, temos que $y = a^k$ para algum $1 \leq k \leq p$.
 
 Para $i = 2$: $w' = xy^2z = a^{p+k}c^p$
 
@@ -1336,8 +1336,8 @@ c) Determine $|L(r_1) \cap \{w \in \{0,1\}^* \mid |w| = 5\}|$.
 A expressão $r_2 = 0(10)^* \cup (01)^*0$ é, de fato, a forma simplificada de $r_1$. A afirmação pode ser mais detalhada da seguinte forma:
 
 1. **Simplificação Estrutural**:
-    a. A expressão original, $r_1 = (01)^*0(10)^*$, descreve a linguagem através de uma concatenação de três partes. Isso exige que qualquer _string_ da linguagem seja mentalmente dividida em um prefixo de $(01)^*$, um $0$ central e um sufixo de $(10)^*$.
-    b. A expressão $r_2$, já comprovada como equivalente na letra (a), descreve a mesma linguagem como a união de dois padrões mais diretos. Essa forma é frequentemente considerada mais simples, pois representa a linguagem como _strings que pertencem ao padrão A **OU** ao padrão B_, o que pode ser mais fácil de analisar e implementar.
+    a. A expressão original, $r_1 = (01)^*0(10)^*$, descreve a linguagem por meio de uma concatenação de três partes. Isso exige que qualquer _string_ da linguagem seja mentalmente dividida em um prefixo de $(01)^*$, um $0$ central e um sufixo de $(10)^*$.
+    b. A expressão $r_2$, já comprovada como equivalente na letra (a), descreve a mesma linguagem como a união de dois padrões mais diretos. Essa forma é frequentemente considerada mais simples por representar a linguagem como _strings que pertencem ao padrão A **OU** ao padrão B_, o que pode ser mais fácil de analisar e implementar.
 
 2. **Análise de Minimalidade**:
     a. A expressão $r_2$ é considerada minimal na prática. A linguagem consiste em _strings_ que começam e terminam com $0$ e têm $0$s e $1$s alternados no interior. Existem duas maneiras naturais de gerar tais strings:
@@ -1415,8 +1415,8 @@ Vamos demonstrar que a _string_ $w = (11) 99999-9999$ pertence a $L(r_{tel})$.
    A substring $w_{ddd}$ deve pertencer a $L(r_{ddd})$. Ela corresponde ao primeiro termo da união em $r_{ddd}$:
    - $\( D_{nz} D \) (\epsilon \cup \text{ })$;
    - $\($ corresponde ao símbolo literal $($;
-   - $1$ pertence a $L(D_{nz})$ pois $1 \in \{1,2,3,4,5,6,7,8,9\}$;
-   - $1$ pertence a $L(D)$ pois $1 \in \{0,1,2,3,4,5,6,7,8,9\}$;
+   - $1$ pertence a $L(D_{nz})$ neste caso, $1 \in \{1,2,3,4,5,6,7,8,9\}$;
+   - $1$ pertence a $L(D)$ neste caso, $1 \in \{0,1,2,3,4,5,6,7,8,9\}$;
    - $\)$ corresponde ao símbolo literal $)$;
    - O espaço pertence a $L(\epsilon \cup \text{ })$;
    - Portanto, $w_{ddd} \in L(r_{ddd})$. Ok!
@@ -1457,7 +1457,7 @@ c) Construa uma expressão regular para $L_3 = \{a^nb^n \mid n \geq 0\} \cup \{a
    - $|xy| \leq p$;
    - $xy^iz \in L_1$ para todo $i \geq 0$.
 
-   **Passo 3 - Escolha da string**: Escolhemos $w = a^pb^p \in L_1$ (válida pois $p \geq p \geq 0$).
+   **Passo 3 - Escolha da string**: Escolhemos $w = a^pb^p \in L_1$ (válida porque $p \geq p \geq 0$).
 
    **Passo 4 - Análise da divisão**: Como $|xy| \leq p$ e $w$ inicia com $p$ símbolos $a$ seguidos de $p$ símbolos $b$, a substring $xy$ está inteiramente contida no bloco inicial de $a$'s. Portanto, $y = a^k$ para algum $k$ com $1 \leq k \leq p$.
 
@@ -1469,7 +1469,7 @@ c) Construa uma expressão regular para $L_3 = \{a^nb^n \mid n \geq 0\} \cup \{a
    $$p + k \geq p$$
    $$k \geq 0$$
 
-   Como $k \geq 1$ (pois $|y| > 0$), a condição $k \geq 0$ é sempre satisfeita.
+   Como $k \geq 1$ (porque $|y| > 0$), a condição $k \geq 0$ é sempre satisfeita.
 
    **Passo 7 - Teste com $i = 0$**: Consideramos $i = 0$:
    $$xy^0z = xz = a^{p-k}b^p$$
@@ -1689,7 +1689,7 @@ $$r_{com} = r_{com\_linha} \cup r_{com\_bloco}$$
 1. **Nível 1 (Maior Precedência): Comentários**
 
 - **Regra**: Reconhecer `//` e `/*` antes de qualquer outra análise
-- **Justificativa**: Comentários alteram fundamentalmente o processamento (podem "comentar" outros tokens)
+- **Justificativa**: Comentários alteram fundamentalmente o processamento (podem "comentar" outros _tokens_)
 - **Implementação**: Scanner deve verificar comentários primeiro em cada posição
 
 2. **Nível 2: Palavras-chave Reservadas**
@@ -1705,7 +1705,7 @@ $$r_{com} = r_{com\_linha} \cup r_{com\_bloco}$$
 
 - **Regra**: Sempre consumir a maior sequência válida como número
 - **Ordem de tentativa**: $r_{sci} \succ r_{dec} \succ r_{int}$
-- **Exemplo**: `1.5e-3` deve ser reconhecido como um token científico, não como três tokens separados
+- **Exemplo**: `1.5e-3` deve ser reconhecido como um token científico, não como três _tokens_ separados
 
 4. **Nível 4: Operadores Compostos (Regra do Maior Match)**
 
@@ -2187,7 +2187,7 @@ c) Construa uma linguagem regular $L'$ que seja o "mais próxima possível" de $
 
 Assumimos que $L$ é regular. Seja $p$ a constante do bombeamento.
 
-Escolhemos $w = 0^p1^{2p}0^p \in L$ (pois $p + p = 2p$).
+Escolhemos $w = 0^p1^{2p}0^p \in L$ (porque $p + p = 2p$).
 
 Como $|w| = 4p \geq p$, podemos dividir $w = xyz$ onde:
 - $|y| > 0$

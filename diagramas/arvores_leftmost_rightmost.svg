@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1400"
+   height="750"
+   viewBox="0 0 1400 750"
+   version="1.1"
+   id="svg64"
+   sodipodi:docname="arvores_leftmost_rightmost.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview64"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.14"
+     inkscape:cx="700"
+     inkscape:cy="375"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg64" />
+  <!-- Definições de estilo -->
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .non-terminal {
+        fill: #D2691E;
+        stroke: #A0522D;
+        stroke-width: 2;
+      }
+      .terminal {
+        fill: #2E8B57;
+        stroke: #228B22;
+        stroke-width: 2;
+      }
+      .text-white {
+        fill: white;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+      .arrow {
+        stroke: #2E8B57;
+        stroke-width: 2;
+        fill: none;
+        marker-end: url(#arrowhead);
+      }
+      .title-text {
+        fill: #2E8B57;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        text-anchor: middle;
+      }
+      .highlight-order {
+        stroke: #FF4500;
+        stroke-width: 3;
+        stroke-dasharray: 5,5;
+        fill: none;
+      }
+    </style>
+    <marker
+       id="arrowhead"
+       markerWidth="8"
+       markerHeight="6"
+       refX="7"
+       refY="3"
+       orient="auto">
+      <polygon
+         points="0 0, 8 3, 0 6"
+         fill="#2E8B57"
+         id="polygon1" />
+    </marker>
+  </defs>
+  <!-- Título Principal -->
+  <text
+     x="700"
+     y="30"
+     class="title-text"
+     font-size="18"
+     id="text1">Derivações Leftmost vs Rightmost para &quot;[a,b,a]&quot;</text>
+  <text
+     x="700"
+     y="55"
+     class="title-text"
+     font-size="14"
+     id="text2">Ambas produzem a mesma árvore sintática (gramática não ambígua)</text>
+  <!-- ÁRVORE LEFTMOST -->
+  <text
+     x="522.80701"
+     y="91.228073"
+     class="title-text"
+     font-size="16px"
+     id="text3"
+     inkscape:export-filename="..\images\deriva1.webp"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96">Derivação Leftmost (Mais à Esquerda)</text>
+  <text
+     x="522.80701"
+     y="111.22807"
+     class="title-text"
+     font-size="12px"
+     id="text4">Expande sempre o não-terminal mais à esquerda primeiro</text>
+  <circle
+     cx="522.80701"
+     cy="151.22807"
+     r="22"
+     class="non-terminal"
+     id="circle4"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="522.80701"
+     y="151.22807"
+     class="text-white"
+     font-size="12px"
+     id="text5">L</text>
+  <text
+     x="492.80701"
+     y="141.22807"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text6">①</text>
+  <rect
+     x="402.80701"
+     y="221.22807"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect6" />
+  <text
+     x="415.30701"
+     y="233.72807"
+     class="text-white"
+     font-size="12px"
+     id="text7">[</text>
+  <circle
+     cx="522.80701"
+     cy="233.72807"
+     r="22"
+     class="non-terminal"
+     id="circle7"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="522.80701"
+     y="233.72807"
+     class="text-white"
+     font-size="12px"
+     id="text8">E</text>
+  <text
+     x="492.80701"
+     y="223.22807"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text9">②</text>
+  <rect
+     x="617.80701"
+     y="221.22807"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect9" />
+  <text
+     x="630.30701"
+     y="233.72807"
+     class="text-white"
+     font-size="12px"
+     id="text10">]</text>
+  <line
+     x1="502.80701"
+     y1="166.22807"
+     x2="415.30701"
+     y2="216.22807"
+     class="arrow"
+     id="line10" />
+  <line
+     x1="522.80701"
+     y1="173.22807"
+     x2="522.80701"
+     y2="211.22807"
+     class="arrow"
+     id="line11" />
+  <line
+     x1="542.80701"
+     y1="166.22807"
+     x2="630.30701"
+     y2="216.22807"
+     class="arrow"
+     id="line12" />
+  <circle
+     cx="452.80701"
+     cy="311.22806"
+     r="22"
+     class="non-terminal"
+     id="circle12"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="452.80701"
+     y="311.22806"
+     class="text-white"
+     font-size="12px"
+     id="text12">E</text>
+  <text
+     x="422.80701"
+     y="301.22806"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text13">③</text>
+  <rect
+     x="502.80701"
+     y="298.72806"
+     width="20"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect13" />
+  <text
+     x="512.80701"
+     y="311.22806"
+     class="text-white"
+     font-size="12px"
+     id="text14">,</text>
+  <rect
+     x="542.80701"
+     y="298.72806"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect14" />
+  <text
+     x="555.30701"
+     y="311.22806"
+     class="text-white"
+     font-size="12px"
+     id="text15">a</text>
+  <line
+     x1="502.80701"
+     y1="251.22807"
+     x2="452.80701"
+     y2="289.22806"
+     class="arrow"
+     id="line15" />
+  <line
+     x1="517.80701"
+     y1="251.22807"
+     x2="512.80701"
+     y2="293.22806"
+     class="arrow"
+     id="line16" />
+  <line
+     x1="537.80701"
+     y1="251.22807"
+     x2="555.30701"
+     y2="293.22806"
+     class="arrow"
+     id="line17" />
+  <circle
+     cx="382.80701"
+     cy="391.22806"
+     r="22"
+     class="non-terminal"
+     id="circle17"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="382.80701"
+     y="391.22806"
+     class="text-white"
+     font-size="12px"
+     id="text17">E</text>
+  <text
+     x="352.80701"
+     y="381.22806"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text18">④</text>
+  <rect
+     x="432.80701"
+     y="378.72806"
+     width="20"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect18" />
+  <text
+     x="442.80701"
+     y="391.22806"
+     class="text-white"
+     font-size="12px"
+     id="text19">,</text>
+  <rect
+     x="472.80701"
+     y="378.72806"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect19" />
+  <text
+     x="485.30701"
+     y="391.22806"
+     class="text-white"
+     font-size="12px"
+     id="text20">b</text>
+  <line
+     x1="432.80701"
+     y1="329.22806"
+     x2="382.80701"
+     y2="369.22806"
+     class="arrow"
+     id="line20" />
+  <line
+     x1="447.80701"
+     y1="329.22806"
+     x2="442.80701"
+     y2="373.22806"
+     class="arrow"
+     id="line21" />
+  <line
+     x1="467.80701"
+     y1="329.22806"
+     x2="485.30701"
+     y2="373.22806"
+     class="arrow"
+     id="line22" />
+  <rect
+     x="370.30701"
+     y="458.72806"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect22" />
+  <text
+     x="382.80701"
+     y="471.22806"
+     class="text-white"
+     font-size="12px"
+     id="text22">a</text>
+  <line
+     x1="382.80701"
+     y1="413.22806"
+     x2="382.80701"
+     y2="453.22806"
+     class="arrow"
+     id="line23" />
+  <g
+     transform="translate(322.80701,511.22807)"
+     id="g27">
+    <text
+       x="0"
+       y="0"
+       fill="#2e8b57"
+       font-family="Arial"
+       font-size="14px"
+       font-weight="bold"
+       id="text23">Passos da Derivação:</text>
+    <text
+       x="0"
+       y="20"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text24">① L ⇒ [E]</text>
+    <text
+       x="0"
+       y="35"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text25">② [E] ⇒ [E,a]</text>
+    <text
+       x="0"
+       y="50"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text26">③ [E,a] ⇒ [E,b,a]</text>
+    <text
+       x="0"
+       y="65"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text27">④ [E,b,a] ⇒ [a,b,a]</text>
+  </g>
+  <!-- ÁRVORE RIGHTMOST -->
+  <text
+     x="907.01752"
+     y="93.85965"
+     class="title-text"
+     font-size="16px"
+     id="text28">Derivação Rightmost (Mais à Direita)</text>
+  <text
+     x="907.01752"
+     y="113.85965"
+     class="title-text"
+     font-size="12px"
+     id="text29">Expande sempre o não-terminal mais à direita primeiro</text>
+  <circle
+     cx="907.01752"
+     cy="153.85965"
+     r="22"
+     class="non-terminal"
+     id="circle29"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="907.01752"
+     y="153.85965"
+     class="text-white"
+     font-size="12px"
+     id="text30">L</text>
+  <text
+     x="877.01752"
+     y="143.85965"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text31">①</text>
+  <rect
+     x="787.01752"
+     y="223.85965"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect31" />
+  <text
+     x="799.51752"
+     y="236.35965"
+     class="text-white"
+     font-size="12px"
+     id="text32">[</text>
+  <circle
+     cx="907.01752"
+     cy="236.35965"
+     r="22"
+     class="non-terminal"
+     id="circle32"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="907.01752"
+     y="236.35965"
+     class="text-white"
+     font-size="12px"
+     id="text33">E</text>
+  <text
+     x="877.01752"
+     y="225.85965"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text34">②</text>
+  <rect
+     x="1002.0175"
+     y="223.85965"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect34" />
+  <text
+     x="1014.5175"
+     y="236.35965"
+     class="text-white"
+     font-size="12px"
+     id="text35">]</text>
+  <line
+     x1="887.01752"
+     y1="168.85965"
+     x2="799.51752"
+     y2="218.85965"
+     class="arrow"
+     id="line35" />
+  <line
+     x1="907.01752"
+     y1="175.85965"
+     x2="907.01752"
+     y2="213.85965"
+     class="arrow"
+     id="line36" />
+  <line
+     x1="927.01752"
+     y1="168.85965"
+     x2="1014.5175"
+     y2="218.85965"
+     class="arrow"
+     id="line37" />
+  <circle
+     cx="837.01752"
+     cy="313.85965"
+     r="22"
+     class="non-terminal"
+     id="circle37"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="837.01752"
+     y="313.85965"
+     class="text-white"
+     font-size="12px"
+     id="text37">E</text>
+  <text
+     x="807.01752"
+     y="303.85965"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text38">④</text>
+  <rect
+     x="887.01752"
+     y="301.35965"
+     width="20"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect38" />
+  <text
+     x="897.01752"
+     y="313.85965"
+     class="text-white"
+     font-size="12px"
+     id="text39">,</text>
+  <rect
+     x="927.01752"
+     y="301.35965"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect39" />
+  <text
+     x="939.51752"
+     y="313.85965"
+     class="text-white"
+     font-size="12px"
+     id="text40">a</text>
+  <line
+     x1="887.01752"
+     y1="253.85965"
+     x2="837.01752"
+     y2="291.85965"
+     class="arrow"
+     id="line40" />
+  <line
+     x1="902.01752"
+     y1="253.85965"
+     x2="897.01752"
+     y2="295.85965"
+     class="arrow"
+     id="line41" />
+  <line
+     x1="922.01752"
+     y1="253.85965"
+     x2="939.51752"
+     y2="295.85965"
+     class="arrow"
+     id="line42" />
+  <circle
+     cx="767.01752"
+     cy="393.85965"
+     r="22"
+     class="non-terminal"
+     id="circle42"
+     style="fill:#ff7f2a;stroke:#ff9955" />
+  <text
+     x="767.01752"
+     y="393.85965"
+     class="text-white"
+     font-size="12px"
+     id="text42">E</text>
+  <text
+     x="737.01752"
+     y="383.85965"
+     fill="#ff4500"
+     font-family="Arial"
+     font-size="10px"
+     font-weight="bold"
+     id="text43">③</text>
+  <rect
+     x="817.01752"
+     y="381.35965"
+     width="20"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect43" />
+  <text
+     x="827.01752"
+     y="393.85965"
+     class="text-white"
+     font-size="12px"
+     id="text44">,</text>
+  <rect
+     x="857.01752"
+     y="381.35965"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect44" />
+  <text
+     x="869.51752"
+     y="393.85965"
+     class="text-white"
+     font-size="12px"
+     id="text45">b</text>
+  <line
+     x1="817.01752"
+     y1="331.85965"
+     x2="767.01752"
+     y2="371.85965"
+     class="arrow"
+     id="line45" />
+  <line
+     x1="832.01752"
+     y1="331.85965"
+     x2="827.01752"
+     y2="375.85965"
+     class="arrow"
+     id="line46" />
+  <line
+     x1="852.01752"
+     y1="331.85965"
+     x2="869.51752"
+     y2="375.85965"
+     class="arrow"
+     id="line47" />
+  <rect
+     x="754.51752"
+     y="461.35965"
+     width="25"
+     height="25"
+     rx="3"
+     class="terminal"
+     id="rect47" />
+  <text
+     x="767.01752"
+     y="473.85965"
+     class="text-white"
+     font-size="12px"
+     id="text47">a</text>
+  <line
+     x1="767.01752"
+     y1="415.85965"
+     x2="767.01752"
+     y2="455.85965"
+     class="arrow"
+     id="line48" />
+  <g
+     transform="translate(707.01754,513.85965)"
+     id="g52">
+    <text
+       x="0"
+       y="0"
+       fill="#2e8b57"
+       font-family="Arial"
+       font-size="14px"
+       font-weight="bold"
+       id="text48">Passos da Derivação:</text>
+    <text
+       x="0"
+       y="20"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text49">① L ⇒ [E]</text>
+    <text
+       x="0"
+       y="35"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text50">② [E] ⇒ [E,a]</text>
+    <text
+       x="0"
+       y="50"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text51">③ [E,a] ⇒ [E,b,a]</text>
+    <text
+       x="0"
+       y="65"
+       fill="#333333"
+       font-family="Arial"
+       font-size="12px"
+       id="text52">④ [E,b,a] ⇒ [a,b,a]</text>
+  </g>
+  <!-- Conclusão -->
+  <g
+     transform="translate(200, 620)"
+     id="g57">
+    <text
+       x="500"
+       y="0"
+       class="title-text"
+       font-size="16"
+       id="text53">Conclusão: Gramática Não Ambígua</text>
+    <rect
+       x="0"
+       y="15"
+       width="1000"
+       height="100"
+       fill="#f8f9fa"
+       stroke="#dee2e6"
+       stroke-width="1"
+       rx="5"
+       id="rect53" />
+    <text
+       x="20"
+       y="40"
+       fill="#2E8B57"
+       font-family="Arial"
+       font-size="14"
+       font-weight="bold"
+       id="text54">✓ Árvores Sintáticas Idênticas:</text>
+    <text
+       x="40"
+       y="60"
+       fill="#333"
+       font-family="Arial"
+       font-size="12"
+       id="text55">• Ambas as derivações (leftmost e rightmost) produzem exatamente a mesma árvore sintática</text>
+    <text
+       x="40"
+       y="75"
+       fill="#333"
+       font-family="Arial"
+       font-size="12"
+       id="text56">• A única diferença está na ordem de expansão dos não-terminais durante a derivação</text>
+    <text
+       x="40"
+       y="90"
+       fill="#333"
+       font-family="Arial"
+       font-size="12"
+       id="text57">• Isso confirma que a gramática é não ambígua: cada string tem uma única interpretação estrutural</text>
+  </g>
+  <!-- Legenda -->
+  <g
+     transform="translate(50, 680)"
+     id="g64">
+    <text
+       x="0"
+       y="0"
+       fill="#2E8B57"
+       font-family="Arial"
+       font-size="14"
+       font-weight="bold"
+       id="text58">Legenda:</text>
+    <circle
+       cx="15"
+       cy="25"
+       r="12"
+       class="non-terminal"
+       id="circle58" />
+    <text
+       x="15"
+       y="25"
+       class="text-white"
+       font-size="10"
+       id="text59">E</text>
+    <text
+       x="35"
+       y="30"
+       fill="#2E8B57"
+       font-family="Arial"
+       font-size="12"
+       id="text60">Não-terminais</text>
+    <rect
+       x="5"
+       y="45"
+       width="25"
+       height="20"
+       rx="3"
+       class="terminal"
+       id="rect60" />
+    <text
+       x="17.5"
+       y="55"
+       class="text-white"
+       font-size="10"
+       id="text61">a</text>
+    <text
+       x="35"
+       y="60"
+       fill="#2E8B57"
+       font-family="Arial"
+       font-size="12"
+       id="text62">Terminais</text>
+    <text
+       x="140"
+       y="30"
+       fill="#FF4500"
+       font-family="Arial"
+       font-size="12"
+       font-weight="bold"
+       id="text63">① ② ③ ④</text>
+    <text
+       x="190"
+       y="30"
+       fill="#2E8B57"
+       font-family="Arial"
+       font-size="12"
+       id="text64">Ordem de expansão</text>
+  </g>
+</svg>

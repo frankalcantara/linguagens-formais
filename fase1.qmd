@@ -1,6 +1,6 @@
 # Fase 1 - Projeto Prático
 
-Este trabalho pode ser realizado em grupos de até $4$ alunos. Grupos com mais de 4 membros terão o trabalho anulado. Leia todo este texto antes de começar e siga o seguinte código de ética: _você pode discutir as questões com colegas, professores e amigos, consultar livros da disciplina, bibliotecas virtuais ou físicas, e a Internet em geral, em qualquer idioma. Você pode usar qualquer ferramenta de Inteligência Artificial para dúvidas, mas não para fazer o trabalho no seu lugar. O trabalho é seu e deve ser realizado por você. Plágio resultará na anulação do trabalho_.
+Este trabalho pode ser realizado em grupos de até $4$ alunos. **Grupos com mais de 4 membros terão o trabalho anulado**. Leia todo este texto antes de começar e siga o seguinte código de ética: _você pode discutir as questões com colegas, professores e amigos, consultar livros da disciplina, bibliotecas virtuais ou físicas, e a Internet em geral, em qualquer idioma. Você pode usar qualquer ferramenta de Inteligência Artificial para dúvidas, mas não para fazer o trabalho no seu lugar. O trabalho é seu e deve ser realizado por você. Plágio resultará na anulação do trabalho_.
 
 Os trabalhos entregues serão avaliados por uma ferramenta de Inteligência Artificial, que verificará a originalidade do texto e a autoria do código. O trabalho deve ser entregue em um repositório público no **GitHub**.
 
@@ -12,19 +12,19 @@ Pesquisar e praticar conceitos de analisador léxico para desenvolver um program
 
 O objetivo é desenvolver um programa capaz de:
 
-1. Ler um arquivo de texto contendo expressões aritméticas em RPN, segundo o formato especificado neste documento, com uma expressão por linha. Este arquivo contém o código do programa que será analisado pelo analisador léxico.
-2. Analisar as expressões usando um analisador léxico baseado em FSMs, com estados implementados por funções.
-3. Transformar as expressões em um texto contendo o código Assembly para o Arduino, utilizando as operações aritméticas e comandos especiais especificados. As operações serão realizadas no Arduino.
-4. Executar as expressões em um Arduino Uno/Mega, de forma que os resultados possam ser acompanhados (display, leds ou serial).
+1. Ler um arquivo de texto contendo expressões aritméticas em **Escritas RPN**, segundo o formato especificado neste documento, com uma expressão por linha. Este arquivo contém o código do programa que será analisado pelo analisador léxico.
+2. Analisar as expressões usando um analisador léxico baseado em Autômatos Finitos Determinísticos, com estados implementados por funções.
+3. Transformar as expressões em um texto contendo o código Assembly para o Arduino ([uno](https://docs.arduino.cc/hardware/uno-rev3/)|[mega](https://docs.arduino.cc/hardware/mega-2560/)), utilizando as operações aritméticas e comandos especiais especificados. As operações serão realizadas no Arduino.
+4. Executar as expressões em um Arduino (Uno|Mega), de forma que os resultados possam ser acompanhados (display, leds ou serial).
 5. Hospedar o código, arquivos de teste e documentação em um repositório público no **GitHub**.
 
 ### Características Especiais
 
-As expressões devem ser escritas em notação RPN, no formato `(A B op)`, no qual `A` e `B` são números reais e `op` é um operador aritmético. O programa deve suportar operações aritméticas básicas, comandos especiais para manipulação de memória, e deve ser capaz de lidar com expressões aninhadas. Segundo a seguinte sintaxe:
+As expressões devem ser escritas em notação RPN, no formato `(A B op)`, no qual `A` e `B` são números reais, os operandos, e `op` é um operador aritmético entre os listados neste documento. O programa deve suportar operações aritméticas básicas listadas neste documento, comandos especiais para manipulação de memória, e deve ser capaz de lidar com expressões aninhadas sem limites de aninhamento. Segundo a seguinte sintaxe:
 
-- **A** e **B** são números reais (usar ponto como separador decimal, ex.: 3.14).
+- Considerando que **A** e **B** são números reais, e usando o ponto como separador decimal, (ex.: 3.14), teremos:
 
-- Operadores suportados na Fase 1:
+- **Operadores suportados na Fase 1**:
   - Adição: `+` (ex.: `(A B +)`);
   - Subtração: `-` (ex.: `(A B -)`);
   - Multiplicação: `*` (ex.: `(A B *)`);
@@ -32,12 +32,16 @@ As expressões devem ser escritas em notação RPN, no formato `(A B op)`, no qu
   - Divisão inteira: `/` (ex.: `(A B /)` para inteiros);
   - Resto da divisão inteira: `%` (ex.: `(A B %)`);
   - Potenciação: `^` (ex.: `(A B ^)`, onde `B` é um inteiro positivo);
+
 - Todas as operações (exceto divisão inteira e resto) usam números reais em formato de meia precisão (16 bits, IEEE 754), com duas casas decimais. A página [Os desafios da norma IEEE 754](https://frankalcantara.com/precisao-realidade-os-desafios-da-norma-ieee-754-na-computacao-moderna/) contém informações relevantes sobre a norma IEEE 754.
+
 - Expressões podem ser aninhadas sem limite, por exemplo:
   
   - `(A (C D *) +)`: Soma `A` ao produto de `C` e `D`;
   - `((A B *) (D E *) /)`: Divide o produto de `A` e `B` pelo produto de `D` e `E`.
   - `((A B +) (C D *) /)`: Divide a soma de `A` e `B` pelo produto de `C` e `D`.
+
+- A ordem de precedência das operações segue a ordem de precedência usual em matemática.
 
 ### Comandos Especiais
 
@@ -45,25 +49,29 @@ A linguagem que estamos criando inclui comandos especiais para manipulação de 
 
 - `(N RES)`: Retorna o resultado da expressão `N` linhas anteriores (`N` é um inteiro não negativo). 
 - `(V MEM)`: Armazena o valor real `V` em uma memória chamada `MEM`.
-- `(MEM)`: Retorna o valor armazenado em `MEM`. Se não inicializado, retorna $0.0$.
+- `(MEM)`: Retorna o valor armazenado em `MEM`. Se a memória não foi inicializada, retorna $0.0$.
 
 - Cada arquivo de texto, código fonte da linguagem que estamos criando, representa um escopo independente de memória.
+  
 - `MEM` pode ser qualquer conjunto de letras maiúsculas, tal como `MEM`, `VAR`, `X`, etc.
-- `RES` é uma _keyword_ da linguagem que estamos criando.
+- `RES` é uma _keyword_ da linguagem que estamos criando. A única _keyword_ da linguagem nesta fase.
 
-## Analisador Léxico com FSM
+## Analisador Léxico com Autômatos Finitos Determinístico
 
-- O analisador léxico deve ser implementado usando máquinas de estado finito (FSMs), com cada estado representado por uma função. Qualquer forma diferente de implementação provocará o zeramento do trabalho.
-- O FSM deve reconhecer _tokens_ válidos: números reais (duas casas decimais), operadores (`+`, `-`, `*`, `/`, `%`, `^`), comandos especiais (`RES`, `MEM`), e parênteses.
-- Funções de teste específicas devem ser criadas para validar o analisador léxico, cobrindo:
-  - Entradas válidas (ex.: `(3.14 2.0 +)`, `(5 RES)`, `(10.5 CONTADOr)`);
-  - Entradas inválidas (ex.: `(3.14 2.0 &)`, números malformados como `3.14.5`, `3,45` ou parênteses desbalanceados).
+1. O analisador léxico deve ser implementado usando Autômatos Finitos Determinísticos, com **cada estado representado por uma função**. Qualquer forma diferente de implementação provocará o zeramento do trabalho.
+
+2. O Autômato Finito Determinístico deve reconhecer _tokens_ válidos: números reais (duas casas decimais), operadores (`+`, `-`, `*`, `/`, `%`, `^`), comandos especiais (`RES`, `MEM`), e parênteses.
+
+3. Funções de teste específicas devem ser criadas para validar o analisador léxico, cobrindo:
+  
+- Entradas válidas (ex.: `(3.14 2.0 +)`, `(5 RES)`, `(10.5 CONTADOr)`);
+- Entradas inválidas (ex.: `(3.14 2.0 &)`, números malformados como `3.14.5`, `3,45` ou parênteses desbalanceados).
 
 ## Arquivos de Teste
 
-- Fornecer **mínimo de 3 arquivos de texto**, cada um com **pelo menos 10 linhas** de expressões RPN.
+- Fornecer **mínimo de 3 arquivos de texto**, cada um com **pelo menos 10 linhas** de expressões segundo as especificações deste documento.
 - Cada arquivo deve incluir todas as operações (`+`, `-`, `*`, `/`, `%`, `^`) e comandos especiais (`(N RES)`, `(V MEM)`, `(MEM)`).
-- Os arquivos devem estar no mesmo diretório do código-fonte e ser processados via argumento de linha de comando (ex.: `./programa teste1.txt`).
+- Os arquivos devem estar no mesmo diretório do código-fonte e ser processados via argumento de linha de comando (ex.: `./NomeDoSeuPrograma teste1.txt`).
 - O programa não deve incluir menu ou qualquer seleção interativa de arquivos.
 
 ## Hospedagem no GitHub
@@ -78,35 +86,41 @@ A linguagem que estamos criando inclui comandos especiais para manipulação de 
   - Última versão do Código Assembly para Arduino gerado pelo programa;
   - Documentação (ex.: README.md) explicando como compilar, executar e testar o programa. Contendo o nome da instituição, disciplina, professor e nome dos alunos do grupo, em ordem alfabética seguido do usuário deste aluno no github.
 
-- O repositório deve ser organizado com commits claros, as contribuições de cada um dos alunos devem estar registradas na forma de `pull requests`.
+- O repositório deve ser organizado com _commits_ claros, as contribuições de cada um dos alunos devem estar registradas na forma de `pull requests`.
 
 ## Requisitos do Código
 
-- As primeiras linhas do código devem conter:
-  - Nomes dos integrantes do grupo, em ordem alfabética seguidos do usuário deste aluno no github.
-  - Nome do grupo no ambiente virtual de aprendizagem (Canvas).
-- O programa deve receber o nome do arquivo de teste como argumento na linha de comando.
-- O código deve ser escrito em **Python**, **C**, ou **C++**. Com as funções nomeadas de acordo com o que está explicitado na @sec-divisaoTarefas.
-- A última versão do código Assembly gerado para o Arduino deve ser funcional e incluído no repositório.
+1. As primeiras linhas do código devem conter:
+
+- Nomes dos integrantes do grupo, em ordem alfabética seguidos do usuário deste aluno no github.
+- Nome do grupo no ambiente virtual de aprendizagem (Canvas).
+
+2. O programa deve receber o nome do arquivo de teste como argumento na linha de comando.
+
+3. O código deve ser escrito em **Python**, **C**, ou **C++**. Com as funções nomeadas como está explicitado na @sec-divisaoTarefas.
+
+4. A última versão do código Assembly gerado para o Arduino deve ser funcional e incluído no repositório.
+
+5. A versão em Assembly deve ser exatamente o mesmo algoritmo explicitado em cada texto de teste de forma que o resultados das expressões seja obtido pelo cálculo realizado no Arduino.
 
 ## Divisão de Tarefas para a Fase 1 {#sec-divisaoTarefas}
 
-Para resolver o problema de processamento de expressões RPN, o trabalho será dividido entre até quatro alunos, trabalhando independentemente, na mesma sala, ou de forma remota. Cada aluno será responsável por uma parte específica do sistema, com interfaces claras para facilitar a integração. Abaixo está uma sugestão da divisão das tarefas, considerando as funções solicitadas: `parseExpressao`, `executarExpressao`, `gerarAssembly`, e `exibirResultados`.
+Para resolver o problema de processamento da expressões definidas nos arquivos de teste da fase 1, o trabalho será dividido entre até quatro alunos, trabalhando independentemente, na mesma sala, ou de forma remota. Cada aluno será responsável por uma parte específica do sistema, com interfaces claras para facilitar a integração. Abaixo está uma sugestão da divisão das tarefas, considerando as funções solicitadas: `parseExpressao`, `executarExpressao`, `gerarAssembly`, e `exibirResultados`.
 
 :::::: {.callout-warning}
-**Nota**: As tarefas podem ser divididas da forma que cada aluno achar mais conveniente, desde que as funções e interfaces sejam respeitadas.
+**Nota**: As tarefas podem ser divididas da forma que cada grupo achar mais conveniente, desde que as funções e interfaces sejam respeitadas.
 :::
 
-:::::: {.callout-warning}
-**Nota**: O vetor de _tokens_ deve ser salvo em txt para uso nas próximas fases do projeto. Cabe ao grupo decidir o formato que será usado para salvar os _tokens_. Apenas os _tokens_ referentes a última execução do analisador léxico devem ser salvos.
+::: {.callout-warning}
+**Nota**: O vetor de _tokens_ gerado pelo Analisador Léxico deve ser salvo em txt para uso nas próximas fases do projeto. Cabe ao grupo decidir o formato que será usado para salvar os _tokens_. Apenas os _tokens_ referentes a última execução do código do analisador léxico devem ser salvos.
 :::
 
-### Aluno 1: Função `parseExpressao` e Analisador Léxico com FSM
+### Aluno 1: Função `parseExpressao` e Analisador Léxico com Autômato Finito Determinístico
 
 **Responsabilidades**:
 
 - Implementar `parseExpressao(std::string linha, std::vector<std::string>& _tokens_)` (ou equivalente em Python/C) para analisar uma linha de expressão RPN e extrair _tokens_.
-- Implementar o analisador léxico usando FSMs, com cada estado como uma função (ex.: `estadoNumero`, `estadoOperador`, `estadoParenteses`).
+- Implementar o analisador léxico usando Autômatos Finitos Determinísticos (AFDs), com cada estado como uma função (ex.: `estadoNumero`, `estadoOperador`, `estadoParenteses`).
 - Validar _tokens_:
   - Números reais (ex.: `3.14`) usando ponto como separador decimal;
   - Operadores (`+`, `-`, `*`, `/`, `%`, `^`);
@@ -116,10 +130,10 @@ Para resolver o problema de processamento de expressões RPN, o trabalho será d
 
 **Tarefas Específicas**:
 
-- Escrever `parseExpressao` para dividir a linha em _tokens_ usando um FSM;
-- Validar _tokens_ (ex.: em C++: `if (token.empty() || !isValidNumber(token))`);
-- Testar o FSM com entradas como `(3.14 2.0 +)`, `(5 RES)`, `(3.14.5 2.0 +)` (inválido);
-- Garantir que o FSM lide com parênteses aninhados e comandos especiais.
+- Escrever `parseExpressao` para dividir a linha em _tokens_ usando um Autômato Finito Determinístico;
+- Validar _tokens_;
+- Testar o Autômato Finito Determinístico com entradas diversificadas `(3.14 2.0 +)`, `(5 RES)`, `(3.14.5 2.0 +)` (inválido);
+- Criar um método, antes do Autômato Finito Determinístico, para lidar com parênteses aninhados.
 
 **Interface**:
 
@@ -154,14 +168,14 @@ Para resolver o problema de processamento de expressões RPN, o trabalho será d
 
 - Implementar `gerarAssembly(const std::vector<std::string>& _tokens_, std::string& codigoAssembly)` para gerar código Assembly para Arduino;
 - Implementar `lerArquivo(std::string nomeArquivo, std::vector<std::string>& linhas)` para ler o arquivo de entrada;
-- Criar funções de teste para validar a leitura de arquivos e a geração de Assembly;
+- Criar funções de teste para validar a leitura de arquivos e a geração de Assembly; Lembre-se o Assembly deve conter todas as operações do texto de teste.
 - Alertar se o arquivo tiver linhas malformadas ou exceder limites.
 
 **Tarefas Específicas**:
 
-- Ler o arquivo linha por linha, ignorando linhas vazias;
-- Gerar Assembly AVR para operações RPN e comandos especiais (usando registradores e instruções do ATmega328P/Mega);
-- Testar com arquivos contendo 10+ linhas, incluindo expressões aninhadas e comandos especiais;
+- Ler o arquivo de _tokens_ linha por linha, ignorando linhas vazias;
+- Gerar Assembly AVR para operações RPN e comandos especiais, usando registradores e instruções do Arduíno considerando os modelos adequados a esta fase;
+- Testar com arquivos contendo 10 linhas, ou mais, incluindo expressões aninhadas e comandos especiais;
 - Verificar erros de abertura de arquivo e exibir mensagens claras.
 
 **Interface**:
@@ -209,6 +223,7 @@ Para resolver o problema de processamento de expressões RPN, o trabalho será d
 ## Avaliação
 
 O trabalho será avaliado antes da prova de autoria, com os seguintes critérios:
+
 1. **Cálculos e Funcionalidades (70%)**:
 
    - Implementação completa de todas as operações RPN e comandos especiais.
@@ -227,11 +242,14 @@ O trabalho será avaliado antes da prova de autoria, com os seguintes critérios
    - Testes do analisador léxico cobrindo todos os casos.
 
 ## Prova de Autoria
-- Um aluno do grupo será sorteado para responder uma pergunta em uma lista de 10 perguntas;
+
+- Um aluno do grupo será sorteado, por um sistema disponível _online_ para responder uma pergunta em uma lista de 10 perguntas;
 - Falha na resposta reduz 35% da nota obtida na Avaliação do Projeto.
 
 ## Entrega
+
 - O repositório GitHub deve conter:
+
   - Código-fonte (Python, C, ou C++);
   - Três arquivos de teste com expressões RPN;
   - Funções de teste para o analisador léxico;
@@ -239,7 +257,7 @@ O trabalho será avaliado antes da prova de autoria, com os seguintes critérios
   - Arquivo de texto contendo os _tokens_ gerados na última execução do analisador léxico;
   - README com instruções de compilação, execução e testes;
 
-- O programa deve ser executado com o comando `./programa nome_arquivo.cpp` (ou equivalente).
+- O programa deve ser executado com o comando `./NomeDoSeuPrograma.cpp`.
 
 # Guia de Compilação e Execução do Código Assembly {#sec-guiaAssembly}
 
@@ -247,12 +265,18 @@ O trabalho será avaliado antes da prova de autoria, com os seguintes critérios
 
 O conjunto de ferramentas (toolchain) padrão, gratuito e de código aberto para a arquitetura AVR (usada no Arduino Uno/Mega) é o **AVR-GCC Toolchain** e o **AVRDUDE**. Este guia mostra como compilar um arquivo Assembly (`.s`) e enviá-lo para a placa via linha de comando, sem usar a IDE do Arduino.
 
+::: {.callout-warning}
+**Nota**: O plugin platformIO do VsCode deve simplificar muito este processo. Cabe ao grupo instalar e testar este plugin na máquina que usará para fazer a prova de autoria. **Não ser capaz de gerar o código Assembly por qualquer motivo pode resulta em zeramento da tarefa.**
+
+Você não precisará fazer nada manualmente na linha de comando. O PlatformIO gerenciará toda a cadeia de ferramentas (compilador, linker, uploader) para você, bastando clicar nos botões de Compilar e Gravar.
+:::
+
 ## 1. Ferramentas Necessárias
 
 Você precisa instalar:
 
 - **`avr-gcc`**: compilador/montador para AVR.
-- **`avr-libc`**: biblioteca C padrão para AVR (necessária mesmo em código assembly puro, pois fornece símbolos de inicialização como `__do_copy_data`, `__do_clear_bss`, etc.).
+- **`avr-libc`**: biblioteca C padrão para AVR (necessária mesmo em código assembly puro porque fornece símbolos de inicialização como `__do_copy_data`, `__do_clear_bss`, etc.).
 - **`avrdude`**: programa de upload para o microcontrolador.
 
 ## 2. Instalação
@@ -332,6 +356,7 @@ avrdude -c $AVRDUDE_PROGRAMMER -p $AVRDUDE_PARTNO -P $AVRDUDE_PORT -b $AVRDUDE_B
 #### Exemplo Completo para Arduino MEGA
 
 ### Informações do Hardware:
+
 - **MCU**: `atmega2560`
 - **Programador**: `wiring`
 - **Baud Rate**: `115200`
@@ -395,4 +420,3 @@ avr-gcc -mmcu=atmega328p -o led.elf led.s
 avr-objcopy -O ihex -R .eeprom led.elf led.hex
 avrdude -c arduino -p m328p -P COM3 -b 115200 -U flash:w:led.hex
 ```
-

@@ -8,7 +8,7 @@ A beleza desta teoria reside em sua capacidade de transformar questões sobre li
 
 Seja $L$ uma linguagem sobre um alfabeto $\Sigma$. A **relação de Myhill-Nerode** para $L$ é uma relação de equivalência $\sim_L$ definida sobre $\Sigma^*$ (o conjunto de todas as strings possíveis sobre $\Sigma$).
 
-**Definição:** Para duas strings $x, y \in \Sigma^*$, dizemos que $x \sim_L y$ (lê-se "$x$ é equivalente a $y$ módulo $L$") se, e somente se:
+**Definição**: Para duas strings $x, y \in \Sigma^*$, dizemos que $x \sim_L y$ (lê-se "$x$ é equivalente a $y$ módulo $L$") se, e somente se:
 
 $$\forall z \in \Sigma^*: (xz \in L \iff yz \in L)$$
 
@@ -16,13 +16,13 @@ Em outras palavras, duas strings são equivalentes segundo Myhill-Nerode se, ao 
 
 ### Intuição por Trás da Definição
 
-A intuição fundamental é que strings equivalentes são **indistinguíveis** do ponto de vista de $L$. Se um autômato finito está processando uma entrada e chega a um estado após ler $x$, ele deveria estar no mesmo estado após ler $y$ (se $x \sim_L y$), pois qualquer continuação da entrada ($z$) levará ao mesmo resultado final.
+A intuição fundamental é que strings equivalentes são **indistinguíveis** do ponto de vista de $L$. Se um autômato finito está processando uma entrada e chega a um estado após ler $x$, ele deveria estar no mesmo estado após ler $y$ (se $x \sim_L y$), porque qualquer continuação da entrada ($z$) levará ao mesmo resultado final.
 
 ## Classes de Equivalência
 
 A relação $\sim_L$ particiona $\Sigma^*$ em **classes de equivalência**. Cada classe agrupa todas as strings que são mutuamente equivalentes segundo a relação.
 
-**Notação:** A classe de equivalência de uma string $x$ é denotada por $[x]_L$ ou simplesmente $[x]$ quando $L$ está claro no contexto:
+**Notação**: A classe de equivalência de uma string $x$ é denotada por $[x]_L$ ou simplesmente $[x]$ quando $L$ está claro no contexto:
 
 $$[x]_L = \{y \in \Sigma^* \mid x \sim_L y\}$$
 
@@ -30,18 +30,18 @@ $$[x]_L = \{y \in \Sigma^* \mid x \sim_L y\}$$
 
 Considere a linguagem $L = \{w \in \{0,1\}^* \mid w \text{ termina em } 01\}$.
 
-**Análise das classes:**
+**Análise das classes**:
 
-1. **Strings que terminam em $0$:** $[0] = \{0, 10, 00, 110, 010, \ldots\}$
+1. **Strings que terminam em $0$**: $[0] = \{0, 10, 00, 110, 010, \ldots\}$
    - Para qualquer $z$, temos $xz \in L$ se e somente se $z$ começar com $1$
    
-2. **Strings que terminam em $1$ (exceto $01$):** $[1] = \{1, 11, 001, 101, \ldots\}$  
+2. **Strings que terminam em $1$ (exceto $01$)**: $[1] = \{1, 11, 001, 101, \ldots\}$  
    - Para qualquer $z$, temos $xz \in L$ se e somente se $z = \epsilon$ ou $z$ começar com $0$ seguido de algo que termine em $1$
 
-3. **Strings que terminam em $01$:** $[01] = \{01, 101, 001, 1001, \ldots\}$
+3. **Strings que terminam em $01$**: $[01] = \{01, 101, 001, 1001, \ldots\}$
    - Temos $x\epsilon = x \in L$, então $z = \epsilon$ sempre leva à aceitação
 
-4. **String vazia e outras:** $[\epsilon] = \{\epsilon, 11, 0011, \ldots\}$
+4. **String vazia e outras**: $[\epsilon] = \{\epsilon, 11, 0011, \ldots\}$
 
 Após análise cuidadosa, esta linguagem possui exatamente **3 classes de equivalência**.
 
@@ -49,11 +49,11 @@ Após análise cuidadosa, esta linguagem possui exatamente **3 classes de equiva
 
 O teorema principal estabelece a conexão fundamental entre regularidade e finitude das classes de equivalência.
 
-**Teorema (Myhill-Nerode):** Uma linguagem $L$ é regular se, e somente se, a relação $\sim_L$ possui um número finito de classes de equivalência.
+**Teorema (Myhill-Nerode)**: Uma linguagem $L$ é regular se, e somente se, a relação $\sim_L$ possui um número finito de classes de equivalência.
 
 ### Demonstração (Esboço)
 
-**($\Rightarrow$) Se $L$ é regular, então $\sim_L$ tem finitas classes:**
+**($\Rightarrow$) Se $L$ é regular, então $\sim_L$ tem finitas classes**:
 
 Se $L$ é regular, existe um autômato finito determinístico (AFD) $M$ com $n$ estados que reconhece $L$. Definimos uma função $f: \Sigma^* \to Q$ (onde $Q$ é o conjunto de estados) que mapeia cada string para o estado em que $M$ para após processá-la.
 
@@ -61,14 +61,14 @@ Se $f(x) = f(y)$, então para qualquer $z$, o autômato, partindo do mesmo estad
 
 Como há no máximo $n$ estados distintos, há no máximo $n$ classes de equivalência.
 
-**($\Leftarrow$) Se $\sim_L$ tem finitas classes, então $L$ é regular:**
+**($\Leftarrow$) Se $\sim_L$ tem finitas classes, então $L$ é regular**:
 
 Suponha que existam $k$ classes de equivalência: $C_1, C_2, \ldots, C_k$. Construímos um AFD onde:
 
-- **Estados:** $Q = \{C_1, C_2, \ldots, C_k\}$
-- **Estado inicial:** $C_i$ tal que $\epsilon \in C_i$  
-- **Estados finais:** $F = \{C_i \mid \exists x \in C_i: x \in L\}$
-- **Função de transição:** $\delta(C_i, a) = C_j$ onde $j$ é tal que se $x \in C_i$, então $xa \in C_j$
+- **Estados**: $Q = \{C_1, C_2, \ldots, C_k\}$
+- **Estado inicial**: $C_i$ tal que $\epsilon \in C_i$  
+- **Estados finais**: $F = \{C_i \mid \exists x \in C_i: x \in L\}$
+- **Função de transição**: $\delta(C_i, a) = C_j$ onde $j$ é tal que se $x \in C_i$, então $xa \in C_j$
 
 Este autômato reconhece exatamente $L$.
 
@@ -78,9 +78,10 @@ Este autômato reconhece exatamente $L$.
 
 A relação de Myhill-Nerode fornece um método sistemático para provar que uma linguagem não é regular:
 
-**Exemplo:** $L = \{a^nb^n \mid n \geq 0\}$
+**Exemplo**: $L = \{a^nb^n \mid n \geq 0\}$
 
-Para cada $i \neq j$, as strings $a^i$ e $a^j$ estão em classes diferentes, pois:
+Para cada $i \neq j$, as strings $a^i$ e $a^j$ estão em classes diferentes, de forma que:
+
 - $a^i b^i \in L$ mas $a^j b^i \notin L$ (quando $i \neq j$)
 
 Como há infinitas strings $a^i$ duas-a-duas não equivalentes, $L$ não é regular.
@@ -89,7 +90,7 @@ Como há infinitas strings $a^i$ duas-a-duas não equivalentes, $L$ não é regu
 
 O teorema de Myhill-Nerode também caracteriza o **autômato mínimo** para uma linguagem regular:
 
-**Teorema:** Se $L$ é uma linguagem regular com $k$ classes de equivalência segundo Myhill-Nerode, então:
+**Teorema**: Se $L$ é uma linguagem regular com $k$ classes de equivalência segundo Myhill-Nerode, então:
 1. Todo AFD que reconhece $L$ tem pelo menos $k$ estados
 2. Existe um único AFD (a menos de isomorfismo) com exatamente $k$ estados que reconhece $L$
 
@@ -97,32 +98,32 @@ Este AFD é chamado de **autômato canônico** ou **autômato mínimo** para $L$
 
 ### 3. Algoritmo de Construção do Autômato Mínimo
 
-**Entrada:** Uma linguagem regular $L$  
-**Saída:** O autômato mínimo para $L$
+**Entrada**: Uma linguagem regular $L$  
+**Saída**: O autômato mínimo para $L$
 
-**Passos:**
-1. **Identificar representantes:** Encontre strings representativas de cada classe de equivalência
-2. **Construir estados:** Cada classe torna-se um estado
-3. **Definir transições:** Para cada classe $[x]$ e símbolo $a$, determine $[xa]$
-4. **Marcar estados finais:** Classes contendo strings de $L$
+**Passos**:
+1. **Identificar representantes**: Encontre strings representativas de cada classe de equivalência
+2. **Construir estados**: Cada classe torna-se um estado
+3. **Definir transições**: Para cada classe $[x]$ e símbolo $a$, determine $[xa]$
+4. **Marcar estados finais**: Classes contendo strings de $L$
 
 ## Exemplo Detalhado: Construção Passo a Passo
 
-**Linguagem:** $L = \{w \in \{a,b\}^* \mid |w|_a \text{ é par}\}$ (número par de $a$'s)
+**Linguagem**: $L = \{w \in \{a,b\}^* \mid |w|_a \text{ é par}\}$ (número par de $a$'s)
 
-**Passo 1 - Identificação das classes:**
+**Passo 1 - Identificação das classes**:
 
 Precisamos rastrear apenas a paridade do número de $a$'s lidos:
 
-- **Classe $C_0$ (par de $a$'s):** $[\epsilon] = \{b^*ab^*ab^*...\}$ onde há um número par de $a$'s
-- **Classe $C_1$ (ímpar de $a$'s):** $[a] = \{b^*ab^*...\}$ onde há um número ímpar de $a$'s
+- **Classe $C_0$ (par de $a$'s)**: $[\epsilon] = \{b^*ab^*ab^*...\}$ onde há um número par de $a$'s
+- **Classe $C_1$ (ímpar de $a$'s)**: $[a] = \{b^*ab^*...\}$ onde há um número ímpar de $a$'s
 
-**Passo 2 - Verificação da equivalência:**
+**Passo 2 - Verificação da equivalência**:
 
 Para $x, y \in C_0$: qualquer $z$ mudará ambos da mesma forma (mantendo ou alternando paridade)  
 Para $x \in C_0, y \in C_1$: existe $z = \epsilon$ tal que $x \in L$ mas $y \notin L$
 
-**Passo 3 - Construção do autômato:**
+**Passo 3 - Construção do autômato**:
 
 ```
 Estados: {C_0, C_1}
@@ -136,7 +137,7 @@ C_1 --a--> C_0
 C_1 --b--> C_1
 ```
 
-**Resultado:** Autômato mínimo com 2 estados.
+**Resultado**: Autômato mínimo com 2 estados.
 
 ## Propriedades Importantes
 
@@ -148,9 +149,9 @@ Se $\approx$ é qualquer relação de equivalência sobre $\Sigma^*$ que **respe
 
 A relação de Myhill-Nerode se comporta bem com operações regulares:
 
-- **União:** $\sim_{L_1 \cup L_2}$ tem no máximo $|\sim_{L_1}| \times |\sim_{L_2}|$ classes
-- **Concatenação:** Comportamento mais complexo, mas ainda finito para linguagens regulares
-- **Fechamento de Kleene:** Preserve a finitude das classes
+- **União**: $\sim_{L_1 \cup L_2}$ tem no máximo $|\sim_{L_1}| \times |\sim_{L_2}|$ classes
+- **Concatenação**: Comportamento mais complexo, mas ainda finito para linguagens regulares
+- **Fechamento de Kleene**: Preserve a finitude das classes
 
 ### 3. Conexão com Congruências
 
@@ -160,15 +161,15 @@ A relação $\sim_L$ é não apenas uma equivalência, mas também uma **congru�
 
 ### Limitações
 
-1. **Computabilidade:** Para linguagens arbitrárias, determinar as classes pode ser indecidível
-2. **Complexidade:** Mesmo para linguagens regulares, o número de classes pode ser exponencial no tamanho da descrição
-3. **Aplicabilidade:** Limitado a linguagens regulares por definição
+1. **Computabilidade**: Para linguagens arbitrárias, determinar as classes pode ser indecidível
+2. **Complexidade**: Mesmo para linguagens regulares, o número de classes pode ser exponencial no tamanho da descrição
+3. **Aplicabilidade**: Limitado a linguagens regulares por definição
 
 ### Extensões Modernas
 
-1. **Relações de Nerode Generalizadas:** Para linguagens livres de contexto
-2. **Myhill-Nerode Probabilístico:** Para autômatos probabilísticos  
-3. **Versões Categóricas:** Em teoria das categorias e sistemas de tipos
+1. **Relações de Nerode Generalizadas**: Para linguagens livres de contexto
+2. **Myhill-Nerode Probabilístico**: Para autômatos probabilísticos  
+3. **Versões Categóricas**: Em teoria das categorias e sistemas de tipos
 
 ## Conclusão: A Elegância da Teoria
 

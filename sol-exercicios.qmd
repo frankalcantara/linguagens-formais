@@ -115,7 +115,7 @@ Para um alfabeto de tamanho $n$, o número de strings de comprimento $k$ é $n^k
 
 **Aplicabilidade para representar números binários**:
 
-- **$\Sigma_A$**: Perfeitamente adequado para representação binária, pois contém exatamente os símbolos $0$ e $1$ necessários.
+- **$\Sigma_A$**: Perfeitamente adequado para representação binária, porque contém exatamente os símbolos $0$ e $1$ necessários.
 
 - **$\Sigma_B$**: Inadequado para representação binária direta. Seria necessário estabelecer uma convenção de mapeamento (por exemplo, $a \rightarrow 0$, $b \rightarrow 1$, e $c$ seria um símbolo extra não utilizado).
 
@@ -170,7 +170,7 @@ $$|x^n| = n \cdot |x| = n \cdot 2 = 2n$$
 
 **Prova de que $(\epsilon)^R = \epsilon$**:
 
-**Demonstração**: Pela definição recursiva, o caso base estabelece diretamente que $\epsilon^R = \epsilon$. Isso é consistente, pois a string vazia não possui símbolos para inverter, mantendo-se inalterada.
+**Demonstração**: Pela definição recursiva, o caso base estabelece diretamente que $\epsilon^R = \epsilon$. Isso é consistente, porque a string vazia não possui símbolos para inverter, mantendo-se inalterada.
 
 3. **Solução**:
 
@@ -378,10 +378,10 @@ $$L^+ = \{ab, abab, ababab, abababab, \ldots\}$$
 **Verificações**:
 
 **$\epsilon \in L^*$?**
-Sim, pois $\epsilon \in L^0$ e $L^0 \subseteq L^*$.
+Sim, porque $\epsilon \in L^0$ e $L^0 \subseteq L^*$.
 
 **$\epsilon \in L^+$?**
-Não, pois $L^+ = L^1 \cup L^2 \cup \ldots$ e $\epsilon \notin L^n$ para $n \geq 1$ quando $L = \{ab\}$.
+Não, porque $L^+ = L^1 \cup L^2 \cup \ldots$ e $\epsilon \notin L^n$ para $n \geq 1$ quando $L = \{ab\}$.
 
 **Padrão geral**:
 Como $L = \{ab\}$ contém apenas uma string de comprimento 2, temos:
@@ -416,7 +416,7 @@ Esta é uma propriedade geral do fechamento de Kleene.
 - $(L^*)^*$ contém todas as concatenações possíveis de elementos de $L^*$
 - Como $L^* = \{a^n \mid n \geq 0\}$, qualquer concatenação de elementos de $L^*$ resulta em $a^k$ para algum $k \geq 0$
 - Portanto, $(L^*)^* \subseteq L^*$
-- Como $L^* \subseteq (L^*)^*$ (pois $L^* \subseteq (L^*)^1 \subseteq (L^*)^*$), temos a igualdade
+- Como $L^* \subseteq (L^*)^*$ (porque $L^* \subseteq (L^*)^1 \subseteq (L^*)^*$), temos a igualdade
 
 **Resposta**: **VERDADEIRO**
 
@@ -432,7 +432,7 @@ Mas vamos analisar o caso geral: se $\epsilon \in L$, então:
 
 **Resposta**: **VERDADEIRO** (propriedade geral válida)
 
-**Para nosso caso específico**: A propriedade não se aplica pois $\epsilon \notin \{a\}$.
+**Para nosso caso específico**: A propriedade não se aplica porque $\epsilon \notin \{a\}$.
 
 # Exercícios 4: @sec-ex-regex
 
@@ -474,7 +474,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 **$ab^* \cup c$**
 
 1. Primeiro, o fechamento de Kleene: $b^*$
-2. Depois, a concatenação: $a(b^*)$  
+2. Deporque, a concatenação: $a(b^*)$  
 3. Por fim, a união: $(a(b^*)) \cup c$
 
 **Resultado**: $((a(b^*)) \cup c)$
@@ -482,7 +482,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 **$a \cup bc^*$**
 
 1. Primeiro, o fechamento de Kleene: $c^*$
-2. Depois, a concatenação: $b(c^*)$
+2. Deporque, a concatenação: $b(c^*)$
 3. Por fim, a união: $a \cup (b(c^*))$
 
 **Resultado**: $(a \cup (b(c^*)))$
@@ -490,7 +490,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 **$ab \cup cd^*e$**
 
 1. Primeiro, o fechamento de Kleene: $d^*$
-2. Depois, as concatenações (da esquerda para direita): $(ab)$ e $(c(d^*)e)$
+2. Deporque, as concatenações (da esquerda para direita): $(ab)$ e $(c(d^*)e)$
 3. Por fim, a união: $(ab) \cup ((c(d^*))e)$
 
 **Resultado**: $((ab) \cup (c((d^*)e)))$
@@ -498,7 +498,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 **$a^*b^* \cup c^*$**
 
 1. Primeiro, os fechamentos de Kleene: $a^*$, $b^*$, $c^*$
-2. Depois, a concatenação: $(a^*)(b^*)$
+2. Deporque, a concatenação: $(a^*)(b^*)$
 3. Por fim, a união: $((a^*)(b^*)) \cup (c^*)$
 
 **Resultado**: $(((a^*)(b^*)) \cup (c^*))$
@@ -507,7 +507,7 @@ Lembrando a ordem de precedência (maior para menor): **Kleene ($*$)** → **Con
 
 **Para $r = a^*ba^*$ e strings $\{ab, ba, aba, baa, bb\}$**:
 
-$L(a^*ba^*) = \{a^i b a^j \mid i, j \geq 0\}$ (strings com exatamente um $b$, podendo ter qualquer quantidade de $a$'s antes e depois)
+$L(a^*ba^*) = \{a^i b a^j \mid i, j \geq 0\}$ (strings com exatamente um $b$, podendo ter qualquer quantidade de $a$'s antes e deporque)
 
 - **$ab$**: $ab = a^1 b a^0$ ∈ $L(r)$ 
 - **$ba$**: $ba = a^0 b a^1$ ∈ $L(r)$   
@@ -575,7 +575,7 @@ Analisando: $\epsilon$, $a^1$, $a^2$, $a^3$.
 **Estratégia**: União de potências específicas de $a$.
 $$r_2 = \epsilon \cup a \cup a^2 \cup a^3$$
 
-**Observação**: Não há uma forma mais concisa usando apenas as três operações básicas, pois precisamos limitar a 3 repetições de $a$.
+**Observação**: Não há uma forma mais concisa usando apenas as três operações básicas, porque precisamos limitar a 3 repetições de $a$.
 
 **$L_3 = \{w \in \{a,b\}^* \mid w \text{ termina com } a\}$**
 
@@ -612,7 +612,7 @@ $$r_2 = 01(0 \cup 1)^*$$
 **Strings que contêm $01$ como substring**:
 $$r_3 = (0 \cup 1)^*01(0 \cup 1)^*$$
 
-**Verificação**: Qualquer sequência antes, $01$ obrigatório no meio, qualquer sequência depois.
+**Verificação**: Qualquer sequência antes, $01$ obrigatório no meio, qualquer sequência deporque.
 
 **Strings que NÃO contêm $01$**:
 
@@ -654,7 +654,7 @@ $$r_2 = b^*(ab^*ab^*ab^*)^*b^*$$
 
 **Strings com pelo menos dois $a$'s**:
 
-**Estratégia**: Primeiro $a$, depois segundo $a$, depois qualquer coisa.
+**Estratégia**: Primeiro $a$, deporque segundo $a$, deporque qualquer coisa.
 
 $$r_3 = (a \cup b)^*a(a \cup b)^*a(a \cup b)^*$$
 
@@ -810,7 +810,7 @@ $$a \cup ab^*a \equiv a\epsilon \cup ab^*a \equiv a(\epsilon \cup b^*a)$$
 Como $\epsilon \cup b^*a$ não pode ser simplificado usando apenas as leis básicas, a expressão mais simples é:
 $$a \cup ab^*a$$
 
-**Nota**: Esta expressão pode ser simplificada para $ab^*a$ usando propriedades mais avançadas, pois $\epsilon \in b^*$.
+**Nota**: Esta expressão pode ser simplificada para $ab^*a$ usando propriedades mais avançadas, porque $\epsilon \in b^*$.
 
 2. **Solução**:
 
@@ -878,7 +878,7 @@ $$(a \cup b)^* \equiv \epsilon \cup (a \cup b)(a \cup b)^*$$
 
 **Contraexemplo**:
 - $ab \in L((a \cup b)^*)$ (qualquer intercalação de $a$'s e $b$'s)
-- $ab \notin L(a^*b^*)$ (pois $a^*b^*$ só aceita todos os $a$'s seguidos de todos os $b$'s)
+- $ab \notin L(a^*b^*)$ (porque $a^*b^*$ só aceita todos os $a$'s seguidos de todos os $b$'s)
 
 Portanto: $a^*b^* \not\equiv (a \cup b)^*$
 
@@ -894,7 +894,7 @@ $$(a^*)^* \equiv a^*$$
 Aplicando a lei: $\epsilon^* \equiv \epsilon$
 $$\epsilon^* \cup a^* \equiv \epsilon \cup a^*$$
 
-Como $\epsilon \in L(a^*)$ (pois $a^* = \{a^n \mid n \geq 0\}$ e $\epsilon = a^0$):
+Como $\epsilon \in L(a^*)$ (porque $a^* = \{a^n \mid n \geq 0\}$ e $\epsilon = a^0$):
 $$\epsilon \cup a^* \equiv a^*$$
 
 **$\emptyset^* \cup a$**
@@ -1274,7 +1274,7 @@ $$[a-zA-Z][a-zA-Z0-9]?$$
 - Original: $\{abc, abd, abe\}$
 - Otimizada: $ab(c \cup d \cup e) = ab \{c, d, e\} = \{abc, abd, abe\}$ 
 
-**Benefício**: Reduz backtracking em implementações, pois $ab$ só precisa ser verificado uma vez.
+**Benefício**: Reduz backtracking em implementações, porque $ab$ só precisa ser verificado uma vez.
 
 **$[0-9][0-9][0-9][0-9] \rightarrow [0-9]\{4\}$**
 
@@ -1299,8 +1299,8 @@ $$[a-zA-Z][a-zA-Z0-9]?$$
 
 **Contraexemplo**: A string $aba$
 - $aba \in L((a|b)^*)$ 
-- $aba \notin L(a^*b^*)$ (pois tem $a$ após $b$)
-- $aba \notin L(b^*a^*)$ (pois tem $b$ entre $a$'s)
+- $aba \notin L(a^*b^*)$ (porque tem $a$ após $b$)
+- $aba \notin L(b^*a^*)$ (porque tem $b$ entre $a$'s)
 - Portanto: $aba \notin L((a^*b^*|b^*a^*))$
 
 **Conclusão**: As expressões **NÃO** são equivalentes.
@@ -1459,7 +1459,7 @@ $$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) |
 
 **4.**
 
-* **Para depurar**: A **representação gráfica (diagrama)** é geralmente a mais útil, pois oferece uma visualização intuitiva do fluxo de controle. É fácil seguir os caminhos e entender como diferentes *strings* são processadas.  
+* **Para depurar**: A **representação gráfica (diagrama)** é geralmente a mais útil, porque oferece uma visualização intuitiva do fluxo de controle. É fácil seguir os caminhos e entender como diferentes *strings* são processadas.  
 * **Para implementar**: A **representação tabular (tabela de transições)** é a mais direta para implementação. Ela mapeia naturalmente para uma estrutura de dados como um array 2D ou um dicionário de dicionários, permitindo acesso O(1) ao próximo estado.
 
 **3.5.** Para aceitar *strings* que terminam com "010", precisamos de um novo estado final. Podemos adicionar um estado q\_D e modificar as transições.
@@ -1765,8 +1765,8 @@ Portanto, $L(M_1 \cup M_2) = L(M_1 \cap M_2)$.
 Sem perda de generalidade, suponha $w \in L(M_1)$ e $w \notin L(M_2)$.
 
 Então:
-- $w \in L(M_1 \cup M_2)$ (pois $w \in L(M_1)$)
-- $w \notin L(M_1 \cap M_2)$ (pois $w \notin L(M_2)$)
+- $w \in L(M_1 \cup M_2)$ (porque $w \in L(M_1)$)
+- $w \notin L(M_1 \cap M_2)$ (porque $w \notin L(M_2)$)
 
 Logo, $L(M_1 \cup M_2) \neq L(M_1 \cap M_2)$.
 
@@ -1790,14 +1790,14 @@ Portanto, $(p, q)$ é final se e somente se $q \in F_2$.
 
 **Comportamento da interseção**:
 - O autômato $M_1 \cap M_2$ aceita uma string $w$ se e somente se ela leva a um estado $(p, q)$ onde $q \in F_2$
-- Isso é equivalente a dizer que $M_2$ aceita $w$, pois a componente $q$ segue exatamente as transições de $M_2$
+- Isso é equivalente a dizer que $M_2$ aceita $w$, porque a componente $q$ segue exatamente as transições de $M_2$
 - A componente $p$ não influencia na aceitação, já que todos os estados de $M_1$ são finais
 
 **Resultado**:
 $$L(M_1 \cap M_2) = L(M_1) \cap L(M_2) = \Sigma^* \cap L(M_2) = L(M_2)$$
 
 **Interpretação prática**:
-Quando $M_1$ aceita tudo ($L(M_1) = \Sigma^*$), a interseção $M_1 \cap M_2$ se comporta exatamente como $M_2$, pois a única restrição vem de $M_2$.
+Quando $M_1$ aceita tudo ($L(M_1) = \Sigma^*$), a interseção $M_1 \cap M_2$ se comporta exatamente como $M_2$, porque a única restrição vem de $M_2$.
 
 **Exemplo**:
 - Se $M_1$ tem $F_1 = Q_1$ e $M_2$ aceita strings com número par de '1's
@@ -1952,7 +1952,7 @@ Agora o complemento fica bem definido com $F_{\overline{M}} = \{q_0, q_{trap}\}$
 **Passo 1**: Expressar diferença usando operações básicas
 $$L_1 - L_2 = L_1 \cap \overline{L_2}$$
 
-Esta igualdade é válida pois:
+Esta igualdade é válida porque:
 - $w \in L_1 - L_2 \iff w \in L_1 \text{ e } w \notin L_2$
 - $w \in L_1 \cap \overline{L_2} \iff w \in L_1 \text{ e } w \in \overline{L_2} \iff w \in L_1 \text{ e } w \notin L_2$
 
@@ -2085,7 +2085,7 @@ Para $L = \{w \mid w \text{ contém } 00\}$, temos três classes de equivalênci
 
 - **$C_0$**: Para strings em $C_0$, adicionar $0$ as move para $C_1$, adicionar $00$ as leva para $L$
 - **$C_1$**: Para strings em $C_1$, adicionar $0$ as leva direto para $L$, adicionar $1$ as retorna para $C_0$
-- **$C_2$**: Para strings em $C_2$, qualquer sufixo mantém a string em $L$ (pois já contém $00$)
+- **$C_2$**: Para strings em $C_2$, qualquer sufixo mantém a string em $L$ (porque já contém $00$)
 
 **c) Autômato Finito Determinístico mínimo**:
 
@@ -2119,7 +2119,7 @@ Considere as strings $s_n = 0^n$ para $n = 1, 2, 3, ...$
 
 **Prova**: 
 Considere o sufixo $z = 1^m$. Então:
-- $s_m \cdot z = 0^m1^m \notin L$ (pois $m = m$, não $m > m$)
+- $s_m \cdot z = 0^m1^m \notin L$ (porque $m = m$, não $m > m$)
 - $s_n \cdot z = 0^n1^m$:
   - Se $n > m$, então $0^n1^m \in L$
   - Se $n < m$, então $0^n1^m \notin L$
@@ -2232,7 +2232,7 @@ Tabela de Transição:
 | $*q_1$       | $q_1$          | $q_d$ |
 | $q_d$         | $q_d$          | $q_d$ |
 
-Este autômato reconhece tokens que começam com uma letra e são seguidos por zero ou mais letras ou dígitos.
+Este autômato reconhece _tokens_ que começam com uma letra e são seguidos por zero ou mais letras ou dígitos.
 
 Representação Algébrica:
 
@@ -2347,15 +2347,15 @@ Um estado no autômato combinado é final se **pelo menos um** de seus component
 
 $F_{comb} = \{ (p, q, r) \in Q_{comb} \mid p \in F_{int} \lor q \in F_{id} \lor r \in F_{op} \}$
 
-Por exemplo, o estado $(q_{1,int}, q_{d,id}, q_{d,op})$ seria um estado final em $A_{comb}$ porque $q_{1,int}$ é um estado final em $A_{int}$. Da mesma forma, um estado como $(q_{d,int}, q_{d,id}, q_{2,op})$ também seria final, pois $q_{2,op}$ pertence a $F_{op}$.
+Por exemplo, o estado $(q_{1,int}, q_{d,id}, q_{d,op})$ seria um estado final em $A_{comb}$ porque $q_{1,int}$ é um estado final em $A_{int}$. Da mesma forma, um estado como $(q_{d,int}, q_{d,id}, q_{2,op})$ também seria final, porque $q_{2,op}$ pertence a $F_{op}$.
 
-**c. Distinção entre os Tipos de Tokens**
+**c. Distinção entre os Tipos de _tokens_**
 
-O autômato combinado $A_{comb}$ pode reconhecer qualquer um dos tokens, mas, por si só, não informa *qual* tipo de token foi encontrado. A implementação de um analisador léxico real precisa dessa distinção. A chave está em analisar o estado final alcançado.
+O autômato combinado $A_{comb}$ pode reconhecer qualquer um dos _tokens_, mas, por si só, não informa *qual* tipo de token foi encontrado. A implementação de um analisador léxico real precisa dessa distinção. A chave está em analisar o estado final alcançado.
 
 Como os três autômatos originais reconhecem linguagens disjuntas (um identificador não pode ser um inteiro nem um operador, e vice-versa), nunca haverá ambiguidade. Ao atingir um estado final, apenas um dos componentes da tupla de estado será um estado final de seu autômato original.
 
-**Implementação Prática**: A estratégia para distinguir os tokens no analisador léxico seria:
+**Implementação Prática**: A estratégia para distinguir os _tokens_ no analisador léxico seria:
 
 1.  **Executar o Autômato Finito Determinístico**: processe a cadeia de entrada usando o $A_{comb}$ até que o final da cadeia seja alcançado ou a transição leve a um estado de erro global (ex: uma tupla onde todos os componentes são estados de erro, como $(q_{d,int}, q_{d,id}, q_{d,op})$).
 
@@ -2403,3 +2403,117 @@ Como os três autômatos originais reconhecem linguagens disjuntas (um identific
     }
     ```
 **Precedência**: Embora não haja ambiguidade neste problema, em sistemas mais complexos (ex: palavras-chave vs. identificadores), a regra da _maior precedência_ ou do _maior casamento_ (_longest match_) é aplicada. Se `if` pudesse ser um identificador e uma palavra-chave, a tabela de símbolos ou a lógica do analisador priorizaria o `TOKEN_KEYWORD_IF` sobre o `TOKEN_IDENTIFIER`.
+
+## Capítulo @sec-lingagens-livres-de-contexto
+
+### Exercícios de Derivação @sec-execicios-derivacao
+
+#### Exercício 1: Palíndromo Ímpar
+
+**Solução**: a derivação é feita para construir a *string* de fora para dentro, finalizando com o caractere central.
+
+1. **Passo 1**: Começamos com o símbolo inicial $K$.
+2. **Passo 2**: A *string* `101` começa e termina com `1`. Aplicamos a regra $K \rightarrow 1K1$.
+3. **Passo 3**: O símbolo restante no centro da *string* é `0`. Aplicamos a regra de caso base $K \rightarrow 0$ para finalizar a derivação.
+
+A sequência completa da derivação será:
+
+$$
+K \Rightarrow 1K1 \Rightarrow 101
+$$
+
+#### Exercício 2: Expressão Aritmética Simples
+
+**Solução**: nesta derivação, vamos primeiro gerar a estrutura da adição e deporque resolver os operandos.
+
+1. **Passo 1**: iniciar com o símbolo inicial $E$.
+2. **Passo 2**: a estrutura principal é uma soma. Aplicamos a regra $E \rightarrow E + E$.
+3. **Passo 3**: o operando à direita da soma é um `id`. Substituímos o segundo $E$ usando a regra $E \rightarrow id$.
+4. **Passo 4**: o operando à esquerda da soma é uma multiplicação. Substituímos o primeiro $E$ usando a regra $E \rightarrow E * E$.
+5. **Passo 5**: o operando à esquerda da multiplicação é um `id`. Substituímos o primeiro $E$ da forma sentencial atual por `id`.
+6. **Passo 6**: o operando à direita da multiplicação também é um `id`. Substituímos o $E$ restante por `id` para completar a derivação.
+
+A sequência completa da derivação Será:
+
+$$
+E \Rightarrow E + E \Rightarrow E + id \Rightarrow E * E + id \Rightarrow id * E + id \Rightarrow id * id + id
+$$
+
+#### Exercício 3: Palíndromo de Comprimento Par e Aninhado
+
+**Solução**: esta derivação mostra o aninhamento repetido da mesma regra.
+
+1. **Passo 1**: Partimos do símbolo inicial $K$.
+2. **Passo 2**: A *string* começa e termina com `0`. Usamos $K \rightarrow 0K0$.
+3. **Passo 3**: A subcadeia interna, `1111`, começa e termina com `1`. Aplicamos a regra $K \rightarrow 1K1$ ao $K$ interno.
+4. **Passo 4**: A nova subcadeia interna, `11`, também começa e termina com `1`. Aplicamos novamente a regra $K \rightarrow 1K1$.
+5. **Passo 5**: O centro da *string* agora está vazio. Aplicamos a regra $K \rightarrow \epsilon$ para finalizar.
+
+A sequência completa da derivação será:
+
+$$
+K \Rightarrow 0K0 \Rightarrow 01K10 \Rightarrow 011K110 \Rightarrow 011\epsilon110 = 011110
+$$
+
+#### Exercício 4: Linguagem $a^nb^n$
+
+**Solução**: a derivação aplica a regra recursiva três vezes para gerar os três pares de `a` e `b`.
+
+1. **Passo 1**: Iniciar com $S$.
+2. **Passo 2**: Para o par mais externo, aplicamos $S \rightarrow aSb$.
+3. **Passo 3**: Para o segundo par, aplicamos novamente $S \rightarrow aSb$ ao $S$ interno.
+4. **Passo 4**: Para o terceiro e último par, aplicamos $S \rightarrow aSb$ mais uma vez.
+5. **Passo 5**: Com todos os terminais gerados, substituímos o $S$ final por $\epsilon$ para concluir.
+
+A sequência completa da derivação é:
+
+$$
+S \Rightarrow aSb \Rightarrow aaSbb \Rightarrow aaaSbbb \Rightarrow aaa\epsilon bbb = aaabbb
+$$
+
+#### Exercício 5: Comando Condicional `if-else`
+
+**Solução**: esta derivação mostra como diferentes não terminais $(C, A)$ colaboram para formar uma estrutura completa.
+
+1. **Passo 1**: Começamos com o símbolo inicial $C$.
+2. **Passo 2**: A única regra para $C$ define a estrutura `if-then-else`. A aplicamos: $C \rightarrow \text{if } id \text{ then } A \text{ else } A$.
+3. **Passo 3**: Agora, precisamos derivar o comando no bloco `then`. Substituímos o primeiro $A$ usando a regra $A \rightarrow id := 0$.
+4. **Passo 4**: Finalmente, derivamos o comando no bloco `else`. Substituímos o segundo $A$ usando a mesma regra $A \rightarrow id := 0$.
+
+A sequência completa da derivação será:
+
+$$
+C \Rightarrow \text{if } id \text{ then } A \text{ else } A \Rightarrow \text{if } id \text{ then } id := 0 \text{ else } A \Rightarrow \text{if } id \text{ then } id := 0 \text{ else } id := 0
+$$
+
+#### Exercício 6: Parênteses Balanceados
+
+**Solução**: esta derivação utiliza a concatenação ($BB$) e o aninhamento ($(B)$).
+
+1. **Passo 1**: Partimos de $B$.
+2. **Passo 2**: A *string* é uma concatenação de `()` e `(())`. Aplicamos a regra $B \rightarrow BB$.
+3. **Passo 3**: O primeiro $B$ corresponde a `()`. Para derivá-lo, usamos a regra $B \rightarrow (B)$.
+4. **Passo 4**: O $B$ interno na primeira parte deve ser a *string* vazia. Aplicamos $B \rightarrow \epsilon$.
+5. **Passo 5**: Agora, focamos no segundo $B$ da forma sentencial `()B`, que corresponde a `(())`. Aplicamos a regra $B \rightarrow (B)$.
+6. **Passo 6**: O $B$ interno corresponde a `()`. Aplicamos novamente $B \rightarrow (B)$.
+7. **Passo 7**: O último $B$ é substituído pela *string* vazia com $B \rightarrow \epsilon$ para finalizar.
+
+A sequência completa da derivação será:
+
+$$
+B \Rightarrow BB \Rightarrow (B)B \Rightarrow (\epsilon)B \Rightarrow ()B \Rightarrow ()(B) \Rightarrow ()( (B) ) \Rightarrow ()( (\epsilon) ) = ()(())
+$$
+
+#### Exercício 7: Palíndromo Vazio
+
+**Solução**: esta é a derivação mais curta possível e testa o entendimento do caso base para a *string* vazia.
+
+1. **Passo 1**: Começamos com o símbolo inicial $K$.
+2. **Passo 2**: A regra $K \rightarrow \epsilon$ gera diretamente a *string* vazia.
+
+A sequência completa da derivação será:
+
+$$
+K \Rightarrow \epsilon
+$$
+
