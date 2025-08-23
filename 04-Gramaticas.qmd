@@ -99,7 +99,7 @@ A→β, onde A é um único símbolo não-terminal e β é uma _string_ qualquer
 
 ### Exemplos Práticos que Distinguem as Duas Classes
 
-A distinção teórica entre essas duas classes é melhor ilustrada pelo exemplo canônico da linguagem $L={a^n b^n \mid n \geq 0}$, que consiste em _strings_ com um número de `a`s seguido pelo mesmo número de `b`s.
+A distinção teórica entre essas duas classes é melhor ilustrada pelo exemplo canônico da linguagem $L={a^n b^n \mid n \geq 0}$, que consiste em __strings__ com um número de `a`s seguido pelo mesmo número de `b`s.
 
 Esta linguagem não é regular. A tentativa de construir um autômato finito para reconhecê-la falha porque a máquina precisaria de uma quantidade infinita de estados para _lembrar_ o número exato de `a`s lidos e garantir que o número de `b`s corresponda. Uma prova formal de que $L$ não é  uma linguagem regular pode ser rigorosamente construída usando o Lema do Bombeamento para linguagens regulares. Este lema afirma que, para qualquer _string_ suficientemente longa em uma linguagem regular, existe uma sub_string_ que pode ser _bombeada_ (repetida um número arbitrário de vezes) e a nova _string_ resultante ainda pertencerá à linguagem. Ao aplicar o lema à _string_ $apbp$,  no qual $p$ é o comprimento de bombeamento, a sub_string_ bombeada consistirá inteiramente de `a`s, quebrando o equilíbrio entre `a`s e `b`s e provando que a linguagem não pode ser regular. No entanto, $L$ é uma linguagem livre de contexto por excelência. Ela pode ser gerada pela gramática extremamente simples e elegante:
 
@@ -113,7 +113,7 @@ A atenta leitora deve observar que essa progressão não é apenas um exercício
 | :---- | :---- | :---- |
 | **Tipo de Gramática** | Gramática Regular | Gramática Livre de Contexto |
 | **Formato das Regras** | Restrito (ex.: $A \rightarrow aB$ ou $A\rightarrow a$) | Irrestrito (ex.: $A \rightarrow \beta$, onde $\beta$ é qualquer _string_) |
-| **Autômato Reconhecedor** | Autômato Finito (AF) | Autômato com Pilha (AP) |
+| **Autômato Reconhecedor** | Autômato Finito (AF) | Autômato com Pilha (Autômato de Pilha) |
 | **Capacidade de _Memória_** | Nenhuma (limitada a estados finitos) | Ilimitada (via pilha LIFO) |
 | **Exemplo Característico** | $a(ba)^∗$ | $a^n b^n$ para $n≥0$ |
 | **Exemplo Não-Pertencente** | $a^n b^n$ para $n≥0$ | $a^n b^n c^n$ para $n≥0$ |
@@ -199,7 +199,7 @@ Dada a gramática de palíndromos $G_{pal}$:
 - $P = \{ K \rightarrow \epsilon, K \rightarrow 0, K \rightarrow 1, K \rightarrow 0K0, K \rightarrow 1K1 \}$
 - $S = K$
 
-Faça a derivação da *string* `101`.
+Faça a derivação da *_string_* `101`.
 
 #### Exercício 2: Expressão Aritmética Simples
 
@@ -210,11 +210,11 @@ Considere uma gramática simplificada para expressões aritméticas, $G_{exp}$ d
 * $P = \{ E \rightarrow E + E, E \rightarrow E * E, E \rightarrow (E), E \rightarrow id \}$
 * $S = E$
 
-Faça a derivação da *string* `id * id + id`.
+Faça a derivação da *_string_* `id * id + id`.
 
 #### Exercício 3: Palíndromo de Comprimento Par e Aninhado
 
-Usando a gramática de palíndromos $G_{pal}$ dada a seguir, faça a derivação da *string* `011110`.
+Usando a gramática de palíndromos $G_{pal}$ dada a seguir, faça a derivação da *_string_* `011110`.
 
 - $N = \{K\}$
 - $\Sigma = \{0,1\}$
@@ -223,14 +223,14 @@ Usando a gramática de palíndromos $G_{pal}$ dada a seguir, faça a derivação
 
 #### Exercício 4: Linguagem $a^nb^n$
 
-Considere a gramática $G_{ab}$ que gera *strings* com um número de `a``s seguido pelo mesmo número de `b``s:
+Considere a gramática $G_{ab}$ que gera *_strings_* com um número de `a``s seguido pelo mesmo número de `b``s:
 
 * $N = \{S\}$
 * $\Sigma = \{a, b\}$
 * $P = \{ S \rightarrow aSb, S \rightarrow \epsilon \}$
 * $S = S$
 
-Faça a derivação da *string* `aaabbb`.
+Faça a derivação da *_string_* `aaabbb`.
 
 #### Exercício 5: Comando Condicional `if-else`
 
@@ -241,7 +241,7 @@ Seja uma gramática para um comando `if-else` simplificado, $G_{if}$:
 * $P = \{ C \rightarrow \text{if } id \text{ then } A \text{ else } A, A \rightarrow id := 0 \}$
 * $S = C$
 
-Faça a derivação da *string* `if id then id := 0 else id := 0`.
+Faça a derivação da *_string_* `if id then id := 0 else id := 0`.
 
 #### Exercício 6: Parênteses Balanceados
 
@@ -252,11 +252,11 @@ Considere a gramática $G_{par}$ para gerar sequências de parênteses balancead
 * $P = \{ B \rightarrow (B), B \rightarrow BB, B \rightarrow \epsilon \}$
 * $S = B$
 
-Faça a derivação da *string* `()(())`.
+Faça a derivação da *_string_* `()(())`.
 
 #### Exercício 7: Palíndromo Vazio
 
-Usando a gramática de palíndromos $G_{pal}$ do primeiro exercício, faça a derivação da *string* vazia, $\epsilon$.
+Usando a gramática de palíndromos $G_{pal}$ do primeiro exercício, faça a derivação da *_string_* vazia, $\epsilon$.
 
 ## Geração de Sentenças: Derivações, Árvores e Ambiguidade
 
@@ -282,7 +282,7 @@ Considere a seguinte gramática:
   5. $F \rightarrow (E)$
   6. $F \rightarrow id$
 
-Vamos fazer a Derivação da string "id + id * id", primeiro usando a derivação Mais à Esquerda (_Leftmost_):
+Vamos fazer a Derivação da _string_ "id + id * id", primeiro usando a derivação Mais à Esquerda (_Leftmost_):
 
 $$
 \begin{align}
@@ -322,7 +322,7 @@ Observando as duas derivações é possível perceber que a gramática usada nes
    * $E \rightarrow E + T$ (não $E \rightarrow T + E$)
    * $T \rightarrow T * F$ (não $T \rightarrow F * T$)
 
-3. **Estrutura única**: Para qualquer string válida, existe exatamente uma árvore de derivação,
+3. **Estrutura única**: Para qualquer _string_ válida, existe exatamente uma árvore de derivação,
    independentemente da ordem de derivação (leftmost ou rightmost).
 
 A atenta leitora deve notar que embora a sequência de passos seja diferente nas duas derivações, ambas produzem a mesma estrutura sintática: $id + (id * id)$, onde a multiplicação tem precedência sobre a adição.
@@ -375,7 +375,7 @@ L &\Rightarrow [E]                  &&\text{[regra 1: expandir L]}\\
 \end{align}
 $$
 
-A @fig-deriva1 apresenta as duas árvores de derivação para a string "[a, b, a]".
+A @fig-deriva1 apresenta as duas árvores de derivação para a _string_ "[a, b, a]".
 
 :::{#fig-deriva1}
 ![](images/deriva1.webp)
@@ -383,7 +383,7 @@ A @fig-deriva1 apresenta as duas árvores de derivação para a string "[a, b, a
 Apresentação das duas árvores de derivação de "[a, b, a]" de forma gráfica.
 :::
 
-**Exemplo 3**: Considerando a gramática do Exemplo 2 @sec-derivacao-listas-exemplo2, faça a derivação da string "[b]"
+**Exemplo 3**: Considerando a gramática do Exemplo 2 @sec-derivacao-listas-exemplo2, faça a derivação da _string_ "[b]"
 
 Novamente, começando com a Derivação Mais à Esquerda (_Leftmost_):
 
@@ -419,41 +419,244 @@ A atenta leitora deve perceber que esta gramática não é ambígua. Considerand
 
 **Nota**: A gramática usada nos exemplos 2 e 3 garante que elementos são adicionados sempre à direita da lista, construindo-a da esquerda para a direita. A estrutura $[a, b, a]$ só pode ser interpretada de uma forma: uma lista contendo três elementos na ordem especificada.
 
-### **O Problema da Ambiguidade**
+## O Problema da Ambiguidade em Gramáticas Formais
 
-**Uma gramática é considerada ambígua se existe pelo menos uma sentença em sua linguagem que pode ser gerada por duas ou mais árvores de derivação distintas**. Equivalentemente, uma gramática é ambígua se alguma sentença possui duas ou mais derivações mais à esquerda, ou mais à direita, distintas.
+**Uma gramática G = (V, T, P, S) é ambígua** se e somente se existe pelo menos uma cadeia $w \in L(G)$ que possui duas ou mais árvores de derivação distintas. Em termos práticos, isto quer dizer que a mesma sentença pode ser construída através de diferentes sequências de aplicação de regras de produção. A existência de diferentes estruturas sintáticas implica na existência de interpretações semânticas diferentes. Neste caso, o parser não consegue determinar univocamente qual estrutura sintática representa a intenção do programador. 
 
-A ambiguidade é um problema grave no projeto de linguagens de programação. A existência de uma ambiguidade implica que uma única sentença pode ter múltiplas interpretações sintáticas e, consequentemente, múltiplos significados semânticos.
+**Exemplo 1**: Considerando a gramática $G_1$, mostre que a sentença `id + id * id` é ambígua.
 
-* Exemplo Clássico (Expressões Aritméticas): Considere a gramática $G_{expr}$:
+$$G_1 = (\{E\}, \{+, *, (, ), id\}, P, E)$$
 
-  $E \rightarrow E + E \mid E * E \mid id$
+Na qual  $P$ consiste das produções:
 
-  A sentença _id + id * id_ pode ser derivada de duas maneiras 23:  
-  1. $E \Rightarrow E + E \Rightarrow id + E \Rightarrow id + E * E \Rightarrow \ldots \Rightarrow id + id * id$ (Interpretação: $id + (id * id)$)  
-  2. $E \Rightarrow E * E \Rightarrow E + E * E \Rightarrow \ldots \Rightarrow id + id * id$ (Interpretação: $(id + id) * id$)  
+$$
+\begin{align}
+E &\Rightarrow E + E \\
+E &\Rightarrow E * E \\
+E &\Rightarrow (E) \\
+E &\Rightarrow id
+\end{align}
+$$
 
-  Cada derivação corresponde a uma árvore de derivação diferente, uma impondo a precedência da multiplicação e a outra, a da adição.
+Analisando a sequência `id + id * id`, podemos observar que esta _string_ pode ser interpretada de duas maneiras diferentes, dependendo da ordem em que as operações são realizadas:
 
-**Exemplo 1**: em algumas linguagens de programação, a construção `if-then-else` pode levar à ambiguidade. Para a sentença `if (c1) if (c2) s1 else s2`, não fica claro se o `else` está associado ao primeiro `if` ou ao segundo. Uma gramática ambígua permite ambas as interpretações, o que pode levar a erros lógicos graves e difíceis de depurar em tempo de execução. Chamamos a este problema de _Dangling Else_.
+1. Derivação 1 (Multiplicação com maior precedência):
 
-A ambiguidade sintática é a causa raiz da ambiguidade semântica. A estrutura da árvore de derivação não é um mero artefato teórico; ela dita diretamente a ordem de avaliação e, portanto, o *significado* do programa. As fases subsequentes do compilador, como a análise semântica e a geração de código, operam sobre a estrutura hierárquica fornecida pela árvore. Se múltiplas árvores são possíveis, o compilador não tem como determinar a intenção do programador, tornando impossível a geração de um código correto e determinístico. Por essa razão, a eliminação da ambiguidade, tipicamente por meio da reescrita da gramática para impor regras de precedência e associatividade de operadores, não é uma formalidade, mas um pré-requisito absoluto para a construção de um compilador funcional. A sintaxe precede e comanda a semântica.
+  $$
+  \begin{align}
+  E &\Rightarrow E + E \\
+  &\Rightarrow id + E \\
+  &\Rightarrow id + E * E \\
+  &\Rightarrow id + id * E \\
+  &\Rightarrow id + id * id
+  \end{align}
+  $$
+
+  O resultado da primeira derivação permite que a _string_ `id + id * id` seja interpretada como `id + (id * id)`.
+
+2. Derivação 2 (Adição com maior precedência):
+
+  $$
+  \begin{align}
+  E &\Rightarrow E * E \\
+    &\Rightarrow E + E * E \\
+    &\Rightarrow id + E * E \\
+    &\Rightarrow id + id * E \\
+    &\Rightarrow id + id * id
+  \end{align}
+  $$
+
+  O resultado da segunda derivação permite que a _string_ `id + id * id` seja interpretada como `(id + id) * id`.
+
+### Características e Taxonomia da Ambiguidade
+
+A ambiguidade em gramáticas formais manifesta-se de diferentes formas e com distintos níveis de penetração na estrutura da linguagem:
+
+A **ambiguidade local** representa conflitos que afetam construções sintáticas específicas e bem delimitadas dentro da gramática. O exemplo mais emblemático desta categoria são os problemas de precedência de operadores, onde a gramática permite múltiplas interpretações para expressões como `id + id * id`. Neste caso, a ambiguidade está circunscrita às regras que governam operadores aritméticos e pode ser resolvida através da reescrita da gramática ou da especificação explícita de precedência e associatividade.
+
+A **ambiguidade global**, por outro lado, permeia toda a estrutura da gramática e afeta a arquitetura fundamental da linguagem. O problema clássico do _dangling else_ exemplifica perfeitamente esta categoria. Quando uma construção como `if (c1) if (c2) s1 else s2` pode ser interpretada de duas formas distintas, a ambiguidade não está limitada a uma regra específica, mas emerge da interação complexa entre múltiplas produções que definem comandos condicionais aninhados.
+
+As manifestações da ambiguidade podem ser classificadas em três categorias fundamentais que refletem diferentes aspectos da análise sintática.
+
+A **ambiguidade de precedência** surge quando operadores de diferentes níveis hierárquicos não possuem uma ordem de avaliação claramente definida pela gramática. Esta forma de ambiguidade é particularmente comum em linguagens que incluem operadores aritméticos, lógicos e relacionais. A ausência de uma hierarquia bem estabelecida força o parser a tomar decisões arbitrárias sobre qual operação deve ser executada primeiro, podendo resultar em interpretações semânticas drasticamente diferentes.
+
+A **ambiguidade de associatividade** manifesta-se quando operadores do mesmo nível de precedência podem ser agrupados tanto à esquerda quanto à direita, alterando o resultado da computação. Por exemplo, em uma expressão como `a - b - c`, a associatividade à esquerda produz `(a - b) - c`, enquanto a associatividade à direita resulta em `a - (b - c)`. Embora matematicamente equivalentes para operações comutativas como adição, essa distinção torna-se crítica para operações não-comutativas.
+
+A **ambiguidade estrutural** representa a forma mais complexa e desafiadora de ambiguidade, onde diferentes agrupamentos de construções sintáticas produzem estruturas hierárquicas distintas. Esta categoria transcende questões operacionais e atinge o núcleo da organização sintática da linguagem, afetando como blocos de código, estruturas de controle e definições de escopo são interpretados pelo compilador.
+
+**Exemplo 2**: o Problema do _Dangling Else_
+
+Considere a gramática $G_2$ (Ambígua para `if-then-else`) definida por:
+
+$$G_2 = (\{S, E\}, \{if, then, else, (, ), c, s\}, P, S)$$
+
+Na qual $P$ consiste das produções:
+
+$$
+\begin{align}
+S &\Rightarrow if (E) S \\
+&\Rightarrow if (E) S else S \\
+&\Rightarrow s \\
+E &\Rightarrow c
+\end{align}
+$$
+
+Para entender a ambiguidade vamos analisar a sentença `if (c1) if (c2) s1 else s2`. 
+
+1. Nesta interpretação, a estrutura `if (c2) s1 else s2` é tratada como um único comando $S$, que por sua vez está aninhado dentro do primeiro `if`. A derivação ocorre da seguinte forma:
+
+$$
+\begin{align}
+S &\Rightarrow \text{if } (E) S \\
+&\Rightarrow \text{if } (c_1) S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (E) S \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (c_2) S \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (c_2) s_1 \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (c_2) s_1 \text{ else } s_2
+\end{align}
+$$
+
+Resultando em:
+
+```
+if (c1) {
+    if (c2)
+        s1
+    else
+        s2
+}
+```
+
+2. Nesta interpretação, a estrutura `if (c2) s1` é o corpo do `if` principal, e o `else s2` está associado a este `if` mais externo.
+
+$$
+\begin{align}
+S &\Rightarrow \text{if } (E) S \text{ else } S \\
+&\Rightarrow \text{if } (c_1) S \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (E) S \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (c_2) S \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (c_2) s_1 \text{ else } S \\
+&\Rightarrow \text{if } (c_1) \text{ if } (c_2) s_1 \text{ else } s_2
+\end{align}
+$$
+
+```
+if (c1) {
+    if (c2)
+        s1
+}
+else
+    s2
+```
+
+Como existem duas derivações à esquerda distintas para a mesma sentença, a gramática $G_2$ é formalmente ambígua.
+
+## Técnicas de Eliminação de Ambiguidade
+
+A atenta leitora deve compreender que a ambiguidade em uma gramática não é uma fatalidade irreversível. Ao longo do desenvolvimento da teoria das linguagens formais, foram desenvolvidas técnicas sistemáticas para transformar gramáticas ambíguas em equivalentes não-ambíguas, preservando a linguagem gerada. Estas técnicas representam não apenas exercícios teóricos, mas ferramentas práticas essenciais no projeto de compiladores modernos.
+
+### Reescrita Sistemática da Gramática
+
+A técnica mais fundamental para eliminar ambiguidade consiste na **reescrita estruturada da gramática**. Esta abordagem requer uma análise cuidadosa das fontes de ambiguidade e sua eliminação através da introdução de níveis hierárquicos explícitos na estrutura gramatical.
+
+Considere novamente a gramática ambígua $G_1$ para expressões aritméticas:
+
+$$G_1 = (\{E\}, \{+, *, (, ), id\}, P_1, E)$$
+
+Na qual $P_1$ consiste das produções:
+
+* $E \rightarrow E + E$
+* $E \rightarrow E * E$
+* $E \rightarrow (E)$
+* $E \rightarrow id$
+
+A transformação desta gramática em sua versão não-ambígua $G_3$ segue um princípio arquitetural elegante: **a estratificação sintática**. Cada nível de precedência é codificado como um não-terminal distinto:
+
+$$G_3 = (\{E, T, F\}, \{+, *, (, ), id\}, P_3, E)$$
+
+Na qual $P_3$ consiste das produções:
+
+* $E \rightarrow E + T \mid T$
+* $T \rightarrow T * F \mid F$
+* $F \rightarrow (E) \mid id$
+
+Esta hierarquia de não-terminais estabelece inequivocamente que:
+
+1. **Precedência operacional**: A multiplicação, governada por $T$, tem precedência sobre a adição, governada por $E$. Uma expressão como `id + id * id` só pode ser derivada como `id + (id * id)`.
+
+2. **Associatividade uniforme**: Ambos operadores associam à esquerda devido à recursão à esquerda nas produções $E \rightarrow E + T$ e $T \rightarrow T * F$. A expressão `a + b + c` é interpretada como `(a + b) + c`.
+
+3. **Preservação da linguagem**: $L(G_1) = L(G_3)$, ou seja, ambas gramáticas geram exatamente o mesmo conjunto de _strings_, diferindo apenas na estrutura de derivação.
+
+### Declarações Explícitas de Precedência e Associatividade
+
+O desenvolvimento de **geradores de parsers** como [YACC](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/yacc.html) (**Y**et **A**nother **C**ompiler-**C**ompiler) e seu sucessor [GNU Bison](https://www.gnu.org/software/bison/) introduziu uma abordagem pragmática: permitir que o desenvolvedor especifique diretamente as regras de desambiguação sem reescrever a gramática.
+
+```
+%left '+'     /* menor precedência, associa à esquerda */
+%left '*'     /* precedência intermediária */
+%right '^'    /* maior precedência, associa à direita */
+%%
+expr: expr '+' expr
+| expr '*' expr
+| expr '^' expr
+| '(' expr ')'
+| ID;
+```
+
+Estas declarações instruem o gerador de parser a resolver conflitos _shift_/_reduce_ de forma determinística. Quando confrontado com `a + b * c`, o parser saberá que deve realizar o shift do `*` (maior precedência) antes de reduzir a adição. Assim, os eventuais problemas de ambiguidade decorrentes da gramática original podem ser resolvidos.
+
+#### Resolução do Problema do *Dangling Else*
+
+Para a ambiguidade estrutural do *dangling else*, a solução canônica adotada pela maioria das linguagens modernas é a **convenção do else mais próximo**. Esta pode ser formalizada através de uma gramática cuidadosamente estruturada:
+
+$$G_{if} = (\{S, M, U\}, \{if, else, (, ), c, s\}, P_{if}, S)$$
+
+na qual $P_{if}$ consiste das seguintes produções:
+
+* $S \rightarrow M \mid U$;
+* $M \rightarrow \text{if } (E) \text{ } M \text{ else } M \mid s$;
+* $U \rightarrow \text{if } (E) \text{ } S \mid \text{if } (E) \text{ } M \text{ else } U$.
+
+Nesta gramática, $M$ (matched) representa comandos completos nos quais todo `if` tem seu `else` correspondente, enquanto $U$ (_unmatched_) representa comandos com `if` sem `else`. A estrutura garante que um `else` sempre se associa ao `if` mais interno ainda não pareado.
+
+### Detecção Sistemática de Ambiguidade
+
+A identificação de ambiguidade em uma gramática arbitrária é, em geral, um **problema indecidível**. Ou seja, não existe um algoritmo que sempre termine e determine se qualquer gramática é ambígua. Entretanto, a atenta leitora pode empregar uma das seguintes estratégias práticas:
+
+1. Abordagens Algorítmicas:
+
+**Verificação exaustiva limitada**: Para gramáticas pequenas, pode-se enumerar sistematicamente todas as derivações para _strings_ até um comprimento $n$ fixo. Se duas árvores de derivação distintas forem encontradas para a mesma _string_, a ambiguidade está provada. Esta técnica, embora computacionalmente intensiva, é conclusiva quando encontra ambiguidade.
+
+**Análise de tabelas de parsing**: Ferramentas como YACC e Bison constroem tabelas de ação/transição para parsers LR. A presença de **conflitos shift/reduce** ou **reduce/reduce** nestas tabelas indica potencial ambiguidade. Um conflito shift/reduce ocorre quando o parser não consegue decidir entre consumir mais entrada ou aplicar uma redução; um conflito reduce/reduce surge quando múltiplas produções podem ser aplicadas.
+
+**Verificadores especializados**: Ferramentas como o [CFG checker](https://github.com/stepchowfun/cfg-checker) empregam técnicas sofisticadas de análise estática para detectar ambiguidade, incluindo aproximações conservativas que podem provar não-ambiguidade para classes específicas de gramáticas.
+
+2. Heurísticas e Padrões Problemáticos
+
+A experiência acumulada na construção de compiladores identificou padrões gramaticais que frequentemente indicam ambiguidade:
+
+**Produções recursivas bilaterais**: Regras da forma $A \rightarrow A \alpha A$ são quase sempre ambíguas, pois permitem múltiplas formas de agrupar três ou mais ocorrências de $A$.
+
+**Prefixos comuns extensos**: Quando múltiplas produções para o mesmo não-terminal compartilham longos prefixos, como $A \rightarrow \alpha\beta\gamma$ e $A \rightarrow \alpha\beta\delta$, a decisão sobre qual produção aplicar pode requerer lookahead arbitrariamente longo.
+
+**Aninhamento sem delimitadores explícitos**: Construções que permitem aninhamento sem marcadores claros de início e fim, como o problema clássico do *dangling else*, invariavelmente levam a ambiguidade estrutural.
 
 ## Autômatos com Pilha: A Máquina por Trás das Linguagens Livres de Contexto
 
 Como estabelecido anteriormente, os autômatos finitos, os reconhecedores para linguagens regulares, são fundamentalmente limitados por sua falta de memória. A capacidade de _lembrar_ está restrita ao conjunto finito de estados da máquina. Essa limitação os impede de reconhecer linguagens que exigem a correspondência de símbolos ou contagem, como a linguagem $L=\{a^n b^n \mid n \geq 0\}$.
 
-Para reconhecer a classe mais ampla das linguagens livres de contexto, é necessário um modelo de computação mais poderoso. O **autômato com pilha (AP)** é esse modelo. Um AP pode ser concebido como um autômato finito não determinístico (AFND) ao qual foi adicionada uma memória auxiliar: uma **pilha** (*stack*).
+Para reconhecer a classe mais ampla das linguagens livres de contexto, é necessário um modelo de computação mais poderoso. O **autômato de pilha** é esse modelo. Um Autômato de Pilha pode ser concebido como um autômato finito não determinístico ao qual foi adicionada uma memória auxiliar: uma **pilha**, do inglês _stack_.
 
-A pilha é uma estrutura de dados com acesso restrito, operando no modo LIFO (*Last-In, First-Out*), o que significa que o último elemento inserido é o primeiro a ser removido. As transições de um AP são mais complexas que as de um AF. A decisão de qual transição tomar depende de três fatores: o estado atual, o próximo símbolo na _string_ de entrada e o símbolo que está no topo da pilha.
+A pilha é uma estrutura de dados com acesso restrito, operando no modo **LIFO** (_**L**ast-**I**n, **F**irst-**O**ut_), o que significa que o último elemento inserido é o primeiro a ser removido. As transições de um Autômato de Pilha são mais complexas que as de um Autômato Finito. A decisão de qual transição tomar depende de três fatores: o estado atual, o próximo símbolo na _string_ de entrada e o símbolo que está no topo da pilha.
 
-Em cada transição, além de mudar de estado e consumir um símbolo de entrada (opcionalmente), o AP pode realizar uma de três operações na pilha:
+Em cada transição, além de mudar de estado e, opcionalmente, consumir um símbolo de entrada, o Autômato de Pilha pode realizar uma de três operações na pilha:
 
-1. **Empilhar (*Push*)**: Adicionar um ou mais símbolos ao topo da pilha.
-2. **Desempilhar (*Pop*)**: Remover o símbolo do topo da pilha.
+1. **Empilhar (_Push_)**: Adicionar um ou mais símbolos ao topo da pilha;
+2. **Desempilhar (_Pop_)**: Remover o símbolo do topo da pilha;
 3. **Manter**: Não alterar o conteúdo da pilha.
 
-Esta capacidade de armazenar e recuperar informações de forma estruturada confere ao AP seu poder computacional superior.
+Esta capacidade de armazenar e recuperar informações de forma estruturada confere ao Autômato de Pilha seu poder computacional superior.
 
 ### A Equivalência Fundamental
 
@@ -461,7 +664,7 @@ O resultado mais importante da teoria das Linguagens Livres de Contexto é a equ
 
 Esta equivalência é a espinha dorsal da análise sintática. Ela garante que para qualquer sintaxe de linguagem de programação que possa ser descrita por uma Gramáticas Livres de Contextos, podemos construir um mecanismo computacional o Autômato de Pilha para reconhecer programas escritos nessa linguagem. É importante notar que a classe de linguagens reconhecidas por Autômatos de Pilha não determinísticos é estritamente maior que a classe reconhecida por Autômatos de Pilha determinísticos. São os Autômatos de Pilha não determinísticos que são equivalentes em poder às Gramáticas Livres de Contextos em geral.
 
-A escolha de uma pilha como o mecanismo de memória para reconhecer Linguagens Livres de Contexto não é acidental. A estrutura LIFO de uma pilha espelha perfeitamente a natureza recursiva e aninhada das derivações em uma Gramáticas Livres de Contextos. Considere novamente a gramática S→aSb para a linguagem anbn. A derivação de aabb é S⇒aSb⇒aaSbb⇒aabb. Observe como a estrutura se expande simetricamente _de dentro para fora_. Um AP para esta linguagem implementa essa simetria de forma operacional: ao ler um `a`, ele empilha um símbolo de marcador (ex.: X); ao ler o próximo `a`, empilha outro X. Quando começa a ler os `b`s, ele desempilha um X para cada `b` lido. Se a entrada terminar exatamente quando a pilha se esvaziar, a _string_ é aceita. O processo de empilhar na primeira metade e desempilhar na ordem inversa na segunda metade é a encarnação mecânica da recursão gramatical. A pilha _lembra_ as obrigações sintáticas (gerar um `b` correspondente para cada `a`) e as descarrega na ordem correta, tornando-a a estrutura de dados canónica para processar estruturas livres de contexto.
+A escolha de uma pilha como o mecanismo de memória para reconhecer Linguagens Livres de Contexto não é acidental. A estrutura **LIFO** de uma pilha espelha perfeitamente a natureza recursiva e aninhada das derivações em uma Gramáticas Livres de Contextos. Considere novamente a gramática $S \rightarrow aSb$ para a linguagem $a^nb^n$. A derivação de `aabb` será dada por  $S\Rightarrow aSb \Rightarrow aaSbb \Rightarrow aabb$. Observe como a estrutura se expande simetricamente _de dentro para fora_. Um Autômato de Pilha para esta linguagem implementa essa simetria de forma operacional: ao ler um `a`, ele empilha um símbolo de marcador (ex.: $X$); ao ler o próximo `a`, empilha outro $X$. Quando começa a ler os `b`s, ele desempilha um X para cada `b` lido. Se a entrada terminar exatamente quando a pilha se esvaziar, a _string_ é aceita. O processo de empilhar na primeira metade e desempilhar na ordem inversa na segunda metade é a encarnação mecânica da recursão gramatical. A pilha _lembra_ as obrigações sintáticas (gerar um `b` correspondente para cada `a`) e as descarrega na ordem correta, tornando-a a estrutura de dados canónica para processar estruturas livres de contexto.
 
 ## As Fronteiras do Contexto Livre: O Lema do Bombeamento
 
@@ -583,6 +786,40 @@ Ao contrário dos parsers LL _ansiosos_, os parsers LR são _pacientes_. Eles n�
 | 4 | s2 | | | | 6 | 3 |  
 | ... |... |... |... |... |... |... |  
 (s \= shift, r \= reduce, acc \= accept)
+
+### Impacto da Ambiguidade no Processo de Compilação {#sec-impacto-ambiguidade-compilacao}
+
+A atenta leitora deve compreender que a ambiguidade em uma gramática não é uma mera curiosidade teórica; ela representa uma falha fundamental na especificação de uma linguagem, com consequências diretas e severas em todas as principais fases do processo de compilação. Um compilador é uma ferramenta determinística que deve traduzir um único código-fonte em um único programa executável. A ambiguidade quebra essa premissa, introduzindo incerteza que se propaga desde a análise sintática até a geração do código final.
+
+#### Fase de Análise Sintática
+
+A análise sintática é a primeira e mais direta vítima da ambiguidade. O objetivo do _parser_ é construir uma única árvore de derivação que represente a estrutura do código-fonte. Quando a gramática é ambígua, essa tarefa torna-se impossível sem regras externas de desambiguação.
+
+* **Geração de Múltiplas Árvores de Derivação**: Para uma sentença ambígua, o analisador sintático é inerentemente não-determinístico. Ele pode construir duas ou mais árvores de derivação distintas, cada uma representando uma interpretação estrutural válida. Sem um critério para escolher entre elas, o _parser_ não pode prosseguir de forma unívoca.
+
+* **Conflitos em Parsers LR**: Em analisadores sintáticos _bottom-up_, como os da família LR (LR, SLR, LALR), a ambiguidade manifesta-se diretamente como **conflitos shift/reduce** ou **reduce/reduce**. Por exemplo, na gramática ambígua de expressões, ao processar `id + id * id`, o _parser_ chegará a um estado onde viu `E + E`. Neste ponto, ele não sabe se deve reduzir a expressão pela regra $E \rightarrow E+E$ (um _reduce_) ou aguardar o próximo símbolo `*` para processar a multiplicação primeiro (um _shift_). Ferramentas geradoras de _parsers_, como o YACC ou Bison, relatarão esses conflitos como erros fatais durante a geração do analisador.
+
+* **Ineficiência em Parsers Top-Down**: Para analisadores sintáticos _top-down_, como os de descida recursiva, a ambiguidade pode levar a um **backtracking excessivo**. O _parser_ pode ser forçado a explorar múltiplos caminhos de derivação, apenas para descobrir que um deles falha mais tarde. Em casos mal projetados, especialmente com recursão à esquerda, isso pode levar a _loops_ infinitos, paralisando a compilação.
+
+#### Fase de Análise Semântica
+
+Supondo que a fase sintática tenha conseguido, de alguma forma, produzir uma árvore (talvez escolhendo arbitrariamente uma das opções), os problemas de ambiguidade se transformam em problemas semânticos. A árvore sintática é a base para toda a análise de significado, e diferentes árvores levam a semânticas drasticamente diferentes.
+
+* **Atribuição de Tipos Inconsistente**: A estrutura da árvore de derivação dita como os tipos são verificados e inferidos. Na expressão `(id_float + id_int) * id_int`, a adição ocorreria primeiro, possivelmente promovendo o `id_int` a `float`. Na interpretação `id_float + (id_int * id_int)`, a multiplicação de inteiros ocorreria primeiro. As duas árvores podem resultar em tipos finais diferentes ou até mesmo em erros de tipo distintos.
+
+* **Resolução de Escopo Ambígua**: A ambiguidade estrutural, como a do _dangling else_, afeta diretamente a determinação do escopo. Uma variável declarada dentro de um bloco `if` terá seu escopo e tempo de vida definidos pela árvore sintática. Se não está claro a qual `if` um bloco `else` pertence, também não estará claro o escopo das construções dentro daquele bloco.
+
+* **Ordem de Avaliação Indefinida**: A semântica de uma linguagem define a ordem de avaliação de subexpressões. Isso é fundamental quando há **efeitos colaterais** (por exemplo, `f() + g()`, onde `f` e `g` modificam uma variável global). Uma gramática ambígua que permite duas árvores de derivação para esta expressão deixa indefinido qual função será chamada primeiro, tornando o resultado da expressão imprevisível.
+
+#### Fase de Geração de Código
+
+Finalmente, as inconsistências estruturais e semânticas culminam em um processo de geração de código que é, na melhor das hipóteses, não-determinístico e, na pior, incorreto.
+
+* **Geração de Código Não-Determinístico**: Cada árvore sintática abstrata (AST) distinta mapeia para uma sequência diferente de código intermediário ou de máquina. A expressão `(a+b)*c` gera uma instrução de `ADD` seguida por uma de `MUL`. Já `a+(b*c)` gera uma `MUL` seguida por uma `ADD`. Se o compilador escolher uma árvore arbitrariamente, o código gerado será igualmente arbitrário.
+
+* **Impossibilidade de Otimização**: As otimizações de código dependem de uma análise rigorosa e inequívoca do fluxo de controle e de dados, que é derivada da AST. Se o compilador não pode garantir a estrutura correta do programa (por exemplo, a precedência de operadores), ele não pode aplicar otimizações de forma segura. Otimizar uma estrutura que não representa a intenção do programador pode alterar drasticamente a lógica do programa.
+
+* **Comportamento Imprevisível do Programa**: A consequência final é a mais grave. Um programa compilado a partir de uma gramática ambígua pode exibir **comportamentos diferentes** dependendo da versão do compilador ou até mesmo de fatores aparentemente não relacionados. Isso viola o princípio fundamental de que a compilação deve ser um processo reprodutível e confiável, tornando a linguagem inadequada para qualquer aplicação séria.
 
 ### **Capítulo 10: Automatizando a Construção: Ferramentas Geradoras de Parsers**
 

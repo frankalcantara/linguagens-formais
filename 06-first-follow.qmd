@@ -213,180 +213,405 @@ $$
 
 **Conjunto FOLLOW**:
 
-1.  $FOLLOW(S) = \{\$\}$ ($S$ é o símbolo inicial)
+Para calcular o conjunto FOLLOW, seguimos as regras aplicadas à gramática do exemplo:
 
-2.  $FOLLOW(A) = \{\$, c, d\}$
-    *   A aparece em: $S \to bA$
-    *   Como não há nada após $A$ na produção acima, adicionamos $FOLLOW(S)$ a $FOLLOW(A)$: $\{\$\}$
-    *   Além disso, como $A$ aparece após $b$ na produção $S \to bA$, e $B$ pode derivar em $c$ ou $d$ ($B \to c \vert  d$), então $c$ e $d$ também podem seguir $A$.
+1.  [cite_start]$FOLLOW(S) = \{\$\}$ 
+    * [cite_start]$S$ é o símbolo inicial, então adicionamos o marcador de fim de entrada ($\$$) ao seu conjunto FOLLOW. 
+
+2.  $FOLLOW(A) = \{\$\}$
+    * Analisamos as regras para encontrar onde $A$ aparece no lado direito. [cite_start]Encontramos $A$ na produção $S \to bA$.
+    * [cite_start]Como não há nenhum símbolo após $A$ nesta produção, adicionamos todos os elementos de $FOLLOW(S)$ ao conjunto $FOLLOW(A)$.
+    * Portanto, $FOLLOW(A)$ recebe $\{\$\}$.
 
 3.  $FOLLOW(B) = \{\$\}$
-    *   $B$ aparece em: $S \rightarrow aB$
-    *   Como não há nada após $B$ na produção acima, adicionamos $FOLLOW(S)$ a $FOLLOW(B)$: $\{\$\}$
+    * Analisamos as regras para encontrar onde $B$ aparece no lado direito. [cite_start]Encontramos $B$ na produção $S \rightarrow aB$.
+    * [cite_start]Como também não há nenhum símbolo após $B$ nesta produção, adicionamos todos os elementos de $FOLLOW(S)$ ao conjunto $FOLLOW(B)$.
+    * Portanto, $FOLLOW(B)$ também recebe $\{\$\}$.
 
-Criamos o conjunto $FIRST$ porque este é necessário para a criação do conjunto $FOLLOW$. Mas, neste momento nos interessa apenas o conjunto $FOLLOW$. O conjunto resultante será:
+[cite_start]Criamos o conjunto $FIRST$ porque este é necessário para a criação do conjunto $FOLLOW$. Mas, neste momento nos interessa apenas o conjunto $FOLLOW$. O conjunto resultante será:
 
 | Símbolo | FOLLOW | Explicação |
-|---------|---------|-------------|
-| $S$ | $\{ \$ \}$ | $S$ é o símbolo inicial, então $\$$ é o único terminal que pode aparecer à direita de $S$ em uma forma sentencial derivada. |
-| A | $\{ \$, c, d \}$ | $A$ pode ser seguido por $c$ na regra $A \to c$, $d$ na regra $A \to d$, ou pelo símbolo de fim de entrada $\$$ em regras que contêm $A$. |
-| $B$ | $\{ a, c, d, \$ \}$ | $B$ pode ser seguido por $a$ na regra $S \to aB$, $c$ na regra $A \to cB$, $d$ na regra $A \to dB$, ou pelo símbolo de fim de entrada $\$$ em regras que contêm $B$. |
+|:---|:---|:---|
+| $S$ | $\{ \$ \}$ | [cite_start]$S$ é o símbolo inicial, então $\$$ é adicionado ao seu conjunto FOLLOW. |
+| $A$ | $\{ \$ \}$ | $A$ aparece na produção $S \to bA$. [cite_start]Como $A$ está no final, $FOLLOW(A)$ herda o conteúdo de $FOLLOW(S)$. |
+| $B$ | $\{ \$ \}$ | $B$ aparece na produção $S \to aB$. [cite_start]Como $B$ está no final, $FOLLOW(B)$ herda o conteúdo de $FOLLOW(S)$. |
+
 
 ## Algoritmo para calcular o conjunto FOLLOW
 
 Assim como fizemos com o $FIRST$ podemos criar um algoritmo para criar o conjunto $FOLLOW$:
 
-```pseudo
-# Entrada: Um conjunto de regras de produção P e o símbolo inicial S
-# Saída: Um dicionário FOLLOW, onde FOLLOW[X] é o conjunto FOLLOW do símbolo não-terminal X
+```shell
+# Algoritmo para calcular o conjunto FIRST para símbolos não-terminais
+# Entrada: Um conjunto de regras de produção P
+# Saída: Um dicionário FIRST, onde FIRST[X] é o conjunto FIRST do símbolo não-terminal X
 
-função calcular_FOLLOW(producoes, simbolo_inicial):
-    FOLLOW = {}  # Inicializa o dicionário FOLLOW
-
-    # Passo 1: Inicialização para todos os não-terminais
-    para cada símbolo não-terminal X na gramática:
-        FOLLOW[X] <- {}
-
-    # Passo 2: Colocar o símbolo de fim de entrada ($) no FOLLOW do símbolo inicial
-    FOLLOW[simbolo_inicial] <- {$}
-
-    # Passo 3: Iteração para todos os não-terminais
+função calcular_FIRST(producoes):
+    FIRST = {}  # Inicializa o dicionário FIRST
+    
+    # Identifica todos os não-terminais e terminais
+    nao_terminais = conjunto vazio
+    para cada producao nas producoes:
+        X = lado esquerdo da producao (antes de "->")
+        adicionar X aos nao_terminais
+    
+    # Passo 1: Inicialização - cria conjuntos vazios para cada não-terminal
+    para cada X em nao_terminais:
+        FIRST[X] = conjunto vazio
+    
+    # Passo 2: Iteração até convergência
     mudou = verdadeiro
     enquanto mudou:
         mudou = falso
-        para cada regra de produção A \rightarrow \alpha na gramática:
-            \alpha = \alpha.split()  # Divide a produção em símbolos individuais
-            para cada símbolo B na produção \alpha:
-                se B é um não-terminal:
-                    # Verifica os símbolos após B na produção
-                    para cada símbolo após B na produção:
-                        se o símbolo é terminal:
-                            se símbolo não está em FOLLOW[B]:
-                                adicionar símbolo a FOLLOW[B]
+        para cada producao nas producoes:
+            X = lado esquerdo da producao
+            simbolos = lado direito da producao (lista de símbolos)
+            
+            # Caso especial: produção vazia (X -> epsilon)
+            se simbolos == ["epsilon"]:
+                se "epsilon" não está em FIRST[X]:
+                    adicionar "epsilon" a FIRST[X]
+                    mudou = verdadeiro
+                continuar para próxima produção
+            
+            # Percorre os símbolos do lado direito
+            k = 0
+            continuar = verdadeiro
+            enquanto k < tamanho(simbolos) e continuar:
+                Yk = simbolos[k]
+                continuar = falso
+                
+                # Se Yk é terminal
+                se Yk não está em nao_terminais e Yk != "epsilon":
+                    se Yk não está em FIRST[X]:
+                        adicionar Yk a FIRST[X]
+                        mudou = verdadeiro
+                # Se Yk é não-terminal
+                senão se Yk está em nao_terminais:
+                    # Adiciona FIRST[Yk] - {epsilon} a FIRST[X]
+                    para cada simbolo em FIRST[Yk]:
+                        se simbolo != "epsilon":
+                            se simbolo não está em FIRST[X]:
+                                adicionar simbolo a FIRST[X]
                                 mudou = verdadeiro
-                            pare
-                        senão:
-                            para cada símbolo t em FIRST[símbolo]:
-                                se t != "\varepsilon":
-                                    se t não está em FOLLOW[B]:
-                                        adicionar t a FOLLOW[B]
-                                        mudou = verdadeiro
-                            se "\varepsilon" não está em FIRST[símbolo]:
-                                pare
-                    # Se não há mais símbolos após B ou todos podem derivar \varepsilon
-                    se não há mais símbolos após B ou todos podem derivar \varepsilon:
-                        para cada símbolo t em FOLLOW[A]:
-                            se t não está em FOLLOW[B]:
-                                adicionar t a FOLLOW[B]
-                                mudou = verdadeiro
-
-    retornar FOLLOW
+                    # Se epsilon está em FIRST[Yk], continua para próximo símbolo
+                    se "epsilon" está em FIRST[Yk]:
+                        continuar = verdadeiro
+                k = k + 1
+            
+            # Se todos os símbolos podem derivar epsilon
+            se continuar == verdadeiro:
+                se "epsilon" não está em FIRST[X]:
+                    adicionar "epsilon" a FIRST[X]
+                    mudou = verdadeiro
+    
+    retornar FIRST
 ```
 
-Agora que temos um pseudo código, podemos partir para o código em Python, para isso é preciso lembrar que vamos precisar do conjunto $FIRST$ para encontrar o conjunto $FOLLOW$.
+Agora que temos um pseudo código, podemos partir para o código em Python. Neste ponto, a atenta leitora precisa lembrar que vamos precisar do conjunto $FIRST$ para encontrar o conjunto $FOLLOW$. Logo começando pelo $FIRST$, teremos:
 
 ```python
 def calcular_FIRST(producoes):
+    """
+    Calcula o conjunto FIRST para todos os não-terminais de uma gramática.
+    
+    Args:
+        producoes: Lista de strings representando as produções (ex: "S -> a B")
+    
+    Returns:
+        Dicionário onde as chaves são não-terminais e valores são conjuntos FIRST
+    """
     FIRST = {}
-
-    # Passo 1: Inicialização para não-terminais
-    nao_terminais = {regra.split('\rightarrow')[0].strip() for regra in producoes}
+    
+    # Identifica todos os não-terminais (símbolos do lado esquerdo)
+    nao_terminais = set()
+    for producao in producoes:
+        X = producao.split('->')[0].strip()
+        nao_terminais.add(X)
+    
+    # Passo 1: Inicialização - cria conjuntos vazios para cada não-terminal
     for nao_terminal in nao_terminais:
         FIRST[nao_terminal] = set()
-
+    
+    # Passo 2: Iteração até convergência
     mudou = True
     while mudou:
         mudou = False
         for producao in producoes:
-            partes = producao.split('\rightarrow')
+            partes = producao.split('->')
             X = partes[0].strip()
-            Y = partes[1].strip().split()
-
+            simbolos = partes[1].strip().split()
+            
+            # Caso especial: produção vazia (X -> epsilon)
+            if simbolos == ['epsilon']:
+                if 'epsilon' not in FIRST[X]:
+                    FIRST[X].add('epsilon')
+                    mudou = True
+                continue
+            
+            # Percorre os símbolos do lado direito
             k = 0
-            adicionou_epsilon = True
-            while k < len(Y) and adicionou_epsilon:
-                adicionou_epsilon = False
-                Yk = Y[k]
-
-                if Yk in nao_terminais:
-                    for simbolo in FIRST[Yk]:
-                        if simbolo != "\varepsilon":
-                            if simbolo not in FIRST[X]:
-                                FIRST[X].add(simbolo)
-                                mudou = True
-                        else:
-                            adicionou_epsilon = True
-                else:
+            continuar = True
+            while k < len(simbolos) and continuar:
+                Yk = simbolos[k]
+                continuar = False
+                
+                # Se Yk é terminal
+                if Yk not in nao_terminais and Yk != 'epsilon':
                     if Yk not in FIRST[X]:
                         FIRST[X].add(Yk)
                         mudou = True
-                    adicionou_epsilon = False
+                # Se Yk é não-terminal
+                elif Yk in nao_terminais:
+                    # Adiciona FIRST[Yk] - {epsilon} a FIRST[X]
+                    for simbolo in FIRST[Yk]:
+                        if simbolo != 'epsilon':
+                            if simbolo not in FIRST[X]:
+                                FIRST[X].add(simbolo)
+                                mudou = True
+                    # Se epsilon está em FIRST[Yk], continua para próximo símbolo
+                    if 'epsilon' in FIRST[Yk]:
+                        continuar = True
                 k += 1
-
-            if k == len(Y) and adicionou_epsilon:
-                if "\varepsilon" not in FIRST[X]:
-                    FIRST[X].add("\varepsilon")
+            
+            # Se todos os símbolos podem derivar epsilon
+            if continuar:
+                if 'epsilon' not in FIRST[X]:
+                    FIRST[X].add('epsilon')
                     mudou = True
-
+    
     return FIRST
+```
+
+Finalmente podemos ver o pseudocódigo e o código em Python para encontrar o conjunto $FOLLOW$:
+
+```shell
+# Algoritmo para calcular o conjunto FOLLOW para símbolos não-terminais
+# Entrada: Um conjunto de regras de produção P e o símbolo inicial S
+# Saída: Um dicionário FOLLOW, onde FOLLOW[X] é o conjunto FOLLOW do símbolo não-terminal X
+
+função calcular_FOLLOW(producoes, simbolo_inicial):
+    # Primeiro calcula o conjunto FIRST que será necessário
+    FIRST = calcular_FIRST(producoes)
+    FOLLOW = {}  # Inicializa o dicionário FOLLOW
+    
+    # Identifica todos os não-terminais
+    nao_terminais = conjunto vazio
+    para cada producao nas producoes:
+        X = lado esquerdo da producao (antes de "->")
+        adicionar X aos nao_terminais
+    
+    # Passo 1: Inicialização - cria conjuntos vazios para cada não-terminal
+    para cada X em nao_terminais:
+        FOLLOW[X] = conjunto vazio
+    
+    # Passo 2: Adiciona $ ao FOLLOW do símbolo inicial
+    FOLLOW[simbolo_inicial] = {"$"}
+    
+    # Passo 3: Iteração até convergência
+    mudou = verdadeiro
+    enquanto mudou:
+        mudou = falso
+        para cada producao nas producoes:
+            A = lado esquerdo da producao
+            alfa = lado direito da producao (lista de símbolos)
+            
+            # Para cada símbolo na produção
+            para i de 0 até tamanho(alfa) - 1:
+                B = alfa[i]
+                
+                # Se B é um não-terminal
+                se B está em nao_terminais:
+                    beta = alfa[i+1:fim]  # símbolos após B
+                    
+                    # Se existe sequência beta após B
+                    se beta não é vazia:
+                        # Calcula FIRST(beta)
+                        first_beta = calcular_first_da_sequencia(beta, FIRST, nao_terminais)
+                        
+                        # Adiciona FIRST(beta) - {epsilon} em FOLLOW(B)
+                        para cada simbolo em first_beta:
+                            se simbolo != "epsilon":
+                                se simbolo não está em FOLLOW[B]:
+                                    adicionar simbolo a FOLLOW[B]
+                                    mudou = verdadeiro
+                        
+                        # Se epsilon está em FIRST(beta), adiciona FOLLOW(A) em FOLLOW(B)
+                        se "epsilon" está em first_beta:
+                            para cada simbolo em FOLLOW[A]:
+                                se simbolo não está em FOLLOW[B]:
+                                    adicionar simbolo a FOLLOW[B]
+                                    mudou = verdadeiro
+                    
+                    # Se não há nada após B (B está no final)
+                    senão:
+                        # Adiciona FOLLOW(A) em FOLLOW(B)
+                        para cada simbolo em FOLLOW[A]:
+                            se simbolo não está em FOLLOW[B]:
+                                adicionar simbolo a FOLLOW[B]
+                                mudou = verdadeiro
+    
+    retornar FOLLOW
+
+# Função auxiliar para calcular FIRST de uma sequência de símbolos
+função calcular_first_da_sequencia(sequencia, FIRST, nao_terminais):
+    first_sequencia = conjunto vazio
+    
+    para cada simbolo na sequencia:
+        # Se é terminal, adiciona e para
+        se simbolo não está em nao_terminais:
+            adicionar simbolo a first_sequencia
+            parar o loop
+        # Se é não-terminal
+        senão:
+            # Adiciona FIRST[simbolo] - {epsilon}
+            para cada s em FIRST[simbolo]:
+                se s != "epsilon":
+                    adicionar s a first_sequencia
+            # Se epsilon não está em FIRST[simbolo], para
+            se "epsilon" não está em FIRST[simbolo]:
+                parar o loop
+    
+    # Se percorreu toda a sequência (todos derivam epsilon)
+    se percorreu toda a sequencia:
+        adicionar "epsilon" a first_sequencia
+    
+    retornar first_sequencia
+```
+
+Finalmente o código em Python será:
+
+```python
+def calcular_first_da_sequencia(sequencia, FIRST, nao_terminais):
+    """
+    Calcula o FIRST de uma sequência de símbolos.
+    
+    Args:
+        sequencia: Lista de símbolos
+        FIRST: Dicionário com conjuntos FIRST já calculados
+        nao_terminais: Conjunto de não-terminais da gramática
+    
+    Returns:
+        Conjunto FIRST da sequência
+    """
+    first_sequencia = set()
+    
+    for simbolo in sequencia:
+        # Se é terminal, adiciona e para
+        if simbolo not in nao_terminais:
+            first_sequencia.add(simbolo)
+            break
+        # Se é não-terminal
+        else:
+            # Adiciona FIRST[simbolo] - {epsilon}
+            for s in FIRST[simbolo]:
+                if s != 'epsilon':
+                    first_sequencia.add(s)
+            # Se epsilon não está em FIRST[simbolo], para
+            if 'epsilon' not in FIRST[simbolo]:
+                break
+    else:
+        # Se percorreu toda a sequência (todos derivam epsilon)
+        first_sequencia.add('epsilon')
+    
+    return first_sequencia
 
 def calcular_FOLLOW(producoes, simbolo_inicial):
-    FIRST = calcular_FIRST(producoes)  # Calcula o conjunto FIRST necessário para FOLLOW
+    """
+    Calcula o conjunto FOLLOW para todos os não-terminais de uma gramática.
+    
+    Args:
+        producoes: Lista de strings representando as produções
+        simbolo_inicial: Símbolo inicial da gramática
+    
+    Returns:
+        Dicionário onde as chaves são não-terminais e valores são conjuntos FOLLOW
+    """
+    # Primeiro calcula o conjunto FIRST que será necessário
+    FIRST = calcular_FIRST(producoes)
     FOLLOW = {}
-
-    # Inicializa FOLLOW para todos os não-terminais
-    nao_terminais = {regra.split('\rightarrow')[0].strip() for regra in producoes}
+    
+    # Identifica todos os não-terminais
+    nao_terminais = set()
+    for producao in producoes:
+        X = producao.split('->')[0].strip()
+        nao_terminais.add(X)
+    
+    # Passo 1: Inicialização - cria conjuntos vazios para cada não-terminal
     for nao_terminal in nao_terminais:
         FOLLOW[nao_terminal] = set()
-
-    # Passo 2: Colocar o símbolo de fim de entrada ($) no FOLLOW do símbolo inicial
+    
+    # Passo 2: Adiciona $ ao FOLLOW do símbolo inicial
     FOLLOW[simbolo_inicial].add('$')
-
-    # Passo 3: Iteração para todos os não-terminais
-    mudou = True  # Flag para controlar se houve mudanças nos conjuntos FOLLOW
+    
+    # Passo 3: Iteração até convergência
+    mudou = True
     while mudou:
-        mudou = False  # Inicializa a flag como False no início de cada iteração
-        for producao in producoes:  # Para cada produção na gramática
-            partes = producao.split('\rightarrow')
-            A = partes[0].strip()  # Não-terminal do lado esquerdo da produção
-            alfa = partes[1].strip().split()  # Símbolos do lado direito da produção
-
+        mudou = False
+        for producao in producoes:
+            partes = producao.split('->')
+            A = partes[0].strip()
+            alfa = partes[1].strip().split()
+            
+            # Para cada símbolo na produção
             for i in range(len(alfa)):
-                B = alfa[i]  # Símbolo atual na produção
-                if B in nao_terminais:  # Se B é um não-terminal
-                    beta = alfa[i+1:]  # Símbolos após B na produção
-                    if beta:  # Se há símbolos após B
-                        # Calcula FIRST(beta) e adiciona ao FOLLOW(B) exceto por \varepsilon
-                        for simbolo in calcular_FIRST(['temp \rightarrow ' + ' '.join(beta)]).get('temp', []):
-                            if simbolo != '\varepsilon' and simbolo not in FOLLOW[B]:
-                                FOLLOW[B].add(simbolo)
-                                mudou = True
-                        # Se FIRST(beta) contém \varepsilon, adiciona FOLLOW(A) ao FOLLOW(B)
-                        if '\varepsilon' in calcular_FIRST(['temp \rightarrow ' + ' '.join(beta)]).get('temp', []):
+                B = alfa[i]
+                
+                # Se B é um não-terminal
+                if B in nao_terminais:
+                    beta = alfa[i+1:]  # símbolos após B
+                    
+                    # Se existe sequência beta após B
+                    if beta:
+                        # Calcula FIRST(beta)
+                        first_beta = calcular_first_da_sequencia(beta, FIRST, nao_terminais)
+                        
+                        # Adiciona FIRST(beta) - {epsilon} em FOLLOW(B)
+                        for simbolo in first_beta:
+                            if simbolo != 'epsilon':
+                                if simbolo not in FOLLOW[B]:
+                                    FOLLOW[B].add(simbolo)
+                                    mudou = True
+                        
+                        # Se epsilon está em FIRST(beta), adiciona FOLLOW(A) em FOLLOW(B)
+                        if 'epsilon' in first_beta:
                             for simbolo in FOLLOW[A]:
                                 if simbolo not in FOLLOW[B]:
                                     FOLLOW[B].add(simbolo)
                                     mudou = True
-                    else:  # Se não há símbolos após B
-                        # Adiciona FOLLOW(A) ao FOLLOW(B) diretamente
+                    
+                    # Se não há nada após B (B está no final)
+                    else:
+                        # Adiciona FOLLOW(A) em FOLLOW(B)
                         for simbolo in FOLLOW[A]:
                             if simbolo not in FOLLOW[B]:
                                 FOLLOW[B].add(simbolo)
                                 mudou = True
+    
     return FOLLOW
 
-# Exemplo de uso
-producoes = [
-    "S \rightarrow a B",
-    "S \rightarrow b A",
-    "A \rightarrow c",
-    "A \rightarrow d",
-    "B \rightarrow e",
-    "B \rightarrow f"
-]
-simbolo_inicial = "S"
-
-FOLLOW = calcular_FOLLOW(producoes, simbolo_inicial)
-for nao_terminal in FOLLOW:
-    print(f"FOLLOW({nao_terminal}) = {FOLLOW[nao_terminal]}")
+# Exemplo de uso completo
+if __name__ == "__main__":
+    # Definindo a gramática
+    producoes = [
+        "S -> a B",
+        "S -> b A",
+        "A -> c",
+        "A -> d",
+        "B -> e",
+        "B -> f"
+    ]
+    simbolo_inicial = "S"
+    
+    # Calculando FIRST
+    print("Conjuntos FIRST:")
+    FIRST = calcular_FIRST(producoes)
+    for nao_terminal in sorted(FIRST.keys()):
+        print(f"  FIRST({nao_terminal}) = {{{', '.join(sorted(FIRST[nao_terminal]))}}}")
+    
+    # Calculando FOLLOW
+    print("\nConjuntos FOLLOW:")
+    FOLLOW = calcular_FOLLOW(producoes, simbolo_inicial)
+    for nao_terminal in sorted(FOLLOW.keys()):
+        print(f"  FOLLOW({nao_terminal}) = {{{', '.join(sorted(FOLLOW[nao_terminal]))}}}")
 ```

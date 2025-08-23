@@ -21,9 +21,7 @@ book:
     - part: Analisadores Sintáticos
       chapters:
         - 04-Gramaticas.qmd    
-        - parsers.qmd
-        - first-follow.qmd
-        - tabela-derivacao.qmd
+        - 05-parsersLL1.qmd
     - part: Projeto da Disciplina - 2025-2
       chapters:
         - fase1.qmd
