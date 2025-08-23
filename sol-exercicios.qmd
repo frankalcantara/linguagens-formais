@@ -1400,7 +1400,7 @@ $$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) |
 
 **5.** Sim, é perfeitamente possível. Se o estado inicial q\_0 também é um estado de aceitação (q\_0inF), isso significa que a computação que começa e termina em q\_0 sem consumir nenhum símbolo é uma computação de aceitação. Portanto, a *string* vazia (epsilon) é aceita pelo autômato.
 
-### Exercícios 2 {@exercicios-2}
+### Exercícios 2
 
 **1.** Não, o autômato não é completo. Faltam transições para o símbolo 'd' a partir de q\_0 e para o símbolo 'l' a partir de q\_1. Para completá-lo, adicionamos q\_e:
 
@@ -1419,7 +1419,7 @@ $$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) |
 
 **2.5.** Sim, é muito comum. Isso é chamado de auto-loop ou laço. Significa que, ao ler um determinado símbolo, a máquina não precisa mudar a informação que está armazenando (representada pelo estado). Exemplo prático: no autômato que reconhece números com paridade par de '1's, a transição delta(q\_par,0)=q\_par indica que ler um '0' não muda a paridade, então a máquina permanece no mesmo estado.
 
-### Exercícios 3: {@exercicios-3}
+### Exercícios 3
 
 **1.** O diagrama de transições é o seguinte:
 
@@ -1471,7 +1471,7 @@ $$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) |
 | q\_C | \\\*q\_D | q\_A |
 | \\\*q\_D | q\_B | q\_A |
 
-### Exercícios 4: {@exercicios-4}
+### Exercícios 4
 
 **1.**
 
@@ -1503,7 +1503,7 @@ $$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) |
   * **Aceita**: aabb. Caminho: q\_ppxrightarrowaq\_ipxrightarrowaq\_ppxrightarrowbq\_pixrightarrowbq\_pp. Termina em q\_ppinF. Aceita.  
 * **Rejeitada**: ababa. Caminho: q\_ppxrightarrowaq\_ipxrightarrowbq\_iixrightarrowaq\_pixrightarrowbq\_ppxrightarrowaq\_ip. Termina em q\_ipnotinF. Rejeitada.
 
-### Exercícios 5: {@exercicios-5}
+### Exercícios 5
 
 **1.** Diagrama para "aba":
 
@@ -1550,7 +1550,7 @@ $$r_expr = ( )^* ((+|-)?( 0 | [1-9][0-9]^* ) |
 * q\_2xrightarrowrq\_4 (q\_4 é de aceitação)  
 * Todas as outras transições levam a um estado de erro q\_e.
 
-### Exercícios 6: {@Exercicios-6}
+### Exercícios 6
 
 **1.**
 O autômato união é construído usando o produto cartesiano dos conjuntos de estados:
@@ -1702,7 +1702,7 @@ $\delta((r_i,s_j), x) = (\delta_1(r_i,x), \delta_2(s_j,x))$
 
 Exemplos: $\varepsilon$, "00", "1", "10", "11", "0011", "1010"
 
-### Exercícios 7: {@Exercios-7}
+### Exercícios 7
 
 **1.** 
 **Especificação dos autômatos**:
@@ -1875,7 +1875,7 @@ $$\delta(((s_i, t_j), u_k), x) = ((\delta_1(s_i, x), \delta_2(t_j, x)), \delta_3
 
 O autômato resultante aceita strings que satisfazem simultaneamente a condição de união (começa com 'a' ou comprimento múltiplo de 3) e a condição de $M_3$ (contém 'bb').
 
-### Exercícios 8: {@Exercicios-8}
+### Exercícios 8
 
 **1.**
 
@@ -2061,7 +2061,7 @@ $$w \in \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
 **Resposta final**:
 $$\overline{L_1 \cap L_2 \cap L_3} = \overline{L_1} \cup \overline{L_2} \cup \overline{L_3}$$
 
-### Exercícios 10 {@Exercicios-10}
+### Exercícios 10
 
 **1.**
 

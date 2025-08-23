@@ -220,7 +220,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-Gramaticas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linguagens Livres de Contexto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gramáticas e Linguagens Livres de Contexto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -346,6 +346,19 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Está sem tempo? Leia o <a href=".\ex\05-expresso.html">Expresso</a>.</p>
+</div>
+</div>
 <p><strong>Elementar meu caro Watson!</strong> Mesmo que Sherlock nunca tenha dito esta frase nos livros de <a href="https://www.ebiografia.com/arthur_conan_doyle/">Sir Arthur Conan Doyle</a>, a lembrança do grande detetive ocupa meu imaginário sempre que falo de <em>parsers</em>. Assim como o grande detetive, o trabalho do <em>parser</em> será verificar todos os detalhes de uma cena e validar cada um dos seus itens em relação a um contexto. No nosso caso, a cena será formada por um <em>string</em> e o contexto do crime, será determinado por uma Tabela de Derivação. Infelizmente nosso detetive, o <em>parser</em> <span class="math inline">\(LL(1)\)</span>, nem de perto terá a mesma capacidade de Sherlock Holmes. Ainda que seja eficiente, um <em>parser</em> <span class="math inline">\(LL(1)\)</span> é linear e determinístico e, pensando bem, esta foi uma metáfora ruim. Mas, eu sempre quis começar um texto falado: elementar meu caro Watson!.</p>
 <p>Em geral, ainda que muitos lenços de papel tenham sido gastos durantes as avaliações de final de período, <em>parsers</em> <span class="math inline">\(LL(1)\)</span> são algoritmos simples.</p>
 <p>Um <em>parser</em> <span class="math inline">\(LL(1)\)</span> é um tipo de analisador sintático descendente que utiliza a análise preditiva, e uma tabela que chamarei de Tabela de Derivação, para determinar qual será a regra de produção que deverá ser aplicada em cada etapa da análise expandindo um símbolo não-terminal de acordo com uma de suas regras de produção, criando uma árvore sintática e permitindo a identificação de um <em>string</em> como parte de uma determinada linguagem. Esta ideia começou com o trabalho <a href="https://www.sciencedirect.com/science/article/pii/S0019995865904262"><em>On the Translation of Languages from Left to Right</em></a> de <a href="https://pt.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a> mas foi sendo aprimorada ao longo do tempo por pesquisadores como <a href="https://en.wikipedia.org/wiki/Alfred_Aho">Alfred Aho</a> e <a href="https://en.wikipedia.org/wiki/Jeffrey_Ullman">Jeffrey Ullman</a>, nas décadas de 1970 e 1980</p>
@@ -2747,8 +2760,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04-Gramaticas.html" class="pagination-link" aria-label="Linguagens Livres de Contexto">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linguagens Livres de Contexto</span></span>
+      <a href="./04-Gramaticas.html" class="pagination-link" aria-label="Gramáticas e Linguagens Livres de Contexto">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gramáticas e Linguagens Livres de Contexto</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

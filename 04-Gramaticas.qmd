@@ -1,9 +1,15 @@
-# Linguagens Livres de Contexto {#sec-lingagens-livres-de-contexto}
+# Gramáticas e Linguagens Livres de Contexto {#sec-lingagens-livres-de-contexto}
 
-No campo da ciência da computação teórica, a Hierarquia de Chomsky serve como o principal sistema de classificação para linguagens formais. Proposta por [Noam Chomsky](https://en.wikipedia.org/wiki/Noam_Chomsky), esta hierarquia organiza as linguagens em uma série de quatro níveis aninhados, cada um sendo um superconjunto do nível anterior. A classificação baseia-se na complexidade das regras gramaticais necessárias para gerar as _string_s de uma linguagem, estabelecendo uma correspondência direta entre a classe da linguagem, o tipo de gramática que a gera e o modelo de autômato capaz de reconhecê-la.1 Os níveis são:
+::: {.content-hidden when-format="pdf"}
+:::{.callout-tip}
+Está sem tempo? Leia o [Expresso](.\ex\04-expresso.html).
+:::
+:::
+
+No campo da ciência da computação teórica, a Hierarquia de Chomsky serve como o principal sistema de classificação para linguagens formais. Proposta por [Noam Chomsky](https://en.wikipedia.org/wiki/Noam_Chomsky), esta hierarquia organiza as linguagens em uma série de quatro níveis aninhados, cada um sendo um subconjunto do nível anterior $\text{Tipo 3} \subset \text{Tipo 2} \subset \text{Tipo 1} \subset \text{Tipo 0}$. A classificação baseia-se na complexidade das regras gramaticais necessárias para gerar as _strings_  de uma linguagem, estabelecendo uma correspondência direta entre a classe da linguagem, o tipo de gramática que a gera e o modelo de autômato capaz de reconhecê-la. Os níveis são:
 
 * **Tipo 3: Linguagens Regulares**, geradas por gramáticas regulares e reconhecidas por autômatos finitos. 
-* **Tipo 2: Linguagens Livres de Contexto**, geradas por gramáticas livres de contexto e reconhecidas por autômatos com pilha. 
+* **Tipo 2: Linguagens Livres de Contexto**, geradas por Gramáticas Livres de Contexto e reconhecidas por autômatos com pilha. 
 * **Tipo 1: Linguagens Sensíveis ao Contexto**, geradas por gramáticas sensíveis ao contexto e reconhecidas por autômatos linearmente limitados. 
 * **Tipo 0: Linguagens Recursivamente Enumeráveis**, geradas por gramáticas irrestritas e reconhecidas por Máquinas de Turing.
 
@@ -23,7 +29,7 @@ Durante esse período, vários paradigmas dominantes estavam sendo desafiados. O
 
 A Hierarquia de Chomsky emergiu de uma convergência sofisticada de lógica matemática, teoria dos autômatos e teoria das funções recursivas desenvolvidas entre as décadas de 1930 e 1950. Chomsky construiu sistematicamente sobre trabalhos matemáticos anteriores, criando uma síntese notável.
 
-**O trabalho de [Emil Post](https://en.wikipedia.org/wiki/Emil_Leon_Post) (1936-1944)** foi fundamental. Post desenvolveu _sistemas canônicos de Post_ usando técnicas de reescrita de _string_s que se tornaram fundamentais para a abordagem de Chomsky. Seu trabalho de 1936 _Processos combinatórios finitos – Formulação 1_ criou modelos computacionais essencialmente equivalentes às máquinas de Turing. Post queria _derivar mecanicamente inferências de uma sentença axiomática inicial_, e Chomsky aplicou diretamente essa estrutura lógica para descrever conjuntos de _string_s na linguagem humana.
+**O trabalho de [Emil Post](https://en.wikipedia.org/wiki/Emil_Leon_Post) (1936, 1944)** foi fundamental. Post desenvolveu _sistemas canônicos de Post_ usando técnicas de reescrita de _strings_  que se tornaram fundamentais para a abordagem de Chomsky. Seu trabalho de 1936 _Processos combinatórios finitos – Formulação 1_ criou modelos computacionais essencialmente equivalentes às máquinas de Turing. Post queria _derivar mecanicamente inferências de uma sentença axiomática inicial_, e Chomsky aplicou diretamente essa estrutura lógica para descrever conjuntos de _strings_  na linguagem humana.
 
 **O modelo de [McCulloch-Pitt](https://www.historyofinformation.com/detail.php?entryid=782)s de 1943** forneceu a ponte computacional. Seu trabalho _Um Cálculo Lógico das Ideias Imanentes na Atividade Nervosa_ ofereceu o primeiro modelo matemático conectando redes neurais à computação, levando diretamente à noção de autômatos finitos que se tornaram o Tipo-3 na Hierarquia de Chomsky. Eles demonstraram que neurônios poderiam funcionar como portas lógicas, estabelecendo a conexão entre sistemas biológicos e modelos computacionais formais.
 
@@ -41,7 +47,7 @@ O desenvolvimento dos **quatro tipos específicos de gramáticas emergiu da apli
 
 - O **Tipo 1 (Gramáticas Sensíveis ao Contexto)** adiciona a propriedade não-contrativa ($\mid \alpha \mid ≤ \mid \beta \mid$), correspondendo aos autômatos linearmente limitados. 
 
-- O **Tipo 2 (Gramáticas Livres de Contexto)(Gramáticas Livres de Contextos)** re_string_e o lado esquerdo a um único não-terminal ($A \rightarrow γ$), equivalendo aos autômatos de pilha. 
+- O **Tipo 2 (Gramáticas Livres de Contexto)** restringe o lado esquerdo a um único não-terminal ($A \rightarrow γ$), equivalendo aos autômatos de pilha.
 
 - O **Tipo 3 (Gramáticas Regulares)** impõe as restrições mais específicas em padrões terminal/não-terminal, correspondendo aos autômatos finitos.
 
@@ -51,20 +57,20 @@ Na ciência da computação, a hierarquia estabeleceu **as bases matemáticas pa
 
 ### Aplicações práticas em compiladores e processamento de linguagem
 
-Na análise léxica, gramáticas do Tipo-3 (regulares) e autômatos finitos tornaram-se fundamentais para _tokenizar_ código fonte, identificando palavras-chave, _string_s e identificadores. Na análise sintática, gramáticas do Tipo-2 (livres de contexto) formam a base teórica para analisar a maioria das linguagens de programação, lidando com estruturas aninhadas como parênteses, chamadas de função e estruturas de controle.
+Na análise léxica, gramáticas do Tipo-3 (regulares) e autômatos finitos tornaram-se fundamentais para _tokenizar_ código fonte, identificando palavras-chave, _strings_  e identificadores. Na análise sintática, gramáticas do Tipo-2 (livres de contexto) formam a base teórica para analisar a maioria das linguagens de programação, lidando com estruturas aninhadas como parênteses, chamadas de função e estruturas de controle.
 
-**Geradores de parser modernos usam especificações de Gramáticas Livres de Contextos** para gerar automaticamente parsers, com ferramentas implementando diretamente conceitos da Hierarquia de Chomsky. Subconjuntos de gramáticas livres de contexto (**LL**, **LR**) tornaram-se padrão para parsing eficiente, tornando a compilação tratável mantendo poder expressivo suficiente.
+**Geradores de parser modernos usam especificações de Gramáticas Livres de Contextos** para gerar automaticamente parsers, com ferramentas implementando diretamente conceitos da Hierarquia de Chomsky. Classes de Gramáticas Livres de Contexto (**LL**, **LR**) tornaram-se padrão para parsing eficiente, tornando a compilação tratável mantendo poder expressivo suficiente.
 
-A **Forma de Backus-Naur (BNF)** desenvolvida por [John Backus](https://en.wikipedia.org/wiki/John_Backus) e [Peter Naur](https://en.wikipedia.org/wiki/Peter_Naur) para ALGOL 60 foi criada com conhecimento explícito do trabalho anterior de Chomsky sobre Gramáticas Livres de Contexto, tornando-se o padrão da indústria para definir sintaxe de linguagens de programação e implementando diretamente conceitos de gramática formal de Chomsky.
+A **Forma de Backus-Naur ($BNF$)** desenvolvida por [John Backus](https://en.wikipedia.org/wiki/John_Backus) e [Peter Naur](https://en.wikipedia.org/wiki/Peter_Naur) para **ALGOL 60** foi criada com conhecimento explícito do trabalho anterior de Chomsky sobre Gramáticas Livres de Contexto, tornando-se o padrão da indústria para definir sintaxe de linguagens de programação e implementando diretamente conceitos de gramática formal de Chomsky.
 
 Não bastasse o que a atenta leitora viu até o momento, cada nível da hierarquia possui propriedades de complexidade computacional bem definidas. Linguagens regulares (Tipo 3) podem ser reconhecidas em tempo linear $O(n)$ com espaço constante. Linguagens livres de contexto (Tipo 2) são decidíveis em tempo polinomial $O(n^3)$ usando o algoritmo CYK, formando a base para a maioria dos compiladores de linguagens de programação. Linguagens sensíveis ao contexto (Tipo 1) são PSPACE-completas, com complexidade de tempo exponencial no pior caso, mas complexidade de espaço linear. Linguagens recursivamente enumeráveis (Tipo 0) são indecidíveis em geral.
 
 :::{callout-tip}
 **Algoritmo CYK (Cocke-Younger-Kasami)**
 
-O algoritmo CYK é um método de programação dinâmica para determinar se uma _string_ pertence a uma linguagem livre de contexto. Desenvolvido independentemente por Cocke, Younger e Kasami, o algoritmo requer que a gramática esteja na Forma Normal de Chomsky, onde todas as produções têm a forma $A \rightarrow BC$ ou $A \rightarrow a$.
+O algoritmo CYK é um método de programação dinâmica para determinar se uma _string_ pertence a uma linguagem livre de contexto. Desenvolvido independentemente por Cocke, Younger e Kasami, o algoritmo requer que a gramática esteja na Forma Normal de Chomsky, na qual todas as produções têm a forma $A \rightarrow BC$ ou $A \rightarrow a$.
 
-O algoritmo constrói uma tabela triangular de tamanho $n \times n$, onde $n$ é o comprimento da _string_ de entrada. Cada entrada $(i,j)$ da tabela indica quais não-terminais podem derivar a sub_string_ que inicia na posição $i$ com comprimento $j$. O preenchimento ocorre bottom-up: primeiro as sub_string_s de comprimento 1, depois 2, e assim sucessivamente até $n$.
+O algoritmo constrói uma tabela triangular de tamanho $n \times n$, na qual $n$ é o comprimento da _string_ de entrada. Cada entrada $(i,j)$ da tabela indica quais não-terminais podem derivar a sub_string_ que inicia na posição $i$ com comprimento $j$. O preenchimento ocorre bottom-up: primeiro as _substrings_  de comprimento 1, depois 2, e assim sucessivamente até $n$.
 
 A complexidade $O(n^3)$ resulta de três loops aninhados: dois para percorrer a tabela ($O(n^2)$ entradas) e um terceiro para testar todas as possíveis divisões de cada sub_string_ ($O(n)$ divisões por entrada). Esta complexidade polinomial torna o CYK prático para parsing de linguagens de programação, sendo fundamental na construção de parsers bottom-up.
 :::
@@ -85,7 +91,7 @@ Além disso, os lemas de bombeamento para cada classe fornecem ferramentas matem
 
 As linguagens regulares representam a classe mais fundamental e restrita da hierarquia. Elas são formalmente definidas como o conjunto de linguagens que podem ser descritas por expressões regulares ou, equivalentemente, geradas por gramáticas regulares.
 
-A estrutura de uma gramática regular é estritamente limitada. Suas regras de produção, que ditam como os símbolos podem ser reescritos, devem aderir a um formato rígido. Em uma gramática linear à direita, por exemplo, todas as regras devem ser da forma $A \rightarrow tN$ ou $A \rightarrow t$, onde $A$ e $N$ são símbolos não terminais e $t$ é uma _string_ de símbolos terminais que pode ser vazia. Uma restrição similar se aplica às gramáticas lineares à esquerda. Esta limitação estrutural não é meramente uma convenção; ela é a fonte da principal limitação computacional das linguagens regulares: a incapacidade de modelar dependências aninhadas ou recursivas. 
+A estrutura de uma gramática regular é estritamente limitada. Suas regras de produção, que ditam como os símbolos podem ser reescritos, devem aderir a um formato rígido. Em uma gramática linear à direita, por exemplo, todas as regras devem ser da forma $A \rightarrow tN$ ou $A \rightarrow t$, na qual $A$ e $N$ são símbolos não terminais e $t$ é uma _string_ de símbolos terminais que pode ser vazia. Uma restrição similar se aplica às gramáticas lineares à esquerda. Esta limitação estrutural não é meramente uma convenção; ela é a fonte da principal limitação computacional das linguagens regulares: a incapacidade de modelar dependências aninhadas ou recursivas. 
 
 O autômato finito, o reconhecedor para a classe das linguagens regulares, opera sem uma memória externa; seu único _histórico_ está contido no estado atual em que se encontra. Consequentemente, ele não pode _lembrar_ ou _contar_ ocorrências de símbolos para garantir correspondências em uma _string_. O exemplo canônico das limitações de um autômato finito são os parênteses aninhados. Um autômato finito não pode verificar se uma _string_ contém um número igual de parênteses abertos e fechados se estes parênteses puderem ser aninhados.
 
@@ -93,15 +99,13 @@ O autômato finito, o reconhecedor para a classe das linguagens regulares, opera
 
 A necessidade de modelar estruturas sintáticas mais complexas, como expressões aritméticas com parênteses aninhados, blocos de código delimitados (´begin´...´end´) ou estruturas de dados recursivas, revela a insuficiência das linguagens regulares. Para superar essas limitações, ascendemos na hierarquia para as linguagens livres de contexto.
 
-As Linguagens Livres de Contexto formam um superconjunto estrito das linguagens regulares; toda linguagem regular é, por definição, livre de contexto, mas o inverso não é verdadeiro. O poder expressivo adicional das Linguagens Livres de Contexto emana diretamente de uma flexibilização nas regras de produção de suas gramáticas. Em uma gramática livre de contexto (Gramáticas Livres de Contextos), uma regra de produção tem a forma
-
-A→β, onde A é um único símbolo não-terminal e β é uma _string_ qualquer de símbolos terminais e não terminais. A ausência de restrições sobre a posição dos não terminais em β permite a definição de recursão central, como na regra S→aSb, que é a chave para modelar estruturas aninhadas.2
+As Linguagens Livres de Contexto formam um superconjunto estrito das linguagens regulares; toda linguagem regular é, por definição, livre de contexto, mas o inverso não é verdadeiro. O poder expressivo adicional das Linguagens Livres de Contexto emana diretamente de uma flexibilização nas regras de produção de suas gramáticas. Em uma Gramática Livre de Contexto, uma regra de produção tem a forma $A \rightarrow \beta$, na qual $A$ é um único símbolo não-terminal e $\beta$ é uma _string_ qualquer de símbolos terminais e não terminais. A ausência de restrições sobre a posição dos não terminais em $\beta$ permite a definição de recursão central, como na regra $S \rightarrow aSb$, que é a chave para modelar estruturas aninhadas.
 
 ### Exemplos Práticos que Distinguem as Duas Classes
 
 A distinção teórica entre essas duas classes é melhor ilustrada pelo exemplo canônico da linguagem $L={a^n b^n \mid n \geq 0}$, que consiste em __strings__ com um número de `a`s seguido pelo mesmo número de `b`s.
 
-Esta linguagem não é regular. A tentativa de construir um autômato finito para reconhecê-la falha porque a máquina precisaria de uma quantidade infinita de estados para _lembrar_ o número exato de `a`s lidos e garantir que o número de `b`s corresponda. Uma prova formal de que $L$ não é  uma linguagem regular pode ser rigorosamente construída usando o Lema do Bombeamento para linguagens regulares. Este lema afirma que, para qualquer _string_ suficientemente longa em uma linguagem regular, existe uma sub_string_ que pode ser _bombeada_ (repetida um número arbitrário de vezes) e a nova _string_ resultante ainda pertencerá à linguagem. Ao aplicar o lema à _string_ $apbp$,  no qual $p$ é o comprimento de bombeamento, a sub_string_ bombeada consistirá inteiramente de `a`s, quebrando o equilíbrio entre `a`s e `b`s e provando que a linguagem não pode ser regular. No entanto, $L$ é uma linguagem livre de contexto por excelência. Ela pode ser gerada pela gramática extremamente simples e elegante:
+Esta linguagem não é regular. A tentativa de construir um autômato finito para reconhecê-la falha porque a máquina precisaria de uma quantidade infinita de estados para _lembrar_ o número exato de `a`s lidos e garantir que o número de `b`s corresponda. Uma prova formal de que $L$ não é uma linguagem regular pode ser rigorosamente construída usando o Lema do Bombeamento para linguagens regulares. Este lema afirma que, para qualquer _string_ suficientemente longa em uma linguagem regular, existe uma sub_string_ que pode ser _bombeada_ (repetida um número arbitrário de vezes) e a nova _string_ resultante ainda pertencerá à linguagem. Ao aplicar o lema à _string_ com $p$ 'a's seguidos de $p$ 'b's é a $a^pb^p$, no qual $p$ é o comprimento de bombeamento, a sub_string_ bombeada consistirá inteiramente de `a`s, quebrando o equilíbrio entre `a`s e `b`s e provando que a linguagem não pode ser regular. No entanto, $L$ é uma linguagem livre de contexto por excelência. Ela pode ser gerada pela gramática extremamente simples e elegante:
 
 $$S \rightarrow aSb \mid \epsilon$$
 
@@ -112,11 +116,11 @@ A atenta leitora deve observar que essa progressão não é apenas um exercício
 | Característica | Linguagens Regulares (Tipo 3) | Linguagens Livres de Contexto (Tipo 2) |
 | :---- | :---- | :---- |
 | **Tipo de Gramática** | Gramática Regular | Gramática Livre de Contexto |
-| **Formato das Regras** | Restrito (ex.: $A \rightarrow aB$ ou $A\rightarrow a$) | Irrestrito (ex.: $A \rightarrow \beta$, onde $\beta$ é qualquer _string_) |
-| **Autômato Reconhecedor** | Autômato Finito (AF) | Autômato com Pilha (Autômato de Pilha) |
+| **Formato das Regras** | Restrito (ex.: $A \rightarrow aB$ ou $A\rightarrow a$) | Irrestrito (ex.: $A \rightarrow \beta$, na qual $\beta$ é qualquer _string_) |
+| **Autômato Reconhecedor** | Autômato Finito | Autômato com Pilha |
 | **Capacidade de _Memória_** | Nenhuma (limitada a estados finitos) | Ilimitada (via pilha LIFO) |
-| **Exemplo Característico** | $a(ba)^∗$ | $a^n b^n$ para $n≥0$ |
-| **Exemplo Não-Pertencente** | $a^n b^n$ para $n≥0$ | $a^n b^n c^n$ para $n≥0$ |
+| **Exemplo Característico** | $a(ba)^∗$ | $a^nb^n$ para $n \geq 0$ |
+| **Exemplo Não-Pertencente** | $a^nb^n$ para $n \geq 0$ | $a^nb^nc^n$ para $n \geq 0$ |
 
 : Resumo das características e diferenças das linguagens regulares e livres de contexto.{#tbl-resumo1}
 
@@ -126,30 +130,30 @@ A atenta leitora verá que para analisar e processar linguagens com estruturas a
 
 O termo _livre de contexto_ é fundamental para a compreensão da natureza das gramáticas que a atenta leitora estudará neste capítulo. Esse termo significa que a aplicação de uma regra de produção $A\rightarrow \beta$ a um símbolo não-terminal $A$ é incondicional; ela pode ocorrer independentemente dos símbolos que cercam $A$, seu _contexto_, em uma forma sentencial intermediária. Esta propriedade simplifica a análise sintática em comparação com gramáticas mais complexas, como as sensíveis ao contexto (Tipo 1).
 
-Formalmente, uma Gramática Livre de Contexto é definida como uma quádrupla $G=(N,\Sigma,P,S)$, na qual cada componente é um conjunto e tem um papel específico na geração das _string_s da linguagem. Os quatro componentes da tupla que define uma Gramáticas Livres de Contextos são:
+Formalmente, uma Gramática Livre de Contexto é definida como uma quádrupla $G=(N,\Sigma,P,S)$, na qual cada componente é um conjunto e tem um papel específico na geração das _strings_  da linguagem. Os quatro componentes da tupla que define uma Gramática Livre de Contexto são:
 
 1. **N: O Conjunto de Símbolos Não Terminais.** Este é um conjunto finito de variáveis que representam as diferentes construções sintáticas ou categorias gramaticais da linguagem. Por exemplo, em uma gramática para uma linguagem de programação, os não terminais podem incluir EXPRESSÃO, COMANDO e DECLARAÇÃO. Eles são os elementos que podem ser substituídos ou expandidos durante o processo de derivação e que aqui, neste livro, serão representados por letras maiúsculas do alfabeto latino.
 
-2. **$\Sigma$: O Conjunto de Símbolos Terminais.** Este é um conjunto finito, disjunto de *N*, que constitui o alfabeto da linguagem. Os terminais são os símbolos literais, os _átomos_ que compõem as _string_s finais da linguagem e não podem ser mais decompostos. Exemplos incluem palavras-chave (`if`, `while`, etc.), operadores (`+`, `\`, `*`, etc.) e identificadores (`contador`, `salario`, etc.).
+2. **$\Sigma$: O Conjunto de Símbolos Terminais.** Este é um conjunto finito, disjunto de *N*, que constitui o alfabeto da linguagem. Os terminais são os símbolos literais, os _átomos_ que compõem as _strings_  finais da linguagem e não podem ser mais decompostos. Exemplos incluem palavras-chave (`if`, `while`, etc.), operadores (`+`, `\`, `*`, etc.) e identificadores (`contador`, `salario`, etc.).
 
-3. **P: O Conjunto de Regras de Produção.** Este é um conjunto finito de regras que definem como os não terminais podem ser substituídos. Cada regra tem a forma $A \rightarrow β$, onde $A\in N$ é um único não-terminal (a _cabeça_ da produção) e $\beta \in (N∪Σ)^∗$ é uma _string_, possivelmente vazia, de símbolos terminais e/ou não terminais que chamaremos de _corpo_ da produção. Essas regras são o motor do sistema gerativo.
+3. **P: O Conjunto de Regras de Produção.** Este é um conjunto finito de regras que definem como os não terminais podem ser substituídos. Cada regra tem a forma $A \rightarrow β$, na qual $A\in N$ é um único não-terminal (a _cabeça_ da produção) e $\beta \in (N∪Σ)^∗$ é uma _string_, possivelmente vazia, de símbolos terminais e/ou não terminais que chamaremos de _corpo_ da produção. Essas regras são o motor do sistema gerativo.
 
 4. **S: O Símbolo Inicial.** Um não-terminal especial, $S \in N$, que serve como ponto de partida para todas as derivações. Ele geralmente representa a construção sintática mais abrangente da linguagem, como um programa ou uma sentença.
 
-A linguagem gerada por uma gramática $G$, denotada por $L(G)$, é o conjunto de todas as _string_s de símbolos terminais que podem ser derivadas a partir do símbolo inicial $S$ por meio da aplicação sucessiva das regras de produção em $P$.
+A linguagem gerada por uma gramática $G$, denotada por $L(G)$, é o conjunto de todas as _strings_  de símbolos terminais que podem ser derivadas a partir do símbolo inicial $S$ por meio da aplicação sucessiva das regras de produção em $P$.
 
-Embora a definição formal de uma Gramáticas Livres de Contextos seja inerentemente gerativa, descrevendo como construir sentenças válidas a partir de $S$, sua aplicação primária em compiladores é reconhecedora. O objetivo de um analisador sintático não é gerar programas aleatórios, mas sim verificar se uma dada sequência de _tokens_, produzida pelo programador, pode ser gerada pela gramática. A gramática, portanto, atua como a especificação formal contra a qual o processo de reconhecimento é executado. O parser, na prática, tenta reverter o processo de derivação para validar a estrutura do programa fonte.
+Embora a definição formal de uma Gramática Livre de Contexto seja inerentemente gerativa, descrevendo como construir sentenças válidas a partir de $S$, sua aplicação primária em compiladores é reconhecedora. O objetivo de um analisador sintático não é gerar programas aleatórios, mas sim verificar se uma dada sequência de _tokens_, produzida pelo programador, pode ser gerada pela gramática. A gramática, portanto, atua como a especificação formal contra a qual o processo de reconhecimento é executado. O parser, na prática, tenta reverter o processo de derivação para validar a estrutura do programa fonte.
 
 ### Exemplo Canônico: A Linguagem dos Palíndromos
 
-Para solidificar esses conceitos abstratos, vamos construir uma Gramáticas Livres de Contextos para a linguagem dos palíndromos sobre o alfabeto $\Sigma = \{0,1\}$. Só para refrescar a memória: um palíndromo é uma _string_ que se lê da mesma forma da esquerda para a direita e da direita para a esquerda.
+Para solidificar esses conceitos abstratos, vamos construir uma Gramática Livre de Contexto para a linguagem dos palíndromos sobre o alfabeto $\Sigma = \{0,1\}$. Só para refrescar a memória: um palíndromo é uma _string_ que se lê da mesma forma da esquerda para a direita e da direita para a esquerda.
 
 A estrutura recursiva dos palíndromos pode ser definida da seguinte forma:
 
 1. **Casos Base**: A _string_ vazia ($\epsilon$), `0` e `1` são palíndromos. 
 2. **Passo Indutivo**: Se $w$ é um palíndromo, então $0w0$ e $1w1$ também são palíndromos.
 
-Esta definição recursiva pode ser traduzida diretamente em um conjunto de regras de produção para uma Gramáticas Livres de Contextos. Seja $K$ o nosso símbolo não-terminal para _palíndromo_:
+Esta definição recursiva pode ser traduzida diretamente em um conjunto de regras de produção para uma Gramática Livre de Contexto. Seja $K$ o nosso símbolo não-terminal para _palíndromo_:
 
 1. $K \rightarrow \epsilon$  
 2. $K \rightarrow 0$  
@@ -258,6 +262,128 @@ Faça a derivação da *_string_* `()(())`.
 
 Usando a gramática de palíndromos $G_{pal}$ do primeiro exercício, faça a derivação da *_string_* vazia, $\epsilon$.
 
+## A Notação $BNF$ {#sec-notacao-BNF}
+
+A **F**orma de **B**ackus-**N**aur, universalmente conhecida pela sigla **$BNF$**, representa um dos sistemas de notação mais elegantes e influentes da ciência da computação teórica. Desenvolvida no final da década de 1950 para descrever formalmente a sintaxe da linguagem de programação **ALGOL 60**, a $BNF$ tornou-se o padrão _de facto_ para especificar a sintaxe de linguagens de programação e protocolos de comunicação.
+
+### Contexto Histórico e Desenvolvimento
+
+A criação da $BNF$ emergiu de uma necessidade prática urgente durante o desenvolvimento de **ALGOL 60**. **[John Backus](https://en.wikipedia.org/wiki/John_Backus)**, líder do projeto, enfrentava o desafio de descrever a sintaxe da linguagem de forma precisa e não ambígua para uma audiência internacional de implementadores. As descrições informais em linguagem natural mostravam-se inadequadas, gerando interpretações divergentes e implementações incompatíveis.
+
+A solução veio através da colaboração entre Backus e **[Peter Naur](https://en.wikipedia.org/wiki/Peter_Naur)**, que refinou e popularizou a notação. Naur, como editor do relatório **ALGOL 60**, foi responsável por sistematizar e formalizar o que inicialmente eram esboços conceituais de Backus. A notação resultante combinava a precisão matemática das gramáticas formais com uma legibilidade que a tornava acessível tanto para teóricos quanto para implementadores práticos.
+
+A $BNF$ foi desenvolvida com conhecimento explícito dos trabalhos de Chomsky sobre Gramáticas Livres de Contexto. Backus e Naur compreenderam que estavam essencialmente criando uma notação prática para expressar gramáticas do Tipo 2 da Hierarquia de Chomsky, estabelecendo assim uma ponte fundamental entre a teoria formal e a aplicação industrial.
+
+### Estrutura e Componentes da Notação $BNF$
+
+A $BNF$ define uma gramática através de um conjunto de **regras de produção** (ou **regras de reescrita**), na qual cada regra especifica como um símbolo não-terminal pode ser expandido em uma sequência de símbolos terminais e não-terminais. A estrutura básica de uma regra $BNF$ segue o padrão:
+
+```bnf
+<símbolo-não-terminal> ::= expressão-alternativa
+```
+
+Os elementos fundamentais da notação $BNF$ são:
+
+1. **Símbolos Não-terminais**: representados entre colchetes angulares (`< >`), estes são os elementos que podem ser definidos por outras regras. Exemplos: `<expressão>`, `<comando>`, `<identificador>`.
+
+2. **Símbolos Terminais**: representam os elementos atômicos da linguagem - palavras-chave, operadores, delimitadores. São escritos literalmente, frequentemente entre aspas. Exemplos: `"if"`, `"+"`, `";"`.
+
+3. **Operador de Definição** (`::=`): lê-se "é definido como" ou "pode ser substituído por". Estabelece a relação entre o lado esquerdo (não-terminal) e o lado direito (expressão de definição).
+
+4. **Operador de Alternativa** (`|`): indica escolhas mutuamente exclusivas. Lê-se "ou". Permite múltiplas definições para um mesmo não-terminal.
+
+5. **Agrupamento**: parênteses são utilizados para agrupar elementos e controlar a precedência das operações.
+
+### Exemplo Fundamental: Expressões Aritméticas Simples
+
+Para ilustrar a aplicação prática da $BNF$, consideremos uma gramática para expressões aritméticas básicas que inclui adição, multiplicação, parênteses e identificadores:
+
+```bnf
+<expressão>     ::= <termo> "+" <expressão> | <termo>
+<termo>         ::= <fator> "*" <termo> | <fator>
+<fator>         ::= "(" <expressão> ")" | <identificador>
+<identificador> ::= <letra> | <letra> <identificador>
+<letra>         ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | 
+                    "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | 
+                    "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | 
+                    "y" | "z"
+```
+
+Esta gramática demonstra características essenciais da $BNF$:
+
+- **Hierarquia de Precedência**: a estrutura `<expressão>` → `<termo>` → `<fator>` estabelece que multiplicação tem precedência sobre adição.
+- **Recursão**: `<expressão>` referencia a si mesma, permitindo expressões de comprimento arbitrário.
+- **Associatividade**: a recursão à direita em `<termo> "+" <expressão>` define associatividade à esquerda para adição.
+
+Utilizando a gramática acima, podemos derivar a expressão `a + b * c`:
+
+```bnf
+<expressão>
+→ <termo> "+" <expressão>
+→ <fator> "+" <expressão>
+→ <identificador> "+" <expressão>
+→ <letra> "+" <expressão>
+→ "a" "+" <expressão>
+→ "a" "+" <termo>
+→ "a" "+" <fator> "*" <termo>
+→ "a" "+" <identificador> "*" <termo>
+→ "a" "+" <letra> "*" <termo>
+→ "a" "+" "b" "*" <termo>
+→ "a" "+" "b" "*" <fator>
+→ "a" "+" "b" "*" <identificador>
+→ "a" "+" "b" "*" <letra>
+→ "a" "+" "b" "*" "c"
+```
+
+Esta derivação demonstra como a gramática força a interpretação `a + (b * c)`, respeitando a precedência de operadores.
+
+:::{.callout-tip}
+**Extensões da $BNF$**
+
+A $BNF$ original foi posteriormente estendida para aumentar sua expressividade e conveniência:
+
+- **$EBNF$ (Extended $BNF$)**: introduz operadores adicionais como `{}` para repetição (zero ou mais), `[]` para elementos opcionais, e `()` para agrupamento explícito.
+
+- **$ABNF$ (Augmented $BNF$)**: usado em RFCs da Internet, adiciona suporte para especificação de repetições numéricas e valores em diferentes bases.
+
+Exemplo em EBNF:
+
+```ebnf
+identificador = letra, { letra | dígito };
+letra = "a" | "b" | ... | "z";
+dígito = "0" | "1" | ... | "9";
+```
+
+Esta notação é equivalente à $BNF$ original, mas significativamente mais concisa.
+:::
+
+### Comparação com Gramáticas Livres de Contexto
+
+A $BNF$ é essencialmente uma notação alternativa para Gramáticas Livres de Contexto. A correspondência é direta, como pode ser visto na @tbl-compara2:
+
+| Elemento GLC | Notação $BNF$ | Exemplo |
+|:-------------|:------------|:--------|
+| Não-terminal | `<símbolo>` | `<expressão>` |
+| Terminal | Literal ou entre aspas | `"if"`, `+` |
+| Regra de produção | `::=` | `<E> ::= <E> + <T>` |
+| Alternativas | `\|` | `<E> ::= <T> \| <E> + <T>` |
+
+: Correspondência entre elementos de Gramáticas Livres de Contexto e notação $BNF$. {#tbl-compara2}
+
+### Aplicações e Influência
+
+A $BNF$ estabeleceu um precedente que influenciou profundamente o desenvolvimento de linguagens de programação e ferramentas de compilação:
+
+**Especificação de Linguagens**: praticamente todas as linguagens modernas utilizam variações da $BNF$ para definir sintaxe formal. Exemplos incluem C, Pascal, Ada, e mais recentemente, linguagens como Python e Rust.
+
+**Geradores de Parsers**: ferramentas como YACC, Bison, ANTLR e muitas outras utilizam sintaxe baseada em $BNF$ como entrada, traduzindo especificações declarativas em código de análise sintática.
+
+**Protocolos de Rede**: muitos [RFCs](https://en.wikipedia.org/wiki/Request_for_Comments) da Internet utilizam $ABNF$ para especificar protocolos como HTTP, SMTP, e URI.
+
+**Documentação Técnica**: A $BNF$ tornou-se linguagem franca para comunicar especificações sintáticas de forma precisa e não ambígua.
+
+A elegância da $BNF$ reside em sua capacidade de tornar formal acessível. Ela democratizou a especificação rigorosa de linguagens, permitindo que desenvolvedores sem formação profunda em teoria formal pudessem criar e comunicar especificações precisas. Esta contribuição para a prática da engenharia de software não pode ser subestimada: a $BNF$ facilitou o desenvolvimento sistemático e a interoperabilidade de linguagens de programação, estabelecendo as fundações sobre as quais repousa muito do ecossistema computacional contemporâneo.
+
 ## Geração de Sentenças: Derivações, Árvores e Ambiguidade
 
 Uma **derivação** é a sequência de passos que transforma o símbolo inicial em uma _string_ final de terminais por meio da aplicação das regras de produção. Exatamente o processo que a esforçada leitora aprendeu na seção @sec-anatomia-gramaticas-livres-de-contexto. Em cada passo, um não-terminal é escolhido e substituído pelo corpo de uma da regras de produção deste não-terminal. Como uma forma sentencial intermediária pode conter múltiplos não terminais, precisaremos de uma  convenção para determinar qual deles expandir. Isso leva a duas estratégias de derivação:
@@ -325,7 +451,7 @@ Observando as duas derivações é possível perceber que a gramática usada nes
 3. **Estrutura única**: Para qualquer _string_ válida, existe exatamente uma árvore de derivação,
    independentemente da ordem de derivação (leftmost ou rightmost).
 
-A atenta leitora deve notar que embora a sequência de passos seja diferente nas duas derivações, ambas produzem a mesma estrutura sintática: $id + (id * id)$, onde a multiplicação tem precedência sobre a adição.
+A atenta leitora deve notar que embora a sequência de passos seja diferente nas duas derivações, ambas produzem a mesma estrutura sintática: $id + (id * id)$, na qual a multiplicação tem precedência sobre a adição.
 
 ### A Construção de Árvores de Derivação
 
@@ -338,7 +464,7 @@ O processo mais intuitivo de visualizar a estrutura hierárquica imposta por uma
 
 A concatenação das folhas da árvore, lidas da esquerda para a direita, forma a sentença gerada, também conhecida como _yield_ da árvore. A árvore de derivação captura a estrutura sintática essencial da sentença, tornando explícitas as relações entre suas subpartes.
 
-**Exemplo 2:** Gramática Não Ambígua para Listas {#sec-derivacao-listas-exemplo2}
+**Exemplo 2:** Gramática Não Ambígua para Listas
 
 Considere a gramática definida como:
 
@@ -375,15 +501,15 @@ L &\Rightarrow [E]                  &&\text{[regra 1: expandir L]}\\
 \end{align}
 $$
 
-A @fig-deriva1 apresenta as duas árvores de derivação para a _string_ "[a, b, a]".
+A @fig-deriva1 apresenta duas árvores geradas por dois processos de derivação, um à esquerda e outro à direita, para a _string_ "[a, b, a]". A atenta leitora deve observar que as árvores são iguais.
 
 :::{#fig-deriva1}
 ![](images/deriva1.webp)
 
-Apresentação das duas árvores de derivação de "[a, b, a]" de forma gráfica.
+Apresentação das árvores de derivação à esquerda e à direita da _string_ "[a, b, a]" de forma gráfica.
 :::
 
-**Exemplo 3**: Considerando a gramática do Exemplo 2 @sec-derivacao-listas-exemplo2, faça a derivação da _string_ "[b]"
+**Exemplo 3**: Considerando a gramática do Exemplo 2, faça a derivação da _string_ "[b]"
 
 Novamente, começando com a Derivação Mais à Esquerda (_Leftmost_):
 
@@ -472,7 +598,7 @@ Analisando a sequência `id + id * id`, podemos observar que esta _string_ pode 
 
 A ambiguidade em gramáticas formais manifesta-se de diferentes formas e com distintos níveis de penetração na estrutura da linguagem:
 
-A **ambiguidade local** representa conflitos que afetam construções sintáticas específicas e bem delimitadas dentro da gramática. O exemplo mais emblemático desta categoria são os problemas de precedência de operadores, onde a gramática permite múltiplas interpretações para expressões como `id + id * id`. Neste caso, a ambiguidade está circunscrita às regras que governam operadores aritméticos e pode ser resolvida através da reescrita da gramática ou da especificação explícita de precedência e associatividade.
+A **ambiguidade local** representa conflitos que afetam construções sintáticas específicas e bem delimitadas dentro da gramática. O exemplo mais emblemático desta categoria são os problemas de precedência de operadores, nos quais a gramática permite múltiplas interpretações para expressões como `id + id * id`. Neste caso, a ambiguidade está circunscrita às regras que governam operadores aritméticos e pode ser resolvida através da reescrita da gramática ou da especificação explícita de precedência e associatividade.
 
 A **ambiguidade global**, por outro lado, permeia toda a estrutura da gramática e afeta a arquitetura fundamental da linguagem. O problema clássico do _dangling else_ exemplifica perfeitamente esta categoria. Quando uma construção como `if (c1) if (c2) s1 else s2` pode ser interpretada de duas formas distintas, a ambiguidade não está limitada a uma regra específica, mas emerge da interação complexa entre múltiplas produções que definem comandos condicionais aninhados.
 
@@ -482,7 +608,7 @@ A **ambiguidade de precedência** surge quando operadores de diferentes níveis 
 
 A **ambiguidade de associatividade** manifesta-se quando operadores do mesmo nível de precedência podem ser agrupados tanto à esquerda quanto à direita, alterando o resultado da computação. Por exemplo, em uma expressão como `a - b - c`, a associatividade à esquerda produz `(a - b) - c`, enquanto a associatividade à direita resulta em `a - (b - c)`. Embora matematicamente equivalentes para operações comutativas como adição, essa distinção torna-se crítica para operações não-comutativas.
 
-A **ambiguidade estrutural** representa a forma mais complexa e desafiadora de ambiguidade, onde diferentes agrupamentos de construções sintáticas produzem estruturas hierárquicas distintas. Esta categoria transcende questões operacionais e atinge o núcleo da organização sintática da linguagem, afetando como blocos de código, estruturas de controle e definições de escopo são interpretados pelo compilador.
+A **ambiguidade estrutural** representa a forma mais complexa e desafiadora de ambiguidade, na qual diferentes agrupamentos de construções sintáticas produzem estruturas hierárquicas distintas. Esta categoria transcende questões operacionais e atinge o núcleo da organização sintática da linguagem, afetando como blocos de código, estruturas de controle e definições de escopo são interpretados pelo compilador.
 
 **Exemplo 2**: o Problema do _Dangling Else_
 
@@ -624,23 +750,23 @@ Nesta gramática, $M$ (matched) representa comandos completos nos quais todo `if
 
 A identificação de ambiguidade em uma gramática arbitrária é, em geral, um **problema indecidível**. Ou seja, não existe um algoritmo que sempre termine e determine se qualquer gramática é ambígua. Entretanto, a atenta leitora pode empregar uma das seguintes estratégias práticas:
 
-1. Abordagens Algorítmicas:
+1. **Abordagens Algorítmicas**
 
-**Verificação exaustiva limitada**: Para gramáticas pequenas, pode-se enumerar sistematicamente todas as derivações para _strings_ até um comprimento $n$ fixo. Se duas árvores de derivação distintas forem encontradas para a mesma _string_, a ambiguidade está provada. Esta técnica, embora computacionalmente intensiva, é conclusiva quando encontra ambiguidade.
+   **Verificação exaustiva limitada**: Para gramáticas pequenas, pode-se enumerar sistematicamente todas as derivações para _strings_ até um comprimento $n$ fixo. Se duas árvores de derivação distintas forem encontradas para a mesma _string_, a ambiguidade está provada. Esta técnica, embora computacionalmente intensiva, é conclusiva quando encontra ambiguidade.
 
-**Análise de tabelas de parsing**: Ferramentas como YACC e Bison constroem tabelas de ação/transição para parsers LR. A presença de **conflitos shift/reduce** ou **reduce/reduce** nestas tabelas indica potencial ambiguidade. Um conflito shift/reduce ocorre quando o parser não consegue decidir entre consumir mais entrada ou aplicar uma redução; um conflito reduce/reduce surge quando múltiplas produções podem ser aplicadas.
+   **Análise de tabelas de parsing**: Ferramentas como YACC e Bison constroem tabelas de ação/transição para parsers $LR$. A presença de **conflitos shift/reduce** ou **reduce/reduce** nestas tabelas indica potencial ambiguidade. Um conflito shift/reduce ocorre quando o parser não consegue decidir entre consumir mais entrada ou aplicar uma redução; um conflito reduce/reduce surge quando múltiplas produções podem ser aplicadas.
 
-**Verificadores especializados**: Ferramentas como o [CFG checker](https://github.com/stepchowfun/cfg-checker) empregam técnicas sofisticadas de análise estática para detectar ambiguidade, incluindo aproximações conservativas que podem provar não-ambiguidade para classes específicas de gramáticas.
+   **Verificadores especializados**: Ferramentas como o [CFG checker](https://github.com/stepchowfun/cfg-checker) empregam técnicas sofisticadas de análise estática para detectar ambiguidade, incluindo aproximações conservativas que podem provar não-ambiguidade para classes específicas de gramáticas.
 
-2. Heurísticas e Padrões Problemáticos
+2. **Heurísticas e Padrões Problemáticos**
 
 A experiência acumulada na construção de compiladores identificou padrões gramaticais que frequentemente indicam ambiguidade:
 
-**Produções recursivas bilaterais**: Regras da forma $A \rightarrow A \alpha A$ são quase sempre ambíguas, pois permitem múltiplas formas de agrupar três ou mais ocorrências de $A$.
+   **Produções recursivas bilaterais**: Regras da forma $A \rightarrow A \alpha A$ são quase sempre ambíguas, pois permitem múltiplas formas de agrupar três ou mais ocorrências de $A$.
 
-**Prefixos comuns extensos**: Quando múltiplas produções para o mesmo não-terminal compartilham longos prefixos, como $A \rightarrow \alpha\beta\gamma$ e $A \rightarrow \alpha\beta\delta$, a decisão sobre qual produção aplicar pode requerer lookahead arbitrariamente longo.
+   **Prefixos comuns extensos**: Quando múltiplas produções para o mesmo não-terminal compartilham longos prefixos, como $A \rightarrow \alpha\beta\gamma$ e $A \rightarrow \alpha\beta\delta$, a decisão sobre qual produção aplicar pode requerer _Lookahead_arbitrariamente longo.
 
-**Aninhamento sem delimitadores explícitos**: Construções que permitem aninhamento sem marcadores claros de início e fim, como o problema clássico do *dangling else*, invariavelmente levam a ambiguidade estrutural.
+   **Aninhamento sem delimitadores explícitos**: Construções que permitem aninhamento sem marcadores claros de início e fim, como o problema clássico do *dangling else*, invariavelmente levam a ambiguidade estrutural.
 
 ## Autômatos com Pilha: A Máquina por Trás das Linguagens Livres de Contexto
 
@@ -660,132 +786,112 @@ Esta capacidade de armazenar e recuperar informações de forma estruturada conf
 
 ### A Equivalência Fundamental
 
-O resultado mais importante da teoria das Linguagens Livres de Contexto é a equivalência formal entre gramáticas livres de contexto e autômatos com pilha. Uma linguagem é livre de contexto se, e somente se, existe um autômato com pilha que a reconhece.
+**O resultado mais importante da teoria das Linguagens Livres de Contexto é a equivalência formal entre Gramáticas Livres de Contexto e autômatos com pilha. Uma linguagem é livre de contexto se, e somente se, existe um autômato com pilha que a reconhece.**
 
-Esta equivalência é a espinha dorsal da análise sintática. Ela garante que para qualquer sintaxe de linguagem de programação que possa ser descrita por uma Gramáticas Livres de Contextos, podemos construir um mecanismo computacional o Autômato de Pilha para reconhecer programas escritos nessa linguagem. É importante notar que a classe de linguagens reconhecidas por Autômatos de Pilha não determinísticos é estritamente maior que a classe reconhecida por Autômatos de Pilha determinísticos. São os Autômatos de Pilha não determinísticos que são equivalentes em poder às Gramáticas Livres de Contextos em geral.
+Esta equivalência é a espinha dorsal da análise sintática. Ela garante que para qualquer sintaxe de linguagem de programação que possa ser descrita por uma Gramática Livre de Contexto, podemos construir um mecanismo computacional o Autômato de Pilha para reconhecer programas escritos nessa linguagem. É importante notar que a classe de linguagens reconhecidas por Autômatos de Pilha não determinísticos é estritamente maior que a classe reconhecida por Autômatos de Pilha Determinísticos. **São os Autômatos de Pilha não Determinísticos que são equivalentes em poder às Gramáticas Livres de Contexto em geral**.
 
-A escolha de uma pilha como o mecanismo de memória para reconhecer Linguagens Livres de Contexto não é acidental. A estrutura **LIFO** de uma pilha espelha perfeitamente a natureza recursiva e aninhada das derivações em uma Gramáticas Livres de Contextos. Considere novamente a gramática $S \rightarrow aSb$ para a linguagem $a^nb^n$. A derivação de `aabb` será dada por  $S\Rightarrow aSb \Rightarrow aaSbb \Rightarrow aabb$. Observe como a estrutura se expande simetricamente _de dentro para fora_. Um Autômato de Pilha para esta linguagem implementa essa simetria de forma operacional: ao ler um `a`, ele empilha um símbolo de marcador (ex.: $X$); ao ler o próximo `a`, empilha outro $X$. Quando começa a ler os `b`s, ele desempilha um X para cada `b` lido. Se a entrada terminar exatamente quando a pilha se esvaziar, a _string_ é aceita. O processo de empilhar na primeira metade e desempilhar na ordem inversa na segunda metade é a encarnação mecânica da recursão gramatical. A pilha _lembra_ as obrigações sintáticas (gerar um `b` correspondente para cada `a`) e as descarrega na ordem correta, tornando-a a estrutura de dados canónica para processar estruturas livres de contexto.
+A escolha de uma pilha como o mecanismo de memória para reconhecer Linguagens Livres de Contexto não é acidental. A estrutura **LIFO** de uma pilha espelha perfeitamente a natureza recursiva e aninhada das derivações em uma Gramática Livre de Contexto.
+Considere novamente a gramática $S \rightarrow aSb$ para a linguagem $a^nb^n$. A derivação de `aabb` será dada por  $S\Rightarrow aSb \Rightarrow aaSbb \Rightarrow aabb$. Observe como a estrutura se expande simetricamente _de dentro para fora_. Um Autômato de Pilha para esta linguagem implementa essa simetria de forma operacional: ao ler um `a`, ele empilha um símbolo de marcador (ex.: $X$); ao ler o próximo `a`, empilha outro $X$. Quando começa a ler os `b`s, ele desempilha um $X$ para cada `b` lido. Se a entrada terminar exatamente quando a pilha se esvaziar, a _string_ é aceita. O processo de empilhar na primeira metade e desempilhar na ordem inversa na segunda metade é a encarnação mecânica da recursão gramatical. A pilha _lembra_ as obrigações sintáticas (gerar um `b` correspondente para cada `a`) e as descarrega na ordem correta, tornando-a a estrutura de dados canônica para processar estruturas livres de contexto.
 
 ## As Fronteiras do Contexto Livre: O Lema do Bombeamento
 
-Assim como existe uma ferramenta para provar que uma linguagem não é regular, existe um análogo para as linguagens livres de contexto: o **Lema do Bombeamento para Linguagens Livres de Contexto**, também conhecido como Lema de Bar-Hillel.32 Sua principal aplicação é demonstrar, por contradição, que uma determinada linguagem
+Assim como existe uma ferramenta para provar que uma linguagem não é regular, existe um análogo para as linguagens livres de contexto: o **Lema do Bombeamento para Linguagens Livres de Contexto**, também conhecido como Lema de Bar-Hillel. Sua principal aplicação é demonstrar, por contradição, que uma determinada linguagem **não** é livre de contexto.
 
-*não* é livre de contexto.34
+A intuição por trás do lema está enraizada na estrutura finita das gramáticas e na natureza das árvores de derivação. Para uma Gramática Livre de Contexto com um número finito de não terminais, qualquer _string_ suficientemente longa gerada por ela deve ter uma árvore de derivação _alta_. Pelo princípio da casa dos pombos, um caminho longo da raiz a uma folha nessa árvore deve necessariamente conter pelo menos um não-terminal repetido. Essa repetição cria uma sub-árvore que pode ser podada ou duplicada, _bombeando_ a _string_ de uma maneira específica.
 
-A intuição por trás do lema está enraizada na estrutura finita das gramáticas e na natureza das árvores de derivação. Para uma Gramáticas Livres de Contextos com um número finito de não terminais, qualquer _string_ suficientemente longa gerada por ela deve ter uma árvore de derivação _alta_. Pelo princípio da casa dos pombos, um caminho longo da raiz a uma folha nessa árvore deve necessariamente conter pelo menos um não-terminal repetido. Essa repetição cria uma sub-árvore que pode ser excisada ou duplicada, _bombeando_ a _string_ de uma maneira específica.35
+O lema afirma formalmente que para qualquer linguagem livre de contexto $L$, existe um inteiro $p \geq 1$, o _comprimento de bombeamento_, tal que qualquer _string_ $s \in L$ com comprimento $\mid s \mid  \geq p$ pode ser decomposta em cinco _substrings_, $s = uvxyz$, que devem satisfazer as seguintes três condições:
 
-O lema afirma formalmente que para qualquer linguagem livre de contexto L, existe um inteiro p≥1 (o _comprimento de bombeamento_) tal que qualquer _string_ s∈L com comprimento ∣s∣≥p pode ser decomposta em cinco sub_string_s, s=uvxyz, que devem satisfazer as seguintes três condições 32:
+1. $\mid vxy \mid \leq p$: a _substring_ que contém as partes bombeáveis não é excessivamente longa;
+2. $\mid vy \mid \geq 1$: pelo menos uma das duas _substrings_ bombeáveis ($v$ ou $y$) não é vazia. Isso garante que o bombeamento realmente altera a _string_;
+3. $uv^nxy^nz \in L$ para todo inteiro $n \geq 0$: as duas _substrings_, $v$ e $y$, podem ser bombeadas (repetidas) em conjunto um número arbitrário de vezes, incluindo zero, o que corresponde a removê-las), e a _string_ resultante permanecerá na linguagem $L$.
 
-1. ∣vxy∣≤p: A sub_string_ que contém as partes bombeáveis não é excessivamente longa. 
-2. ∣vy∣≥1: Pelo menos uma das duas sub_string_s bombeáveis (v ou y) não é vazia. Isso garante que o bombeamento realmente altera a _string_. 
-3. uvnxynz∈L para todo inteiro n≥0: As duas sub_string_s v e y podem ser bombeadas (repetidas) em conjunto um número arbitrário de vezes (incluindo zero, o que corresponde a removê-las), e a _string_ resultante permanecerá na linguagem L.
+### Aplicação Prática: Prova de que $L = \{a^nb^nc^n \mid n \geq 0\}$ não é Livre de Contexto
 
-### Aplicação Prática: Prova de que L \= {aⁿbⁿcⁿ | n ≥ 0} não é Livre de Contexto
-
-A linguagem L={anbncn∣n≥0} é o exemplo canônico de uma linguagem que está além do alcance das Gramáticas Livres de Contextos. Podemos provar isso rigorosamente usando o lema do bombeamento.
+A linguagem $L=\{a^nb^nc^n \mid n \geq 0\}$ é o exemplo clássico de uma linguagem que está além do alcance das Gramáticas Livres de Contexto. Podemos provar isso rigorosamente usando o lema do bombeamento.
 
 A prova segue por contradição:
 
-1. **Suposição**: Suponha que L é livre de contexto. 
-2. **Invocação do Lema**: Pelo lema, deve existir um comprimento de bombeamento p. 
-3. **Escolha da _string_**: Selecionamos a _string_ s=apbpcp. Claramente, s∈L e seu comprimento, 3p, é maior ou igual a p. 
-4. **Análise da Decomposição**: O lema garante que s pode ser decomposta como s=uvxyz, sujeita às condições do lema. A condição ∣vxy∣≤p é a chave. Dada a estrutura de s (um bloco de `a`s, seguido por um bloco de `b`s, seguido por um bloco de `c`s), esta condição implica que a sub_string_ vxy não pode conter ocorrências de todos os três símbolos (`a`, `b` e `c`). Ela pode estar inteiramente dentro do bloco de `a`s, inteiramente dentro do de `b`s, ou abranger a fronteira entre `a`s e `b`s, ou entre `b`s e `c`s. 
-5. **Contradição**: A condição ∣vy∣≥1 garante que o bombeamento adicionará (ou removerá) pelo menos um símbolo. Vamos considerar o bombeamento para cima, com n=2, resultando na _string_ s′=uv2xy2z. 
-   * Se vxy contivesse apenas `a`s, então v e y conteriam apenas `a`s. A _string_ s′ teria mais `a`s do que `b`s e `c`s, violando a condição da linguagem. 
-   * Se vxy contivesse uma mistura de `a`s e `b`s, então v e y poderiam conter `a`s e `b`s, mas nenhum `c`. A _string_ s′ teria um número aumentado de `a`s e/ou `b`s, mas o número de `c`s permaneceria p. Novamente, a igualdade n=n=n seria quebrada. 
-   * O mesmo raciocínio se aplica a todas as outras localizações possíveis de vxy. Em nenhum caso, o bombeamento pode aumentar o número de `a`s, `b`s e `c`s na mesma proporção. 
-6. **Conclusão**: A _string_ bombeada s′ não pertence a L. Isso contradiz a terceira condição do lema. Portanto, a suposição inicial de que L é livre de contexto deve ser falsa.
+1. **Suposição**: Suponha que $L$ é livre de contexto.
+2. **Invocação do Lema**: Pelo lema, deve existir um comprimento de bombeamento $p$.
+3. **Escolha da _string_**: Selecionamos a _string_ $s=a^pb^pc^p$. Claramente, $s \in L$ e seu comprimento, $3p$, é maior ou igual a $p$.
+4. **Análise da Decomposição**: O lema garante que $s$ pode ser decomposta como $s=uvxyz$, sujeita às condições do lema. A condição $\mid vxy \mid \leq p$ é a chave. Dada a estrutura de $s$ (um bloco de `a`s, seguido por um bloco de `b`s, seguido por um bloco de `c`s), esta condição implica que a sub_string_ $vxy$ não pode conter ocorrências de todos os três símbolos (`a`, `b` e `c`). Ela pode estar inteiramente dentro do bloco de `a`s, inteiramente dentro do de `b`s, ou abranger a fronteira entre `a`s e `b`s, ou entre `b`s e `c`s.
+5. **Contradição**: A condição $\mid vy \mid \geq 1$ garante que o bombeamento adicionará (ou removerá) pelo menos um símbolo. Vamos considerar o bombeamento para cima, com $n=2$, resultando na _string_ $s′=uv^2xy^2z$.
+   * Se $vxy$ contivesse apenas `a`s, então $v$ e $y$ conteriam apenas `a`s. A _string_ $s′$ teria mais `a`s do que `b`s e `c`s, violando a condição da linguagem.
+   * Se $vxy$ contivesse uma mistura de `a`s e `b`s, então $v$ e $y$ poderiam conter `a`s e `b`s, mas nenhum `c`. A _string_ $s′$ teria um número aumentado de `a`s e/ou `b`s, mas o número de `c`s permaneceria $p$. Novamente, a igualdade $n=n=n$ seria quebrada.
+   * O mesmo raciocínio se aplica a todas as outras localizações possíveis de $vxy$. Em nenhum caso, o bombeamento pode aumentar o número de `a`s, `b`s e `c`s na mesma proporção.
+6. **Conclusão**: A _string_ bombeada $s′$ não pertence a $L$. Isso contradiz a terceira condição do lema. Portanto, a suposição inicial de que $L$ é livre de contexto deve ser falsa.
 
-A estrutura de bombeamento duplo (v e y) do lema não é arbitrária. Ela revela a limitação fundamental das Linguagens Livres de Contexto a dependências de, no máximo, _dois pontos_. Uma Gramáticas Livres de Contextos, por meio de recursão como S→aSb, pode correlacionar duas partes de uma _string_ (os `a`s no início e os `b`s no fim), que correspondem às partes v e y que são bombeadas em conjunto. A linguagem anbncn exige uma dependência de _três pontos_. Um autômato com pilha _gasta_ sua memória para verificar a correspondência entre `a`s e `b`s, não restando capacidade para verificar os `c`s contra a contagem original. O lema do bombeamento formaliza essa limitação, mostrando que o bombeamento inevitavelmente quebra essa dependência tripla.
+A estrutura de bombeamento duplo ($v$ e $y$) do lema não é arbitrária. Ela revela a limitação fundamental das Linguagens Livres de Contexto a dependências de, no máximo, _dois pontos_. Uma Gramática Livre de Contexto, por meio de recursão como $S→aSb$, pode correlacionar duas partes de uma _string_ (os `a`s no início e os `b`s no fim), que correspondem às partes $v$ e $y$ que são bombeadas em conjunto. A linguagem $a^nb^nc^n$ exige uma dependência de _três pontos_. Um autômato com pilha _gasta_ sua memória para verificar a correspondência entre `a`s e `b`s, não restando capacidade para verificar os `c`s contra a contagem original. O lema do bombeamento formaliza essa limitação, mostrando que o bombeamento inevitavelmente quebra essa dependência tripla.
 
 ## Os Analisadores Sintáticos
 
-A análise sintática, ou *parsing*, é a segunda fase do processo de compilação, posicionada entre a análise léxica e a análise semântica.16 Seu papel é fundamental: atua como o guardião da gramática da linguagem. Enquanto o analisador léxico verifica a _ortografia_ (se as palavras, ou _tokens_, são válidas), o parser verifica a _gramática_ (se a sequência de _tokens_ forma sentenças estruturalmente corretas).17 O objetivo principal do parser é determinar se o fluxo de _tokens_ de entrada pode ser gerado pela gramática livre de contexto que define a linguagem e, em caso afirmativo, construir uma representação explícita dessa estrutura.
+A análise sintática, ou *parsing*, é a segunda fase do processo de compilação, posicionada entre a análise léxica e a análise semântica. O analisador sintático atua como o guardião da gramática da linguagem. Enquanto o analisador léxico verifica a _ortografia_, se as palavras, ou _tokens_, são válidas, o analisador sintático verifica a _gramática_, se a sequência de _tokens_ forma sentenças estruturalmente corretas. O objetivo principal do analisador sintático é determinar se o fluxo de _tokens_ de entrada pode ser gerado pela gramática livre de contexto que define a linguagem e, em caso afirmativo, construir uma representação explícita dessa estrutura.
 
-A entrada para o analisador sintático é o fluxo de _tokens_ produzido pelo analisador léxico. A saída, para um programa sintaticamente correto, é uma estrutura de dados que representa a estrutura hierárquica do código. Embora a árvore de derivação seja a representação teórica direta, na prática, os compiladores constroem uma **Árvore Sintática Abstrata (AST)**. A AST é uma versão condensada e mais abstrata da árvore de derivação, que omite detalhes sintáticos intermediários (como parênteses para agrupamento ou não terminais que apenas passam a derivação adiante) e captura a estrutura lógica e semântica essencial do programa, tornando-a mais adequada para as fases subsequentes de análise e geração de código.16
+A entrada para o analisador sintático é o fluxo de _tokens_ produzido pelo analisador léxico. A saída, para um programa sintaticamente correto, é uma estrutura de dados que representa a estrutura hierárquica do código. Embora a árvore de derivação seja a representação teórica direta, na prática, os compiladores constroem uma **Árvore Sintática Abstrata**. A Árvore Sintática Abstrata é uma versão condensada e mais abstrata da árvore de derivação, que omite detalhes sintáticos intermediários, como parênteses para agrupamento ou não terminais que apenas passam a derivação adiante, e captura a estrutura lógica e semântica essencial do programa, tornando-a mais adequada para as fases subsequentes de análise e geração de código.
 
-A maneira como a árvore de derivação é construída em relação à entrada define as duas principais estratégias de parsing, cada uma com suas próprias características, pontos fortes e limitações 41:
+A maneira como a árvore de derivação é construída em relação à entrada define as duas principais estratégias de parsing, cada uma com suas próprias características, pontos fortes e limitações:
 
-1. **Análise Descendente (*Top-Down Parsing*)**: A construção da árvore de derivação começa no topo (a raiz, que é o símbolo inicial da gramática) e avança para baixo, em direção às folhas (a _string_ de _tokens_ de entrada). Este método tenta encontrar a derivação mais à esquerda para a entrada.41  
-2. **Análise Ascendente (*Bottom-Up Parsing*)**: A construção da árvore de derivação começa na base (as folhas, que são a _string_ de _tokens_ de entrada) e avança para cima, em direção à raiz (o símbolo inicial). Este método efetivamente reverte uma derivação mais à direita.41
+1. **Análise Descendente (*Top-Down Parsing*)**: A construção da árvore de derivação começa no topo, a raiz, que é o símbolo inicial da gramática, e avança para baixo, em direção às folhas, a _string_ de _tokens_ de entrada. Este método tenta encontrar a derivação mais à esquerda para a entrada.  
+2. **Análise Ascendente (*Bottom-Up Parsing*)**: A construção da árvore de derivação começa na base, as folhas, que são a _string_ de _tokens_ de entrada, e avança para cima, em direção à raiz, o símbolo inicial. Este método efetivamente reverte uma derivação mais à direita.
 
-Um erro sintático detectado pelo parser é um erro fatal que interrompe o processo de compilação. Sem uma estrutura sintática válida e inequívoca representada pela AST, as fases subsequentes, que dependem dessa estrutura para realizar a verificação de tipos e a geração de código, não podem prosseguir.
+Um erro sintático detectado pelo parser é um erro fatal que interrompe o processo de compilação. Sem uma estrutura sintática válida e inequívoca representada pela Árvore Sintática Abstrata, as fases subsequentes, que dependem dessa estrutura para realizar a verificação de tipos e a geração de código, não podem prosseguir.
 
 ### Estratégias de Análise Descendente (_Top-Down_)
 
 A análise descendente tenta construir uma árvore de derivação para a _string_ de entrada começando pela raiz (símbolo inicial) e criando os nós da árvore em pré-ordem. Isso equivale a encontrar uma derivação mais à esquerda para a _string_ de entrada.
 
-#### **8.2 Analisadores de Descida Recursiva (Recursive-Descent)**
+#### **Analisadores de Descida Recursiva (_Recursive-Descent_)**
 
-Uma das implementações mais diretas e intuitivas de um parser descendente é o analisador de descida recursiva. Nesta abordagem, um conjunto de procedimentos mutuamente recursivos é escrito, geralmente um para cada não-terminal na gramática. O procedimento associado a um não-terminal A é responsável por reconhecer na entrada uma sub_string_ que pode ser derivada de A.43 A simplicidade e a facilidade de implementação manual tornam esta técnica atraente. No entanto, analisadores de descida recursiva ingênuos podem ser ineficientes. Estes analisadores podem exigir retrocesso ( *backtracking*) se a escolha de uma produção se revelar incorreta. Além disso, eles não conseguem lidar com gramáticas que contêm recursão à esquerda (regras da forma A→Aβ). Isso levaria a uma recursão infinita.
+Uma das implementações mais diretas e intuitivas de um parser descendente é o analisador de descida recursiva. Nesta abordagem, um conjunto de procedimentos mutuamente recursivos é escrito, geralmente um para cada não-terminal na gramática. O procedimento associado a um não-terminal A é responsável por reconhecer na entrada uma sub_string_ que pode ser derivada de A. A simplicidade e a facilidade de implementação manual tornam esta técnica atraente. No entanto, analisadores de descida recursiva ingênuos podem ser ineficientes. Estes analisadores podem exigir retrocesso, *backtracking*, se a escolha de uma produção se revelar incorreta. Além disso, eles não conseguem lidar com gramáticas que contêm recursão à esquerda, regras da forma $A\rightarrow A \beta$. Isso levaria a uma recursão infinita.
 
-#### **8.3 Analisadores Preditivos (LL)**
+#### **Analisadores Preditivos ($LL$)**
 
-Para superar as desvantagens do retrocesso, foi desenvolvida uma classe de parsers descendentes chamada de **analisadores preditivos**. Estes são parsers que podem _prever_ qual produção aplicar a um não-terminal olhando para a frente na _string_ de entrada, sem precisar adivinhar e retroceder.44 O tipo mais comum é o
+Para superar as desvantagens do retrocesso, foi desenvolvida uma classe de parsers descendentes chamada de **analisadores preditivos**. Estes são parsers que podem _prever_ qual produção aplicar a um não-terminal olhando para a frente na _string_ de entrada, sem precisar adivinhar e retroceder. O tipo mais comum é o
 
-**parser LL(1)**.45 A notação LL(1) significa:
+**parser $LL(1)$**. A notação $LL(1)$ significa:
 
-* **L** (primeiro): A entrada é lida da **E**squerda (*Left*) para a direita. 
-* **L** (segundo): O parser constrói uma derivação mais à **E**squerda (*Leftmost*). 
-* **(1)**: Ele usa **1** símbolo de *lookahead* (antecipação) para tomar suas decisões.
+* **L** (primeiro): A entrada é lida da esquerda, _**L**eft_ para a direita;
+* **L** (segundo): O parser constrói uma derivação mais à esquerda, _**L**eftmost_;
+* **(1)**: Ele usa **1** símbolo de _Lookahead_ (antecipação) para tomar suas decisões.
 
-Um parser LL(1) opera com três componentes: uma **pilha de análise**, um **ponteiro de entrada** e uma **tabela de análise**.42 A tabela de análise é uma matriz onde as linhas correspondem aos não terminais e as colunas aos terminais. Cada célula
+Um parser $LL(1)$ opera com três componentes: uma **pilha de análise**, um **ponteiro de entrada** e uma **tabela de análise**. A tabela de análise é uma matriz na qual as linhas correspondem aos não terminais e as colunas aos terminais. Cada célula $M[A,a]$ contém a regra de produção que deve ser usada se o não-terminal A estiver no topo da pilha e o terminal a for o próximo símbolo de entrada, o _lookahead_. O algoritmo é determinístico: para cada par, não-terminal no topo da pilha, símbolo de _Lookahead_, há no máximo uma ação a ser tomada. Se a célula estiver vazia, um erro sintático é detectado.
 
-M\[A,a\] contém a regra de produção que deve ser usada se o não-terminal A estiver no topo da pilha e o terminal a for o próximo símbolo de entrada (o *lookahead*). O algoritmo é determinístico: para cada par (não-terminal no topo da pilha, símbolo de lookahead), há no máximo uma ação a ser tomada. Se a célula estiver vazia, um erro sintático é detectado.
+Os parsers $LL$ são _ansiosos_. No momento em que um não-terminal $A$ está no topo da pilha, eles devem se comprometer _imediatamente_ com uma única regra $A\rightarrow \beta$, baseando sua decisão exclusivamente no próximo _token_ de entrada. Essa necessidade de uma decisão precoce e inequívoca é a razão pela qual as gramáticas $LL(1)$ não podem ter ambiguidades, recursão à esquerda ou prefixos comuns, duas produções para o mesmo não-terminal que começam com o mesmo símbolo. Tais características tornam impossível para o parser fazer uma escolha determinística com apenas um símbolo de _Lookahead_.
 
-Os parsers LL são _ansiosos_. No momento em que um não-terminal A está no topo da pilha, eles devem se comprometer *imediatamente* com uma única regra A→β, baseando sua decisão exclusivamente no próximo token de entrada. Essa necessidade de uma decisão precoce e inequívoca é a razão pela qual as gramáticas LL(1) não podem ter ambiguidades, recursão à esquerda ou prefixos comuns (duas produções para o mesmo não-terminal que começam com o mesmo símbolo). Tais características tornam impossível para o parser fazer uma escolha determinística com apenas um símbolo de lookahead.
+### Estratégias de Análise Ascendente (Bottom-Up)
 
-| Tabela de Análise LL(1) para uma Gramática de Expressões Simplificada |  
-| :--- | id | \+ | \* | ( | ) | $ |  
-| E | E→TE′ | | | E→TE′ | | |  
-| E` | | E′→+TE′ | | | E′→ϵ | E′→ϵ |  
-| T | T→FT′ | | | T→FT′ | | |  
-| T` | | T′→ϵ | T′→∗FT′ | | T′→ϵ | T′→ϵ |  
-| F | F→id | | | F→(E) | | |
+Em contraste com a abordagem descendente, a análise ascendente constrói a árvore de derivação a partir das folhas, a _string_ de entrada, em direção à raiz, o símbolo inicial da gramática. O processo pode ser visto como uma tentativa de _reduzir_ a _string_ de entrada de volta ao símbolo inicial, essencialmente traçando uma derivação mais à direita ao contrário.
 
-### **Capítulo 9: Estratégias de Análise Ascendente (Bottom-Up)**
+#### A Abordagem _Shift-Reduce_
 
-#### **9.1 Conceito**
+O mecanismo fundamental por trás da maioria dos parsers ascendentes é o _**shift-reduce**_ (*deslocar-reduzir*). O parser utiliza uma pilha para armazenar símbolos da gramática e toma uma de quatro ações possíveis em cada passo:
 
-Em contraste com a abordagem descendente, a análise ascendente constrói a árvore de derivação a partir das folhas (a _string_ de entrada) em direção à raiz (o símbolo inicial). O processo pode ser visto como uma tentativa de _reduzir_ a _string_ de entrada de volta ao símbolo inicial, essencialmente traçando uma derivação mais à direita ao contrário.41
+1. **Shift (Deslocar)**: o próximo símbolo de entrada é movido (deslocado) para o topo da pilha; 
+2. **Reduce (Reduzir)**: o parser reconhece que uma sequência de símbolos $\beta$ no topo da pilha corresponde ao lado direito de uma regra de produção $A\rightarrow \beta$. Ele então substitui (reduz) $\beta$ na pilha pelo não-terminal $A$; 
+3. **Accept (Aceitar)**: a análise é concluída com sucesso. Isso ocorre quando a entrada foi totalmente consumida e a pilha contém apenas o símbolo inicial. 
+4. **Error (Erro)**: um erro sintático é encontrado, e o parser não pode continuar.
 
-#### **9.2 A Abordagem Shift-Reduce**
+A principal dificuldade em um parser _shift-reduce_ é decidir quando deslocar e quando reduzir (um **conflito shift/reduce**) ou, ao decidir reduzir, qual regra usar se múltiplas corresponderem (um **conflito reduce/reduce**).
 
-O mecanismo fundamental por trás da maioria dos parsers ascendentes é o **shift-reduce** (*deslocar-reduzir*). O parser utiliza uma pilha para armazenar símbolos da gramática e toma uma de quatro ações possíveis em cada passo 49:
+#### A Família de Analisadores $LR$
 
-1. **Shift (Deslocar)**: O próximo símbolo de entrada é movido (deslocado) para o topo da pilha. 
-2. **Reduce (Reduzir)**: O parser reconhece que uma sequência de símbolos β no topo da pilha corresponde ao lado direito de uma regra de produção A→β. Ele então substitui (reduz) β na pilha pelo não-terminal A. 
-3. **Accept (Aceitar)**: A análise é concluída com sucesso. Isso ocorre quando a entrada foi totalmente consumida e a pilha contém apenas o símbolo inicial. 
-4. **Error (Erro)**: Um erro sintático é encontrado, e o parser não pode continuar.
+A classe mais poderosa e amplamente utilizada de parsers ascendentes é a família **$LR$**. Eles são capazes de analisar uma classe de gramáticas significativamente maior do que os parsers $LL$. A notação $LR$ significa:
 
-A principal dificuldade em um parser shift-reduce é decidir quando deslocar e quando reduzir (um **conflito shift/reduce**) ou, ao decidir reduzir, qual regra usar se múltiplas corresponderem (um **conflito reduce/reduce**).49
+* **L**: A entrada é lida da esquerda, _**L**eft_ para a direita;
+* **R**: O parser constrói uma derivação mais à direita, _**R**ightmost_, ao contrário.
 
-#### **9.3 A Família de Analisadores LR**
+Existem várias variantes de parsers $LR$, que diferem principalmente na forma como suas tabelas de análise são construídas e na quantidade de informação de _Lookahead_ que utilizam para resolver conflitos:
 
-A classe mais poderosa e amplamente utilizada de parsers ascendentes é a família **LR**. Eles são capazes de analisar uma classe de gramáticas significativamente maior do que os parsers LL.50 A notação LR significa:
+* **LR(0)**: o mais simples, não usa _Lookahead_;
+* **SLR (Simple LR)**: usa os conjuntos FOLLOW do não-terminal para decidir sobre as reduções;
+* **LALR(1) (Look-Ahead LR)**: uma versão otimizada do $LR(1)$ com tabelas menores, mas poder de reconhecimento ligeiramente reduzido. É a base para ferramentas como YACC e Bison;
+* **LR(1) Canônico**: o mais poderoso da família, mas que gera tabelas de análise muito grandes.
 
-* **L**: A entrada é lida da **E**squerda (*Left*) para a direita. 
-* **R**: O parser constrói uma derivação mais à di**R**eita (*Rightmost*) ao contrário.
+Ao contrário dos parsers $LL$ _ansiosos_, os parsers $LR$ são _pacientes_. Eles não precisam decidir qual regra de produção usar no momento em que veem o primeiro símbolo de seu lado direito. Em vez disso, eles continuam a deslocar símbolos para a pilha até que o lado direito *completo* de uma produção, conhecido como _**handle**_, esteja no topo da pilha. Somente então eles realizam a redução. Essa capacidade de adiar a decisão até que mais contexto esteja disponível é a fonte de seu maior poder e de sua capacidade de lidar com uma gama mais ampla e natural de gramáticas sem a necessidade de reescritas extensivas.
 
-Existem várias variantes de parsers LR, que diferem principalmente na forma como suas tabelas de análise são construídas e na quantidade de informação de *lookahead* que utilizam para resolver conflitos 48:
+O **parser LALR(1)** (_**L**ook-**A**head **LR**_) merece destaque. Esta família de _parsers_ representa uma solução engenhosa para um problema prático fundamental: os parsers LR(1), embora teoricamente mais poderosos, geram tabelas de análise de tamanho proibitivo para gramáticas reais de linguagens de programação. O LALR(1) resolve essa limitação através de uma técnica de **fusão de estados** (_state merging_). Durante a construção do autômato LR(1), estados que possuem o mesmo _core_ — isto é, a mesma coleção de itens LR(0), mas diferentes conjuntos de _lookahead_, são consolidados em um único estado. O conjunto de _lookahead_ do estado resultante torna-se a união dos conjuntos originais. Esta fusão reduz drasticamente o número de estados, frequentemente de milhares para centenas, tornando as tabelas de análise praticamente viáveis sem sacrificar significativamente o poder de reconhecimento.
 
-* **LR(0)**: O mais simples, não usa lookahead. 
-* **SLR (Simple LR)**: Usa os conjuntos FOLLOW do não-terminal para decidir sobre as reduções. 
-* **LALR(1) (Look-Ahead LR)**: Uma versão otimizada do LR(1) com tabelas menores, mas poder de reconhecimento ligeiramente reduzido. É a base para ferramentas como YACC e Bison. 
-* **LR(1) Canônico**: O mais poderoso da família, mas que gera tabelas de análise muito grandes.
-
-Ao contrário dos parsers LL _ansiosos_, os parsers LR são _pacientes_. Eles não precisam decidir qual regra de produção usar no momento em que veem o primeiro símbolo de seu lado direito. Em vez disso, eles continuam a deslocar símbolos para a pilha até que o lado direito *completo* de uma produção (conhecido como *handle*) esteja no topo da pilha. Somente então eles realizam a redução. Essa capacidade de adiar a decisão até que mais contexto esteja disponível é a fonte de seu maior poder e de sua capacidade de lidar com uma gama mais ampla e natural de gramáticas sem a necessidade de reescritas extensivas.
-
-| Tabela de Ação/Desvio (Action/Goto) para um Parser LR |  
-| :--- | AÇÃO | DESVIO |  
-| Estado | id | \+ | \* | $ | E | T |  
-| 0 | s2 | | | | 1 | 3 |  
-| 1 | | s4 | | acc | | |  
-| 2 | | r3 | r3 | r3 | | |  
-| 3 | | r1 | s5 | r1 | | |  
-| 4 | s2 | | | | 6 | 3 |  
-| ... |... |... |... |... |... |... |  
-(s \= shift, r \= reduce, acc \= accept)
+A diferença fundamental entre LALR(1) e LR(1) manifesta-se tanto em termos de eficiência quanto de capacidade de reconhecimento. **Em termos de eficiência**, o LR(1) pode gerar tabelas com dezenas de milhares de estados para gramáticas complexas, consumindo megabytes de memória e tornando o parser lento, enquanto o LALR(1) produz tabelas compactas com centenas de estados, adequadas para uso industrial. **Em termos de poder de reconhecimento**, o LR(1) aceita rigorosamente todas as gramáticas LR(1), enquanto o LALR(1) constitui um subconjunto próprio dessa classe, algumas gramáticas LR(1) podem se tornar ambíguas durante o processo de fusão de estados, gerando conflitos _reduce/reduce_. Contudo, esta limitação raramente impacta gramáticas práticas de linguagens de programação, razão pela qual ferramentas como YACC e Bison adotaram LALR(1) como padrão, estabelecendo um equilíbrio ótimo entre expressividade teórica e viabilidade implementacional.
 
 ### Impacto da Ambiguidade no Processo de Compilação {#sec-impacto-ambiguidade-compilacao}
 
@@ -797,286 +903,51 @@ A análise sintática é a primeira e mais direta vítima da ambiguidade. O obje
 
 * **Geração de Múltiplas Árvores de Derivação**: Para uma sentença ambígua, o analisador sintático é inerentemente não-determinístico. Ele pode construir duas ou mais árvores de derivação distintas, cada uma representando uma interpretação estrutural válida. Sem um critério para escolher entre elas, o _parser_ não pode prosseguir de forma unívoca.
 
-* **Conflitos em Parsers LR**: Em analisadores sintáticos _bottom-up_, como os da família LR (LR, SLR, LALR), a ambiguidade manifesta-se diretamente como **conflitos shift/reduce** ou **reduce/reduce**. Por exemplo, na gramática ambígua de expressões, ao processar `id + id * id`, o _parser_ chegará a um estado onde viu `E + E`. Neste ponto, ele não sabe se deve reduzir a expressão pela regra $E \rightarrow E+E$ (um _reduce_) ou aguardar o próximo símbolo `*` para processar a multiplicação primeiro (um _shift_). Ferramentas geradoras de _parsers_, como o YACC ou Bison, relatarão esses conflitos como erros fatais durante a geração do analisador.
+* **Conflitos em Parsers LR**: Em analisadores sintáticos _bottom-up_, como os da família LR (LR, SLR, LALR), a ambiguidade manifesta-se diretamente como **conflitos shift/reduce** ou **reduce/reduce**. Por exemplo, na gramática ambígua de expressões, ao processar `id + id * id`, o _parser_ chegará a um estado no qual encontrou `E + E`. Neste ponto, ele não sabe se deve reduzir a expressão pela regra $E \rightarrow E+E$ (um _reduce_) ou aguardar o próximo símbolo `*` para processar a multiplicação primeiro (um _shift_). Ferramentas geradoras de _parsers_, como o YACC ou Bison, relatarão esses conflitos como erros fatais durante a geração do analisador.
 
 * **Ineficiência em Parsers Top-Down**: Para analisadores sintáticos _top-down_, como os de descida recursiva, a ambiguidade pode levar a um **backtracking excessivo**. O _parser_ pode ser forçado a explorar múltiplos caminhos de derivação, apenas para descobrir que um deles falha mais tarde. Em casos mal projetados, especialmente com recursão à esquerda, isso pode levar a _loops_ infinitos, paralisando a compilação.
 
 #### Fase de Análise Semântica
 
-Supondo que a fase sintática tenha conseguido, de alguma forma, produzir uma árvore (talvez escolhendo arbitrariamente uma das opções), os problemas de ambiguidade se transformam em problemas semânticos. A árvore sintática é a base para toda a análise de significado, e diferentes árvores levam a semânticas drasticamente diferentes.
+Supondo que a fase sintática tenha conseguido, de alguma forma, produzir uma árvore, talvez escolhendo arbitrariamente uma das opções, os problemas de ambiguidade se transformam em problemas semânticos. A árvore sintática é a base para toda a análise de significado, e diferentes árvores levam a semânticas drasticamente diferentes.
 
 * **Atribuição de Tipos Inconsistente**: A estrutura da árvore de derivação dita como os tipos são verificados e inferidos. Na expressão `(id_float + id_int) * id_int`, a adição ocorreria primeiro, possivelmente promovendo o `id_int` a `float`. Na interpretação `id_float + (id_int * id_int)`, a multiplicação de inteiros ocorreria primeiro. As duas árvores podem resultar em tipos finais diferentes ou até mesmo em erros de tipo distintos.
 
 * **Resolução de Escopo Ambígua**: A ambiguidade estrutural, como a do _dangling else_, afeta diretamente a determinação do escopo. Uma variável declarada dentro de um bloco `if` terá seu escopo e tempo de vida definidos pela árvore sintática. Se não está claro a qual `if` um bloco `else` pertence, também não estará claro o escopo das construções dentro daquele bloco.
 
-* **Ordem de Avaliação Indefinida**: A semântica de uma linguagem define a ordem de avaliação de subexpressões. Isso é fundamental quando há **efeitos colaterais** (por exemplo, `f() + g()`, onde `f` e `g` modificam uma variável global). Uma gramática ambígua que permite duas árvores de derivação para esta expressão deixa indefinido qual função será chamada primeiro, tornando o resultado da expressão imprevisível.
+* **Ordem de Avaliação Indefinida**: A semântica de uma linguagem define a ordem de avaliação de subexpressões. Isso é fundamental quando há **efeitos colaterais** (por exemplo, `f() + g()`, no quais `f` e `g` modificam uma variável global). Uma gramática ambígua que permite duas árvores de derivação para esta expressão deixa indefinido qual função será chamada primeiro, tornando o resultado da expressão imprevisível.
 
 #### Fase de Geração de Código
 
 Finalmente, as inconsistências estruturais e semânticas culminam em um processo de geração de código que é, na melhor das hipóteses, não-determinístico e, na pior, incorreto.
 
-* **Geração de Código Não-Determinístico**: Cada árvore sintática abstrata (AST) distinta mapeia para uma sequência diferente de código intermediário ou de máquina. A expressão `(a+b)*c` gera uma instrução de `ADD` seguida por uma de `MUL`. Já `a+(b*c)` gera uma `MUL` seguida por uma `ADD`. Se o compilador escolher uma árvore arbitrariamente, o código gerado será igualmente arbitrário.
+* **Geração de Código Não-Determinístico**: Cada Árvore Sintática Abstrata distinta mapeia para uma sequência diferente de código intermediário ou de máquina. A expressão `(a+b)*c` gera uma instrução de `ADD` seguida por uma de `MUL`. Já `a+(b*c)` gera uma `MUL` seguida por uma `ADD`. Se o compilador escolher uma árvore arbitrariamente, o código gerado será igualmente arbitrário.
 
-* **Impossibilidade de Otimização**: As otimizações de código dependem de uma análise rigorosa e inequívoca do fluxo de controle e de dados, que é derivada da AST. Se o compilador não pode garantir a estrutura correta do programa (por exemplo, a precedência de operadores), ele não pode aplicar otimizações de forma segura. Otimizar uma estrutura que não representa a intenção do programador pode alterar drasticamente a lógica do programa.
+* **Impossibilidade de Otimização**: As otimizações de código dependem de uma análise rigorosa e inequívoca do fluxo de controle e de dados, que é derivada da Árvore Sintática Abstrata. Se o compilador não pode garantir a estrutura correta do programa (por exemplo, a precedência de operadores), ele não pode aplicar otimizações de forma segura. Otimizar uma estrutura que não representa a intenção do programador pode alterar drasticamente a lógica do programa.
 
 * **Comportamento Imprevisível do Programa**: A consequência final é a mais grave. Um programa compilado a partir de uma gramática ambígua pode exibir **comportamentos diferentes** dependendo da versão do compilador ou até mesmo de fatores aparentemente não relacionados. Isso viola o princípio fundamental de que a compilação deve ser um processo reprodutível e confiável, tornando a linguagem inadequada para qualquer aplicação séria.
 
-### **Capítulo 10: Automatizando a Construção: Ferramentas Geradoras de Parsers**
+### Automatizando a Construção: Ferramentas Geradoras de Parsers
 
-#### **10.1 O Conceito de _Compilador de Compiladores_**
+A construção manual de um analisador sintático, especialmente um parser $LR$, é uma tarefa complexa, tediosa e propensa a erros. Para mitigar essa complexidade, foram desenvolvidas ferramentas especializadas conhecidas como **geradores de parsers**. Essas ferramentas automatizam o processo de criação de um parser a partir de uma especificação de alto nível da gramática da linguagem.
 
-A construção manual de um analisador sintático, especialmente um parser LR, é uma tarefa complexa, tediosa e propensa a erros. Para mitigar essa complexidade, foram desenvolvidas ferramentas especializadas conhecidas como **geradores de parsers** ou, mais ambiciosamente, _compiladores de compiladores_.52 Essas ferramentas automatizam o processo de criação de um parser a partir de uma especificação de alto nível da gramática da linguagem.
-
-#### **10.2 YACC e GNU Bison**
+#### YACC e GNU Bison**
 
 As ferramentas mais conhecidas e influentes nesta categoria são YACC e seu sucessor, Bison.
 
-* **YACC (Yet Another Compiler-Compiler)**: Desenvolvido na Bell Labs, YACC é a ferramenta canónica para gerar parsers LALR(1).52 Ele se tornou um padrão de fato em sistemas Unix. 
-* **GNU Bison**: É a implementação do projeto GNU de um gerador de parsers. É amplamente compatível com YACC, mas oferece recursos adicionais, como a geração de parsers GLR (Generalized LR) para lidar com gramáticas ambíguas e a geração de código em múltiplas linguagens (C, C++, Java).53
+* **YACC (Yet Another Compiler-Compiler)**: desenvolvido na Bell Labs, YACC é a ferramenta canônica para gerar parsers $LALR(1)$. Ele se tornou um padrão de fato em sistemas Unix.
+* **GNU Bison**: É a implementação do projeto GNU de um gerador de parsers. É amplamente compatível com YACC, mas oferece recursos adicionais, como a geração de parsers $GLR$, _Generalized LR_ para lidar com gramáticas ambíguas e a geração de código em múltiplas linguagens (C, C++, Java).
 
-#### **10.3 Funcionamento**
+O fluxo de trabalho com YACC ou Bison pode ser resumido da seguinte forma:
 
-O fluxo de trabalho com YACC ou Bison é o seguinte 52:
+1. **Entrada**: o desenvolvedor cria um arquivo de especificação, geralmente com a extensão `.y`. Este arquivo contém três seções: declarações, a gramática da linguagem escrita em uma notação semelhante à **$BNF$**, e uma seção de código auxiliar. O desenvolvedor pode associar **ações** de código (em C ou C++) a cada regra da gramática.
+2. **Processamento**: A ferramenta (YACC ou Bison) lê o arquivo de especificação. Ela analisa a gramática, constrói o autômato $LR$ e a tabela de análise correspondente, e verifica a existência de conflitos (_shift/reduce_ ou _reduce/reduce_).
+3. **Saída**: Se a gramática for adequada (ex.: $LALR(1)$), a ferramenta gera um arquivo de código fonte (ex.: `y.tab.c`) que implementa a função do parser (tipicamente chamada `yyparse`). Esta função implementa o algoritmo _shift-reduce_ dirigido pela tabela gerada. As ações de código fornecidas pelo desenvolvedor são incorporadas à função e são executadas sempre que a regra correspondente é reduzida. Essas ações são tipicamente usadas para construir a Árvore Sintática Abstrata.
 
-1. **Entrada**: O desenvolvedor cria um arquivo de especificação (geralmente com a extensão .y). Este arquivo contém três seções: declarações, a gramática da linguagem escrita em uma notação semelhante à BNF, e uma seção de código auxiliar. O desenvolvedor pode associar **ações** de código (em C ou C++) a cada regra da gramática. 
-2. **Processamento**: A ferramenta (YACC ou Bison) lê o arquivo de especificação. Ela analisa a gramática, constrói o autômato LR e a tabela de análise correspondente, e verifica a existência de conflitos (shift/reduce ou reduce/reduce). 
-3. **Saída**: Se a gramática for adequada (ex.: LALR(1)), a ferramenta gera um arquivo de código fonte (ex.: y.tab.c) que implementa a função do parser (tipicamente chamada yyparse). Esta função implementa o algoritmo shift-reduce dirigido pela tabela gerada. As ações de código fornecidas pelo desenvolvedor são incorporadas à função e são executadas sempre que a regra correspondente é reduzida. Essas ações são tipicamente usadas para construir a Árvore Sintática Abstrata.
+#### Sinergia com Lex/Flex
 
-#### **10.4 Sinergia com Lex/Flex**
+YACC/Bison são projetados para lidar com a análise sintática e quase sempre são usados em conjunto com um gerador de analisador léxico, como **Lex** ou seu sucessor **Flex**. O Flex recebe uma especificação de padrões de _tokens_, usando expressões regulares, e gera um _scanner_ (a função `yylex`). O parser gerado pelo Bison chama `yylex` para obter o próximo _token_ da entrada, formando um pipeline coeso que transforma o texto fonte em uma Árvore Sintática Abstrata.
 
-YACC/Bison são projetados para lidar com a análise sintática e quase sempre são usados em conjunto com um gerador de analisador léxico, como **Lex** ou seu sucessor **Flex**. O Flex recebe uma especificação de padrões de _tokens_ (usando expressões regulares) e gera um scanner (a função yylex). O parser gerado pelo Bison chama yylex para obter o próximo token da entrada, formando um pipeline coeso que transforma o texto fonte em uma AST.52
+O uso de ferramentas como YACC e Bison representa uma mudança de paradigma fundamental na construção de compiladores: da programação _imperativa_ para a _declarativa_. Em vez de implementar manualmente o complexo algoritmo de um parser shift-reduce, a abordagem imperativa, o desenvolvedor fornece uma especificação de alto nível da gramática da linguagem, a abordagem declarativa. A ferramenta se encarrega de gerar a implementação de baixo nível. Essa separação de interesses, o _quê_, a sintaxe da linguagem, do _como_, o algoritmo de parsing, aumenta drasticamente a produtividade, a robustez e a manutenibilidade do compilador.
 
-O uso de ferramentas como YACC e Bison representa uma mudança de paradigma fundamental na construção de compiladores: da programação *imperativa* para a *declarativa*. Em vez de implementar manualmente o complexo algoritmo de um parser shift-reduce (a abordagem imperativa), o desenvolvedor fornece uma especificação de alto nível da gramática da linguagem (a abordagem declarativa). A ferramenta se encarrega de gerar a implementação de baixo nível. Essa separação de interesses — o *quê* (a sintaxe da linguagem) do *como* (o algoritmo de parsing) — aumenta drasticamente a produtividade, a robustez e a manutenibilidade do compilador.
-
-#### **Referências citadas**
-
-1. terminologia \- O que é uma linguagem livre de contexto? \- Stack ..., acessado em agosto 19, 2025, [https://pt.stackoverflow.com/questions/180927/o-que-%C3%A9-uma-linguagem-livre-de-contexto](https://pt.stackoverflow.com/questions/180927/o-que-%C3%A9-uma-linguagem-livre-de-contexto)  
-2. Dúvida acerca da Hierarquia de Chomsky \- Stack Overflow em Português, acessado em agosto 19, 2025, [https://pt.stackoverflow.com/questions/372178/d%C3%BAvida-acerca-da-hierarquia-de-chomsky](https://pt.stackoverflow.com/questions/372178/d%C3%BAvida-acerca-da-hierarquia-de-chomsky)  
-3. Linguagem regular – Wikipédia, a enciclopédia livre, acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/Linguagem\_regular](https://pt.wikipedia.org/wiki/Linguagem_regular)  
-4. Gramática regular – Wikipédia, a enciclopédia livre, acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/Gram%C3%A1tica\_regular](https://pt.wikipedia.org/wiki/Gram%C3%A1tica_regular)  
-5. Linguagens Livres de Contexto \- Marcus Vinícius Midena Ramos, acessado em agosto 19, 2025, [https://www.marcusramos.com.br/univasf/livro-lfa-slides/cap4.pdf](https://www.marcusramos.com.br/univasf/livro-lfa-slides/cap4.pdf)  
-6. Lema do Bombeamento | DECOM-UFOP, acessado em agosto 19, 2025, [http://www.decom.ufop.br/anderson/BCC242/LemaBombeamento.pdf](http://www.decom.ufop.br/anderson/BCC242/LemaBombeamento.pdf)  
-7. Lema do Bombeamento \- Aplicação para Linguagens Regulares e Livres de Contexto \- facom/ufu, acessado em agosto 19, 2025, [https://www.facom.ufu.br/\~madriana/TC/LemaBomb.pdf](https://www.facom.ufu.br/~madriana/TC/LemaBomb.pdf)  
-8. teoria da computação unidade 2: autômatos e linguagens aula 1: lema do bombeamento professor \- CIn UFPE, acessado em agosto 19, 2025, [https://www.cin.ufpe.br/\~lfsc/cursos/teoriadainformacao/unidade%202/cap%201\_9%20-%20lema%20do%20bombeamento.pdf](https://www.cin.ufpe.br/~lfsc/cursos/teoriadainformacao/unidade%202/cap%201_9%20-%20lema%20do%20bombeamento.pdf)  
-9. Lema do Bombeamento \- Douglas O. Cardoso, acessado em agosto 19, 2025, [https://docardoso.github.io/project/lfa/04-bombeamento.pdf](https://docardoso.github.io/project/lfa/04-bombeamento.pdf)  
-10. Linguagens Formais e Autômatos \- Gitea \-- aleph0, acessado em agosto 19, 2025, [https://aleph0.info/cursos/lf/notas/lfa.pdf](https://aleph0.info/cursos/lf/notas/lfa.pdf)  
-11. Exercícios Resolvidos, acessado em agosto 19, 2025, [http://wiki.icmc.usp.br/images/f/f1/Gramáticas Livres de Contextos.pdf](http://wiki.icmc.usp.br/images/f/f1/Gramáticas Livres de Contextos.pdf)  
-12. Linguagens formais e autômatos, acessado em agosto 19, 2025, [http://cm-kls-content.s3.amazonaws.com/201702/INTERATIVAS\_2\_0/LINGUAGENS\_FORMAIS\_E\_AUTOMATOS/U1/LIVRO\_UNICO.pdf](http://cm-kls-content.s3.amazonaws.com/201702/INTERATIVAS_2_0/LINGUAGENS_FORMAIS_E_AUTOMATOS/U1/LIVRO_UNICO.pdf)  
-13. As linguagens livres de contexto são geradas por gramáticas livres de contexto? \- Academia EITCA \- EITCA Academy, acessado em agosto 19, 2025, [https://pt.eitca.org/c%C3%ADber-seguran%C3%A7a/eitc-%C3%A9-cctf-fundamentos-da-teoria-da-complexidade-computacional/gram%C3%A1ticas-e-linguagens-livres-de-contexto/introdu%C3%A7%C3%A3o-a-gram%C3%A1ticas-e-linguagens-livres-de-contexto/s%C3%A3o-linguagens-livres-de-contexto-geradas-por-gram%C3%A1ticas-livres-de-contexto/](https://pt.eitca.org/c%C3%ADber-seguran%C3%A7a/eitc-%C3%A9-cctf-fundamentos-da-teoria-da-complexidade-computacional/gram%C3%A1ticas-e-linguagens-livres-de-contexto/introdu%C3%A7%C3%A3o-a-gram%C3%A1ticas-e-linguagens-livres-de-contexto/s%C3%A3o-linguagens-livres-de-contexto-geradas-por-gram%C3%A1ticas-livres-de-contexto/)  
-14. Gramática, acessado em agosto 19, 2025, [http://www.din.uem.br/yandre/TC/gramatica-mini.pdf](http://www.din.uem.br/yandre/TC/gramatica-mini.pdf)  
-15. Símbolos terminais e não terminais – Wikipédia, a enciclopédia livre, acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/S%C3%ADmbolos\_terminais\_e\_n%C3%A3o\_terminais](https://pt.wikipedia.org/wiki/S%C3%ADmbolos_terminais_e_n%C3%A3o_terminais)  
-16. Análise sintática (computação) – Wikipédia, a enciclopédia livre, acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/An%C3%A1lise\_sint%C3%A1tica\_(computa%C3%A7%C3%A3o)](https://pt.wikipedia.org/wiki/An%C3%A1lise_sint%C3%A1tica_\(computa%C3%A7%C3%A3o\))  
-17. Fases Da Compilação | PDF \- Scribd, acessado em agosto 19, 2025, [https://id.scribd.com/document/92994660/Fases-da-compilacao](https://id.scribd.com/document/92994660/Fases-da-compilacao)  
-18. Qual é a diferença entre uma derivação mais à esquerda e uma derivação mais à direita? \- EITCA Academy, acessado em agosto 19, 2025, [https://pt.eitca.org/c%C3%ADber-seguran%C3%A7a/eitc-%C3%A9-cctf-fundamentos-da-teoria-da-complexidade-computacional/gram%C3%A1ticas-e-linguagens-livres-de-contexto/introdu%C3%A7%C3%A3o-a-gram%C3%A1ticas-e-linguagens-livres-de-contexto/exame-revis%C3%A3o-introdu%C3%A7%C3%A3o-ao-contexto-gram%C3%A1ticas-e-idiomas-livres/qual-%C3%A9-a-diferen%C3%A7a-entre-uma-deriva%C3%A7%C3%A3o-mais-%C3%A0-esquerda-e-uma-deriva%C3%A7%C3%A3o-mais-%C3%A0-direita/](https://pt.eitca.org/c%C3%ADber-seguran%C3%A7a/eitc-%C3%A9-cctf-fundamentos-da-teoria-da-complexidade-computacional/gram%C3%A1ticas-e-linguagens-livres-de-contexto/introdu%C3%A7%C3%A3o-a-gram%C3%A1ticas-e-linguagens-livres-de-contexto/exame-revis%C3%A3o-introdu%C3%A7%C3%A3o-ao-contexto-gram%C3%A1ticas-e-idiomas-livres/qual-%C3%A9-a-diferen%C3%A7a-entre-uma-deriva%C3%A7%C3%A3o-mais-%C3%A0-esquerda-e-uma-deriva%C3%A7%C3%A3o-mais-%C3%A0-direita/)  
-19. Gramáticas Livres de Contexto, acessado em agosto 19, 2025, [https://www.inf.ufrgs.br/\~johann/comp/aula06.Gramáticas Livres de Contextos.pdf](https://www.inf.ufrgs.br/~johann/comp/aula06.Gramáticas Livres de Contextos.pdf)  
-20. Compiladores Capítulo 3: Análise Sintática 3.1 \- Introdução \- Facom-UFMS, acessado em agosto 19, 2025, [http://www.facom.ufms.br/\~ricardo/Courses/CompilerI-2009/Materials/Sintatic\_Analisys.pdf](http://www.facom.ufms.br/~ricardo/Courses/CompilerI-2009/Materials/Sintatic_Analisys.pdf)  
-21. Árvores de Derivação | LL e LR | Ambiguidade | Compiladores \- YouTube, acessado em agosto 19, 2025, [https://www.youtube.com/watch?v=MLyFS7ClMf0](https://www.youtube.com/watch?v=MLyFS7ClMf0)  
-22. Gramáticas Independentes de Contexto \- Autómatos e Linguagens de Programação, acessado em agosto 19, 2025, [https://home.uevora.pt/\~fc/alp/03-gramaticas\_automatos\_pilha/03.01-gramaticas\_independentes\_contexto.html](https://home.uevora.pt/~fc/alp/03-gramaticas_automatos_pilha/03.01-gramaticas_independentes_contexto.html)  
-23. Ambigüidade, acessado em agosto 19, 2025, [https://www.inf.ufes.br/\~tavares/labcomp2000/aula63.htm](https://www.inf.ufes.br/~tavares/labcomp2000/aula63.htm)  
-24. Introdução a Gramáticas e Linguagens, acessado em agosto 19, 2025, [https://web.icmc.usp.br/SCATUSU/RT/Notas\_Didaticas/nd\_10.pdf](https://web.icmc.usp.br/SCATUSU/RT/Notas_Didaticas/nd_10.pdf)  
-25. Curso de Teoria da Computação \- Árvore de derivação e Ambiguidade \- YouTube, acessado em agosto 19, 2025, [https://www.youtube.com/watch?v=bbWgP\_khQZg](https://www.youtube.com/watch?v=bbWgP_khQZg)  
-26. Estrutura de um Compilador · Compiladores para Humanos, acessado em agosto 19, 2025, [https://johnidm.gitbooks.io/compiladores-para-humanos/content/part1/structure-of-a-compiler.html](https://johnidm.gitbooks.io/compiladores-para-humanos/content/part1/structure-of-a-compiler.html)  
-27. Compiladores \- Ciência da Computação \- Resumo da Prova PosComp, acessado em agosto 19, 2025, [https://cienciadacomputacao.wiki.br/19\_Tecnologia\_Compiladores.html](https://cienciadacomputacao.wiki.br/19_Tecnologia_Compiladores.html)  
-28. Autômato com pilha – Wikipédia, a enciclopédia livre, acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/Aut%C3%B4mato\_com\_pilha](https://pt.wikipedia.org/wiki/Aut%C3%B4mato_com_pilha)  
-29. SCC-5832 \- Capítulo 2 Linguagens Livres de Contexto e Autômatos de Pilha \- USP, acessado em agosto 19, 2025, [http://wiki.icmc.usp.br/images/a/a2/SCC5832Cap2.pdf](http://wiki.icmc.usp.br/images/a/a2/SCC5832Cap2.pdf)  
-30. Autômatos e Pilha & Gramáticas Livres de Contexto \- YouTube, acessado em agosto 19, 2025, [https://www.youtube.com/watch?v=1Xe2TUvah1I](https://www.youtube.com/watch?v=1Xe2TUvah1I)  
-31. Aula 13 – Autômato com Pilha \- Universidade Federal de Alfenas, acessado em agosto 19, 2025, [https://www.bcc.unifal-mg.edu.br/\~humberto/disciplinas/2011\_1\_lfa/aulas/aula\_13\_AutomatoComPilha.pdf](https://www.bcc.unifal-mg.edu.br/~humberto/disciplinas/2011_1_lfa/aulas/aula_13_AutomatoComPilha.pdf)  
-32. Lema do bombeamento para linguagens livre de contexto ..., acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/Lema\_do\_bombeamento\_para\_linguagens\_livre\_de\_contexto](https://pt.wikipedia.org/wiki/Lema_do_bombeamento_para_linguagens_livre_de_contexto)  
-33. Lema do bombeamento para linguagens livres de contexto \- Wikipédia, acessado em agosto 19, 2025, [https://pt.wikipedia.org/wiki/Lema\_do\_bombeamento\_para\_linguagens\_livres\_de\_contexto](https://pt.wikipedia.org/wiki/Lema_do_bombeamento_para_linguagens_livres_de_contexto)  
-34. Teoria da Computação 40 \- Lema do Bombeamento para linguagens regulares \- YouTube, acessado em agosto 19, 2025, [https://www.youtube.com/watch?v=0hbLhEdxuss](https://www.youtube.com/watch?v=0hbLhEdxuss)  
-35. Linguagens Livres de Contexto: Lema do Bombeamento e Propriedades de Fechamento \- Andrei Rimsa Alvares, acessado em agosto 19, 2025, [http://rimsa.com.br/documents/lectures/decom035/c2/lessons/Aula10.pdf](http://rimsa.com.br/documents/lectures/decom035/c2/lessons/Aula10.pdf)  
-36. \*c\*} \= {abncn, n _\!$\# %`& (\*) \+ , \-. /+ / ` `/+-. ão fechadas sob 1, acessado em agosto 19, 2025, [https://www.cos.ufrj.br/\~rps/monitoria/lfa/com162\[1\]\_list2.pdf](https://www.cos.ufrj.br/~rps/monitoria/lfa/com162[1]_list2.pdf)  
-37. Qual é a relação entre linguagens decidíveis e linguagens livres de contexto?, acessado em agosto 19, 2025, [https://pt.eitca.org/c%C3%ADber-seguran%C3%A7a/eitc-%C3%A9-cctf-fundamentos-da-teoria-da-complexidade-computacional/gram%C3%A1ticas-e-linguagens-livres-de-contexto/exemplos-de-gram%C3%A1ticas-livres-de-contexto/exemplos-de-revis%C3%A3o-de-exame-de-gram%C3%A1ticas-livres-de-contexto/qual-%C3%A9-a-rela%C3%A7%C3%A3o-entre-linguagens-decid%C3%ADveis-e-linguagens-livres-de-contexto/](https://pt.eitca.org/c%C3%ADber-seguran%C3%A7a/eitc-%C3%A9-cctf-fundamentos-da-teoria-da-complexidade-computacional/gram%C3%A1ticas-e-linguagens-livres-de-contexto/exemplos-de-gram%C3%A1ticas-livres-de-contexto/exemplos-de-revis%C3%A3o-de-exame-de-gram%C3%A1ticas-livres-de-contexto/qual-%C3%A9-a-rela%C3%A7%C3%A3o-entre-linguagens-decid%C3%ADveis-e-linguagens-livres-de-contexto/)  
-38. Lema do Bombeamento Linguagens Livres de Contexto \- DECOM-UFOP |, acessado em agosto 19, 2025, [http://www.decom.ufop.br/anderson/2\_2011/BCC244/LemaDoBombeamentoFCPL.pdf](http://www.decom.ufop.br/anderson/2_2011/BCC244/LemaDoBombeamentoFCPL.pdf)  
-39. As fases de um compilador, acessado em agosto 19, 2025, [http://wiki.icmc.usp.br/images/3/32/SCC\_605\_Estrutura\_de\_um\_Compilador.pdf](http://wiki.icmc.usp.br/images/3/32/SCC_605_Estrutura_de_um_Compilador.pdf)  
-40. Compiladores/Projecto de Compiladores/Fases Desenvolvimento \- Wiki\*\*3, acessado em agosto 19, 2025, [https://web.tecnico.ulisboa.pt/\~david.matos/w/pt/index.php/Compiladores/Projecto\_de\_Compiladores/Fases\_Desenvolvimento](https://web.tecnico.ulisboa.pt/~david.matos/w/pt/index.php/Compiladores/Projecto_de_Compiladores/Fases_Desenvolvimento)  
-41. compiladores \- O que é e como funciona a análise sintática ..., acessado em agosto 19, 2025, [https://pt.stackoverflow.com/questions/181635/o-que-%C3%A9-e-como-funciona-a-an%C3%A1lise-sint%C3%A1tica-ascendente-e-descendente](https://pt.stackoverflow.com/questions/181635/o-que-%C3%A9-e-como-funciona-a-an%C3%A1lise-sint%C3%A1tica-ascendente-e-descendente)  
-42. Top-Down Parsing \- Wiki\*\*3, acessado em agosto 19, 2025, [https://web.tecnico.ulisboa.pt/\~david.matos/w/pt/index.php/Top-Down\_Parsing](https://web.tecnico.ulisboa.pt/~david.matos/w/pt/index.php/Top-Down_Parsing)  
-43. Análise Sintática \- IC-Unicamp, acessado em agosto 19, 2025, [https://ic.unicamp.br/\~sandro/cursos/mc910/2009/slides/cap3-parser.pdf](https://ic.unicamp.br/~sandro/cursos/mc910/2009/slides/cap3-parser.pdf)  
-44. Parsers LL(1) o mundo obscuro da análise sintática \- Frank de Alcantara, acessado em agosto 19, 2025, [https://frankalcantara.com/parsers-ll(1)/](https://frankalcantara.com/parsers-ll\(1\)/)  
-45. Análise Sintática Descendente, acessado em agosto 19, 2025, [https://erinaldosn.files.wordpress.com/2011/06/aula-10-anc3a1lise-sintc3a1tica-descendente.pdf](https://erinaldosn.files.wordpress.com/2011/06/aula-10-anc3a1lise-sintc3a1tica-descendente.pdf)  
-46. Compiladores 9 \- Algoritmo de Análise Sintática LL(1) ou Analisador Sintático LL(1) ou Parser LL(1) \- YouTube, acessado em agosto 19, 2025, [https://www.youtube.com/watch?v=yTgrbMkKk6M](https://www.youtube.com/watch?v=yTgrbMkKk6M)  
-47. Como funciona a análise sintática ascendente (bottom-up parsing)? : r/golang \- Reddit, acessado em agosto 19, 2025, [https://www.reddit.com/r/golang/comments/kwju6j/how\_the\_bottom\_up\_parsing\_works/?tl=pt-br](https://www.reddit.com/r/golang/comments/kwju6j/how_the_bottom_up_parsing_works/?tl=pt-br)  
-48. Bottom-Up Parsing \- Wiki\*\*3, acessado em agosto 19, 2025, [https://web.tecnico.ulisboa.pt/\~david.matos/w/pt/index.php/Bottom-Up\_Parsing](https://web.tecnico.ulisboa.pt/~david.matos/w/pt/index.php/Bottom-Up_Parsing)  
-49. Análise Sintática (Cap. 04\) Análise Sintática Ascendente BottomUp \- Facom-UFMS, acessado em agosto 19, 2025, [http://www.facom.ufms.br/\~ricardo/Courses/CompilerI-2009/Lectures/CompilersI\_Lec06\_SyntaticAnalysis%283%29.pdf](http://www.facom.ufms.br/~ricardo/Courses/CompilerI-2009/Lectures/CompilersI_Lec06_SyntaticAnalysis%283%29.pdf)  
-50. Compiladores (CC3001) Aula 6: Análise sintática bottom-up \- DCC/FCUP, acessado em agosto 19, 2025, [https://www.dcc.fc.up.pt/\~pbv/aulas/compiladores/teoricas/aula06.pdf](https://www.dcc.fc.up.pt/~pbv/aulas/compiladores/teoricas/aula06.pdf)  
-51. Compila10 \- Análise sintática LR, Transição e fechamento \- YouTube, acessado em agosto 19, 2025, [https://www.youtube.com/watch?v=mGD7YpFSX-c](https://www.youtube.com/watch?v=mGD7YpFSX-c)  
-52. Yacc \- Wikipedia, acessado em agosto 19, 2025, [https://en.wikipedia.org/wiki/Yacc](https://en.wikipedia.org/wiki/Yacc)  
-53. GNU Bison \- Wikipedia, acessado em agosto 19, 2025, [https://en.wikipedia.org/wiki/GNU\_Bison](https://en.wikipedia.org/wiki/GNU_Bison)  
-54. Bison \- GNU Project \- Free Software Foundation, acessado em agosto 19, 2025, [https://www.gnu.org/software/bison/](https://www.gnu.org/software/bison/)  
-55. bison.pdf \- GNU, acessado em agosto 19, 2025, [https://www.gnu.org/s/bison/manual/bison.pdf](https://www.gnu.org/s/bison/manual/bison.pdf)
-
-## chomsky referências
-
-@article{chomsky1959formal,
-  title={On certain formal properties of grammars},
-  author={Chomsky, Noam},
-  journal={Information and Control},
-  volume={2},
-  number={2},
-  pages={137--167},
-  year={1959},
-  publisher={Elsevier}
-}
-
-@book{chomsky1957syntactic,
-  title={Syntactic structures},
-  author={Chomsky, Noam},
-  year={1957},
-  publisher={Mouton}
-}
-
-@article{mcculloch1943logical,
-  title={A logical calculus of the ideas immanent in nervous activity},
-  author={McCulloch, Warren S and Pitts, Walter},
-  journal={The bulletin of mathematical biophysics},
-  volume={5},
-  number={4},
-  pages={115--133},
-  year={1943},
-  publisher={Springer}
-}
-
-@article{kleene1956representation,
-  title={Representation of events in nerve nets and finite automata},
-  author={Kleene, Stephen Cole},
-  journal={Automata studies},
-  volume={34},
-  pages={3--41},
-  year={1956},
-  publisher={Princeton University Press}
-}
-
-@article{post1936finite,
-  title={Finite combinatory processes—formulation 1},
-  author={Post, Emil L},
-  journal={Journal of Symbolic Logic},
-  volume={1},
-  number={3},
-  pages={103--105},
-  year={1936},
-  publisher={Cambridge University Press}
-}
-
-@incollection{chomsky1956three,
-  title={Three models for the description of language},
-  author={Chomsky, Noam},
-  booktitle={IRE Transactions on information theory},
-  volume={2},
-  number={3},
-  pages={113--124},
-  year={1956},
-  publisher={IEEE}
-}
-
-@article{harris1951methods,
-  title={Methods in structural linguistics},
-  author={Harris, Zellig S},
-  year={1951},
-  publisher={University of Chicago Press}
-}
-
-@article{chomsky1959review,
-  title={A review of BF Skinner`s Verbal Behavior},
-  author={Chomsky, Noam},
-  journal={Language},
-  volume={35},
-  number={1},
-  pages={26--58},
-  year={1959},
-  publisher={Linguistic Society of America}
-}
-
-@misc{wikipedia_chomsky_hierarchy,
-  title={Chomsky hierarchy},
-  author={{Wikipedia contributors}},
-  year={2024},
-  howpublished={\url{https://en.wikipedia.org/wiki/Chomsky_hierarchy}},
-  note={Accessed: 2025-08-19}
-}
-
-@misc{britannica_chomsky,
-  title={Noam Chomsky | Biography, Theories, Books, Psychology, \& Facts},
-  author={{Encyclopædia Britannica}},
-  year={2024},
-  howpublished={\url{https://www.britannica.com/biography/Noam-Chomsky}},
-  note={Accessed: 2025-08-19}
-}
-
-@article{pmc_formal_language_theory,
-  title={Formal language theory: refining the Chomsky hierarchy},
-  author={Jäger, Gerhard and Rogers, James},
-  journal={Philosophical Transactions of the Royal Society B},
-  volume={367},
-  number={1598},
-  pages={1956--1970},
-  year={2012},
-  publisher={The Royal Society}
-}
-
-@misc{devopedia_chomsky,
-  title={Chomsky Hierarchy},
-  author={{Devopedia}},
-  year={2024},
-  howpublished={\url{https://devopedia.org/chomsky-hierarchy}},
-  note={Accessed: 2025-08-19}
-}
-
-@article{neural_networks_chomsky,
-  title={Neural Networks and the Chomsky Hierarchy},
-  author={Deletang, Grégoire and Ruoss, Anian and Mediano, Pedro AM and Jaggi, Martin and others},
-  journal={arXiv preprint arXiv:2207.02098},
-  year={2022}
-}
-
-@book{sipser2012introduction,
-  title={Introduction to the Theory of Computation},
-  author={Sipser, Michael},
-  year={2012},
-  publisher={Cengage Learning},
-  edition={3rd}
-}
-
-@book{hopcroft2006introduction,
-  title={Introduction to automata theory, languages, and computation},
-  author={Hopcroft, John E and Motwani, Rajeev and Ullman, Jeffrey D},
-  year={2006},
-  publisher={Pearson/Addison Wesley},
-  edition={3rd}
-}
-
-@misc{number_analytics_chomsky,
-  title={Ultimate Guide to the Chomsky Hierarchy},
-  author={{Number Analytics}},
-  year={2024},
-  howpublished={\url{https://www.numberanalytics.com/blog/ultimate-guide-chomsky-hierarchy}},
-  note={Accessed: 2025-08-19}
-}
-
-@misc{cognitive_revolution,
-  title={The Cognitive Revolution},
-  author={{UCF Pressbooks}},
-  year={2024},
-  howpublished={\url{https://pressbooks.online.ucf.edu/lumenpsychology/chapter/reading-the-cognitive-revolution-and-multicultural-psychology/}},
-  note={Accessed: 2025-08-19}
-}
-
-@article{backus1959syntax,
-  title={The syntax and semantics of the proposed international algebraic language of the Zurich ACM-GAMM Conference},
-  author={Backus, John W},
-  journal={Proceedings of the International Conference on Information Processing},
-  pages={125--132},
-  year={1959},
-  organization={UNESCO}
-}
-
-@book{naur1963revised,
-  title={Revised report on the algorithmic language ALGOL 60},
-  author={Naur, Peter and others},
-  journal={Communications of the ACM},
-  volume={6},
-  number={1},
-  pages={1--17},
-  year={1963},
-  publisher={ACM}
-}
+Além disso, a utilização de geradores de parsers permite que os desenvolvedores se concentrem na lógica da linguagem que estão implementando, em vez de se perderem nos detalhes de implementação do parser. Isso resulta em um desenvolvimento mais rápido e menos propenso a erros, uma vez que a ferramenta cuida de muitos dos aspectos técnicos e repetitivos da construção do parser.

@@ -227,9 +227,10 @@ O trabalho será avaliado antes da prova de autoria, com os seguintes critérios
 1. **Cálculos e Funcionalidades (70%)**:
 
    - Implementação completa de todas as operações RPN e comandos especiais.
-   - Cada operação não implementada reduz 10% dos 70%.
-   - Falha na divisão inteira reduz 50% dos 70%.
-   - Analisador léxico com FSM funcional e testado.
+     - Cada operação não implementada reduz 10% dos 70%.
+     - Falha na divisão inteira reduz 50% dos 70%.
+   - Analisador léxico com Autômato Finito funcional e testado.
+     - Uso de Expressões Regulares reduz a nota deste item em 90%.
 
 2. **Organização e Legibilidade do Código (15%)**:
 

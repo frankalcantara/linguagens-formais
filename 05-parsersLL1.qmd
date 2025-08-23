@@ -1,5 +1,11 @@
 # Parsers LL(1): Começando a Análise Sintática
 
+::: {.content-hidden when-format="pdf"}
+:::{.callout-tip}
+Está sem tempo? Leia o [Expresso](.\ex\05-expresso.html).
+:::
+:::
+
 **Elementar meu caro Watson!** Mesmo que Sherlock nunca tenha dito esta frase nos livros de [Sir Arthur Conan Doyle](https://www.ebiografia.com/arthur_conan_doyle/), a lembrança do grande detetive ocupa meu imaginário sempre que falo de *parsers*. Assim como o grande detetive, o trabalho do *parser* será verificar todos os detalhes de uma cena e validar cada um dos seus itens em relação a um contexto. No nosso caso, a cena será formada por um *string* e o contexto do crime, será determinado por uma Tabela de Derivação. Infelizmente nosso detetive, o *parser* $LL(1)$, nem de perto terá a mesma capacidade de Sherlock Holmes. Ainda que seja eficiente, um *parser* $LL(1)$ é linear e determinístico e, pensando bem, esta foi uma metáfora ruim. Mas, eu sempre quis começar um texto falado: elementar meu caro Watson!.
 
 Em geral, ainda que muitos lenços de papel tenham sido gastos durantes as avaliações de final de período, *parsers* $LL(1)$ são algoritmos simples.
